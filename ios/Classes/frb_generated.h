@@ -14,30 +14,42 @@ void store_dart_post_cobject(DartPostCObjectFnType ptr);
 // EXTRA END
 typedef struct _Dart_Handle* Dart_Handle;
 
-typedef struct wire_cst_list_prim_u_8_loose {
-  uint8_t *ptr;
-  int32_t len;
-} wire_cst_list_prim_u_8_loose;
+typedef struct wire_cst_split_options {
+  int32_t encoding;
+  uintptr_t min_split_number;
+  uintptr_t max_split_number;
+  int32_t min_version;
+  int32_t max_version;
+} wire_cst_split_options;
 
-typedef struct wire_cst_list_prim_u_8_strict {
-  uint8_t *ptr;
-  int32_t len;
-} wire_cst_list_prim_u_8_strict;
+void frbgen_bbqr_dart_wire_Split_try_new_from_data(int64_t port_,
+                                                   uintptr_t data,
+                                                   int32_t file_type,
+                                                   struct wire_cst_split_options *options);
 
-typedef struct wire_cst_dummy {
-  struct wire_cst_list_prim_u_8_strict *field;
-} wire_cst_dummy;
+void frbgen_bbqr_dart_rust_arc_increment_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerError(const void *ptr);
 
-void frbgen_bbqr_dart_wire_dummy_split(int64_t port_, struct wire_cst_list_prim_u_8_loose *data);
+void frbgen_bbqr_dart_rust_arc_decrement_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerError(const void *ptr);
 
-struct wire_cst_list_prim_u_8_loose *frbgen_bbqr_dart_cst_new_list_prim_u_8_loose(int32_t len);
+void frbgen_bbqr_dart_rust_arc_increment_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInner_Split(const void *ptr);
 
-struct wire_cst_list_prim_u_8_strict *frbgen_bbqr_dart_cst_new_list_prim_u_8_strict(int32_t len);
+void frbgen_bbqr_dart_rust_arc_decrement_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInner_Split(const void *ptr);
+
+void frbgen_bbqr_dart_rust_arc_increment_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInneru8(const void *ptr);
+
+void frbgen_bbqr_dart_rust_arc_decrement_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInneru8(const void *ptr);
+
+struct wire_cst_split_options *frbgen_bbqr_dart_cst_new_box_autoadd_split_options(void);
 static int64_t dummy_method_to_enforce_bundling(void) {
     int64_t dummy_var = 0;
-    dummy_var ^= ((int64_t) (void*) frbgen_bbqr_dart_cst_new_list_prim_u_8_loose);
-    dummy_var ^= ((int64_t) (void*) frbgen_bbqr_dart_cst_new_list_prim_u_8_strict);
-    dummy_var ^= ((int64_t) (void*) frbgen_bbqr_dart_wire_dummy_split);
+    dummy_var ^= ((int64_t) (void*) frbgen_bbqr_dart_cst_new_box_autoadd_split_options);
+    dummy_var ^= ((int64_t) (void*) frbgen_bbqr_dart_rust_arc_decrement_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerError);
+    dummy_var ^= ((int64_t) (void*) frbgen_bbqr_dart_rust_arc_decrement_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInner_Split);
+    dummy_var ^= ((int64_t) (void*) frbgen_bbqr_dart_rust_arc_decrement_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInneru8);
+    dummy_var ^= ((int64_t) (void*) frbgen_bbqr_dart_rust_arc_increment_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerError);
+    dummy_var ^= ((int64_t) (void*) frbgen_bbqr_dart_rust_arc_increment_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInner_Split);
+    dummy_var ^= ((int64_t) (void*) frbgen_bbqr_dart_rust_arc_increment_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInneru8);
+    dummy_var ^= ((int64_t) (void*) frbgen_bbqr_dart_wire_Split_try_new_from_data);
     dummy_var ^= ((int64_t) (void*) store_dart_post_cobject);
     return dummy_var;
 }
