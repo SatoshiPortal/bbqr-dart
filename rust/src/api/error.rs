@@ -86,81 +86,83 @@ pub enum DecodeError {
     UnableToInflateZlib(String),
 }
 
-impl From<bbqr::error::HeaderParseError> for HeaderParseError {
-    fn from(e: bbqr::error::HeaderParseError) -> Self {
+impl From<bbqr::header::HeaderParseError> for HeaderParseError {
+    fn from(e: bbqr::header::HeaderParseError) -> Self {
         match e {
-            bbqr::error::HeaderParseError::Empty => HeaderParseError::Empty,
-            bbqr::error::HeaderParseError::InvalidEncoding(c) => {
+            bbqr::header::HeaderParseError::Empty => HeaderParseError::Empty,
+            bbqr::header::HeaderParseError::InvalidEncoding(c) => {
                 HeaderParseError::InvalidEncoding(c.to_string())
             }
-            bbqr::error::HeaderParseError::InvalidFileType(c) => {
+            bbqr::header::HeaderParseError::InvalidFileType(c) => {
                 HeaderParseError::InvalidFileType(c.to_string())
             }
-            bbqr::error::HeaderParseError::InvalidFixedHeader => {
+            bbqr::header::HeaderParseError::InvalidFixedHeader => {
                 HeaderParseError::InvalidFixedHeader
             }
-            bbqr::error::HeaderParseError::InvalidHeaderSize(size) => {
+            bbqr::header::HeaderParseError::InvalidHeaderSize(size) => {
                 HeaderParseError::InvalidHeaderSize(size)
             }
-            bbqr::error::HeaderParseError::InvalidHeaderParts(s) => {
+            bbqr::header::HeaderParseError::InvalidHeaderParts(s) => {
                 HeaderParseError::InvalidHeaderParts(s)
             }
         }
     }
 }
 
-impl From<bbqr::error::DecodeError> for DecodeError {
-    fn from(e: bbqr::error::DecodeError) -> Self {
+impl From<bbqr::decode::DecodeError> for DecodeError {
+    fn from(e: bbqr::decode::DecodeError) -> Self {
         match e {
-            bbqr::error::DecodeError::UnableToDecodeHex(a, b) => {
+            bbqr::decode::DecodeError::UnableToDecodeHex(a, b) => {
                 DecodeError::UnableToDecodeHex(a, b.to_string())
             }
-            bbqr::error::DecodeError::UnableToDecodeBase32(a, b) => {
+            bbqr::decode::DecodeError::UnableToDecodeBase32(a, b) => {
                 DecodeError::UnableToDecodeBase32(a, b.to_string())
             }
-            bbqr::error::DecodeError::UnableToInflateZlib(s) => DecodeError::UnableToInflateZlib(s),
+            bbqr::decode::DecodeError::UnableToInflateZlib(s) => {
+                DecodeError::UnableToInflateZlib(s)
+            }
         }
     }
 }
 
-impl From<bbqr::error::SplitError> for SplitError {
-    fn from(e: bbqr::error::SplitError) -> Self {
+impl From<bbqr::split::SplitError> for SplitError {
+    fn from(e: bbqr::split::SplitError) -> Self {
         match e {
-            bbqr::error::SplitError::Empty => SplitError::Empty,
-            bbqr::error::SplitError::CannotFit => SplitError::CannotFit,
-            bbqr::error::SplitError::MaxSplitSizeTooLarge(size) => {
+            bbqr::split::SplitError::Empty => SplitError::Empty,
+            bbqr::split::SplitError::CannotFit => SplitError::CannotFit,
+            bbqr::split::SplitError::MaxSplitSizeTooLarge(size) => {
                 SplitError::MaxSplitSizeTooLarge(size)
             }
-            bbqr::error::SplitError::MinSplitTooSmall => SplitError::MinSplitTooSmall,
-            bbqr::error::SplitError::InvalidSplitRange => SplitError::InvalidSplitRange,
-            bbqr::error::SplitError::InvalidVersionRange => SplitError::InvalidVersionRange,
-            bbqr::error::SplitError::EncodeError(e) => SplitError::EncodeError(e.into()),
+            bbqr::split::SplitError::MinSplitTooSmall => SplitError::MinSplitTooSmall,
+            bbqr::split::SplitError::InvalidSplitRange => SplitError::InvalidSplitRange,
+            bbqr::split::SplitError::InvalidVersionRange => SplitError::InvalidVersionRange,
+            bbqr::split::SplitError::EncodeError(e) => SplitError::EncodeError(e.into()),
         }
     }
 }
 
-impl From<bbqr::error::EncodeError> for EncodeError {
-    fn from(e: bbqr::error::EncodeError) -> Self {
+impl From<bbqr::encode::EncodeError> for EncodeError {
+    fn from(e: bbqr::encode::EncodeError) -> Self {
         match e {
-            bbqr::error::EncodeError::Empty => EncodeError::Empty,
-            bbqr::error::EncodeError::CompressionError(e) => EncodeError::CompressionError(e),
+            bbqr::encode::EncodeError::Empty => EncodeError::Empty,
+            bbqr::encode::EncodeError::CompressionError(e) => EncodeError::CompressionError(e),
         }
     }
 }
 
-impl From<bbqr::error::JoinError> for JoinError {
-    fn from(e: bbqr::error::JoinError) -> Self {
+impl From<bbqr::join::JoinError> for JoinError {
+    fn from(e: bbqr::join::JoinError) -> Self {
         match e {
-            bbqr::error::JoinError::Empty => JoinError::Empty,
-            bbqr::error::JoinError::ConflictingHeaders => JoinError::ConflictingHeaders,
-            bbqr::error::JoinError::TooManyParts(a, b) => JoinError::TooManyParts(a, b),
-            bbqr::error::JoinError::DuplicatePartWrongContent(a) => {
+            bbqr::join::JoinError::Empty => JoinError::Empty,
+            bbqr::join::JoinError::ConflictingHeaders => JoinError::ConflictingHeaders,
+            bbqr::join::JoinError::TooManyParts(a, b) => JoinError::TooManyParts(a, b),
+            bbqr::join::JoinError::DuplicatePartWrongContent(a) => {
                 JoinError::DuplicatePartWrongContent(a)
             }
-            bbqr::error::JoinError::PartWithNoData(a) => JoinError::PartWithNoData(a),
-            bbqr::error::JoinError::MissingPart(a) => JoinError::MissingPart(a),
-            bbqr::error::JoinError::HeaderParseError(e) => JoinError::HeaderParseError(e.into()),
-            bbqr::error::JoinError::DecodeError(e) => JoinError::DecodeError(e.into()),
+            bbqr::join::JoinError::PartWithNoData(a) => JoinError::PartWithNoData(a),
+            bbqr::join::JoinError::MissingPart(a) => JoinError::MissingPart(a),
+            bbqr::join::JoinError::HeaderParseError(e) => JoinError::HeaderParseError(e.into()),
+            bbqr::join::JoinError::DecodeError(e) => JoinError::DecodeError(e.into()),
         }
     }
 }

@@ -1,6 +1,10 @@
-use bbqr::Joined;
-pub use bbqr::{Encoding, FileType, Split, SplitOptions, Version};
-
+pub use bbqr::{
+    encode::Encoding,
+    file_type::FileType,
+    join::Joined,
+    qr::Version,
+    split::{Split, SplitOptions},
+};
 use flutter_rust_bridge::frb;
 
 pub use super::error::{EncodeError, JoinError, SplitError};
