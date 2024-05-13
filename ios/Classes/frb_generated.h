@@ -142,6 +142,53 @@ typedef struct wire_cst_join_error {
   union JoinErrorKind kind;
 } wire_cst_join_error;
 
+typedef struct wire_cst_joined {
+  int32_t encoding;
+  int32_t file_type;
+  struct wire_cst_list_prim_u_8_strict *data;
+} wire_cst_joined;
+
+typedef struct wire_cst_ContinuousJoinError_HeaderParseError {
+  struct wire_cst_header_parse_error *field0;
+} wire_cst_ContinuousJoinError_HeaderParseError;
+
+typedef struct wire_cst_ContinuousJoinError_JoinError {
+  struct wire_cst_join_error *field0;
+} wire_cst_ContinuousJoinError_JoinError;
+
+typedef struct wire_cst_ContinuousJoinError_DecodeError {
+  struct wire_cst_decode_error *field0;
+} wire_cst_ContinuousJoinError_DecodeError;
+
+typedef union ContinuousJoinErrorKind {
+  struct wire_cst_ContinuousJoinError_HeaderParseError HeaderParseError;
+  struct wire_cst_ContinuousJoinError_JoinError JoinError;
+  struct wire_cst_ContinuousJoinError_DecodeError DecodeError;
+} ContinuousJoinErrorKind;
+
+typedef struct wire_cst_continuous_join_error {
+  int32_t tag;
+  union ContinuousJoinErrorKind kind;
+} wire_cst_continuous_join_error;
+
+typedef struct wire_cst_ContinuousJoinResult_InProgress {
+  uintptr_t parts_left;
+} wire_cst_ContinuousJoinResult_InProgress;
+
+typedef struct wire_cst_ContinuousJoinResult_Complete {
+  struct wire_cst_joined *field0;
+} wire_cst_ContinuousJoinResult_Complete;
+
+typedef union ContinuousJoinResultKind {
+  struct wire_cst_ContinuousJoinResult_InProgress InProgress;
+  struct wire_cst_ContinuousJoinResult_Complete Complete;
+} ContinuousJoinResultKind;
+
+typedef struct wire_cst_continuous_join_result {
+  int32_t tag;
+  union ContinuousJoinResultKind kind;
+} wire_cst_continuous_join_result;
+
 typedef struct wire_cst_SplitError_MaxSplitSizeTooLarge {
   uintptr_t field0;
 } wire_cst_SplitError_MaxSplitSizeTooLarge;
@@ -160,6 +207,12 @@ typedef struct wire_cst_split_error {
   union SplitErrorKind kind;
 } wire_cst_split_error;
 
+void frbgen_bbqr_dart_wire_ContinuousJoiner_add_part(int64_t port_,
+                                                     uintptr_t that,
+                                                     struct wire_cst_list_prim_u_8_strict *part);
+
+void frbgen_bbqr_dart_wire_ContinuousJoiner_new(int64_t port_);
+
 void frbgen_bbqr_dart_wire_Joined_try_new_from_parts(int64_t port_,
                                                      struct wire_cst_list_String *parts);
 
@@ -167,6 +220,10 @@ void frbgen_bbqr_dart_wire_Split_try_from_data(int64_t port_,
                                                struct wire_cst_list_prim_u_8_loose *data,
                                                int32_t file_type,
                                                struct wire_cst_split_options *options);
+
+void frbgen_bbqr_dart_rust_arc_increment_strong_count_RustOpaque_flutter_rust_bridgefor_generatedrust_asyncRwLockContinuousJoiner(const void *ptr);
+
+void frbgen_bbqr_dart_rust_arc_decrement_strong_count_RustOpaque_flutter_rust_bridgefor_generatedrust_asyncRwLockContinuousJoiner(const void *ptr);
 
 void frbgen_bbqr_dart_rust_arc_increment_strong_count_RustOpaque_flutter_rust_bridgefor_generatedrust_asyncRwLock_Joined(const void *ptr);
 
@@ -182,6 +239,10 @@ struct wire_cst_encode_error *frbgen_bbqr_dart_cst_new_box_autoadd_encode_error(
 
 struct wire_cst_header_parse_error *frbgen_bbqr_dart_cst_new_box_autoadd_header_parse_error(void);
 
+struct wire_cst_join_error *frbgen_bbqr_dart_cst_new_box_autoadd_join_error(void);
+
+struct wire_cst_joined *frbgen_bbqr_dart_cst_new_box_autoadd_joined(void);
+
 struct wire_cst_split_options *frbgen_bbqr_dart_cst_new_box_autoadd_split_options(void);
 
 struct wire_cst_list_String *frbgen_bbqr_dart_cst_new_list_String(int32_t len);
@@ -194,14 +255,20 @@ static int64_t dummy_method_to_enforce_bundling(void) {
     dummy_var ^= ((int64_t) (void*) frbgen_bbqr_dart_cst_new_box_autoadd_decode_error);
     dummy_var ^= ((int64_t) (void*) frbgen_bbqr_dart_cst_new_box_autoadd_encode_error);
     dummy_var ^= ((int64_t) (void*) frbgen_bbqr_dart_cst_new_box_autoadd_header_parse_error);
+    dummy_var ^= ((int64_t) (void*) frbgen_bbqr_dart_cst_new_box_autoadd_join_error);
+    dummy_var ^= ((int64_t) (void*) frbgen_bbqr_dart_cst_new_box_autoadd_joined);
     dummy_var ^= ((int64_t) (void*) frbgen_bbqr_dart_cst_new_box_autoadd_split_options);
     dummy_var ^= ((int64_t) (void*) frbgen_bbqr_dart_cst_new_list_String);
     dummy_var ^= ((int64_t) (void*) frbgen_bbqr_dart_cst_new_list_prim_u_8_loose);
     dummy_var ^= ((int64_t) (void*) frbgen_bbqr_dart_cst_new_list_prim_u_8_strict);
+    dummy_var ^= ((int64_t) (void*) frbgen_bbqr_dart_rust_arc_decrement_strong_count_RustOpaque_flutter_rust_bridgefor_generatedrust_asyncRwLockContinuousJoiner);
     dummy_var ^= ((int64_t) (void*) frbgen_bbqr_dart_rust_arc_decrement_strong_count_RustOpaque_flutter_rust_bridgefor_generatedrust_asyncRwLock_Joined);
     dummy_var ^= ((int64_t) (void*) frbgen_bbqr_dart_rust_arc_decrement_strong_count_RustOpaque_flutter_rust_bridgefor_generatedrust_asyncRwLock_Split);
+    dummy_var ^= ((int64_t) (void*) frbgen_bbqr_dart_rust_arc_increment_strong_count_RustOpaque_flutter_rust_bridgefor_generatedrust_asyncRwLockContinuousJoiner);
     dummy_var ^= ((int64_t) (void*) frbgen_bbqr_dart_rust_arc_increment_strong_count_RustOpaque_flutter_rust_bridgefor_generatedrust_asyncRwLock_Joined);
     dummy_var ^= ((int64_t) (void*) frbgen_bbqr_dart_rust_arc_increment_strong_count_RustOpaque_flutter_rust_bridgefor_generatedrust_asyncRwLock_Split);
+    dummy_var ^= ((int64_t) (void*) frbgen_bbqr_dart_wire_ContinuousJoiner_add_part);
+    dummy_var ^= ((int64_t) (void*) frbgen_bbqr_dart_wire_ContinuousJoiner_new);
     dummy_var ^= ((int64_t) (void*) frbgen_bbqr_dart_wire_Joined_try_new_from_parts);
     dummy_var ^= ((int64_t) (void*) frbgen_bbqr_dart_wire_Split_try_from_data);
     dummy_var ^= ((int64_t) (void*) store_dart_post_cobject);

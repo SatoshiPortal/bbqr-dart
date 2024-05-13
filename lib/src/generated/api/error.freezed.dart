@@ -15,6 +15,568 @@ final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
 /// @nodoc
+mixin _$ContinuousJoinError {
+  Object get field0 => throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(HeaderParseError field0) headerParseError,
+    required TResult Function(JoinError field0) joinError,
+    required TResult Function(DecodeError field0) decodeError,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(HeaderParseError field0)? headerParseError,
+    TResult? Function(JoinError field0)? joinError,
+    TResult? Function(DecodeError field0)? decodeError,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(HeaderParseError field0)? headerParseError,
+    TResult Function(JoinError field0)? joinError,
+    TResult Function(DecodeError field0)? decodeError,
+    required TResult orElse(),
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(ContinuousJoinError_HeaderParseError value)
+        headerParseError,
+    required TResult Function(ContinuousJoinError_JoinError value) joinError,
+    required TResult Function(ContinuousJoinError_DecodeError value)
+        decodeError,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(ContinuousJoinError_HeaderParseError value)?
+        headerParseError,
+    TResult? Function(ContinuousJoinError_JoinError value)? joinError,
+    TResult? Function(ContinuousJoinError_DecodeError value)? decodeError,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(ContinuousJoinError_HeaderParseError value)?
+        headerParseError,
+    TResult Function(ContinuousJoinError_JoinError value)? joinError,
+    TResult Function(ContinuousJoinError_DecodeError value)? decodeError,
+    required TResult orElse(),
+  }) =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $ContinuousJoinErrorCopyWith<$Res> {
+  factory $ContinuousJoinErrorCopyWith(
+          ContinuousJoinError value, $Res Function(ContinuousJoinError) then) =
+      _$ContinuousJoinErrorCopyWithImpl<$Res, ContinuousJoinError>;
+}
+
+/// @nodoc
+class _$ContinuousJoinErrorCopyWithImpl<$Res, $Val extends ContinuousJoinError>
+    implements $ContinuousJoinErrorCopyWith<$Res> {
+  _$ContinuousJoinErrorCopyWithImpl(this._value, this._then);
+
+  // ignore: unused_field
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
+}
+
+/// @nodoc
+abstract class _$$ContinuousJoinError_HeaderParseErrorImplCopyWith<$Res> {
+  factory _$$ContinuousJoinError_HeaderParseErrorImplCopyWith(
+          _$ContinuousJoinError_HeaderParseErrorImpl value,
+          $Res Function(_$ContinuousJoinError_HeaderParseErrorImpl) then) =
+      __$$ContinuousJoinError_HeaderParseErrorImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({HeaderParseError field0});
+
+  $HeaderParseErrorCopyWith<$Res> get field0;
+}
+
+/// @nodoc
+class __$$ContinuousJoinError_HeaderParseErrorImplCopyWithImpl<$Res>
+    extends _$ContinuousJoinErrorCopyWithImpl<$Res,
+        _$ContinuousJoinError_HeaderParseErrorImpl>
+    implements _$$ContinuousJoinError_HeaderParseErrorImplCopyWith<$Res> {
+  __$$ContinuousJoinError_HeaderParseErrorImplCopyWithImpl(
+      _$ContinuousJoinError_HeaderParseErrorImpl _value,
+      $Res Function(_$ContinuousJoinError_HeaderParseErrorImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? field0 = null,
+  }) {
+    return _then(_$ContinuousJoinError_HeaderParseErrorImpl(
+      null == field0
+          ? _value.field0
+          : field0 // ignore: cast_nullable_to_non_nullable
+              as HeaderParseError,
+    ));
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $HeaderParseErrorCopyWith<$Res> get field0 {
+    return $HeaderParseErrorCopyWith<$Res>(_value.field0, (value) {
+      return _then(_value.copyWith(field0: value));
+    });
+  }
+}
+
+/// @nodoc
+
+class _$ContinuousJoinError_HeaderParseErrorImpl
+    extends ContinuousJoinError_HeaderParseError {
+  const _$ContinuousJoinError_HeaderParseErrorImpl(this.field0) : super._();
+
+  @override
+  final HeaderParseError field0;
+
+  @override
+  String toString() {
+    return 'ContinuousJoinError.headerParseError(field0: $field0)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$ContinuousJoinError_HeaderParseErrorImpl &&
+            (identical(other.field0, field0) || other.field0 == field0));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, field0);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$ContinuousJoinError_HeaderParseErrorImplCopyWith<
+          _$ContinuousJoinError_HeaderParseErrorImpl>
+      get copyWith => __$$ContinuousJoinError_HeaderParseErrorImplCopyWithImpl<
+          _$ContinuousJoinError_HeaderParseErrorImpl>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(HeaderParseError field0) headerParseError,
+    required TResult Function(JoinError field0) joinError,
+    required TResult Function(DecodeError field0) decodeError,
+  }) {
+    return headerParseError(field0);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(HeaderParseError field0)? headerParseError,
+    TResult? Function(JoinError field0)? joinError,
+    TResult? Function(DecodeError field0)? decodeError,
+  }) {
+    return headerParseError?.call(field0);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(HeaderParseError field0)? headerParseError,
+    TResult Function(JoinError field0)? joinError,
+    TResult Function(DecodeError field0)? decodeError,
+    required TResult orElse(),
+  }) {
+    if (headerParseError != null) {
+      return headerParseError(field0);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(ContinuousJoinError_HeaderParseError value)
+        headerParseError,
+    required TResult Function(ContinuousJoinError_JoinError value) joinError,
+    required TResult Function(ContinuousJoinError_DecodeError value)
+        decodeError,
+  }) {
+    return headerParseError(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(ContinuousJoinError_HeaderParseError value)?
+        headerParseError,
+    TResult? Function(ContinuousJoinError_JoinError value)? joinError,
+    TResult? Function(ContinuousJoinError_DecodeError value)? decodeError,
+  }) {
+    return headerParseError?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(ContinuousJoinError_HeaderParseError value)?
+        headerParseError,
+    TResult Function(ContinuousJoinError_JoinError value)? joinError,
+    TResult Function(ContinuousJoinError_DecodeError value)? decodeError,
+    required TResult orElse(),
+  }) {
+    if (headerParseError != null) {
+      return headerParseError(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class ContinuousJoinError_HeaderParseError
+    extends ContinuousJoinError {
+  const factory ContinuousJoinError_HeaderParseError(
+          final HeaderParseError field0) =
+      _$ContinuousJoinError_HeaderParseErrorImpl;
+  const ContinuousJoinError_HeaderParseError._() : super._();
+
+  @override
+  HeaderParseError get field0;
+  @JsonKey(ignore: true)
+  _$$ContinuousJoinError_HeaderParseErrorImplCopyWith<
+          _$ContinuousJoinError_HeaderParseErrorImpl>
+      get copyWith => throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$ContinuousJoinError_JoinErrorImplCopyWith<$Res> {
+  factory _$$ContinuousJoinError_JoinErrorImplCopyWith(
+          _$ContinuousJoinError_JoinErrorImpl value,
+          $Res Function(_$ContinuousJoinError_JoinErrorImpl) then) =
+      __$$ContinuousJoinError_JoinErrorImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({JoinError field0});
+
+  $JoinErrorCopyWith<$Res> get field0;
+}
+
+/// @nodoc
+class __$$ContinuousJoinError_JoinErrorImplCopyWithImpl<$Res>
+    extends _$ContinuousJoinErrorCopyWithImpl<$Res,
+        _$ContinuousJoinError_JoinErrorImpl>
+    implements _$$ContinuousJoinError_JoinErrorImplCopyWith<$Res> {
+  __$$ContinuousJoinError_JoinErrorImplCopyWithImpl(
+      _$ContinuousJoinError_JoinErrorImpl _value,
+      $Res Function(_$ContinuousJoinError_JoinErrorImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? field0 = null,
+  }) {
+    return _then(_$ContinuousJoinError_JoinErrorImpl(
+      null == field0
+          ? _value.field0
+          : field0 // ignore: cast_nullable_to_non_nullable
+              as JoinError,
+    ));
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $JoinErrorCopyWith<$Res> get field0 {
+    return $JoinErrorCopyWith<$Res>(_value.field0, (value) {
+      return _then(_value.copyWith(field0: value));
+    });
+  }
+}
+
+/// @nodoc
+
+class _$ContinuousJoinError_JoinErrorImpl
+    extends ContinuousJoinError_JoinError {
+  const _$ContinuousJoinError_JoinErrorImpl(this.field0) : super._();
+
+  @override
+  final JoinError field0;
+
+  @override
+  String toString() {
+    return 'ContinuousJoinError.joinError(field0: $field0)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$ContinuousJoinError_JoinErrorImpl &&
+            (identical(other.field0, field0) || other.field0 == field0));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, field0);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$ContinuousJoinError_JoinErrorImplCopyWith<
+          _$ContinuousJoinError_JoinErrorImpl>
+      get copyWith => __$$ContinuousJoinError_JoinErrorImplCopyWithImpl<
+          _$ContinuousJoinError_JoinErrorImpl>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(HeaderParseError field0) headerParseError,
+    required TResult Function(JoinError field0) joinError,
+    required TResult Function(DecodeError field0) decodeError,
+  }) {
+    return joinError(field0);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(HeaderParseError field0)? headerParseError,
+    TResult? Function(JoinError field0)? joinError,
+    TResult? Function(DecodeError field0)? decodeError,
+  }) {
+    return joinError?.call(field0);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(HeaderParseError field0)? headerParseError,
+    TResult Function(JoinError field0)? joinError,
+    TResult Function(DecodeError field0)? decodeError,
+    required TResult orElse(),
+  }) {
+    if (joinError != null) {
+      return joinError(field0);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(ContinuousJoinError_HeaderParseError value)
+        headerParseError,
+    required TResult Function(ContinuousJoinError_JoinError value) joinError,
+    required TResult Function(ContinuousJoinError_DecodeError value)
+        decodeError,
+  }) {
+    return joinError(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(ContinuousJoinError_HeaderParseError value)?
+        headerParseError,
+    TResult? Function(ContinuousJoinError_JoinError value)? joinError,
+    TResult? Function(ContinuousJoinError_DecodeError value)? decodeError,
+  }) {
+    return joinError?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(ContinuousJoinError_HeaderParseError value)?
+        headerParseError,
+    TResult Function(ContinuousJoinError_JoinError value)? joinError,
+    TResult Function(ContinuousJoinError_DecodeError value)? decodeError,
+    required TResult orElse(),
+  }) {
+    if (joinError != null) {
+      return joinError(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class ContinuousJoinError_JoinError extends ContinuousJoinError {
+  const factory ContinuousJoinError_JoinError(final JoinError field0) =
+      _$ContinuousJoinError_JoinErrorImpl;
+  const ContinuousJoinError_JoinError._() : super._();
+
+  @override
+  JoinError get field0;
+  @JsonKey(ignore: true)
+  _$$ContinuousJoinError_JoinErrorImplCopyWith<
+          _$ContinuousJoinError_JoinErrorImpl>
+      get copyWith => throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$ContinuousJoinError_DecodeErrorImplCopyWith<$Res> {
+  factory _$$ContinuousJoinError_DecodeErrorImplCopyWith(
+          _$ContinuousJoinError_DecodeErrorImpl value,
+          $Res Function(_$ContinuousJoinError_DecodeErrorImpl) then) =
+      __$$ContinuousJoinError_DecodeErrorImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({DecodeError field0});
+
+  $DecodeErrorCopyWith<$Res> get field0;
+}
+
+/// @nodoc
+class __$$ContinuousJoinError_DecodeErrorImplCopyWithImpl<$Res>
+    extends _$ContinuousJoinErrorCopyWithImpl<$Res,
+        _$ContinuousJoinError_DecodeErrorImpl>
+    implements _$$ContinuousJoinError_DecodeErrorImplCopyWith<$Res> {
+  __$$ContinuousJoinError_DecodeErrorImplCopyWithImpl(
+      _$ContinuousJoinError_DecodeErrorImpl _value,
+      $Res Function(_$ContinuousJoinError_DecodeErrorImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? field0 = null,
+  }) {
+    return _then(_$ContinuousJoinError_DecodeErrorImpl(
+      null == field0
+          ? _value.field0
+          : field0 // ignore: cast_nullable_to_non_nullable
+              as DecodeError,
+    ));
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $DecodeErrorCopyWith<$Res> get field0 {
+    return $DecodeErrorCopyWith<$Res>(_value.field0, (value) {
+      return _then(_value.copyWith(field0: value));
+    });
+  }
+}
+
+/// @nodoc
+
+class _$ContinuousJoinError_DecodeErrorImpl
+    extends ContinuousJoinError_DecodeError {
+  const _$ContinuousJoinError_DecodeErrorImpl(this.field0) : super._();
+
+  @override
+  final DecodeError field0;
+
+  @override
+  String toString() {
+    return 'ContinuousJoinError.decodeError(field0: $field0)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$ContinuousJoinError_DecodeErrorImpl &&
+            (identical(other.field0, field0) || other.field0 == field0));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, field0);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$ContinuousJoinError_DecodeErrorImplCopyWith<
+          _$ContinuousJoinError_DecodeErrorImpl>
+      get copyWith => __$$ContinuousJoinError_DecodeErrorImplCopyWithImpl<
+          _$ContinuousJoinError_DecodeErrorImpl>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(HeaderParseError field0) headerParseError,
+    required TResult Function(JoinError field0) joinError,
+    required TResult Function(DecodeError field0) decodeError,
+  }) {
+    return decodeError(field0);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(HeaderParseError field0)? headerParseError,
+    TResult? Function(JoinError field0)? joinError,
+    TResult? Function(DecodeError field0)? decodeError,
+  }) {
+    return decodeError?.call(field0);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(HeaderParseError field0)? headerParseError,
+    TResult Function(JoinError field0)? joinError,
+    TResult Function(DecodeError field0)? decodeError,
+    required TResult orElse(),
+  }) {
+    if (decodeError != null) {
+      return decodeError(field0);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(ContinuousJoinError_HeaderParseError value)
+        headerParseError,
+    required TResult Function(ContinuousJoinError_JoinError value) joinError,
+    required TResult Function(ContinuousJoinError_DecodeError value)
+        decodeError,
+  }) {
+    return decodeError(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(ContinuousJoinError_HeaderParseError value)?
+        headerParseError,
+    TResult? Function(ContinuousJoinError_JoinError value)? joinError,
+    TResult? Function(ContinuousJoinError_DecodeError value)? decodeError,
+  }) {
+    return decodeError?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(ContinuousJoinError_HeaderParseError value)?
+        headerParseError,
+    TResult Function(ContinuousJoinError_JoinError value)? joinError,
+    TResult Function(ContinuousJoinError_DecodeError value)? decodeError,
+    required TResult orElse(),
+  }) {
+    if (decodeError != null) {
+      return decodeError(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class ContinuousJoinError_DecodeError extends ContinuousJoinError {
+  const factory ContinuousJoinError_DecodeError(final DecodeError field0) =
+      _$ContinuousJoinError_DecodeErrorImpl;
+  const ContinuousJoinError_DecodeError._() : super._();
+
+  @override
+  DecodeError get field0;
+  @JsonKey(ignore: true)
+  _$$ContinuousJoinError_DecodeErrorImplCopyWith<
+          _$ContinuousJoinError_DecodeErrorImpl>
+      get copyWith => throw _privateConstructorUsedError;
+}
+
+/// @nodoc
 mixin _$DecodeError {
   Object get field0 => throw _privateConstructorUsedError;
   @optionalTypeArgs

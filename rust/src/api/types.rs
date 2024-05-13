@@ -1,7 +1,7 @@
 use std::sync::Mutex;
 
-use bbqr::continuous_join::{ContinuousJoinError, ContinuousJoinResult};
 pub use bbqr::{
+    continuous_join::ContinuousJoinResult,
     encode::Encoding,
     file_type::FileType,
     join::Joined,
@@ -9,6 +9,7 @@ pub use bbqr::{
     split::{Split, SplitOptions},
 };
 
+use super::error::ContinuousJoinError;
 pub use super::error::{EncodeError, JoinError, SplitError};
 use flutter_rust_bridge::frb;
 
@@ -172,8 +173,8 @@ impl _Joined {
 pub struct ContinuousJoiner(Mutex<bbqr::continuous_join::ContinuousJoiner>);
 
 #[derive(Debug, Clone, PartialEq, Eq)]
-#[frb(mirror(ContinuousJoinerResult))]
-pub enum _ContinuousJoinerResult {
+#[frb(mirror(ContinuousJoinResult))]
+pub enum _ContinuousJoinResult {
     /// No valid parts have been added yet
     NotStarted,
 

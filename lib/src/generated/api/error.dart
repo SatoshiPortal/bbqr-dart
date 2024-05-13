@@ -9,6 +9,23 @@ import 'package:freezed_annotation/freezed_annotation.dart' hide protected;
 part 'error.freezed.dart';
 
 @freezed
+sealed class ContinuousJoinError
+    with _$ContinuousJoinError
+    implements FrbException {
+  const ContinuousJoinError._();
+
+  const factory ContinuousJoinError.headerParseError(
+    HeaderParseError field0,
+  ) = ContinuousJoinError_HeaderParseError;
+  const factory ContinuousJoinError.joinError(
+    JoinError field0,
+  ) = ContinuousJoinError_JoinError;
+  const factory ContinuousJoinError.decodeError(
+    DecodeError field0,
+  ) = ContinuousJoinError_DecodeError;
+}
+
+@freezed
 sealed class DecodeError with _$DecodeError {
   const DecodeError._();
 
@@ -76,7 +93,7 @@ sealed class HeaderParseError with _$HeaderParseError {
 }
 
 @freezed
-sealed class JoinError with _$JoinError implements FrbException {
+sealed class JoinError with _$JoinError {
   const JoinError._();
 
   /// No data found
