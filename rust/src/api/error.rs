@@ -86,6 +86,12 @@ pub enum DecodeError {
     UnableToInflateZlib(String),
 }
 
+pub enum ContinuousJoinError {
+    HeaderParseError(HeaderParseError),
+    JoinError(JoinError),
+    DecodeError(DecodeError),
+}
+
 impl From<bbqr::header::HeaderParseError> for HeaderParseError {
     fn from(e: bbqr::header::HeaderParseError) -> Self {
         match e {
@@ -163,6 +169,22 @@ impl From<bbqr::join::JoinError> for JoinError {
             bbqr::join::JoinError::MissingPart(a) => JoinError::MissingPart(a),
             bbqr::join::JoinError::HeaderParseError(e) => JoinError::HeaderParseError(e.into()),
             bbqr::join::JoinError::DecodeError(e) => JoinError::DecodeError(e.into()),
+        }
+    }
+}
+
+impl From<bbqr::continuous_join::ContinuousJoinError> for ContinuousJoinError {
+    fn from(e: bbqr::continuous_join::ContinuousJoinError) -> Self {
+        match e {
+            bbqr::continuous_join::ContinuousJoinError::HeaderParseError(e) => {
+                ContinuousJoinError::HeaderParseError(e.into())
+            }
+            bbqr::continuous_join::ContinuousJoinError::JoinError(e) => {
+                ContinuousJoinError::JoinError(e.into())
+            }
+            bbqr::continuous_join::ContinuousJoinError::DecodeError(e) => {
+                ContinuousJoinError::DecodeError(e.into())
+            }
         }
     }
 }

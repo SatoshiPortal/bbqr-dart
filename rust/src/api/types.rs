@@ -1,3 +1,6 @@
+use std::sync::Mutex;
+
+use bbqr::continuous_join::{ContinuousJoinError, ContinuousJoinResult};
 pub use bbqr::{
     encode::Encoding,
     file_type::FileType,
@@ -5,9 +8,9 @@ pub use bbqr::{
     qr::Version,
     split::{Split, SplitOptions},
 };
-use flutter_rust_bridge::frb;
 
 pub use super::error::{EncodeError, JoinError, SplitError};
+use flutter_rust_bridge::frb;
 
 #[derive(Debug, Clone)]
 #[frb(mirror(Split))]
@@ -163,5 +166,43 @@ impl _Joined {
             file_type: joined.file_type,
             data: joined.data,
         })
+    }
+}
+
+pub struct ContinuousJoiner(Mutex<bbqr::continuous_join::ContinuousJoiner>);
+
+#[derive(Debug, Clone, PartialEq, Eq)]
+#[frb(mirror(ContinuousJoinerResult))]
+pub enum _ContinuousJoinerResult {
+    /// No valid parts have been added yet
+    NotStarted,
+
+    /// The state where parts have been added, but not all parts have been joined
+    InProgress {
+        /// The number of parts left to join
+        parts_left: usize,
+    },
+
+    /// The state where all parts have been joined
+    Complete(Joined),
+}
+
+impl Default for ContinuousJoiner {
+    fn default() -> Self {
+        Self::new()
+    }
+}
+
+impl ContinuousJoiner {
+    pub fn new() -> Self {
+        Self(Mutex::new(bbqr::continuous_join::ContinuousJoiner::new()))
+    }
+
+    pub fn add_part(&mut self, part: String) -> Result<ContinuousJoinResult, ContinuousJoinError> {
+        self.0
+            .lock()
+            .unwrap()
+            .add_part(part)
+            .map_err(ContinuousJoinError::from)
     }
 }
