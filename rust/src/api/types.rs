@@ -1,5 +1,5 @@
 use bbqr::{
-    error::{EncodeError, JoinError, SplitError},
+    error::{JoinError, SplitError},
     Encoding, FileType, Split, SplitOptions, Version,
 };
 use flutter_rust_bridge::frb;
