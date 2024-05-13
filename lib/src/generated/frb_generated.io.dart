@@ -18,32 +18,12 @@ abstract class BbqrCoreApiImplPlatform extends BaseApiImpl<BbqrCoreWire> {
     required super.portManager,
   });
 
-  CrossPlatformFinalizerArg get rust_arc_decrement_strong_count_ErrorPtr => wire
-      ._rust_arc_decrement_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerErrorPtr;
-
   CrossPlatformFinalizerArg get rust_arc_decrement_strong_count_SplitPtr => wire
       ._rust_arc_decrement_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInner_SplitPtr;
-
-  CrossPlatformFinalizerArg get rust_arc_decrement_strong_count_U8Ptr => wire
-      ._rust_arc_decrement_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInneru8Ptr;
-
-  @protected
-  Error
-      dco_decode_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerError(
-          dynamic raw);
 
   @protected
   Split
       dco_decode_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInner_Split(
-          dynamic raw);
-
-  @protected
-  U8 dco_decode_Auto_Ref_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInneru8(
-      dynamic raw);
-
-  @protected
-  Error
-      dco_decode_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerError(
           dynamic raw);
 
   @protected
@@ -52,11 +32,16 @@ abstract class BbqrCoreApiImplPlatform extends BaseApiImpl<BbqrCoreWire> {
           dynamic raw);
 
   @protected
-  U8 dco_decode_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInneru8(
-      dynamic raw);
+  String dco_decode_String(dynamic raw);
+
+  @protected
+  EncodeError dco_decode_box_autoadd_encode_error(dynamic raw);
 
   @protected
   SplitOptions dco_decode_box_autoadd_split_options(dynamic raw);
+
+  @protected
+  EncodeError dco_decode_encode_error(dynamic raw);
 
   @protected
   Encoding dco_decode_encoding(dynamic raw);
@@ -68,7 +53,19 @@ abstract class BbqrCoreApiImplPlatform extends BaseApiImpl<BbqrCoreWire> {
   int dco_decode_i_32(dynamic raw);
 
   @protected
+  List<int> dco_decode_list_prim_u_8_loose(dynamic raw);
+
+  @protected
+  Uint8List dco_decode_list_prim_u_8_strict(dynamic raw);
+
+  @protected
+  SplitError dco_decode_split_error(dynamic raw);
+
+  @protected
   SplitOptions dco_decode_split_options(dynamic raw);
+
+  @protected
+  int dco_decode_u_8(dynamic raw);
 
   @protected
   int dco_decode_usize(dynamic raw);
@@ -77,22 +74,8 @@ abstract class BbqrCoreApiImplPlatform extends BaseApiImpl<BbqrCoreWire> {
   Version dco_decode_version(dynamic raw);
 
   @protected
-  Error
-      sse_decode_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerError(
-          SseDeserializer deserializer);
-
-  @protected
   Split
       sse_decode_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInner_Split(
-          SseDeserializer deserializer);
-
-  @protected
-  U8 sse_decode_Auto_Ref_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInneru8(
-      SseDeserializer deserializer);
-
-  @protected
-  Error
-      sse_decode_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerError(
           SseDeserializer deserializer);
 
   @protected
@@ -101,12 +84,17 @@ abstract class BbqrCoreApiImplPlatform extends BaseApiImpl<BbqrCoreWire> {
           SseDeserializer deserializer);
 
   @protected
-  U8 sse_decode_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInneru8(
-      SseDeserializer deserializer);
+  String sse_decode_String(SseDeserializer deserializer);
+
+  @protected
+  EncodeError sse_decode_box_autoadd_encode_error(SseDeserializer deserializer);
 
   @protected
   SplitOptions sse_decode_box_autoadd_split_options(
       SseDeserializer deserializer);
+
+  @protected
+  EncodeError sse_decode_encode_error(SseDeserializer deserializer);
 
   @protected
   Encoding sse_decode_encoding(SseDeserializer deserializer);
@@ -118,7 +106,19 @@ abstract class BbqrCoreApiImplPlatform extends BaseApiImpl<BbqrCoreWire> {
   int sse_decode_i_32(SseDeserializer deserializer);
 
   @protected
+  List<int> sse_decode_list_prim_u_8_loose(SseDeserializer deserializer);
+
+  @protected
+  Uint8List sse_decode_list_prim_u_8_strict(SseDeserializer deserializer);
+
+  @protected
+  SplitError sse_decode_split_error(SseDeserializer deserializer);
+
+  @protected
   SplitOptions sse_decode_split_options(SseDeserializer deserializer);
+
+  @protected
+  int sse_decode_u_8(SseDeserializer deserializer);
 
   @protected
   int sse_decode_usize(SseDeserializer deserializer);
@@ -130,6 +130,21 @@ abstract class BbqrCoreApiImplPlatform extends BaseApiImpl<BbqrCoreWire> {
   bool sse_decode_bool(SseDeserializer deserializer);
 
   @protected
+  ffi.Pointer<wire_cst_list_prim_u_8_strict> cst_encode_String(String raw) {
+    // Codec=Cst (C-struct based), see doc to use other codecs
+    return cst_encode_list_prim_u_8_strict(utf8.encoder.convert(raw));
+  }
+
+  @protected
+  ffi.Pointer<wire_cst_encode_error> cst_encode_box_autoadd_encode_error(
+      EncodeError raw) {
+    // Codec=Cst (C-struct based), see doc to use other codecs
+    final ptr = wire.cst_new_box_autoadd_encode_error();
+    cst_api_fill_to_wire_encode_error(raw, ptr.ref);
+    return ptr;
+  }
+
+  @protected
   ffi.Pointer<wire_cst_split_options> cst_encode_box_autoadd_split_options(
       SplitOptions raw) {
     // Codec=Cst (C-struct based), see doc to use other codecs
@@ -139,9 +154,85 @@ abstract class BbqrCoreApiImplPlatform extends BaseApiImpl<BbqrCoreWire> {
   }
 
   @protected
+  ffi.Pointer<wire_cst_list_prim_u_8_loose> cst_encode_list_prim_u_8_loose(
+      List<int> raw) {
+    // Codec=Cst (C-struct based), see doc to use other codecs
+    final ans = wire.cst_new_list_prim_u_8_loose(raw.length);
+    ans.ref.ptr.asTypedList(raw.length).setAll(0, raw);
+    return ans;
+  }
+
+  @protected
+  ffi.Pointer<wire_cst_list_prim_u_8_strict> cst_encode_list_prim_u_8_strict(
+      Uint8List raw) {
+    // Codec=Cst (C-struct based), see doc to use other codecs
+    final ans = wire.cst_new_list_prim_u_8_strict(raw.length);
+    ans.ref.ptr.asTypedList(raw.length).setAll(0, raw);
+    return ans;
+  }
+
+  @protected
+  void cst_api_fill_to_wire_box_autoadd_encode_error(
+      EncodeError apiObj, ffi.Pointer<wire_cst_encode_error> wireObj) {
+    cst_api_fill_to_wire_encode_error(apiObj, wireObj.ref);
+  }
+
+  @protected
   void cst_api_fill_to_wire_box_autoadd_split_options(
       SplitOptions apiObj, ffi.Pointer<wire_cst_split_options> wireObj) {
     cst_api_fill_to_wire_split_options(apiObj, wireObj.ref);
+  }
+
+  @protected
+  void cst_api_fill_to_wire_encode_error(
+      EncodeError apiObj, wire_cst_encode_error wireObj) {
+    if (apiObj is EncodeError_Empty) {
+      wireObj.tag = 0;
+      return;
+    }
+    if (apiObj is EncodeError_CompressionError) {
+      var pre_field0 = cst_encode_String(apiObj.field0);
+      wireObj.tag = 1;
+      wireObj.kind.CompressionError.field0 = pre_field0;
+      return;
+    }
+  }
+
+  @protected
+  void cst_api_fill_to_wire_split_error(
+      SplitError apiObj, wire_cst_split_error wireObj) {
+    if (apiObj is SplitError_Empty) {
+      wireObj.tag = 0;
+      return;
+    }
+    if (apiObj is SplitError_CannotFit) {
+      wireObj.tag = 1;
+      return;
+    }
+    if (apiObj is SplitError_MaxSplitSizeTooLarge) {
+      var pre_field0 = cst_encode_usize(apiObj.field0);
+      wireObj.tag = 2;
+      wireObj.kind.MaxSplitSizeTooLarge.field0 = pre_field0;
+      return;
+    }
+    if (apiObj is SplitError_MinSplitTooSmall) {
+      wireObj.tag = 3;
+      return;
+    }
+    if (apiObj is SplitError_InvalidSplitRange) {
+      wireObj.tag = 4;
+      return;
+    }
+    if (apiObj is SplitError_InvalidVersionRange) {
+      wireObj.tag = 5;
+      return;
+    }
+    if (apiObj is SplitError_EncodeError) {
+      var pre_field0 = cst_encode_box_autoadd_encode_error(apiObj.field0);
+      wireObj.tag = 6;
+      wireObj.kind.EncodeError.field0 = pre_field0;
+      return;
+    }
   }
 
   @protected
@@ -155,28 +246,12 @@ abstract class BbqrCoreApiImplPlatform extends BaseApiImpl<BbqrCoreWire> {
   }
 
   @protected
-  int cst_encode_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerError(
-      Error raw);
-
-  @protected
   int cst_encode_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInner_Split(
       Split raw);
 
   @protected
-  int cst_encode_Auto_Ref_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInneru8(
-      U8 raw);
-
-  @protected
-  int cst_encode_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerError(
-      Error raw);
-
-  @protected
   int cst_encode_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInner_Split(
       Split raw);
-
-  @protected
-  int cst_encode_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInneru8(
-      U8 raw);
 
   @protected
   int cst_encode_encoding(Encoding raw);
@@ -188,15 +263,13 @@ abstract class BbqrCoreApiImplPlatform extends BaseApiImpl<BbqrCoreWire> {
   int cst_encode_i_32(int raw);
 
   @protected
+  int cst_encode_u_8(int raw);
+
+  @protected
   int cst_encode_usize(int raw);
 
   @protected
   int cst_encode_version(Version raw);
-
-  @protected
-  void
-      sse_encode_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerError(
-          Error self, SseSerializer serializer);
 
   @protected
   void
@@ -205,27 +278,22 @@ abstract class BbqrCoreApiImplPlatform extends BaseApiImpl<BbqrCoreWire> {
 
   @protected
   void
-      sse_encode_Auto_Ref_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInneru8(
-          U8 self, SseSerializer serializer);
-
-  @protected
-  void
-      sse_encode_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerError(
-          Error self, SseSerializer serializer);
-
-  @protected
-  void
       sse_encode_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInner_Split(
           Split self, SseSerializer serializer);
 
   @protected
-  void
-      sse_encode_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInneru8(
-          U8 self, SseSerializer serializer);
+  void sse_encode_String(String self, SseSerializer serializer);
+
+  @protected
+  void sse_encode_box_autoadd_encode_error(
+      EncodeError self, SseSerializer serializer);
 
   @protected
   void sse_encode_box_autoadd_split_options(
       SplitOptions self, SseSerializer serializer);
+
+  @protected
+  void sse_encode_encode_error(EncodeError self, SseSerializer serializer);
 
   @protected
   void sse_encode_encoding(Encoding self, SseSerializer serializer);
@@ -237,7 +305,20 @@ abstract class BbqrCoreApiImplPlatform extends BaseApiImpl<BbqrCoreWire> {
   void sse_encode_i_32(int self, SseSerializer serializer);
 
   @protected
+  void sse_encode_list_prim_u_8_loose(List<int> self, SseSerializer serializer);
+
+  @protected
+  void sse_encode_list_prim_u_8_strict(
+      Uint8List self, SseSerializer serializer);
+
+  @protected
+  void sse_encode_split_error(SplitError self, SseSerializer serializer);
+
+  @protected
   void sse_encode_split_options(SplitOptions self, SseSerializer serializer);
+
+  @protected
+  void sse_encode_u_8(int self, SseSerializer serializer);
 
   @protected
   void sse_encode_usize(int self, SseSerializer serializer);
@@ -292,7 +373,7 @@ class BbqrCoreWire implements BaseWire {
 
   void wire_Split_try_new_from_data(
     int port_,
-    int data,
+    ffi.Pointer<wire_cst_list_prim_u_8_loose> data,
     int file_type,
     ffi.Pointer<wire_cst_split_options> options,
   ) {
@@ -306,44 +387,16 @@ class BbqrCoreWire implements BaseWire {
 
   late final _wire_Split_try_new_from_dataPtr = _lookup<
           ffi.NativeFunction<
-              ffi.Void Function(ffi.Int64, ffi.UintPtr, ffi.Int32,
+              ffi.Void Function(
+                  ffi.Int64,
+                  ffi.Pointer<wire_cst_list_prim_u_8_loose>,
+                  ffi.Int32,
                   ffi.Pointer<wire_cst_split_options>)>>(
       'frbgen_bbqr_dart_wire_Split_try_new_from_data');
   late final _wire_Split_try_new_from_data =
       _wire_Split_try_new_from_dataPtr.asFunction<
-          void Function(int, int, int, ffi.Pointer<wire_cst_split_options>)>();
-
-  void
-      rust_arc_increment_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerError(
-    ffi.Pointer<ffi.Void> ptr,
-  ) {
-    return _rust_arc_increment_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerError(
-      ptr,
-    );
-  }
-
-  late final _rust_arc_increment_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerErrorPtr =
-      _lookup<ffi.NativeFunction<ffi.Void Function(ffi.Pointer<ffi.Void>)>>(
-          'frbgen_bbqr_dart_rust_arc_increment_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerError');
-  late final _rust_arc_increment_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerError =
-      _rust_arc_increment_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerErrorPtr
-          .asFunction<void Function(ffi.Pointer<ffi.Void>)>();
-
-  void
-      rust_arc_decrement_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerError(
-    ffi.Pointer<ffi.Void> ptr,
-  ) {
-    return _rust_arc_decrement_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerError(
-      ptr,
-    );
-  }
-
-  late final _rust_arc_decrement_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerErrorPtr =
-      _lookup<ffi.NativeFunction<ffi.Void Function(ffi.Pointer<ffi.Void>)>>(
-          'frbgen_bbqr_dart_rust_arc_decrement_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerError');
-  late final _rust_arc_decrement_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerError =
-      _rust_arc_decrement_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerErrorPtr
-          .asFunction<void Function(ffi.Pointer<ffi.Void>)>();
+          void Function(int, ffi.Pointer<wire_cst_list_prim_u_8_loose>, int,
+              ffi.Pointer<wire_cst_split_options>)>();
 
   void
       rust_arc_increment_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInner_Split(
@@ -377,37 +430,16 @@ class BbqrCoreWire implements BaseWire {
       _rust_arc_decrement_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInner_SplitPtr
           .asFunction<void Function(ffi.Pointer<ffi.Void>)>();
 
-  void
-      rust_arc_increment_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInneru8(
-    ffi.Pointer<ffi.Void> ptr,
-  ) {
-    return _rust_arc_increment_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInneru8(
-      ptr,
-    );
+  ffi.Pointer<wire_cst_encode_error> cst_new_box_autoadd_encode_error() {
+    return _cst_new_box_autoadd_encode_error();
   }
 
-  late final _rust_arc_increment_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInneru8Ptr =
-      _lookup<ffi.NativeFunction<ffi.Void Function(ffi.Pointer<ffi.Void>)>>(
-          'frbgen_bbqr_dart_rust_arc_increment_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInneru8');
-  late final _rust_arc_increment_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInneru8 =
-      _rust_arc_increment_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInneru8Ptr
-          .asFunction<void Function(ffi.Pointer<ffi.Void>)>();
-
-  void
-      rust_arc_decrement_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInneru8(
-    ffi.Pointer<ffi.Void> ptr,
-  ) {
-    return _rust_arc_decrement_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInneru8(
-      ptr,
-    );
-  }
-
-  late final _rust_arc_decrement_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInneru8Ptr =
-      _lookup<ffi.NativeFunction<ffi.Void Function(ffi.Pointer<ffi.Void>)>>(
-          'frbgen_bbqr_dart_rust_arc_decrement_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInneru8');
-  late final _rust_arc_decrement_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInneru8 =
-      _rust_arc_decrement_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInneru8Ptr
-          .asFunction<void Function(ffi.Pointer<ffi.Void>)>();
+  late final _cst_new_box_autoadd_encode_errorPtr = _lookup<
+          ffi.NativeFunction<ffi.Pointer<wire_cst_encode_error> Function()>>(
+      'frbgen_bbqr_dart_cst_new_box_autoadd_encode_error');
+  late final _cst_new_box_autoadd_encode_error =
+      _cst_new_box_autoadd_encode_errorPtr
+          .asFunction<ffi.Pointer<wire_cst_encode_error> Function()>();
 
   ffi.Pointer<wire_cst_split_options> cst_new_box_autoadd_split_options() {
     return _cst_new_box_autoadd_split_options();
@@ -419,6 +451,36 @@ class BbqrCoreWire implements BaseWire {
   late final _cst_new_box_autoadd_split_options =
       _cst_new_box_autoadd_split_optionsPtr
           .asFunction<ffi.Pointer<wire_cst_split_options> Function()>();
+
+  ffi.Pointer<wire_cst_list_prim_u_8_loose> cst_new_list_prim_u_8_loose(
+    int len,
+  ) {
+    return _cst_new_list_prim_u_8_loose(
+      len,
+    );
+  }
+
+  late final _cst_new_list_prim_u_8_loosePtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Pointer<wire_cst_list_prim_u_8_loose> Function(
+              ffi.Int32)>>('frbgen_bbqr_dart_cst_new_list_prim_u_8_loose');
+  late final _cst_new_list_prim_u_8_loose = _cst_new_list_prim_u_8_loosePtr
+      .asFunction<ffi.Pointer<wire_cst_list_prim_u_8_loose> Function(int)>();
+
+  ffi.Pointer<wire_cst_list_prim_u_8_strict> cst_new_list_prim_u_8_strict(
+    int len,
+  ) {
+    return _cst_new_list_prim_u_8_strict(
+      len,
+    );
+  }
+
+  late final _cst_new_list_prim_u_8_strictPtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Pointer<wire_cst_list_prim_u_8_strict> Function(
+              ffi.Int32)>>('frbgen_bbqr_dart_cst_new_list_prim_u_8_strict');
+  late final _cst_new_list_prim_u_8_strict = _cst_new_list_prim_u_8_strictPtr
+      .asFunction<ffi.Pointer<wire_cst_list_prim_u_8_strict> Function(int)>();
 
   int dummy_method_to_enforce_bundling() {
     return _dummy_method_to_enforce_bundling();
@@ -436,6 +498,13 @@ typedef DartPostCObjectFnType = ffi.Pointer<
         ffi.Bool Function(DartPort port_id, ffi.Pointer<ffi.Void> message)>>;
 typedef DartPort = ffi.Int64;
 
+final class wire_cst_list_prim_u_8_loose extends ffi.Struct {
+  external ffi.Pointer<ffi.Uint8> ptr;
+
+  @ffi.Int32()
+  external int len;
+}
+
 final class wire_cst_split_options extends ffi.Struct {
   @ffi.Int32()
   external int encoding;
@@ -451,4 +520,48 @@ final class wire_cst_split_options extends ffi.Struct {
 
   @ffi.Int32()
   external int max_version;
+}
+
+final class wire_cst_list_prim_u_8_strict extends ffi.Struct {
+  external ffi.Pointer<ffi.Uint8> ptr;
+
+  @ffi.Int32()
+  external int len;
+}
+
+final class wire_cst_EncodeError_CompressionError extends ffi.Struct {
+  external ffi.Pointer<wire_cst_list_prim_u_8_strict> field0;
+}
+
+final class EncodeErrorKind extends ffi.Union {
+  external wire_cst_EncodeError_CompressionError CompressionError;
+}
+
+final class wire_cst_encode_error extends ffi.Struct {
+  @ffi.Int32()
+  external int tag;
+
+  external EncodeErrorKind kind;
+}
+
+final class wire_cst_SplitError_MaxSplitSizeTooLarge extends ffi.Struct {
+  @ffi.UintPtr()
+  external int field0;
+}
+
+final class wire_cst_SplitError_EncodeError extends ffi.Struct {
+  external ffi.Pointer<wire_cst_encode_error> field0;
+}
+
+final class SplitErrorKind extends ffi.Union {
+  external wire_cst_SplitError_MaxSplitSizeTooLarge MaxSplitSizeTooLarge;
+
+  external wire_cst_SplitError_EncodeError EncodeError;
+}
+
+final class wire_cst_split_error extends ffi.Struct {
+  @ffi.Int32()
+  external int tag;
+
+  external SplitErrorKind kind;
 }

@@ -5,26 +5,10 @@
 
 import '../frb_generated.dart';
 import 'package:flutter_rust_bridge/flutter_rust_bridge_for_generated.dart';
+import 'package:freezed_annotation/freezed_annotation.dart' hide protected;
+part 'types.freezed.dart';
 
 // The type `Split` is not used by any `pub` functions, thus it is ignored.
-
-// Rust type: RustOpaqueNom<flutter_rust_bridge::for_generated::RustAutoOpaqueInner<Error>>
-@sealed
-class Error extends RustOpaque {
-  Error.dcoDecode(List<dynamic> wire) : super.dcoDecode(wire, _kStaticData);
-
-  Error.sseDecode(int ptr, int externalSizeOnNative)
-      : super.sseDecode(ptr, externalSizeOnNative, _kStaticData);
-
-  static final _kStaticData = RustArcStaticData(
-    rustArcIncrementStrongCount:
-        BbqrCore.instance.api.rust_arc_increment_strong_count_Error,
-    rustArcDecrementStrongCount:
-        BbqrCore.instance.api.rust_arc_decrement_strong_count_Error,
-    rustArcDecrementStrongCountPtr:
-        BbqrCore.instance.api.rust_arc_decrement_strong_count_ErrorPtr,
-  );
-}
 
 // Rust type: RustOpaqueNom<flutter_rust_bridge::for_generated::RustAutoOpaqueInner<_Split>>
 @sealed
@@ -44,7 +28,7 @@ class Split extends RustOpaque {
   );
 
   static Future<Split> tryNewFromData(
-          {required U8 data,
+          {required List<int> data,
           required FileType fileType,
           required SplitOptions options,
           dynamic hint}) =>
@@ -52,22 +36,17 @@ class Split extends RustOpaque {
           data: data, fileType: fileType, options: options, hint: hint);
 }
 
-// Rust type: RustOpaqueNom<flutter_rust_bridge::for_generated::RustAutoOpaqueInner<[u8]>>
-@sealed
-class U8 extends RustOpaque {
-  U8.dcoDecode(List<dynamic> wire) : super.dcoDecode(wire, _kStaticData);
+@freezed
+sealed class EncodeError with _$EncodeError {
+  const EncodeError._();
 
-  U8.sseDecode(int ptr, int externalSizeOnNative)
-      : super.sseDecode(ptr, externalSizeOnNative, _kStaticData);
+  /// No data to encode
+  const factory EncodeError.empty() = EncodeError_Empty;
 
-  static final _kStaticData = RustArcStaticData(
-    rustArcIncrementStrongCount:
-        BbqrCore.instance.api.rust_arc_increment_strong_count_U8,
-    rustArcDecrementStrongCount:
-        BbqrCore.instance.api.rust_arc_decrement_strong_count_U8,
-    rustArcDecrementStrongCountPtr:
-        BbqrCore.instance.api.rust_arc_decrement_strong_count_U8Ptr,
-  );
+  /// Error while compressing data
+  const factory EncodeError.compressionError(
+    String field0,
+  ) = EncodeError_CompressionError;
 }
 
 enum Encoding {
@@ -84,6 +63,37 @@ enum FileType {
   cbor,
   unicodeText,
   ;
+}
+
+@freezed
+sealed class SplitError with _$SplitError implements FrbException {
+  const SplitError._();
+
+  /// No data found
+  const factory SplitError.empty() = SplitError_Empty;
+
+  /// Cannot make the data fit
+  const factory SplitError.cannotFit() = SplitError_CannotFit;
+
+  /// Max split size is too large
+  const factory SplitError.maxSplitSizeTooLarge(
+    int field0,
+  ) = SplitError_MaxSplitSizeTooLarge;
+
+  /// Min split size is too small
+  const factory SplitError.minSplitTooSmall() = SplitError_MinSplitTooSmall;
+
+  /// Invalid split min and max range, min is larger than max
+  const factory SplitError.invalidSplitRange() = SplitError_InvalidSplitRange;
+
+  /// Invalid version min and max range, min is larger than max
+  const factory SplitError.invalidVersionRange() =
+      SplitError_InvalidVersionRange;
+
+  /// Error while encoding
+  const factory SplitError.encodeError(
+    EncodeError field0,
+  ) = SplitError_EncodeError;
 }
 
 class SplitOptions {

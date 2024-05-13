@@ -67,28 +67,16 @@ class BbqrCore
 
 abstract class BbqrCoreApi extends BaseApi {
   Future<Split> splitTryNewFromData(
-      {required U8 data,
+      {required List<int> data,
       required FileType fileType,
       required SplitOptions options,
       dynamic hint});
-
-  RustArcIncrementStrongCountFnType get rust_arc_increment_strong_count_Error;
-
-  RustArcDecrementStrongCountFnType get rust_arc_decrement_strong_count_Error;
-
-  CrossPlatformFinalizerArg get rust_arc_decrement_strong_count_ErrorPtr;
 
   RustArcIncrementStrongCountFnType get rust_arc_increment_strong_count_Split;
 
   RustArcDecrementStrongCountFnType get rust_arc_decrement_strong_count_Split;
 
   CrossPlatformFinalizerArg get rust_arc_decrement_strong_count_SplitPtr;
-
-  RustArcIncrementStrongCountFnType get rust_arc_increment_strong_count_U8;
-
-  RustArcDecrementStrongCountFnType get rust_arc_decrement_strong_count_U8;
-
-  CrossPlatformFinalizerArg get rust_arc_decrement_strong_count_U8Ptr;
 }
 
 class BbqrCoreApiImpl extends BbqrCoreApiImplPlatform implements BbqrCoreApi {
@@ -101,15 +89,13 @@ class BbqrCoreApiImpl extends BbqrCoreApiImplPlatform implements BbqrCoreApi {
 
   @override
   Future<Split> splitTryNewFromData(
-      {required U8 data,
+      {required List<int> data,
       required FileType fileType,
       required SplitOptions options,
       dynamic hint}) {
     return handler.executeNormal(NormalTask(
       callFfi: (port_) {
-        var arg0 =
-            cst_encode_Auto_Ref_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInneru8(
-                data);
+        var arg0 = cst_encode_list_prim_u_8_loose(data);
         var arg1 = cst_encode_file_type(fileType);
         var arg2 = cst_encode_box_autoadd_split_options(options);
         return wire.wire_Split_try_new_from_data(port_, arg0, arg1, arg2);
@@ -117,8 +103,7 @@ class BbqrCoreApiImpl extends BbqrCoreApiImplPlatform implements BbqrCoreApi {
       codec: DcoCodec(
         decodeSuccessData:
             dco_decode_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInner_Split,
-        decodeErrorData:
-            dco_decode_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerError,
+        decodeErrorData: dco_decode_split_error,
       ),
       constMeta: kSplitTryNewFromDataConstMeta,
       argValues: [data, fileType, options],
@@ -132,31 +117,11 @@ class BbqrCoreApiImpl extends BbqrCoreApiImplPlatform implements BbqrCoreApi {
         argNames: ["data", "fileType", "options"],
       );
 
-  RustArcIncrementStrongCountFnType get rust_arc_increment_strong_count_Error =>
-      wire.rust_arc_increment_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerError;
-
-  RustArcDecrementStrongCountFnType get rust_arc_decrement_strong_count_Error =>
-      wire.rust_arc_decrement_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerError;
-
   RustArcIncrementStrongCountFnType get rust_arc_increment_strong_count_Split =>
       wire.rust_arc_increment_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInner_Split;
 
   RustArcDecrementStrongCountFnType get rust_arc_decrement_strong_count_Split =>
       wire.rust_arc_decrement_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInner_Split;
-
-  RustArcIncrementStrongCountFnType get rust_arc_increment_strong_count_U8 => wire
-      .rust_arc_increment_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInneru8;
-
-  RustArcDecrementStrongCountFnType get rust_arc_decrement_strong_count_U8 => wire
-      .rust_arc_decrement_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInneru8;
-
-  @protected
-  Error
-      dco_decode_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerError(
-          dynamic raw) {
-    // Codec=Dco (DartCObject based), see doc to use other codecs
-    return Error.dcoDecode(raw as List<dynamic>);
-  }
 
   @protected
   Split
@@ -164,21 +129,6 @@ class BbqrCoreApiImpl extends BbqrCoreApiImplPlatform implements BbqrCoreApi {
           dynamic raw) {
     // Codec=Dco (DartCObject based), see doc to use other codecs
     return Split.dcoDecode(raw as List<dynamic>);
-  }
-
-  @protected
-  U8 dco_decode_Auto_Ref_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInneru8(
-      dynamic raw) {
-    // Codec=Dco (DartCObject based), see doc to use other codecs
-    return U8.dcoDecode(raw as List<dynamic>);
-  }
-
-  @protected
-  Error
-      dco_decode_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerError(
-          dynamic raw) {
-    // Codec=Dco (DartCObject based), see doc to use other codecs
-    return Error.dcoDecode(raw as List<dynamic>);
   }
 
   @protected
@@ -190,16 +140,36 @@ class BbqrCoreApiImpl extends BbqrCoreApiImplPlatform implements BbqrCoreApi {
   }
 
   @protected
-  U8 dco_decode_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInneru8(
-      dynamic raw) {
+  String dco_decode_String(dynamic raw) {
     // Codec=Dco (DartCObject based), see doc to use other codecs
-    return U8.dcoDecode(raw as List<dynamic>);
+    return raw as String;
+  }
+
+  @protected
+  EncodeError dco_decode_box_autoadd_encode_error(dynamic raw) {
+    // Codec=Dco (DartCObject based), see doc to use other codecs
+    return dco_decode_encode_error(raw);
   }
 
   @protected
   SplitOptions dco_decode_box_autoadd_split_options(dynamic raw) {
     // Codec=Dco (DartCObject based), see doc to use other codecs
     return dco_decode_split_options(raw);
+  }
+
+  @protected
+  EncodeError dco_decode_encode_error(dynamic raw) {
+    // Codec=Dco (DartCObject based), see doc to use other codecs
+    switch (raw[0]) {
+      case 0:
+        return EncodeError_Empty();
+      case 1:
+        return EncodeError_CompressionError(
+          dco_decode_String(raw[1]),
+        );
+      default:
+        throw Exception("unreachable");
+    }
   }
 
   @protected
@@ -221,6 +191,45 @@ class BbqrCoreApiImpl extends BbqrCoreApiImplPlatform implements BbqrCoreApi {
   }
 
   @protected
+  List<int> dco_decode_list_prim_u_8_loose(dynamic raw) {
+    // Codec=Dco (DartCObject based), see doc to use other codecs
+    return raw as List<int>;
+  }
+
+  @protected
+  Uint8List dco_decode_list_prim_u_8_strict(dynamic raw) {
+    // Codec=Dco (DartCObject based), see doc to use other codecs
+    return raw as Uint8List;
+  }
+
+  @protected
+  SplitError dco_decode_split_error(dynamic raw) {
+    // Codec=Dco (DartCObject based), see doc to use other codecs
+    switch (raw[0]) {
+      case 0:
+        return SplitError_Empty();
+      case 1:
+        return SplitError_CannotFit();
+      case 2:
+        return SplitError_MaxSplitSizeTooLarge(
+          dco_decode_usize(raw[1]),
+        );
+      case 3:
+        return SplitError_MinSplitTooSmall();
+      case 4:
+        return SplitError_InvalidSplitRange();
+      case 5:
+        return SplitError_InvalidVersionRange();
+      case 6:
+        return SplitError_EncodeError(
+          dco_decode_box_autoadd_encode_error(raw[1]),
+        );
+      default:
+        throw Exception("unreachable");
+    }
+  }
+
+  @protected
   SplitOptions dco_decode_split_options(dynamic raw) {
     // Codec=Dco (DartCObject based), see doc to use other codecs
     final arr = raw as List<dynamic>;
@@ -236,6 +245,12 @@ class BbqrCoreApiImpl extends BbqrCoreApiImplPlatform implements BbqrCoreApi {
   }
 
   @protected
+  int dco_decode_u_8(dynamic raw) {
+    // Codec=Dco (DartCObject based), see doc to use other codecs
+    return raw as int;
+  }
+
+  @protected
   int dco_decode_usize(dynamic raw) {
     // Codec=Dco (DartCObject based), see doc to use other codecs
     return dcoDecodeI64OrU64(raw);
@@ -248,37 +263,11 @@ class BbqrCoreApiImpl extends BbqrCoreApiImplPlatform implements BbqrCoreApi {
   }
 
   @protected
-  Error
-      sse_decode_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerError(
-          SseDeserializer deserializer) {
-    // Codec=Sse (Serialization based), see doc to use other codecs
-    return Error.sseDecode(
-        sse_decode_usize(deserializer), sse_decode_i_32(deserializer));
-  }
-
-  @protected
   Split
       sse_decode_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInner_Split(
           SseDeserializer deserializer) {
     // Codec=Sse (Serialization based), see doc to use other codecs
     return Split.sseDecode(
-        sse_decode_usize(deserializer), sse_decode_i_32(deserializer));
-  }
-
-  @protected
-  U8 sse_decode_Auto_Ref_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInneru8(
-      SseDeserializer deserializer) {
-    // Codec=Sse (Serialization based), see doc to use other codecs
-    return U8.sseDecode(
-        sse_decode_usize(deserializer), sse_decode_i_32(deserializer));
-  }
-
-  @protected
-  Error
-      sse_decode_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerError(
-          SseDeserializer deserializer) {
-    // Codec=Sse (Serialization based), see doc to use other codecs
-    return Error.sseDecode(
         sse_decode_usize(deserializer), sse_decode_i_32(deserializer));
   }
 
@@ -292,11 +281,17 @@ class BbqrCoreApiImpl extends BbqrCoreApiImplPlatform implements BbqrCoreApi {
   }
 
   @protected
-  U8 sse_decode_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInneru8(
+  String sse_decode_String(SseDeserializer deserializer) {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+    var inner = sse_decode_list_prim_u_8_strict(deserializer);
+    return utf8.decoder.convert(inner);
+  }
+
+  @protected
+  EncodeError sse_decode_box_autoadd_encode_error(
       SseDeserializer deserializer) {
     // Codec=Sse (Serialization based), see doc to use other codecs
-    return U8.sseDecode(
-        sse_decode_usize(deserializer), sse_decode_i_32(deserializer));
+    return (sse_decode_encode_error(deserializer));
   }
 
   @protected
@@ -304,6 +299,22 @@ class BbqrCoreApiImpl extends BbqrCoreApiImplPlatform implements BbqrCoreApi {
       SseDeserializer deserializer) {
     // Codec=Sse (Serialization based), see doc to use other codecs
     return (sse_decode_split_options(deserializer));
+  }
+
+  @protected
+  EncodeError sse_decode_encode_error(SseDeserializer deserializer) {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+
+    var tag_ = sse_decode_i_32(deserializer);
+    switch (tag_) {
+      case 0:
+        return EncodeError_Empty();
+      case 1:
+        var var_field0 = sse_decode_String(deserializer);
+        return EncodeError_CompressionError(var_field0);
+      default:
+        throw UnimplementedError('');
+    }
   }
 
   @protected
@@ -327,6 +338,47 @@ class BbqrCoreApiImpl extends BbqrCoreApiImplPlatform implements BbqrCoreApi {
   }
 
   @protected
+  List<int> sse_decode_list_prim_u_8_loose(SseDeserializer deserializer) {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+    var len_ = sse_decode_i_32(deserializer);
+    return deserializer.buffer.getUint8List(len_);
+  }
+
+  @protected
+  Uint8List sse_decode_list_prim_u_8_strict(SseDeserializer deserializer) {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+    var len_ = sse_decode_i_32(deserializer);
+    return deserializer.buffer.getUint8List(len_);
+  }
+
+  @protected
+  SplitError sse_decode_split_error(SseDeserializer deserializer) {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+
+    var tag_ = sse_decode_i_32(deserializer);
+    switch (tag_) {
+      case 0:
+        return SplitError_Empty();
+      case 1:
+        return SplitError_CannotFit();
+      case 2:
+        var var_field0 = sse_decode_usize(deserializer);
+        return SplitError_MaxSplitSizeTooLarge(var_field0);
+      case 3:
+        return SplitError_MinSplitTooSmall();
+      case 4:
+        return SplitError_InvalidSplitRange();
+      case 5:
+        return SplitError_InvalidVersionRange();
+      case 6:
+        var var_field0 = sse_decode_box_autoadd_encode_error(deserializer);
+        return SplitError_EncodeError(var_field0);
+      default:
+        throw UnimplementedError('');
+    }
+  }
+
+  @protected
   SplitOptions sse_decode_split_options(SseDeserializer deserializer) {
     // Codec=Sse (Serialization based), see doc to use other codecs
     var var_encoding = sse_decode_encoding(deserializer);
@@ -340,6 +392,12 @@ class BbqrCoreApiImpl extends BbqrCoreApiImplPlatform implements BbqrCoreApi {
         maxSplitNumber: var_maxSplitNumber,
         minVersion: var_minVersion,
         maxVersion: var_maxVersion);
+  }
+
+  @protected
+  int sse_decode_u_8(SseDeserializer deserializer) {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+    return deserializer.buffer.getUint8();
   }
 
   @protected
@@ -362,14 +420,6 @@ class BbqrCoreApiImpl extends BbqrCoreApiImplPlatform implements BbqrCoreApi {
   }
 
   @protected
-  int cst_encode_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerError(
-      Error raw) {
-    // Codec=Cst (C-struct based), see doc to use other codecs
-// ignore: invalid_use_of_internal_member
-    return raw.cstEncode(move: true);
-  }
-
-  @protected
   int cst_encode_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInner_Split(
       Split raw) {
     // Codec=Cst (C-struct based), see doc to use other codecs
@@ -378,32 +428,8 @@ class BbqrCoreApiImpl extends BbqrCoreApiImplPlatform implements BbqrCoreApi {
   }
 
   @protected
-  int cst_encode_Auto_Ref_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInneru8(
-      U8 raw) {
-    // Codec=Cst (C-struct based), see doc to use other codecs
-// ignore: invalid_use_of_internal_member
-    return raw.cstEncode(move: false);
-  }
-
-  @protected
-  int cst_encode_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerError(
-      Error raw) {
-    // Codec=Cst (C-struct based), see doc to use other codecs
-// ignore: invalid_use_of_internal_member
-    return raw.cstEncode();
-  }
-
-  @protected
   int cst_encode_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInner_Split(
       Split raw) {
-    // Codec=Cst (C-struct based), see doc to use other codecs
-// ignore: invalid_use_of_internal_member
-    return raw.cstEncode();
-  }
-
-  @protected
-  int cst_encode_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInneru8(
-      U8 raw) {
     // Codec=Cst (C-struct based), see doc to use other codecs
 // ignore: invalid_use_of_internal_member
     return raw.cstEncode();
@@ -428,6 +454,12 @@ class BbqrCoreApiImpl extends BbqrCoreApiImplPlatform implements BbqrCoreApi {
   }
 
   @protected
+  int cst_encode_u_8(int raw) {
+    // Codec=Cst (C-struct based), see doc to use other codecs
+    return raw;
+  }
+
+  @protected
   int cst_encode_usize(int raw) {
     // Codec=Cst (C-struct based), see doc to use other codecs
     return raw;
@@ -441,34 +473,10 @@ class BbqrCoreApiImpl extends BbqrCoreApiImplPlatform implements BbqrCoreApi {
 
   @protected
   void
-      sse_encode_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerError(
-          Error self, SseSerializer serializer) {
-    // Codec=Sse (Serialization based), see doc to use other codecs
-    sse_encode_usize(self.sseEncode(move: true), serializer);
-  }
-
-  @protected
-  void
       sse_encode_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInner_Split(
           Split self, SseSerializer serializer) {
     // Codec=Sse (Serialization based), see doc to use other codecs
     sse_encode_usize(self.sseEncode(move: true), serializer);
-  }
-
-  @protected
-  void
-      sse_encode_Auto_Ref_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInneru8(
-          U8 self, SseSerializer serializer) {
-    // Codec=Sse (Serialization based), see doc to use other codecs
-    sse_encode_usize(self.sseEncode(move: false), serializer);
-  }
-
-  @protected
-  void
-      sse_encode_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerError(
-          Error self, SseSerializer serializer) {
-    // Codec=Sse (Serialization based), see doc to use other codecs
-    sse_encode_usize(self.sseEncode(move: null), serializer);
   }
 
   @protected
@@ -480,11 +488,16 @@ class BbqrCoreApiImpl extends BbqrCoreApiImplPlatform implements BbqrCoreApi {
   }
 
   @protected
-  void
-      sse_encode_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInneru8(
-          U8 self, SseSerializer serializer) {
+  void sse_encode_String(String self, SseSerializer serializer) {
     // Codec=Sse (Serialization based), see doc to use other codecs
-    sse_encode_usize(self.sseEncode(move: null), serializer);
+    sse_encode_list_prim_u_8_strict(utf8.encoder.convert(self), serializer);
+  }
+
+  @protected
+  void sse_encode_box_autoadd_encode_error(
+      EncodeError self, SseSerializer serializer) {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+    sse_encode_encode_error(self, serializer);
   }
 
   @protected
@@ -492,6 +505,18 @@ class BbqrCoreApiImpl extends BbqrCoreApiImplPlatform implements BbqrCoreApi {
       SplitOptions self, SseSerializer serializer) {
     // Codec=Sse (Serialization based), see doc to use other codecs
     sse_encode_split_options(self, serializer);
+  }
+
+  @protected
+  void sse_encode_encode_error(EncodeError self, SseSerializer serializer) {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+    switch (self) {
+      case EncodeError_Empty():
+        sse_encode_i_32(0, serializer);
+      case EncodeError_CompressionError(field0: final field0):
+        sse_encode_i_32(1, serializer);
+        sse_encode_String(field0, serializer);
+    }
   }
 
   @protected
@@ -513,6 +538,46 @@ class BbqrCoreApiImpl extends BbqrCoreApiImplPlatform implements BbqrCoreApi {
   }
 
   @protected
+  void sse_encode_list_prim_u_8_loose(
+      List<int> self, SseSerializer serializer) {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+    sse_encode_i_32(self.length, serializer);
+    serializer.buffer
+        .putUint8List(self is Uint8List ? self : Uint8List.fromList(self));
+  }
+
+  @protected
+  void sse_encode_list_prim_u_8_strict(
+      Uint8List self, SseSerializer serializer) {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+    sse_encode_i_32(self.length, serializer);
+    serializer.buffer.putUint8List(self);
+  }
+
+  @protected
+  void sse_encode_split_error(SplitError self, SseSerializer serializer) {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+    switch (self) {
+      case SplitError_Empty():
+        sse_encode_i_32(0, serializer);
+      case SplitError_CannotFit():
+        sse_encode_i_32(1, serializer);
+      case SplitError_MaxSplitSizeTooLarge(field0: final field0):
+        sse_encode_i_32(2, serializer);
+        sse_encode_usize(field0, serializer);
+      case SplitError_MinSplitTooSmall():
+        sse_encode_i_32(3, serializer);
+      case SplitError_InvalidSplitRange():
+        sse_encode_i_32(4, serializer);
+      case SplitError_InvalidVersionRange():
+        sse_encode_i_32(5, serializer);
+      case SplitError_EncodeError(field0: final field0):
+        sse_encode_i_32(6, serializer);
+        sse_encode_box_autoadd_encode_error(field0, serializer);
+    }
+  }
+
+  @protected
   void sse_encode_split_options(SplitOptions self, SseSerializer serializer) {
     // Codec=Sse (Serialization based), see doc to use other codecs
     sse_encode_encoding(self.encoding, serializer);
@@ -520,6 +585,12 @@ class BbqrCoreApiImpl extends BbqrCoreApiImplPlatform implements BbqrCoreApi {
     sse_encode_usize(self.maxSplitNumber, serializer);
     sse_encode_version(self.minVersion, serializer);
     sse_encode_version(self.maxVersion, serializer);
+  }
+
+  @protected
+  void sse_encode_u_8(int self, SseSerializer serializer) {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+    serializer.buffer.putUint8(self);
   }
 
   @protected

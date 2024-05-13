@@ -17,32 +17,12 @@ abstract class BbqrCoreApiImplPlatform extends BaseApiImpl<BbqrCoreWire> {
     required super.portManager,
   });
 
-  CrossPlatformFinalizerArg get rust_arc_decrement_strong_count_ErrorPtr => wire
-      .rust_arc_decrement_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerError;
-
   CrossPlatformFinalizerArg get rust_arc_decrement_strong_count_SplitPtr => wire
       .rust_arc_decrement_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInner_Split;
-
-  CrossPlatformFinalizerArg get rust_arc_decrement_strong_count_U8Ptr => wire
-      .rust_arc_decrement_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInneru8;
-
-  @protected
-  Error
-      dco_decode_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerError(
-          dynamic raw);
 
   @protected
   Split
       dco_decode_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInner_Split(
-          dynamic raw);
-
-  @protected
-  U8 dco_decode_Auto_Ref_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInneru8(
-      dynamic raw);
-
-  @protected
-  Error
-      dco_decode_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerError(
           dynamic raw);
 
   @protected
@@ -51,11 +31,16 @@ abstract class BbqrCoreApiImplPlatform extends BaseApiImpl<BbqrCoreWire> {
           dynamic raw);
 
   @protected
-  U8 dco_decode_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInneru8(
-      dynamic raw);
+  String dco_decode_String(dynamic raw);
+
+  @protected
+  EncodeError dco_decode_box_autoadd_encode_error(dynamic raw);
 
   @protected
   SplitOptions dco_decode_box_autoadd_split_options(dynamic raw);
+
+  @protected
+  EncodeError dco_decode_encode_error(dynamic raw);
 
   @protected
   Encoding dco_decode_encoding(dynamic raw);
@@ -67,7 +52,19 @@ abstract class BbqrCoreApiImplPlatform extends BaseApiImpl<BbqrCoreWire> {
   int dco_decode_i_32(dynamic raw);
 
   @protected
+  List<int> dco_decode_list_prim_u_8_loose(dynamic raw);
+
+  @protected
+  Uint8List dco_decode_list_prim_u_8_strict(dynamic raw);
+
+  @protected
+  SplitError dco_decode_split_error(dynamic raw);
+
+  @protected
   SplitOptions dco_decode_split_options(dynamic raw);
+
+  @protected
+  int dco_decode_u_8(dynamic raw);
 
   @protected
   int dco_decode_usize(dynamic raw);
@@ -76,22 +73,8 @@ abstract class BbqrCoreApiImplPlatform extends BaseApiImpl<BbqrCoreWire> {
   Version dco_decode_version(dynamic raw);
 
   @protected
-  Error
-      sse_decode_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerError(
-          SseDeserializer deserializer);
-
-  @protected
   Split
       sse_decode_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInner_Split(
-          SseDeserializer deserializer);
-
-  @protected
-  U8 sse_decode_Auto_Ref_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInneru8(
-      SseDeserializer deserializer);
-
-  @protected
-  Error
-      sse_decode_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerError(
           SseDeserializer deserializer);
 
   @protected
@@ -100,12 +83,17 @@ abstract class BbqrCoreApiImplPlatform extends BaseApiImpl<BbqrCoreWire> {
           SseDeserializer deserializer);
 
   @protected
-  U8 sse_decode_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInneru8(
-      SseDeserializer deserializer);
+  String sse_decode_String(SseDeserializer deserializer);
+
+  @protected
+  EncodeError sse_decode_box_autoadd_encode_error(SseDeserializer deserializer);
 
   @protected
   SplitOptions sse_decode_box_autoadd_split_options(
       SseDeserializer deserializer);
+
+  @protected
+  EncodeError sse_decode_encode_error(SseDeserializer deserializer);
 
   @protected
   Encoding sse_decode_encoding(SseDeserializer deserializer);
@@ -117,7 +105,19 @@ abstract class BbqrCoreApiImplPlatform extends BaseApiImpl<BbqrCoreWire> {
   int sse_decode_i_32(SseDeserializer deserializer);
 
   @protected
+  List<int> sse_decode_list_prim_u_8_loose(SseDeserializer deserializer);
+
+  @protected
+  Uint8List sse_decode_list_prim_u_8_strict(SseDeserializer deserializer);
+
+  @protected
+  SplitError sse_decode_split_error(SseDeserializer deserializer);
+
+  @protected
   SplitOptions sse_decode_split_options(SseDeserializer deserializer);
+
+  @protected
+  int sse_decode_u_8(SseDeserializer deserializer);
 
   @protected
   int sse_decode_usize(SseDeserializer deserializer);
@@ -129,9 +129,74 @@ abstract class BbqrCoreApiImplPlatform extends BaseApiImpl<BbqrCoreWire> {
   bool sse_decode_bool(SseDeserializer deserializer);
 
   @protected
+  String cst_encode_String(String raw) {
+    // Codec=Cst (C-struct based), see doc to use other codecs
+    return raw;
+  }
+
+  @protected
+  List<dynamic> cst_encode_box_autoadd_encode_error(EncodeError raw) {
+    // Codec=Cst (C-struct based), see doc to use other codecs
+    return cst_encode_encode_error(raw);
+  }
+
+  @protected
   List<dynamic> cst_encode_box_autoadd_split_options(SplitOptions raw) {
     // Codec=Cst (C-struct based), see doc to use other codecs
     return cst_encode_split_options(raw);
+  }
+
+  @protected
+  List<dynamic> cst_encode_encode_error(EncodeError raw) {
+    // Codec=Cst (C-struct based), see doc to use other codecs
+    if (raw is EncodeError_Empty) {
+      return [0];
+    }
+    if (raw is EncodeError_CompressionError) {
+      return [1, cst_encode_String(raw.field0)];
+    }
+
+    throw Exception('unreachable');
+  }
+
+  @protected
+  List<int> cst_encode_list_prim_u_8_loose(List<int> raw) {
+    // Codec=Cst (C-struct based), see doc to use other codecs
+    return raw;
+  }
+
+  @protected
+  Uint8List cst_encode_list_prim_u_8_strict(Uint8List raw) {
+    // Codec=Cst (C-struct based), see doc to use other codecs
+    return raw;
+  }
+
+  @protected
+  List<dynamic> cst_encode_split_error(SplitError raw) {
+    // Codec=Cst (C-struct based), see doc to use other codecs
+    if (raw is SplitError_Empty) {
+      return [0];
+    }
+    if (raw is SplitError_CannotFit) {
+      return [1];
+    }
+    if (raw is SplitError_MaxSplitSizeTooLarge) {
+      return [2, cst_encode_usize(raw.field0)];
+    }
+    if (raw is SplitError_MinSplitTooSmall) {
+      return [3];
+    }
+    if (raw is SplitError_InvalidSplitRange) {
+      return [4];
+    }
+    if (raw is SplitError_InvalidVersionRange) {
+      return [5];
+    }
+    if (raw is SplitError_EncodeError) {
+      return [6, cst_encode_box_autoadd_encode_error(raw.field0)];
+    }
+
+    throw Exception('unreachable');
   }
 
   @protected
@@ -147,28 +212,12 @@ abstract class BbqrCoreApiImplPlatform extends BaseApiImpl<BbqrCoreWire> {
   }
 
   @protected
-  int cst_encode_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerError(
-      Error raw);
-
-  @protected
   int cst_encode_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInner_Split(
       Split raw);
 
   @protected
-  int cst_encode_Auto_Ref_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInneru8(
-      U8 raw);
-
-  @protected
-  int cst_encode_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerError(
-      Error raw);
-
-  @protected
   int cst_encode_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInner_Split(
       Split raw);
-
-  @protected
-  int cst_encode_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInneru8(
-      U8 raw);
 
   @protected
   int cst_encode_encoding(Encoding raw);
@@ -180,15 +229,13 @@ abstract class BbqrCoreApiImplPlatform extends BaseApiImpl<BbqrCoreWire> {
   int cst_encode_i_32(int raw);
 
   @protected
+  int cst_encode_u_8(int raw);
+
+  @protected
   int cst_encode_usize(int raw);
 
   @protected
   int cst_encode_version(Version raw);
-
-  @protected
-  void
-      sse_encode_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerError(
-          Error self, SseSerializer serializer);
 
   @protected
   void
@@ -197,27 +244,22 @@ abstract class BbqrCoreApiImplPlatform extends BaseApiImpl<BbqrCoreWire> {
 
   @protected
   void
-      sse_encode_Auto_Ref_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInneru8(
-          U8 self, SseSerializer serializer);
-
-  @protected
-  void
-      sse_encode_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerError(
-          Error self, SseSerializer serializer);
-
-  @protected
-  void
       sse_encode_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInner_Split(
           Split self, SseSerializer serializer);
 
   @protected
-  void
-      sse_encode_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInneru8(
-          U8 self, SseSerializer serializer);
+  void sse_encode_String(String self, SseSerializer serializer);
+
+  @protected
+  void sse_encode_box_autoadd_encode_error(
+      EncodeError self, SseSerializer serializer);
 
   @protected
   void sse_encode_box_autoadd_split_options(
       SplitOptions self, SseSerializer serializer);
+
+  @protected
+  void sse_encode_encode_error(EncodeError self, SseSerializer serializer);
 
   @protected
   void sse_encode_encoding(Encoding self, SseSerializer serializer);
@@ -229,7 +271,20 @@ abstract class BbqrCoreApiImplPlatform extends BaseApiImpl<BbqrCoreWire> {
   void sse_encode_i_32(int self, SseSerializer serializer);
 
   @protected
+  void sse_encode_list_prim_u_8_loose(List<int> self, SseSerializer serializer);
+
+  @protected
+  void sse_encode_list_prim_u_8_strict(
+      Uint8List self, SseSerializer serializer);
+
+  @protected
+  void sse_encode_split_error(SplitError self, SseSerializer serializer);
+
+  @protected
   void sse_encode_split_options(SplitOptions self, SseSerializer serializer);
+
+  @protected
+  void sse_encode_u_8(int self, SseSerializer serializer);
 
   @protected
   void sse_encode_usize(int self, SseSerializer serializer);
@@ -246,21 +301,9 @@ abstract class BbqrCoreApiImplPlatform extends BaseApiImpl<BbqrCoreWire> {
 class BbqrCoreWire implements BaseWire {
   BbqrCoreWire.fromExternalLibrary(ExternalLibrary lib);
 
-  void wire_Split_try_new_from_data(NativePortType port_, Object data,
+  void wire_Split_try_new_from_data(NativePortType port_, List<int> data,
           int file_type, List<dynamic> options) =>
       wasmModule.wire_Split_try_new_from_data(port_, data, file_type, options);
-
-  void rust_arc_increment_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerError(
-          dynamic ptr) =>
-      wasmModule
-          .rust_arc_increment_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerError(
-              ptr);
-
-  void rust_arc_decrement_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerError(
-          dynamic ptr) =>
-      wasmModule
-          .rust_arc_decrement_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerError(
-              ptr);
 
   void rust_arc_increment_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInner_Split(
           dynamic ptr) =>
@@ -272,18 +315,6 @@ class BbqrCoreWire implements BaseWire {
           dynamic ptr) =>
       wasmModule
           .rust_arc_decrement_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInner_Split(
-              ptr);
-
-  void rust_arc_increment_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInneru8(
-          dynamic ptr) =>
-      wasmModule
-          .rust_arc_increment_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInneru8(
-              ptr);
-
-  void rust_arc_decrement_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInneru8(
-          dynamic ptr) =>
-      wasmModule
-          .rust_arc_decrement_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInneru8(
               ptr);
 }
 
@@ -299,16 +330,8 @@ class BbqrCoreWasmModule implements WasmModule {
   @override
   external BbqrCoreWasmModule bind(dynamic thisArg, String moduleName);
 
-  external void wire_Split_try_new_from_data(
-      NativePortType port_, Object data, int file_type, List<dynamic> options);
-
-  external void
-      rust_arc_increment_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerError(
-          dynamic ptr);
-
-  external void
-      rust_arc_decrement_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerError(
-          dynamic ptr);
+  external void wire_Split_try_new_from_data(NativePortType port_,
+      List<int> data, int file_type, List<dynamic> options);
 
   external void
       rust_arc_increment_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInner_Split(
@@ -316,13 +339,5 @@ class BbqrCoreWasmModule implements WasmModule {
 
   external void
       rust_arc_decrement_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInner_Split(
-          dynamic ptr);
-
-  external void
-      rust_arc_increment_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInneru8(
-          dynamic ptr);
-
-  external void
-      rust_arc_decrement_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInneru8(
           dynamic ptr);
 }
