@@ -152,7 +152,7 @@ pub struct _Joined {
 
 impl _Joined {
     pub fn try_new_from_parts(parts: Vec<String>) -> Result<Self, JoinError> {
-        let joined = Joined::try_from_parts(parts).map_err(|e| JoinError::from(e))?;
+        let joined = Joined::try_from_parts(parts).map_err(JoinError::from)?;
 
         Ok(Self {
             encoding: joined.encoding,
