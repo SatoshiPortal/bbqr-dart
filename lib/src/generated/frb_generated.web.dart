@@ -18,12 +18,25 @@ abstract class BbqrCoreApiImplPlatform extends BaseApiImpl<BbqrCoreWire> {
     required super.portManager,
   });
 
+  CrossPlatformFinalizerArg get rust_arc_decrement_strong_count_JoinedPtr => wire
+      .rust_arc_decrement_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInner_Joined;
+
   CrossPlatformFinalizerArg get rust_arc_decrement_strong_count_SplitPtr => wire
       .rust_arc_decrement_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInner_Split;
 
   @protected
+  Joined
+      dco_decode_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInner_Joined(
+          dynamic raw);
+
+  @protected
   Split
       dco_decode_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInner_Split(
+          dynamic raw);
+
+  @protected
+  Joined
+      dco_decode_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInner_Joined(
           dynamic raw);
 
   @protected
@@ -35,10 +48,19 @@ abstract class BbqrCoreApiImplPlatform extends BaseApiImpl<BbqrCoreWire> {
   String dco_decode_String(dynamic raw);
 
   @protected
+  DecodeError dco_decode_box_autoadd_decode_error(dynamic raw);
+
+  @protected
   EncodeError dco_decode_box_autoadd_encode_error(dynamic raw);
 
   @protected
+  HeaderParseError dco_decode_box_autoadd_header_parse_error(dynamic raw);
+
+  @protected
   SplitOptions dco_decode_box_autoadd_split_options(dynamic raw);
+
+  @protected
+  DecodeError dco_decode_decode_error(dynamic raw);
 
   @protected
   EncodeError dco_decode_encode_error(dynamic raw);
@@ -50,7 +72,16 @@ abstract class BbqrCoreApiImplPlatform extends BaseApiImpl<BbqrCoreWire> {
   FileType dco_decode_file_type(dynamic raw);
 
   @protected
+  HeaderParseError dco_decode_header_parse_error(dynamic raw);
+
+  @protected
   int dco_decode_i_32(dynamic raw);
+
+  @protected
+  JoinError dco_decode_join_error(dynamic raw);
+
+  @protected
+  List<String> dco_decode_list_String(dynamic raw);
 
   @protected
   List<int> dco_decode_list_prim_u_8_loose(dynamic raw);
@@ -74,8 +105,18 @@ abstract class BbqrCoreApiImplPlatform extends BaseApiImpl<BbqrCoreWire> {
   Version dco_decode_version(dynamic raw);
 
   @protected
+  Joined
+      sse_decode_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInner_Joined(
+          SseDeserializer deserializer);
+
+  @protected
   Split
       sse_decode_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInner_Split(
+          SseDeserializer deserializer);
+
+  @protected
+  Joined
+      sse_decode_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInner_Joined(
           SseDeserializer deserializer);
 
   @protected
@@ -87,11 +128,21 @@ abstract class BbqrCoreApiImplPlatform extends BaseApiImpl<BbqrCoreWire> {
   String sse_decode_String(SseDeserializer deserializer);
 
   @protected
+  DecodeError sse_decode_box_autoadd_decode_error(SseDeserializer deserializer);
+
+  @protected
   EncodeError sse_decode_box_autoadd_encode_error(SseDeserializer deserializer);
+
+  @protected
+  HeaderParseError sse_decode_box_autoadd_header_parse_error(
+      SseDeserializer deserializer);
 
   @protected
   SplitOptions sse_decode_box_autoadd_split_options(
       SseDeserializer deserializer);
+
+  @protected
+  DecodeError sse_decode_decode_error(SseDeserializer deserializer);
 
   @protected
   EncodeError sse_decode_encode_error(SseDeserializer deserializer);
@@ -103,7 +154,16 @@ abstract class BbqrCoreApiImplPlatform extends BaseApiImpl<BbqrCoreWire> {
   FileType sse_decode_file_type(SseDeserializer deserializer);
 
   @protected
+  HeaderParseError sse_decode_header_parse_error(SseDeserializer deserializer);
+
+  @protected
   int sse_decode_i_32(SseDeserializer deserializer);
+
+  @protected
+  JoinError sse_decode_join_error(SseDeserializer deserializer);
+
+  @protected
+  List<String> sse_decode_list_String(SseDeserializer deserializer);
 
   @protected
   List<int> sse_decode_list_prim_u_8_loose(SseDeserializer deserializer);
@@ -136,15 +196,44 @@ abstract class BbqrCoreApiImplPlatform extends BaseApiImpl<BbqrCoreWire> {
   }
 
   @protected
+  List<dynamic> cst_encode_box_autoadd_decode_error(DecodeError raw) {
+    // Codec=Cst (C-struct based), see doc to use other codecs
+    return cst_encode_decode_error(raw);
+  }
+
+  @protected
   List<dynamic> cst_encode_box_autoadd_encode_error(EncodeError raw) {
     // Codec=Cst (C-struct based), see doc to use other codecs
     return cst_encode_encode_error(raw);
   }
 
   @protected
+  List<dynamic> cst_encode_box_autoadd_header_parse_error(
+      HeaderParseError raw) {
+    // Codec=Cst (C-struct based), see doc to use other codecs
+    return cst_encode_header_parse_error(raw);
+  }
+
+  @protected
   List<dynamic> cst_encode_box_autoadd_split_options(SplitOptions raw) {
     // Codec=Cst (C-struct based), see doc to use other codecs
     return cst_encode_split_options(raw);
+  }
+
+  @protected
+  List<dynamic> cst_encode_decode_error(DecodeError raw) {
+    // Codec=Cst (C-struct based), see doc to use other codecs
+    if (raw is DecodeError_UnableToDecodeHex) {
+      return [0, cst_encode_usize(raw.field0), cst_encode_String(raw.field1)];
+    }
+    if (raw is DecodeError_UnableToDecodeBase32) {
+      return [1, cst_encode_usize(raw.field0), cst_encode_String(raw.field1)];
+    }
+    if (raw is DecodeError_UnableToInflateZlib) {
+      return [2, cst_encode_String(raw.field0)];
+    }
+
+    throw Exception('unreachable');
   }
 
   @protected
@@ -158,6 +247,68 @@ abstract class BbqrCoreApiImplPlatform extends BaseApiImpl<BbqrCoreWire> {
     }
 
     throw Exception('unreachable');
+  }
+
+  @protected
+  List<dynamic> cst_encode_header_parse_error(HeaderParseError raw) {
+    // Codec=Cst (C-struct based), see doc to use other codecs
+    if (raw is HeaderParseError_Empty) {
+      return [0];
+    }
+    if (raw is HeaderParseError_InvalidEncoding) {
+      return [1, cst_encode_String(raw.field0)];
+    }
+    if (raw is HeaderParseError_InvalidFileType) {
+      return [2, cst_encode_String(raw.field0)];
+    }
+    if (raw is HeaderParseError_InvalidFixedHeader) {
+      return [3];
+    }
+    if (raw is HeaderParseError_InvalidHeaderSize) {
+      return [4, cst_encode_usize(raw.field0)];
+    }
+    if (raw is HeaderParseError_InvalidHeaderParts) {
+      return [5, cst_encode_String(raw.field0)];
+    }
+
+    throw Exception('unreachable');
+  }
+
+  @protected
+  List<dynamic> cst_encode_join_error(JoinError raw) {
+    // Codec=Cst (C-struct based), see doc to use other codecs
+    if (raw is JoinError_Empty) {
+      return [0];
+    }
+    if (raw is JoinError_ConflictingHeaders) {
+      return [1];
+    }
+    if (raw is JoinError_TooManyParts) {
+      return [2, cst_encode_usize(raw.field0), cst_encode_usize(raw.field1)];
+    }
+    if (raw is JoinError_DuplicatePartWrongContent) {
+      return [3, cst_encode_usize(raw.field0)];
+    }
+    if (raw is JoinError_PartWithNoData) {
+      return [4, cst_encode_usize(raw.field0)];
+    }
+    if (raw is JoinError_MissingPart) {
+      return [5, cst_encode_usize(raw.field0)];
+    }
+    if (raw is JoinError_HeaderParseError) {
+      return [6, cst_encode_box_autoadd_header_parse_error(raw.field0)];
+    }
+    if (raw is JoinError_DecodeError) {
+      return [7, cst_encode_box_autoadd_decode_error(raw.field0)];
+    }
+
+    throw Exception('unreachable');
+  }
+
+  @protected
+  List<dynamic> cst_encode_list_String(List<String> raw) {
+    // Codec=Cst (C-struct based), see doc to use other codecs
+    return raw.map(cst_encode_String).toList();
   }
 
   @protected
@@ -213,8 +364,16 @@ abstract class BbqrCoreApiImplPlatform extends BaseApiImpl<BbqrCoreWire> {
   }
 
   @protected
+  int cst_encode_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInner_Joined(
+      Joined raw);
+
+  @protected
   int cst_encode_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInner_Split(
       Split raw);
+
+  @protected
+  int cst_encode_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInner_Joined(
+      Joined raw);
 
   @protected
   int cst_encode_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInner_Split(
@@ -240,8 +399,18 @@ abstract class BbqrCoreApiImplPlatform extends BaseApiImpl<BbqrCoreWire> {
 
   @protected
   void
+      sse_encode_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInner_Joined(
+          Joined self, SseSerializer serializer);
+
+  @protected
+  void
       sse_encode_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInner_Split(
           Split self, SseSerializer serializer);
+
+  @protected
+  void
+      sse_encode_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInner_Joined(
+          Joined self, SseSerializer serializer);
 
   @protected
   void
@@ -252,12 +421,23 @@ abstract class BbqrCoreApiImplPlatform extends BaseApiImpl<BbqrCoreWire> {
   void sse_encode_String(String self, SseSerializer serializer);
 
   @protected
+  void sse_encode_box_autoadd_decode_error(
+      DecodeError self, SseSerializer serializer);
+
+  @protected
   void sse_encode_box_autoadd_encode_error(
       EncodeError self, SseSerializer serializer);
 
   @protected
+  void sse_encode_box_autoadd_header_parse_error(
+      HeaderParseError self, SseSerializer serializer);
+
+  @protected
   void sse_encode_box_autoadd_split_options(
       SplitOptions self, SseSerializer serializer);
+
+  @protected
+  void sse_encode_decode_error(DecodeError self, SseSerializer serializer);
 
   @protected
   void sse_encode_encode_error(EncodeError self, SseSerializer serializer);
@@ -269,7 +449,17 @@ abstract class BbqrCoreApiImplPlatform extends BaseApiImpl<BbqrCoreWire> {
   void sse_encode_file_type(FileType self, SseSerializer serializer);
 
   @protected
+  void sse_encode_header_parse_error(
+      HeaderParseError self, SseSerializer serializer);
+
+  @protected
   void sse_encode_i_32(int self, SseSerializer serializer);
+
+  @protected
+  void sse_encode_join_error(JoinError self, SseSerializer serializer);
+
+  @protected
+  void sse_encode_list_String(List<String> self, SseSerializer serializer);
 
   @protected
   void sse_encode_list_prim_u_8_loose(List<int> self, SseSerializer serializer);
@@ -302,9 +492,25 @@ abstract class BbqrCoreApiImplPlatform extends BaseApiImpl<BbqrCoreWire> {
 class BbqrCoreWire implements BaseWire {
   BbqrCoreWire.fromExternalLibrary(ExternalLibrary lib);
 
-  void wire_Split_try_new_from_data(NativePortType port_, List<int> data,
+  void wire_Joined_try_new_from_parts(
+          NativePortType port_, List<dynamic> parts) =>
+      wasmModule.wire_Joined_try_new_from_parts(port_, parts);
+
+  void wire_Split_try_from_data(NativePortType port_, List<int> data,
           int file_type, List<dynamic> options) =>
-      wasmModule.wire_Split_try_new_from_data(port_, data, file_type, options);
+      wasmModule.wire_Split_try_from_data(port_, data, file_type, options);
+
+  void rust_arc_increment_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInner_Joined(
+          dynamic ptr) =>
+      wasmModule
+          .rust_arc_increment_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInner_Joined(
+              ptr);
+
+  void rust_arc_decrement_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInner_Joined(
+          dynamic ptr) =>
+      wasmModule
+          .rust_arc_decrement_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInner_Joined(
+              ptr);
 
   void rust_arc_increment_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInner_Split(
           dynamic ptr) =>
@@ -331,8 +537,19 @@ class BbqrCoreWasmModule implements WasmModule {
   @override
   external BbqrCoreWasmModule bind(dynamic thisArg, String moduleName);
 
-  external void wire_Split_try_new_from_data(NativePortType port_,
-      List<int> data, int file_type, List<dynamic> options);
+  external void wire_Joined_try_new_from_parts(
+      NativePortType port_, List<dynamic> parts);
+
+  external void wire_Split_try_from_data(NativePortType port_, List<int> data,
+      int file_type, List<dynamic> options);
+
+  external void
+      rust_arc_increment_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInner_Joined(
+          dynamic ptr);
+
+  external void
+      rust_arc_decrement_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInner_Joined(
+          dynamic ptr);
 
   external void
       rust_arc_increment_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInner_Split(

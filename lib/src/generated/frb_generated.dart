@@ -56,7 +56,7 @@ class BbqrCore
   String get codegenVersion => '2.0.0-dev.33';
 
   @override
-  int get rustContentHash => 186225969;
+  int get rustContentHash => 210286810;
 
   static const kDefaultExternalLibraryLoaderConfig =
       ExternalLibraryLoaderConfig(
@@ -67,11 +67,20 @@ class BbqrCore
 }
 
 abstract class BbqrCoreApi extends BaseApi {
-  Future<Split> splitTryNewFromData(
+  Future<Joined> joinedTryNewFromParts(
+      {required List<String> parts, dynamic hint});
+
+  Future<Split> splitTryFromData(
       {required List<int> data,
       required FileType fileType,
       required SplitOptions options,
       dynamic hint});
+
+  RustArcIncrementStrongCountFnType get rust_arc_increment_strong_count_Joined;
+
+  RustArcDecrementStrongCountFnType get rust_arc_decrement_strong_count_Joined;
+
+  CrossPlatformFinalizerArg get rust_arc_decrement_strong_count_JoinedPtr;
 
   RustArcIncrementStrongCountFnType get rust_arc_increment_strong_count_Split;
 
@@ -89,7 +98,32 @@ class BbqrCoreApiImpl extends BbqrCoreApiImplPlatform implements BbqrCoreApi {
   });
 
   @override
-  Future<Split> splitTryNewFromData(
+  Future<Joined> joinedTryNewFromParts(
+      {required List<String> parts, dynamic hint}) {
+    return handler.executeNormal(NormalTask(
+      callFfi: (port_) {
+        var arg0 = cst_encode_list_String(parts);
+        return wire.wire_Joined_try_new_from_parts(port_, arg0);
+      },
+      codec: DcoCodec(
+        decodeSuccessData:
+            dco_decode_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInner_Joined,
+        decodeErrorData: dco_decode_join_error,
+      ),
+      constMeta: kJoinedTryNewFromPartsConstMeta,
+      argValues: [parts],
+      apiImpl: this,
+      hint: hint,
+    ));
+  }
+
+  TaskConstMeta get kJoinedTryNewFromPartsConstMeta => const TaskConstMeta(
+        debugName: "Joined_try_new_from_parts",
+        argNames: ["parts"],
+      );
+
+  @override
+  Future<Split> splitTryFromData(
       {required List<int> data,
       required FileType fileType,
       required SplitOptions options,
@@ -99,24 +133,32 @@ class BbqrCoreApiImpl extends BbqrCoreApiImplPlatform implements BbqrCoreApi {
         var arg0 = cst_encode_list_prim_u_8_loose(data);
         var arg1 = cst_encode_file_type(fileType);
         var arg2 = cst_encode_box_autoadd_split_options(options);
-        return wire.wire_Split_try_new_from_data(port_, arg0, arg1, arg2);
+        return wire.wire_Split_try_from_data(port_, arg0, arg1, arg2);
       },
       codec: DcoCodec(
         decodeSuccessData:
             dco_decode_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInner_Split,
         decodeErrorData: dco_decode_split_error,
       ),
-      constMeta: kSplitTryNewFromDataConstMeta,
+      constMeta: kSplitTryFromDataConstMeta,
       argValues: [data, fileType, options],
       apiImpl: this,
       hint: hint,
     ));
   }
 
-  TaskConstMeta get kSplitTryNewFromDataConstMeta => const TaskConstMeta(
-        debugName: "Split_try_new_from_data",
+  TaskConstMeta get kSplitTryFromDataConstMeta => const TaskConstMeta(
+        debugName: "Split_try_from_data",
         argNames: ["data", "fileType", "options"],
       );
+
+  RustArcIncrementStrongCountFnType
+      get rust_arc_increment_strong_count_Joined => wire
+          .rust_arc_increment_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInner_Joined;
+
+  RustArcDecrementStrongCountFnType
+      get rust_arc_decrement_strong_count_Joined => wire
+          .rust_arc_decrement_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInner_Joined;
 
   RustArcIncrementStrongCountFnType get rust_arc_increment_strong_count_Split =>
       wire.rust_arc_increment_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInner_Split;
@@ -125,11 +167,27 @@ class BbqrCoreApiImpl extends BbqrCoreApiImplPlatform implements BbqrCoreApi {
       wire.rust_arc_decrement_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInner_Split;
 
   @protected
+  Joined
+      dco_decode_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInner_Joined(
+          dynamic raw) {
+    // Codec=Dco (DartCObject based), see doc to use other codecs
+    return Joined.dcoDecode(raw as List<dynamic>);
+  }
+
+  @protected
   Split
       dco_decode_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInner_Split(
           dynamic raw) {
     // Codec=Dco (DartCObject based), see doc to use other codecs
     return Split.dcoDecode(raw as List<dynamic>);
+  }
+
+  @protected
+  Joined
+      dco_decode_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInner_Joined(
+          dynamic raw) {
+    // Codec=Dco (DartCObject based), see doc to use other codecs
+    return Joined.dcoDecode(raw as List<dynamic>);
   }
 
   @protected
@@ -147,15 +205,50 @@ class BbqrCoreApiImpl extends BbqrCoreApiImplPlatform implements BbqrCoreApi {
   }
 
   @protected
+  DecodeError dco_decode_box_autoadd_decode_error(dynamic raw) {
+    // Codec=Dco (DartCObject based), see doc to use other codecs
+    return dco_decode_decode_error(raw);
+  }
+
+  @protected
   EncodeError dco_decode_box_autoadd_encode_error(dynamic raw) {
     // Codec=Dco (DartCObject based), see doc to use other codecs
     return dco_decode_encode_error(raw);
   }
 
   @protected
+  HeaderParseError dco_decode_box_autoadd_header_parse_error(dynamic raw) {
+    // Codec=Dco (DartCObject based), see doc to use other codecs
+    return dco_decode_header_parse_error(raw);
+  }
+
+  @protected
   SplitOptions dco_decode_box_autoadd_split_options(dynamic raw) {
     // Codec=Dco (DartCObject based), see doc to use other codecs
     return dco_decode_split_options(raw);
+  }
+
+  @protected
+  DecodeError dco_decode_decode_error(dynamic raw) {
+    // Codec=Dco (DartCObject based), see doc to use other codecs
+    switch (raw[0]) {
+      case 0:
+        return DecodeError_UnableToDecodeHex(
+          dco_decode_usize(raw[1]),
+          dco_decode_String(raw[2]),
+        );
+      case 1:
+        return DecodeError_UnableToDecodeBase32(
+          dco_decode_usize(raw[1]),
+          dco_decode_String(raw[2]),
+        );
+      case 2:
+        return DecodeError_UnableToInflateZlib(
+          dco_decode_String(raw[1]),
+        );
+      default:
+        throw Exception("unreachable");
+    }
   }
 
   @protected
@@ -186,9 +279,82 @@ class BbqrCoreApiImpl extends BbqrCoreApiImplPlatform implements BbqrCoreApi {
   }
 
   @protected
+  HeaderParseError dco_decode_header_parse_error(dynamic raw) {
+    // Codec=Dco (DartCObject based), see doc to use other codecs
+    switch (raw[0]) {
+      case 0:
+        return HeaderParseError_Empty();
+      case 1:
+        return HeaderParseError_InvalidEncoding(
+          dco_decode_String(raw[1]),
+        );
+      case 2:
+        return HeaderParseError_InvalidFileType(
+          dco_decode_String(raw[1]),
+        );
+      case 3:
+        return HeaderParseError_InvalidFixedHeader();
+      case 4:
+        return HeaderParseError_InvalidHeaderSize(
+          dco_decode_usize(raw[1]),
+        );
+      case 5:
+        return HeaderParseError_InvalidHeaderParts(
+          dco_decode_String(raw[1]),
+        );
+      default:
+        throw Exception("unreachable");
+    }
+  }
+
+  @protected
   int dco_decode_i_32(dynamic raw) {
     // Codec=Dco (DartCObject based), see doc to use other codecs
     return raw as int;
+  }
+
+  @protected
+  JoinError dco_decode_join_error(dynamic raw) {
+    // Codec=Dco (DartCObject based), see doc to use other codecs
+    switch (raw[0]) {
+      case 0:
+        return JoinError_Empty();
+      case 1:
+        return JoinError_ConflictingHeaders();
+      case 2:
+        return JoinError_TooManyParts(
+          dco_decode_usize(raw[1]),
+          dco_decode_usize(raw[2]),
+        );
+      case 3:
+        return JoinError_DuplicatePartWrongContent(
+          dco_decode_usize(raw[1]),
+        );
+      case 4:
+        return JoinError_PartWithNoData(
+          dco_decode_usize(raw[1]),
+        );
+      case 5:
+        return JoinError_MissingPart(
+          dco_decode_usize(raw[1]),
+        );
+      case 6:
+        return JoinError_HeaderParseError(
+          dco_decode_box_autoadd_header_parse_error(raw[1]),
+        );
+      case 7:
+        return JoinError_DecodeError(
+          dco_decode_box_autoadd_decode_error(raw[1]),
+        );
+      default:
+        throw Exception("unreachable");
+    }
+  }
+
+  @protected
+  List<String> dco_decode_list_String(dynamic raw) {
+    // Codec=Dco (DartCObject based), see doc to use other codecs
+    return (raw as List<dynamic>).map(dco_decode_String).toList();
   }
 
   @protected
@@ -264,11 +430,29 @@ class BbqrCoreApiImpl extends BbqrCoreApiImplPlatform implements BbqrCoreApi {
   }
 
   @protected
+  Joined
+      sse_decode_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInner_Joined(
+          SseDeserializer deserializer) {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+    return Joined.sseDecode(
+        sse_decode_usize(deserializer), sse_decode_i_32(deserializer));
+  }
+
+  @protected
   Split
       sse_decode_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInner_Split(
           SseDeserializer deserializer) {
     // Codec=Sse (Serialization based), see doc to use other codecs
     return Split.sseDecode(
+        sse_decode_usize(deserializer), sse_decode_i_32(deserializer));
+  }
+
+  @protected
+  Joined
+      sse_decode_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInner_Joined(
+          SseDeserializer deserializer) {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+    return Joined.sseDecode(
         sse_decode_usize(deserializer), sse_decode_i_32(deserializer));
   }
 
@@ -289,6 +473,13 @@ class BbqrCoreApiImpl extends BbqrCoreApiImplPlatform implements BbqrCoreApi {
   }
 
   @protected
+  DecodeError sse_decode_box_autoadd_decode_error(
+      SseDeserializer deserializer) {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+    return (sse_decode_decode_error(deserializer));
+  }
+
+  @protected
   EncodeError sse_decode_box_autoadd_encode_error(
       SseDeserializer deserializer) {
     // Codec=Sse (Serialization based), see doc to use other codecs
@@ -296,10 +487,39 @@ class BbqrCoreApiImpl extends BbqrCoreApiImplPlatform implements BbqrCoreApi {
   }
 
   @protected
+  HeaderParseError sse_decode_box_autoadd_header_parse_error(
+      SseDeserializer deserializer) {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+    return (sse_decode_header_parse_error(deserializer));
+  }
+
+  @protected
   SplitOptions sse_decode_box_autoadd_split_options(
       SseDeserializer deserializer) {
     // Codec=Sse (Serialization based), see doc to use other codecs
     return (sse_decode_split_options(deserializer));
+  }
+
+  @protected
+  DecodeError sse_decode_decode_error(SseDeserializer deserializer) {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+
+    var tag_ = sse_decode_i_32(deserializer);
+    switch (tag_) {
+      case 0:
+        var var_field0 = sse_decode_usize(deserializer);
+        var var_field1 = sse_decode_String(deserializer);
+        return DecodeError_UnableToDecodeHex(var_field0, var_field1);
+      case 1:
+        var var_field0 = sse_decode_usize(deserializer);
+        var var_field1 = sse_decode_String(deserializer);
+        return DecodeError_UnableToDecodeBase32(var_field0, var_field1);
+      case 2:
+        var var_field0 = sse_decode_String(deserializer);
+        return DecodeError_UnableToInflateZlib(var_field0);
+      default:
+        throw UnimplementedError('');
+    }
   }
 
   @protected
@@ -333,9 +553,83 @@ class BbqrCoreApiImpl extends BbqrCoreApiImplPlatform implements BbqrCoreApi {
   }
 
   @protected
+  HeaderParseError sse_decode_header_parse_error(SseDeserializer deserializer) {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+
+    var tag_ = sse_decode_i_32(deserializer);
+    switch (tag_) {
+      case 0:
+        return HeaderParseError_Empty();
+      case 1:
+        var var_field0 = sse_decode_String(deserializer);
+        return HeaderParseError_InvalidEncoding(var_field0);
+      case 2:
+        var var_field0 = sse_decode_String(deserializer);
+        return HeaderParseError_InvalidFileType(var_field0);
+      case 3:
+        return HeaderParseError_InvalidFixedHeader();
+      case 4:
+        var var_field0 = sse_decode_usize(deserializer);
+        return HeaderParseError_InvalidHeaderSize(var_field0);
+      case 5:
+        var var_field0 = sse_decode_String(deserializer);
+        return HeaderParseError_InvalidHeaderParts(var_field0);
+      default:
+        throw UnimplementedError('');
+    }
+  }
+
+  @protected
   int sse_decode_i_32(SseDeserializer deserializer) {
     // Codec=Sse (Serialization based), see doc to use other codecs
     return deserializer.buffer.getInt32();
+  }
+
+  @protected
+  JoinError sse_decode_join_error(SseDeserializer deserializer) {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+
+    var tag_ = sse_decode_i_32(deserializer);
+    switch (tag_) {
+      case 0:
+        return JoinError_Empty();
+      case 1:
+        return JoinError_ConflictingHeaders();
+      case 2:
+        var var_field0 = sse_decode_usize(deserializer);
+        var var_field1 = sse_decode_usize(deserializer);
+        return JoinError_TooManyParts(var_field0, var_field1);
+      case 3:
+        var var_field0 = sse_decode_usize(deserializer);
+        return JoinError_DuplicatePartWrongContent(var_field0);
+      case 4:
+        var var_field0 = sse_decode_usize(deserializer);
+        return JoinError_PartWithNoData(var_field0);
+      case 5:
+        var var_field0 = sse_decode_usize(deserializer);
+        return JoinError_MissingPart(var_field0);
+      case 6:
+        var var_field0 =
+            sse_decode_box_autoadd_header_parse_error(deserializer);
+        return JoinError_HeaderParseError(var_field0);
+      case 7:
+        var var_field0 = sse_decode_box_autoadd_decode_error(deserializer);
+        return JoinError_DecodeError(var_field0);
+      default:
+        throw UnimplementedError('');
+    }
+  }
+
+  @protected
+  List<String> sse_decode_list_String(SseDeserializer deserializer) {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+
+    var len_ = sse_decode_i_32(deserializer);
+    var ans_ = <String>[];
+    for (var idx_ = 0; idx_ < len_; ++idx_) {
+      ans_.add(sse_decode_String(deserializer));
+    }
+    return ans_;
   }
 
   @protected
@@ -421,11 +715,27 @@ class BbqrCoreApiImpl extends BbqrCoreApiImplPlatform implements BbqrCoreApi {
   }
 
   @protected
+  int cst_encode_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInner_Joined(
+      Joined raw) {
+    // Codec=Cst (C-struct based), see doc to use other codecs
+// ignore: invalid_use_of_internal_member
+    return raw.cstEncode(move: true);
+  }
+
+  @protected
   int cst_encode_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInner_Split(
       Split raw) {
     // Codec=Cst (C-struct based), see doc to use other codecs
 // ignore: invalid_use_of_internal_member
     return raw.cstEncode(move: true);
+  }
+
+  @protected
+  int cst_encode_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInner_Joined(
+      Joined raw) {
+    // Codec=Cst (C-struct based), see doc to use other codecs
+// ignore: invalid_use_of_internal_member
+    return raw.cstEncode();
   }
 
   @protected
@@ -474,10 +784,26 @@ class BbqrCoreApiImpl extends BbqrCoreApiImplPlatform implements BbqrCoreApi {
 
   @protected
   void
+      sse_encode_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInner_Joined(
+          Joined self, SseSerializer serializer) {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+    sse_encode_usize(self.sseEncode(move: true), serializer);
+  }
+
+  @protected
+  void
       sse_encode_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInner_Split(
           Split self, SseSerializer serializer) {
     // Codec=Sse (Serialization based), see doc to use other codecs
     sse_encode_usize(self.sseEncode(move: true), serializer);
+  }
+
+  @protected
+  void
+      sse_encode_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInner_Joined(
+          Joined self, SseSerializer serializer) {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+    sse_encode_usize(self.sseEncode(move: null), serializer);
   }
 
   @protected
@@ -495,6 +821,13 @@ class BbqrCoreApiImpl extends BbqrCoreApiImplPlatform implements BbqrCoreApi {
   }
 
   @protected
+  void sse_encode_box_autoadd_decode_error(
+      DecodeError self, SseSerializer serializer) {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+    sse_encode_decode_error(self, serializer);
+  }
+
+  @protected
   void sse_encode_box_autoadd_encode_error(
       EncodeError self, SseSerializer serializer) {
     // Codec=Sse (Serialization based), see doc to use other codecs
@@ -502,10 +835,41 @@ class BbqrCoreApiImpl extends BbqrCoreApiImplPlatform implements BbqrCoreApi {
   }
 
   @protected
+  void sse_encode_box_autoadd_header_parse_error(
+      HeaderParseError self, SseSerializer serializer) {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+    sse_encode_header_parse_error(self, serializer);
+  }
+
+  @protected
   void sse_encode_box_autoadd_split_options(
       SplitOptions self, SseSerializer serializer) {
     // Codec=Sse (Serialization based), see doc to use other codecs
     sse_encode_split_options(self, serializer);
+  }
+
+  @protected
+  void sse_encode_decode_error(DecodeError self, SseSerializer serializer) {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+    switch (self) {
+      case DecodeError_UnableToDecodeHex(
+          field0: final field0,
+          field1: final field1
+        ):
+        sse_encode_i_32(0, serializer);
+        sse_encode_usize(field0, serializer);
+        sse_encode_String(field1, serializer);
+      case DecodeError_UnableToDecodeBase32(
+          field0: final field0,
+          field1: final field1
+        ):
+        sse_encode_i_32(1, serializer);
+        sse_encode_usize(field0, serializer);
+        sse_encode_String(field1, serializer);
+      case DecodeError_UnableToInflateZlib(field0: final field0):
+        sse_encode_i_32(2, serializer);
+        sse_encode_String(field0, serializer);
+    }
   }
 
   @protected
@@ -533,9 +897,72 @@ class BbqrCoreApiImpl extends BbqrCoreApiImplPlatform implements BbqrCoreApi {
   }
 
   @protected
+  void sse_encode_header_parse_error(
+      HeaderParseError self, SseSerializer serializer) {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+    switch (self) {
+      case HeaderParseError_Empty():
+        sse_encode_i_32(0, serializer);
+      case HeaderParseError_InvalidEncoding(field0: final field0):
+        sse_encode_i_32(1, serializer);
+        sse_encode_String(field0, serializer);
+      case HeaderParseError_InvalidFileType(field0: final field0):
+        sse_encode_i_32(2, serializer);
+        sse_encode_String(field0, serializer);
+      case HeaderParseError_InvalidFixedHeader():
+        sse_encode_i_32(3, serializer);
+      case HeaderParseError_InvalidHeaderSize(field0: final field0):
+        sse_encode_i_32(4, serializer);
+        sse_encode_usize(field0, serializer);
+      case HeaderParseError_InvalidHeaderParts(field0: final field0):
+        sse_encode_i_32(5, serializer);
+        sse_encode_String(field0, serializer);
+    }
+  }
+
+  @protected
   void sse_encode_i_32(int self, SseSerializer serializer) {
     // Codec=Sse (Serialization based), see doc to use other codecs
     serializer.buffer.putInt32(self);
+  }
+
+  @protected
+  void sse_encode_join_error(JoinError self, SseSerializer serializer) {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+    switch (self) {
+      case JoinError_Empty():
+        sse_encode_i_32(0, serializer);
+      case JoinError_ConflictingHeaders():
+        sse_encode_i_32(1, serializer);
+      case JoinError_TooManyParts(field0: final field0, field1: final field1):
+        sse_encode_i_32(2, serializer);
+        sse_encode_usize(field0, serializer);
+        sse_encode_usize(field1, serializer);
+      case JoinError_DuplicatePartWrongContent(field0: final field0):
+        sse_encode_i_32(3, serializer);
+        sse_encode_usize(field0, serializer);
+      case JoinError_PartWithNoData(field0: final field0):
+        sse_encode_i_32(4, serializer);
+        sse_encode_usize(field0, serializer);
+      case JoinError_MissingPart(field0: final field0):
+        sse_encode_i_32(5, serializer);
+        sse_encode_usize(field0, serializer);
+      case JoinError_HeaderParseError(field0: final field0):
+        sse_encode_i_32(6, serializer);
+        sse_encode_box_autoadd_header_parse_error(field0, serializer);
+      case JoinError_DecodeError(field0: final field0):
+        sse_encode_i_32(7, serializer);
+        sse_encode_box_autoadd_decode_error(field0, serializer);
+    }
+  }
+
+  @protected
+  void sse_encode_list_String(List<String> self, SseSerializer serializer) {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+    sse_encode_i_32(self.length, serializer);
+    for (final item in self) {
+      sse_encode_String(item, serializer);
+    }
   }
 
   @protected

@@ -1,9 +1,9 @@
+use bbqr::Joined;
 pub use bbqr::{Encoding, FileType, Split, SplitOptions, Version};
 
 use flutter_rust_bridge::frb;
 
-pub use super::error::EncodeError;
-pub use super::error::SplitError;
+pub use super::error::{EncodeError, JoinError, SplitError};
 
 #[derive(Debug, Clone)]
 #[frb(mirror(Split))]
@@ -127,7 +127,7 @@ pub enum _FileType {
 }
 
 impl _Split {
-    pub fn try_new_from_data(
+    pub fn try_from_data(
         data: Vec<u8>,
         file_type: FileType,
         options: SplitOptions,
@@ -138,6 +138,26 @@ impl _Split {
             version: split.version,
             parts: split.parts,
             encoding: split.encoding,
+        })
+    }
+}
+
+#[derive(Debug, Clone, PartialEq, Eq)]
+#[frb(mirror(Joined))]
+pub struct _Joined {
+    pub encoding: Encoding,
+    pub file_type: FileType,
+    pub data: Vec<u8>,
+}
+
+impl _Joined {
+    pub fn try_new_from_parts(parts: Vec<String>) -> Result<Self, JoinError> {
+        let joined = Joined::try_from_parts(parts).map_err(|e| JoinError::from(e))?;
+
+        Ok(Self {
+            encoding: joined.encoding,
+            file_type: joined.file_type,
+            data: joined.data,
         })
     }
 }

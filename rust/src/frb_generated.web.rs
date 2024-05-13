@@ -23,6 +23,26 @@ impl CstDecode<String> for String {
         self
     }
 }
+impl CstDecode<crate::api::error::DecodeError>
+    for flutter_rust_bridge::for_generated::wasm_bindgen::JsValue
+{
+    // Codec=Cst (C-struct based), see doc to use other codecs
+    fn cst_decode(self) -> crate::api::error::DecodeError {
+        let self_ = self.unchecked_into::<flutter_rust_bridge::for_generated::js_sys::Array>();
+        match self_.get(0).unchecked_into_f64() as _ {
+            0 => crate::api::error::DecodeError::UnableToDecodeHex(
+                self_.get(1).cst_decode(),
+                self_.get(2).cst_decode(),
+            ),
+            1 => crate::api::error::DecodeError::UnableToDecodeBase32(
+                self_.get(1).cst_decode(),
+                self_.get(2).cst_decode(),
+            ),
+            2 => crate::api::error::DecodeError::UnableToInflateZlib(self_.get(1).cst_decode()),
+            _ => unreachable!(),
+        }
+    }
+}
 impl CstDecode<crate::api::error::EncodeError>
     for flutter_rust_bridge::for_generated::wasm_bindgen::JsValue
 {
@@ -34,6 +54,55 @@ impl CstDecode<crate::api::error::EncodeError>
             1 => crate::api::error::EncodeError::CompressionError(self_.get(1).cst_decode()),
             _ => unreachable!(),
         }
+    }
+}
+impl CstDecode<crate::api::error::HeaderParseError>
+    for flutter_rust_bridge::for_generated::wasm_bindgen::JsValue
+{
+    // Codec=Cst (C-struct based), see doc to use other codecs
+    fn cst_decode(self) -> crate::api::error::HeaderParseError {
+        let self_ = self.unchecked_into::<flutter_rust_bridge::for_generated::js_sys::Array>();
+        match self_.get(0).unchecked_into_f64() as _ {
+            0 => crate::api::error::HeaderParseError::Empty,
+            1 => crate::api::error::HeaderParseError::InvalidEncoding(self_.get(1).cst_decode()),
+            2 => crate::api::error::HeaderParseError::InvalidFileType(self_.get(1).cst_decode()),
+            3 => crate::api::error::HeaderParseError::InvalidFixedHeader,
+            4 => crate::api::error::HeaderParseError::InvalidHeaderSize(self_.get(1).cst_decode()),
+            5 => crate::api::error::HeaderParseError::InvalidHeaderParts(self_.get(1).cst_decode()),
+            _ => unreachable!(),
+        }
+    }
+}
+impl CstDecode<crate::api::error::JoinError>
+    for flutter_rust_bridge::for_generated::wasm_bindgen::JsValue
+{
+    // Codec=Cst (C-struct based), see doc to use other codecs
+    fn cst_decode(self) -> crate::api::error::JoinError {
+        let self_ = self.unchecked_into::<flutter_rust_bridge::for_generated::js_sys::Array>();
+        match self_.get(0).unchecked_into_f64() as _ {
+            0 => crate::api::error::JoinError::Empty,
+            1 => crate::api::error::JoinError::ConflictingHeaders,
+            2 => crate::api::error::JoinError::TooManyParts(
+                self_.get(1).cst_decode(),
+                self_.get(2).cst_decode(),
+            ),
+            3 => crate::api::error::JoinError::DuplicatePartWrongContent(self_.get(1).cst_decode()),
+            4 => crate::api::error::JoinError::PartWithNoData(self_.get(1).cst_decode()),
+            5 => crate::api::error::JoinError::MissingPart(self_.get(1).cst_decode()),
+            6 => crate::api::error::JoinError::HeaderParseError(self_.get(1).cst_decode()),
+            7 => crate::api::error::JoinError::DecodeError(self_.get(1).cst_decode()),
+            _ => unreachable!(),
+        }
+    }
+}
+impl CstDecode<Vec<String>> for flutter_rust_bridge::for_generated::wasm_bindgen::JsValue {
+    // Codec=Cst (C-struct based), see doc to use other codecs
+    fn cst_decode(self) -> Vec<String> {
+        self.dyn_into::<flutter_rust_bridge::for_generated::js_sys::Array>()
+            .unwrap()
+            .iter()
+            .map(CstDecode::cst_decode)
+            .collect()
     }
 }
 impl CstDecode<Vec<u8>> for Box<[u8]> {
@@ -83,10 +152,30 @@ impl CstDecode<crate::api::types::SplitOptions>
         }
     }
 }
+impl CstDecode<_Joined> for flutter_rust_bridge::for_generated::wasm_bindgen::JsValue {
+    // Codec=Cst (C-struct based), see doc to use other codecs
+    fn cst_decode(self) -> _Joined {
+        CstDecode::<RustOpaqueNom<flutter_rust_bridge::for_generated::RustAutoOpaqueInner<_Joined>>>::cst_decode(self).rust_auto_opaque_decode_owned()
+    }
+}
 impl CstDecode<_Split> for flutter_rust_bridge::for_generated::wasm_bindgen::JsValue {
     // Codec=Cst (C-struct based), see doc to use other codecs
     fn cst_decode(self) -> _Split {
         CstDecode::<RustOpaqueNom<flutter_rust_bridge::for_generated::RustAutoOpaqueInner<_Split>>>::cst_decode(self).rust_auto_opaque_decode_owned()
+    }
+}
+impl CstDecode<RustOpaqueNom<flutter_rust_bridge::for_generated::RustAutoOpaqueInner<_Joined>>>
+    for flutter_rust_bridge::for_generated::wasm_bindgen::JsValue
+{
+    // Codec=Cst (C-struct based), see doc to use other codecs
+    fn cst_decode(
+        self,
+    ) -> RustOpaqueNom<flutter_rust_bridge::for_generated::RustAutoOpaqueInner<_Joined>> {
+        #[cfg(target_pointer_width = "64")]
+        {
+            compile_error!("64-bit pointers are not supported.");
+        }
+        unsafe { decode_rust_opaque_nom((self.as_f64().unwrap() as usize) as _) }
     }
 }
 impl CstDecode<RustOpaqueNom<flutter_rust_bridge::for_generated::RustAutoOpaqueInner<_Split>>>
@@ -161,13 +250,39 @@ impl CstDecode<crate::api::types::Version>
 }
 
 #[wasm_bindgen]
-pub fn wire_Split_try_new_from_data(
+pub fn wire_Joined_try_new_from_parts(
+    port_: flutter_rust_bridge::for_generated::MessagePort,
+    parts: flutter_rust_bridge::for_generated::wasm_bindgen::JsValue,
+) {
+    wire_Joined_try_new_from_parts_impl(port_, parts)
+}
+
+#[wasm_bindgen]
+pub fn wire_Split_try_from_data(
     port_: flutter_rust_bridge::for_generated::MessagePort,
     data: Box<[u8]>,
     file_type: i32,
     options: flutter_rust_bridge::for_generated::wasm_bindgen::JsValue,
 ) {
-    wire_Split_try_new_from_data_impl(port_, data, file_type, options)
+    wire_Split_try_from_data_impl(port_, data, file_type, options)
+}
+
+#[wasm_bindgen]
+pub fn rust_arc_increment_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInner_Joined(
+    ptr: *const std::ffi::c_void,
+) {
+    unsafe {
+        StdArc::<flutter_rust_bridge::for_generated::RustAutoOpaqueInner<_Joined>>::increment_strong_count(ptr as _);
+    }
+}
+
+#[wasm_bindgen]
+pub fn rust_arc_decrement_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInner_Joined(
+    ptr: *const std::ffi::c_void,
+) {
+    unsafe {
+        StdArc::<flutter_rust_bridge::for_generated::RustAutoOpaqueInner<_Joined>>::decrement_strong_count(ptr as _);
+    }
 }
 
 #[wasm_bindgen]

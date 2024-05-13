@@ -7,7 +7,30 @@ import '../frb_generated.dart';
 import 'error.dart';
 import 'package:flutter_rust_bridge/flutter_rust_bridge_for_generated.dart';
 
+// The type `Joined` is not used by any `pub` functions, thus it is ignored.
 // The type `Split` is not used by any `pub` functions, thus it is ignored.
+
+// Rust type: RustOpaqueNom<flutter_rust_bridge::for_generated::RustAutoOpaqueInner<_Joined>>
+@sealed
+class Joined extends RustOpaque {
+  Joined.dcoDecode(List<dynamic> wire) : super.dcoDecode(wire, _kStaticData);
+
+  Joined.sseDecode(int ptr, int externalSizeOnNative)
+      : super.sseDecode(ptr, externalSizeOnNative, _kStaticData);
+
+  static final _kStaticData = RustArcStaticData(
+    rustArcIncrementStrongCount:
+        BbqrCore.instance.api.rust_arc_increment_strong_count_Joined,
+    rustArcDecrementStrongCount:
+        BbqrCore.instance.api.rust_arc_decrement_strong_count_Joined,
+    rustArcDecrementStrongCountPtr:
+        BbqrCore.instance.api.rust_arc_decrement_strong_count_JoinedPtr,
+  );
+
+  static Future<Joined> tryNewFromParts(
+          {required List<String> parts, dynamic hint}) =>
+      BbqrCore.instance.api.joinedTryNewFromParts(parts: parts, hint: hint);
+}
 
 // Rust type: RustOpaqueNom<flutter_rust_bridge::for_generated::RustAutoOpaqueInner<_Split>>
 @sealed
@@ -26,12 +49,12 @@ class Split extends RustOpaque {
         BbqrCore.instance.api.rust_arc_decrement_strong_count_SplitPtr,
   );
 
-  static Future<Split> tryNewFromData(
+  static Future<Split> tryFromData(
           {required List<int> data,
           required FileType fileType,
           required SplitOptions options,
           dynamic hint}) =>
-      BbqrCore.instance.api.splitTryNewFromData(
+      BbqrCore.instance.api.splitTryFromData(
           data: data, fileType: fileType, options: options, hint: hint);
 }
 
