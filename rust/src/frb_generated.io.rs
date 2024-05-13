@@ -15,26 +15,10 @@ flutter_rust_bridge::frb_generated_boilerplate_io!();
 
 // Section: dart2rust
 
-impl CstDecode<Error> for usize {
-    // Codec=Cst (C-struct based), see doc to use other codecs
-    fn cst_decode(self) -> Error {
-        CstDecode::<RustOpaqueNom<flutter_rust_bridge::for_generated::RustAutoOpaqueInner<Error>>>::cst_decode(self).rust_auto_opaque_decode_owned()
-    }
-}
 impl CstDecode<_Split> for usize {
     // Codec=Cst (C-struct based), see doc to use other codecs
     fn cst_decode(self) -> _Split {
         CstDecode::<RustOpaqueNom<flutter_rust_bridge::for_generated::RustAutoOpaqueInner<_Split>>>::cst_decode(self).rust_auto_opaque_decode_owned()
-    }
-}
-impl CstDecode<RustOpaqueNom<flutter_rust_bridge::for_generated::RustAutoOpaqueInner<Error>>>
-    for usize
-{
-    // Codec=Cst (C-struct based), see doc to use other codecs
-    fn cst_decode(
-        self,
-    ) -> RustOpaqueNom<flutter_rust_bridge::for_generated::RustAutoOpaqueInner<Error>> {
-        unsafe { decode_rust_opaque_nom(self as _) }
     }
 }
 impl CstDecode<RustOpaqueNom<flutter_rust_bridge::for_generated::RustAutoOpaqueInner<_Split>>>
@@ -47,14 +31,18 @@ impl CstDecode<RustOpaqueNom<flutter_rust_bridge::for_generated::RustAutoOpaqueI
         unsafe { decode_rust_opaque_nom(self as _) }
     }
 }
-impl CstDecode<RustOpaqueNom<flutter_rust_bridge::for_generated::RustAutoOpaqueInner<[u8]>>>
-    for usize
-{
+impl CstDecode<String> for *mut wire_cst_list_prim_u_8_strict {
     // Codec=Cst (C-struct based), see doc to use other codecs
-    fn cst_decode(
-        self,
-    ) -> RustOpaqueNom<flutter_rust_bridge::for_generated::RustAutoOpaqueInner<[u8]>> {
-        unsafe { decode_rust_opaque_nom(self as _) }
+    fn cst_decode(self) -> String {
+        let vec: Vec<u8> = self.cst_decode();
+        String::from_utf8(vec).unwrap()
+    }
+}
+impl CstDecode<crate::api::error::EncodeError> for *mut wire_cst_encode_error {
+    // Codec=Cst (C-struct based), see doc to use other codecs
+    fn cst_decode(self) -> crate::api::error::EncodeError {
+        let wrap = unsafe { flutter_rust_bridge::for_generated::box_from_leak_ptr(self) };
+        CstDecode::<crate::api::error::EncodeError>::cst_decode(*wrap).into()
     }
 }
 impl CstDecode<crate::api::types::SplitOptions> for *mut wire_cst_split_options {
@@ -62,6 +50,58 @@ impl CstDecode<crate::api::types::SplitOptions> for *mut wire_cst_split_options 
     fn cst_decode(self) -> crate::api::types::SplitOptions {
         let wrap = unsafe { flutter_rust_bridge::for_generated::box_from_leak_ptr(self) };
         CstDecode::<crate::api::types::SplitOptions>::cst_decode(*wrap).into()
+    }
+}
+impl CstDecode<crate::api::error::EncodeError> for wire_cst_encode_error {
+    // Codec=Cst (C-struct based), see doc to use other codecs
+    fn cst_decode(self) -> crate::api::error::EncodeError {
+        match self.tag {
+            0 => crate::api::error::EncodeError::Empty,
+            1 => {
+                let ans = unsafe { self.kind.CompressionError };
+                crate::api::error::EncodeError::CompressionError(ans.field0.cst_decode())
+            }
+            _ => unreachable!(),
+        }
+    }
+}
+impl CstDecode<Vec<u8>> for *mut wire_cst_list_prim_u_8_loose {
+    // Codec=Cst (C-struct based), see doc to use other codecs
+    fn cst_decode(self) -> Vec<u8> {
+        unsafe {
+            let wrap = flutter_rust_bridge::for_generated::box_from_leak_ptr(self);
+            flutter_rust_bridge::for_generated::vec_from_leak_ptr(wrap.ptr, wrap.len)
+        }
+    }
+}
+impl CstDecode<Vec<u8>> for *mut wire_cst_list_prim_u_8_strict {
+    // Codec=Cst (C-struct based), see doc to use other codecs
+    fn cst_decode(self) -> Vec<u8> {
+        unsafe {
+            let wrap = flutter_rust_bridge::for_generated::box_from_leak_ptr(self);
+            flutter_rust_bridge::for_generated::vec_from_leak_ptr(wrap.ptr, wrap.len)
+        }
+    }
+}
+impl CstDecode<crate::api::error::SplitError> for wire_cst_split_error {
+    // Codec=Cst (C-struct based), see doc to use other codecs
+    fn cst_decode(self) -> crate::api::error::SplitError {
+        match self.tag {
+            0 => crate::api::error::SplitError::Empty,
+            1 => crate::api::error::SplitError::CannotFit,
+            2 => {
+                let ans = unsafe { self.kind.MaxSplitSizeTooLarge };
+                crate::api::error::SplitError::MaxSplitSizeTooLarge(ans.field0.cst_decode())
+            }
+            3 => crate::api::error::SplitError::MinSplitTooSmall,
+            4 => crate::api::error::SplitError::InvalidSplitRange,
+            5 => crate::api::error::SplitError::InvalidVersionRange,
+            6 => {
+                let ans = unsafe { self.kind.EncodeError };
+                crate::api::error::SplitError::EncodeError(ans.field0.cst_decode())
+            }
+            _ => unreachable!(),
+        }
     }
 }
 impl CstDecode<crate::api::types::SplitOptions> for wire_cst_split_options {
@@ -74,6 +114,32 @@ impl CstDecode<crate::api::types::SplitOptions> for wire_cst_split_options {
             min_version: self.min_version.cst_decode(),
             max_version: self.max_version.cst_decode(),
         }
+    }
+}
+impl NewWithNullPtr for wire_cst_encode_error {
+    fn new_with_null_ptr() -> Self {
+        Self {
+            tag: -1,
+            kind: EncodeErrorKind { nil__: () },
+        }
+    }
+}
+impl Default for wire_cst_encode_error {
+    fn default() -> Self {
+        Self::new_with_null_ptr()
+    }
+}
+impl NewWithNullPtr for wire_cst_split_error {
+    fn new_with_null_ptr() -> Self {
+        Self {
+            tag: -1,
+            kind: SplitErrorKind { nil__: () },
+        }
+    }
+}
+impl Default for wire_cst_split_error {
+    fn default() -> Self {
+        Self::new_with_null_ptr()
     }
 }
 impl NewWithNullPtr for wire_cst_split_options {
@@ -96,29 +162,11 @@ impl Default for wire_cst_split_options {
 #[no_mangle]
 pub extern "C" fn frbgen_bbqr_dart_wire_Split_try_new_from_data(
     port_: i64,
-    data: usize,
+    data: *mut wire_cst_list_prim_u_8_loose,
     file_type: i32,
     options: *mut wire_cst_split_options,
 ) {
     wire_Split_try_new_from_data_impl(port_, data, file_type, options)
-}
-
-#[no_mangle]
-pub extern "C" fn frbgen_bbqr_dart_rust_arc_increment_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerError(
-    ptr: *const std::ffi::c_void,
-) {
-    unsafe {
-        StdArc::<flutter_rust_bridge::for_generated::RustAutoOpaqueInner<Error>>::increment_strong_count(ptr as _);
-    }
-}
-
-#[no_mangle]
-pub extern "C" fn frbgen_bbqr_dart_rust_arc_decrement_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerError(
-    ptr: *const std::ffi::c_void,
-) {
-    unsafe {
-        StdArc::<flutter_rust_bridge::for_generated::RustAutoOpaqueInner<Error>>::decrement_strong_count(ptr as _);
-    }
 }
 
 #[no_mangle]
@@ -140,21 +188,9 @@ pub extern "C" fn frbgen_bbqr_dart_rust_arc_decrement_strong_count_RustOpaque_fl
 }
 
 #[no_mangle]
-pub extern "C" fn frbgen_bbqr_dart_rust_arc_increment_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInneru8(
-    ptr: *const std::ffi::c_void,
-) {
-    unsafe {
-        StdArc::<flutter_rust_bridge::for_generated::RustAutoOpaqueInner<[u8]>>::increment_strong_count(ptr as _);
-    }
-}
-
-#[no_mangle]
-pub extern "C" fn frbgen_bbqr_dart_rust_arc_decrement_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInneru8(
-    ptr: *const std::ffi::c_void,
-) {
-    unsafe {
-        StdArc::<flutter_rust_bridge::for_generated::RustAutoOpaqueInner<[u8]>>::decrement_strong_count(ptr as _);
-    }
+pub extern "C" fn frbgen_bbqr_dart_cst_new_box_autoadd_encode_error() -> *mut wire_cst_encode_error
+{
+    flutter_rust_bridge::for_generated::new_leak_box_ptr(wire_cst_encode_error::new_with_null_ptr())
 }
 
 #[no_mangle]
@@ -163,6 +199,80 @@ pub extern "C" fn frbgen_bbqr_dart_cst_new_box_autoadd_split_options() -> *mut w
     flutter_rust_bridge::for_generated::new_leak_box_ptr(wire_cst_split_options::new_with_null_ptr())
 }
 
+#[no_mangle]
+pub extern "C" fn frbgen_bbqr_dart_cst_new_list_prim_u_8_loose(
+    len: i32,
+) -> *mut wire_cst_list_prim_u_8_loose {
+    let ans = wire_cst_list_prim_u_8_loose {
+        ptr: flutter_rust_bridge::for_generated::new_leak_vec_ptr(Default::default(), len),
+        len,
+    };
+    flutter_rust_bridge::for_generated::new_leak_box_ptr(ans)
+}
+
+#[no_mangle]
+pub extern "C" fn frbgen_bbqr_dart_cst_new_list_prim_u_8_strict(
+    len: i32,
+) -> *mut wire_cst_list_prim_u_8_strict {
+    let ans = wire_cst_list_prim_u_8_strict {
+        ptr: flutter_rust_bridge::for_generated::new_leak_vec_ptr(Default::default(), len),
+        len,
+    };
+    flutter_rust_bridge::for_generated::new_leak_box_ptr(ans)
+}
+
+#[repr(C)]
+#[derive(Clone, Copy)]
+pub struct wire_cst_encode_error {
+    tag: i32,
+    kind: EncodeErrorKind,
+}
+#[repr(C)]
+#[derive(Clone, Copy)]
+pub union EncodeErrorKind {
+    CompressionError: wire_cst_EncodeError_CompressionError,
+    nil__: (),
+}
+#[repr(C)]
+#[derive(Clone, Copy)]
+pub struct wire_cst_EncodeError_CompressionError {
+    field0: *mut wire_cst_list_prim_u_8_strict,
+}
+#[repr(C)]
+#[derive(Clone, Copy)]
+pub struct wire_cst_list_prim_u_8_loose {
+    ptr: *mut u8,
+    len: i32,
+}
+#[repr(C)]
+#[derive(Clone, Copy)]
+pub struct wire_cst_list_prim_u_8_strict {
+    ptr: *mut u8,
+    len: i32,
+}
+#[repr(C)]
+#[derive(Clone, Copy)]
+pub struct wire_cst_split_error {
+    tag: i32,
+    kind: SplitErrorKind,
+}
+#[repr(C)]
+#[derive(Clone, Copy)]
+pub union SplitErrorKind {
+    MaxSplitSizeTooLarge: wire_cst_SplitError_MaxSplitSizeTooLarge,
+    EncodeError: wire_cst_SplitError_EncodeError,
+    nil__: (),
+}
+#[repr(C)]
+#[derive(Clone, Copy)]
+pub struct wire_cst_SplitError_MaxSplitSizeTooLarge {
+    field0: usize,
+}
+#[repr(C)]
+#[derive(Clone, Copy)]
+pub struct wire_cst_SplitError_EncodeError {
+    field0: *mut wire_cst_encode_error,
+}
 #[repr(C)]
 #[derive(Clone, Copy)]
 pub struct wire_cst_split_options {

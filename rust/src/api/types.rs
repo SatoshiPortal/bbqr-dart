@@ -1,8 +1,9 @@
-use bbqr::{
-    error::{EncodeError, JoinError, SplitError},
-    Encoding, FileType, Split, SplitOptions, Version,
-};
+pub use bbqr::{Encoding, FileType, Split, SplitOptions, Version};
+
 use flutter_rust_bridge::frb;
+
+pub use super::error::EncodeError;
+pub use super::error::SplitError;
 
 #[derive(Debug, Clone)]
 #[frb(mirror(Split))]
@@ -125,18 +126,13 @@ pub enum _FileType {
     UnicodeText,
 }
 
-pub enum Error {
-    SplitError(SplitError),
-    JoinError(JoinError),
-}
-
 impl _Split {
     pub fn try_new_from_data(
-        data: &[u8],
+        data: Vec<u8>,
         file_type: FileType,
         options: SplitOptions,
-    ) -> Result<Self, Error> {
-        let split = Split::try_from_data(data, file_type, options).map_err(Error::SplitError)?;
+    ) -> Result<Self, SplitError> {
+        let split = Split::try_from_data(&data, file_type, options).map_err(SplitError::from)?;
 
         Ok(Self {
             version: split.version,

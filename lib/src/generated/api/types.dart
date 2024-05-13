@@ -4,27 +4,10 @@
 // ignore_for_file: invalid_use_of_internal_member, unused_import, unnecessary_import
 
 import '../frb_generated.dart';
+import 'error.dart';
 import 'package:flutter_rust_bridge/flutter_rust_bridge_for_generated.dart';
 
 // The type `Split` is not used by any `pub` functions, thus it is ignored.
-
-// Rust type: RustOpaqueNom<flutter_rust_bridge::for_generated::RustAutoOpaqueInner<Error>>
-@sealed
-class Error extends RustOpaque {
-  Error.dcoDecode(List<dynamic> wire) : super.dcoDecode(wire, _kStaticData);
-
-  Error.sseDecode(int ptr, int externalSizeOnNative)
-      : super.sseDecode(ptr, externalSizeOnNative, _kStaticData);
-
-  static final _kStaticData = RustArcStaticData(
-    rustArcIncrementStrongCount:
-        BbqrCore.instance.api.rust_arc_increment_strong_count_Error,
-    rustArcDecrementStrongCount:
-        BbqrCore.instance.api.rust_arc_decrement_strong_count_Error,
-    rustArcDecrementStrongCountPtr:
-        BbqrCore.instance.api.rust_arc_decrement_strong_count_ErrorPtr,
-  );
-}
 
 // Rust type: RustOpaqueNom<flutter_rust_bridge::for_generated::RustAutoOpaqueInner<_Split>>
 @sealed
@@ -44,30 +27,12 @@ class Split extends RustOpaque {
   );
 
   static Future<Split> tryNewFromData(
-          {required U8 data,
+          {required List<int> data,
           required FileType fileType,
           required SplitOptions options,
           dynamic hint}) =>
       BbqrCore.instance.api.splitTryNewFromData(
           data: data, fileType: fileType, options: options, hint: hint);
-}
-
-// Rust type: RustOpaqueNom<flutter_rust_bridge::for_generated::RustAutoOpaqueInner<[u8]>>
-@sealed
-class U8 extends RustOpaque {
-  U8.dcoDecode(List<dynamic> wire) : super.dcoDecode(wire, _kStaticData);
-
-  U8.sseDecode(int ptr, int externalSizeOnNative)
-      : super.sseDecode(ptr, externalSizeOnNative, _kStaticData);
-
-  static final _kStaticData = RustArcStaticData(
-    rustArcIncrementStrongCount:
-        BbqrCore.instance.api.rust_arc_increment_strong_count_U8,
-    rustArcDecrementStrongCount:
-        BbqrCore.instance.api.rust_arc_decrement_strong_count_U8,
-    rustArcDecrementStrongCountPtr:
-        BbqrCore.instance.api.rust_arc_decrement_strong_count_U8Ptr,
-  );
 }
 
 enum Encoding {
