@@ -4,9 +4,8 @@
 // ignore_for_file: invalid_use_of_internal_member, unused_import, unnecessary_import
 
 import '../frb_generated.dart';
+import 'error.dart';
 import 'package:flutter_rust_bridge/flutter_rust_bridge_for_generated.dart';
-import 'package:freezed_annotation/freezed_annotation.dart' hide protected;
-part 'types.freezed.dart';
 
 // The type `Split` is not used by any `pub` functions, thus it is ignored.
 
@@ -36,19 +35,6 @@ class Split extends RustOpaque {
           data: data, fileType: fileType, options: options, hint: hint);
 }
 
-@freezed
-sealed class EncodeError with _$EncodeError {
-  const EncodeError._();
-
-  /// No data to encode
-  const factory EncodeError.empty() = EncodeError_Empty;
-
-  /// Error while compressing data
-  const factory EncodeError.compressionError(
-    String field0,
-  ) = EncodeError_CompressionError;
-}
-
 enum Encoding {
   hex,
   base32,
@@ -63,37 +49,6 @@ enum FileType {
   cbor,
   unicodeText,
   ;
-}
-
-@freezed
-sealed class SplitError with _$SplitError implements FrbException {
-  const SplitError._();
-
-  /// No data found
-  const factory SplitError.empty() = SplitError_Empty;
-
-  /// Cannot make the data fit
-  const factory SplitError.cannotFit() = SplitError_CannotFit;
-
-  /// Max split size is too large
-  const factory SplitError.maxSplitSizeTooLarge(
-    int field0,
-  ) = SplitError_MaxSplitSizeTooLarge;
-
-  /// Min split size is too small
-  const factory SplitError.minSplitTooSmall() = SplitError_MinSplitTooSmall;
-
-  /// Invalid split min and max range, min is larger than max
-  const factory SplitError.invalidSplitRange() = SplitError_InvalidSplitRange;
-
-  /// Invalid version min and max range, min is larger than max
-  const factory SplitError.invalidVersionRange() =
-      SplitError_InvalidVersionRange;
-
-  /// Error while encoding
-  const factory SplitError.encodeError(
-    EncodeError field0,
-  ) = SplitError_EncodeError;
 }
 
 class SplitOptions {

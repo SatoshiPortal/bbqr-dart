@@ -73,33 +73,12 @@ fn wire_Split_try_new_from_data_impl(
 
 #[allow(clippy::unnecessary_literal_unwrap)]
 const _: fn() = || {
-    match None::<crate::api::types::EncodeError>.unwrap() {
-        crate::api::types::EncodeError::Empty => {}
-        crate::api::types::EncodeError::CompressionError(field0) => {
-            let _: String = field0;
-        }
-    }
-    match None::<crate::api::types::SplitError>.unwrap() {
-        crate::api::types::SplitError::Empty => {}
-        crate::api::types::SplitError::CannotFit => {}
-        crate::api::types::SplitError::MaxSplitSizeTooLarge(field0) => {
-            let _: usize = field0;
-        }
-        crate::api::types::SplitError::MinSplitTooSmall => {}
-        crate::api::types::SplitError::InvalidSplitRange => {}
-        crate::api::types::SplitError::InvalidVersionRange => {}
-        crate::api::types::SplitError::EncodeError(field0) => {
-            let _: crate::api::types::EncodeError = field0;
-        }
-    }
-    {
-        let SplitOptions = None::<crate::api::types::SplitOptions>.unwrap();
-        let _: crate::api::types::Encoding = SplitOptions.encoding;
-        let _: usize = SplitOptions.min_split_number;
-        let _: usize = SplitOptions.max_split_number;
-        let _: crate::api::types::Version = SplitOptions.min_version;
-        let _: crate::api::types::Version = SplitOptions.max_version;
-    }
+    let SplitOptions = None::<crate::api::types::SplitOptions>.unwrap();
+    let _: crate::api::types::Encoding = SplitOptions.encoding;
+    let _: usize = SplitOptions.min_split_number;
+    let _: usize = SplitOptions.max_split_number;
+    let _: crate::api::types::Version = SplitOptions.min_version;
+    let _: crate::api::types::Version = SplitOptions.max_version;
 };
 
 // Section: dart2rust
@@ -220,17 +199,17 @@ impl SseDecode for String {
     }
 }
 
-impl SseDecode for crate::api::types::EncodeError {
+impl SseDecode for crate::api::error::EncodeError {
     // Codec=Sse (Serialization based), see doc to use other codecs
     fn sse_decode(deserializer: &mut flutter_rust_bridge::for_generated::SseDeserializer) -> Self {
         let mut tag_ = <i32>::sse_decode(deserializer);
         match tag_ {
             0 => {
-                return crate::api::types::EncodeError::Empty;
+                return crate::api::error::EncodeError::Empty;
             }
             1 => {
                 let mut var_field0 = <String>::sse_decode(deserializer);
-                return crate::api::types::EncodeError::CompressionError(var_field0);
+                return crate::api::error::EncodeError::CompressionError(var_field0);
             }
             _ => {
                 unimplemented!("");
@@ -286,33 +265,33 @@ impl SseDecode for Vec<u8> {
     }
 }
 
-impl SseDecode for crate::api::types::SplitError {
+impl SseDecode for crate::api::error::SplitError {
     // Codec=Sse (Serialization based), see doc to use other codecs
     fn sse_decode(deserializer: &mut flutter_rust_bridge::for_generated::SseDeserializer) -> Self {
         let mut tag_ = <i32>::sse_decode(deserializer);
         match tag_ {
             0 => {
-                return crate::api::types::SplitError::Empty;
+                return crate::api::error::SplitError::Empty;
             }
             1 => {
-                return crate::api::types::SplitError::CannotFit;
+                return crate::api::error::SplitError::CannotFit;
             }
             2 => {
                 let mut var_field0 = <usize>::sse_decode(deserializer);
-                return crate::api::types::SplitError::MaxSplitSizeTooLarge(var_field0);
+                return crate::api::error::SplitError::MaxSplitSizeTooLarge(var_field0);
             }
             3 => {
-                return crate::api::types::SplitError::MinSplitTooSmall;
+                return crate::api::error::SplitError::MinSplitTooSmall;
             }
             4 => {
-                return crate::api::types::SplitError::InvalidSplitRange;
+                return crate::api::error::SplitError::InvalidSplitRange;
             }
             5 => {
-                return crate::api::types::SplitError::InvalidVersionRange;
+                return crate::api::error::SplitError::InvalidVersionRange;
             }
             6 => {
-                let mut var_field0 = <crate::api::types::EncodeError>::sse_decode(deserializer);
-                return crate::api::types::SplitError::EncodeError(var_field0);
+                let mut var_field0 = <crate::api::error::EncodeError>::sse_decode(deserializer);
+                return crate::api::error::SplitError::EncodeError(var_field0);
             }
             _ => {
                 unimplemented!("");
@@ -453,25 +432,25 @@ impl flutter_rust_bridge::IntoIntoDart<FrbWrapper<_Split>> for _Split {
 }
 
 // Codec=Dco (DartCObject based), see doc to use other codecs
-impl flutter_rust_bridge::IntoDart for FrbWrapper<crate::api::types::EncodeError> {
+impl flutter_rust_bridge::IntoDart for crate::api::error::EncodeError {
     fn into_dart(self) -> flutter_rust_bridge::for_generated::DartAbi {
-        match self.0 {
-            crate::api::types::EncodeError::Empty => [0.into_dart()].into_dart(),
-            crate::api::types::EncodeError::CompressionError(field0) => {
+        match self {
+            crate::api::error::EncodeError::Empty => [0.into_dart()].into_dart(),
+            crate::api::error::EncodeError::CompressionError(field0) => {
                 [1.into_dart(), field0.into_into_dart().into_dart()].into_dart()
             }
         }
     }
 }
 impl flutter_rust_bridge::for_generated::IntoDartExceptPrimitive
-    for FrbWrapper<crate::api::types::EncodeError>
+    for crate::api::error::EncodeError
 {
 }
-impl flutter_rust_bridge::IntoIntoDart<FrbWrapper<crate::api::types::EncodeError>>
-    for crate::api::types::EncodeError
+impl flutter_rust_bridge::IntoIntoDart<crate::api::error::EncodeError>
+    for crate::api::error::EncodeError
 {
-    fn into_into_dart(self) -> FrbWrapper<crate::api::types::EncodeError> {
-        self.into()
+    fn into_into_dart(self) -> crate::api::error::EncodeError {
+        self
     }
 }
 // Codec=Dco (DartCObject based), see doc to use other codecs
@@ -519,32 +498,29 @@ impl flutter_rust_bridge::IntoIntoDart<FrbWrapper<crate::api::types::FileType>>
     }
 }
 // Codec=Dco (DartCObject based), see doc to use other codecs
-impl flutter_rust_bridge::IntoDart for FrbWrapper<crate::api::types::SplitError> {
+impl flutter_rust_bridge::IntoDart for crate::api::error::SplitError {
     fn into_dart(self) -> flutter_rust_bridge::for_generated::DartAbi {
-        match self.0 {
-            crate::api::types::SplitError::Empty => [0.into_dart()].into_dart(),
-            crate::api::types::SplitError::CannotFit => [1.into_dart()].into_dart(),
-            crate::api::types::SplitError::MaxSplitSizeTooLarge(field0) => {
+        match self {
+            crate::api::error::SplitError::Empty => [0.into_dart()].into_dart(),
+            crate::api::error::SplitError::CannotFit => [1.into_dart()].into_dart(),
+            crate::api::error::SplitError::MaxSplitSizeTooLarge(field0) => {
                 [2.into_dart(), field0.into_into_dart().into_dart()].into_dart()
             }
-            crate::api::types::SplitError::MinSplitTooSmall => [3.into_dart()].into_dart(),
-            crate::api::types::SplitError::InvalidSplitRange => [4.into_dart()].into_dart(),
-            crate::api::types::SplitError::InvalidVersionRange => [5.into_dart()].into_dart(),
-            crate::api::types::SplitError::EncodeError(field0) => {
+            crate::api::error::SplitError::MinSplitTooSmall => [3.into_dart()].into_dart(),
+            crate::api::error::SplitError::InvalidSplitRange => [4.into_dart()].into_dart(),
+            crate::api::error::SplitError::InvalidVersionRange => [5.into_dart()].into_dart(),
+            crate::api::error::SplitError::EncodeError(field0) => {
                 [6.into_dart(), field0.into_into_dart().into_dart()].into_dart()
             }
         }
     }
 }
-impl flutter_rust_bridge::for_generated::IntoDartExceptPrimitive
-    for FrbWrapper<crate::api::types::SplitError>
+impl flutter_rust_bridge::for_generated::IntoDartExceptPrimitive for crate::api::error::SplitError {}
+impl flutter_rust_bridge::IntoIntoDart<crate::api::error::SplitError>
+    for crate::api::error::SplitError
 {
-}
-impl flutter_rust_bridge::IntoIntoDart<FrbWrapper<crate::api::types::SplitError>>
-    for crate::api::types::SplitError
-{
-    fn into_into_dart(self) -> FrbWrapper<crate::api::types::SplitError> {
-        self.into()
+    fn into_into_dart(self) -> crate::api::error::SplitError {
+        self
     }
 }
 // Codec=Dco (DartCObject based), see doc to use other codecs
@@ -653,14 +629,14 @@ impl SseEncode for String {
     }
 }
 
-impl SseEncode for crate::api::types::EncodeError {
+impl SseEncode for crate::api::error::EncodeError {
     // Codec=Sse (Serialization based), see doc to use other codecs
     fn sse_encode(self, serializer: &mut flutter_rust_bridge::for_generated::SseSerializer) {
         match self {
-            crate::api::types::EncodeError::Empty => {
+            crate::api::error::EncodeError::Empty => {
                 <i32>::sse_encode(0, serializer);
             }
-            crate::api::types::EncodeError::CompressionError(field0) => {
+            crate::api::error::EncodeError::CompressionError(field0) => {
                 <i32>::sse_encode(1, serializer);
                 <String>::sse_encode(field0, serializer);
             }
@@ -721,32 +697,32 @@ impl SseEncode for Vec<u8> {
     }
 }
 
-impl SseEncode for crate::api::types::SplitError {
+impl SseEncode for crate::api::error::SplitError {
     // Codec=Sse (Serialization based), see doc to use other codecs
     fn sse_encode(self, serializer: &mut flutter_rust_bridge::for_generated::SseSerializer) {
         match self {
-            crate::api::types::SplitError::Empty => {
+            crate::api::error::SplitError::Empty => {
                 <i32>::sse_encode(0, serializer);
             }
-            crate::api::types::SplitError::CannotFit => {
+            crate::api::error::SplitError::CannotFit => {
                 <i32>::sse_encode(1, serializer);
             }
-            crate::api::types::SplitError::MaxSplitSizeTooLarge(field0) => {
+            crate::api::error::SplitError::MaxSplitSizeTooLarge(field0) => {
                 <i32>::sse_encode(2, serializer);
                 <usize>::sse_encode(field0, serializer);
             }
-            crate::api::types::SplitError::MinSplitTooSmall => {
+            crate::api::error::SplitError::MinSplitTooSmall => {
                 <i32>::sse_encode(3, serializer);
             }
-            crate::api::types::SplitError::InvalidSplitRange => {
+            crate::api::error::SplitError::InvalidSplitRange => {
                 <i32>::sse_encode(4, serializer);
             }
-            crate::api::types::SplitError::InvalidVersionRange => {
+            crate::api::error::SplitError::InvalidVersionRange => {
                 <i32>::sse_encode(5, serializer);
             }
-            crate::api::types::SplitError::EncodeError(field0) => {
+            crate::api::error::SplitError::EncodeError(field0) => {
                 <i32>::sse_encode(6, serializer);
-                <crate::api::types::EncodeError>::sse_encode(field0, serializer);
+                <crate::api::error::EncodeError>::sse_encode(field0, serializer);
             }
         }
     }

@@ -38,11 +38,11 @@ impl CstDecode<String> for *mut wire_cst_list_prim_u_8_strict {
         String::from_utf8(vec).unwrap()
     }
 }
-impl CstDecode<crate::api::types::EncodeError> for *mut wire_cst_encode_error {
+impl CstDecode<crate::api::error::EncodeError> for *mut wire_cst_encode_error {
     // Codec=Cst (C-struct based), see doc to use other codecs
-    fn cst_decode(self) -> crate::api::types::EncodeError {
+    fn cst_decode(self) -> crate::api::error::EncodeError {
         let wrap = unsafe { flutter_rust_bridge::for_generated::box_from_leak_ptr(self) };
-        CstDecode::<crate::api::types::EncodeError>::cst_decode(*wrap).into()
+        CstDecode::<crate::api::error::EncodeError>::cst_decode(*wrap).into()
     }
 }
 impl CstDecode<crate::api::types::SplitOptions> for *mut wire_cst_split_options {
@@ -52,14 +52,14 @@ impl CstDecode<crate::api::types::SplitOptions> for *mut wire_cst_split_options 
         CstDecode::<crate::api::types::SplitOptions>::cst_decode(*wrap).into()
     }
 }
-impl CstDecode<crate::api::types::EncodeError> for wire_cst_encode_error {
+impl CstDecode<crate::api::error::EncodeError> for wire_cst_encode_error {
     // Codec=Cst (C-struct based), see doc to use other codecs
-    fn cst_decode(self) -> crate::api::types::EncodeError {
+    fn cst_decode(self) -> crate::api::error::EncodeError {
         match self.tag {
-            0 => crate::api::types::EncodeError::Empty,
+            0 => crate::api::error::EncodeError::Empty,
             1 => {
                 let ans = unsafe { self.kind.CompressionError };
-                crate::api::types::EncodeError::CompressionError(ans.field0.cst_decode())
+                crate::api::error::EncodeError::CompressionError(ans.field0.cst_decode())
             }
             _ => unreachable!(),
         }
@@ -83,22 +83,22 @@ impl CstDecode<Vec<u8>> for *mut wire_cst_list_prim_u_8_strict {
         }
     }
 }
-impl CstDecode<crate::api::types::SplitError> for wire_cst_split_error {
+impl CstDecode<crate::api::error::SplitError> for wire_cst_split_error {
     // Codec=Cst (C-struct based), see doc to use other codecs
-    fn cst_decode(self) -> crate::api::types::SplitError {
+    fn cst_decode(self) -> crate::api::error::SplitError {
         match self.tag {
-            0 => crate::api::types::SplitError::Empty,
-            1 => crate::api::types::SplitError::CannotFit,
+            0 => crate::api::error::SplitError::Empty,
+            1 => crate::api::error::SplitError::CannotFit,
             2 => {
                 let ans = unsafe { self.kind.MaxSplitSizeTooLarge };
-                crate::api::types::SplitError::MaxSplitSizeTooLarge(ans.field0.cst_decode())
+                crate::api::error::SplitError::MaxSplitSizeTooLarge(ans.field0.cst_decode())
             }
-            3 => crate::api::types::SplitError::MinSplitTooSmall,
-            4 => crate::api::types::SplitError::InvalidSplitRange,
-            5 => crate::api::types::SplitError::InvalidVersionRange,
+            3 => crate::api::error::SplitError::MinSplitTooSmall,
+            4 => crate::api::error::SplitError::InvalidSplitRange,
+            5 => crate::api::error::SplitError::InvalidVersionRange,
             6 => {
                 let ans = unsafe { self.kind.EncodeError };
-                crate::api::types::SplitError::EncodeError(ans.field0.cst_decode())
+                crate::api::error::SplitError::EncodeError(ans.field0.cst_decode())
             }
             _ => unreachable!(),
         }

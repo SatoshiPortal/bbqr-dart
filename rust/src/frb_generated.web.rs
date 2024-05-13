@@ -23,15 +23,15 @@ impl CstDecode<String> for String {
         self
     }
 }
-impl CstDecode<crate::api::types::EncodeError>
+impl CstDecode<crate::api::error::EncodeError>
     for flutter_rust_bridge::for_generated::wasm_bindgen::JsValue
 {
     // Codec=Cst (C-struct based), see doc to use other codecs
-    fn cst_decode(self) -> crate::api::types::EncodeError {
+    fn cst_decode(self) -> crate::api::error::EncodeError {
         let self_ = self.unchecked_into::<flutter_rust_bridge::for_generated::js_sys::Array>();
         match self_.get(0).unchecked_into_f64() as _ {
-            0 => crate::api::types::EncodeError::Empty,
-            1 => crate::api::types::EncodeError::CompressionError(self_.get(1).cst_decode()),
+            0 => crate::api::error::EncodeError::Empty,
+            1 => crate::api::error::EncodeError::CompressionError(self_.get(1).cst_decode()),
             _ => unreachable!(),
         }
     }
@@ -42,20 +42,20 @@ impl CstDecode<Vec<u8>> for Box<[u8]> {
         self.into_vec()
     }
 }
-impl CstDecode<crate::api::types::SplitError>
+impl CstDecode<crate::api::error::SplitError>
     for flutter_rust_bridge::for_generated::wasm_bindgen::JsValue
 {
     // Codec=Cst (C-struct based), see doc to use other codecs
-    fn cst_decode(self) -> crate::api::types::SplitError {
+    fn cst_decode(self) -> crate::api::error::SplitError {
         let self_ = self.unchecked_into::<flutter_rust_bridge::for_generated::js_sys::Array>();
         match self_.get(0).unchecked_into_f64() as _ {
-            0 => crate::api::types::SplitError::Empty,
-            1 => crate::api::types::SplitError::CannotFit,
-            2 => crate::api::types::SplitError::MaxSplitSizeTooLarge(self_.get(1).cst_decode()),
-            3 => crate::api::types::SplitError::MinSplitTooSmall,
-            4 => crate::api::types::SplitError::InvalidSplitRange,
-            5 => crate::api::types::SplitError::InvalidVersionRange,
-            6 => crate::api::types::SplitError::EncodeError(self_.get(1).cst_decode()),
+            0 => crate::api::error::SplitError::Empty,
+            1 => crate::api::error::SplitError::CannotFit,
+            2 => crate::api::error::SplitError::MaxSplitSizeTooLarge(self_.get(1).cst_decode()),
+            3 => crate::api::error::SplitError::MinSplitTooSmall,
+            4 => crate::api::error::SplitError::InvalidSplitRange,
+            5 => crate::api::error::SplitError::InvalidVersionRange,
+            6 => crate::api::error::SplitError::EncodeError(self_.get(1).cst_decode()),
             _ => unreachable!(),
         }
     }

@@ -1,9 +1,9 @@
-pub use bbqr::{
-    error::{EncodeError, SplitError},
-    Encoding, FileType, Split, SplitOptions, Version,
-};
+pub use bbqr::{Encoding, FileType, Split, SplitOptions, Version};
 
 use flutter_rust_bridge::frb;
+
+pub use super::error::EncodeError;
+pub use super::error::SplitError;
 
 #[derive(Debug, Clone)]
 #[frb(mirror(Split))]
@@ -126,52 +126,18 @@ pub enum _FileType {
     UnicodeText,
 }
 
-#[frb(mirror(SplitError))]
-pub enum _SplitError {
-    /// No data found
-    Empty,
-
-    /// Cannot make the data fit
-    CannotFit,
-
-    /// Max split size is too large
-    MaxSplitSizeTooLarge(usize),
-
-    /// Min split size is too small
-    MinSplitTooSmall,
-
-    /// Invalid split min and max range, min is larger than max
-    InvalidSplitRange,
-
-    /// Invalid version min and max range, min is larger than max
-    InvalidVersionRange,
-
-    /// Error while encoding
-    EncodeError(EncodeError),
-}
-
-#[frb(mirror(EncodeError))]
-pub enum _EncodeError {
-    /// No data to encode
-    Empty,
-
-    /// Error while compressing data
-    CompressionError(String),
-}
-
 impl _Split {
     pub fn try_new_from_data(
         data: Vec<u8>,
         file_type: FileType,
         options: SplitOptions,
-    ) -> Result<Self, crate::api::types::SplitError> {
-        match Split::try_from_data(&data, file_type, options) {
-            Ok(split) => Ok(Self {
-                version: split.version,
-                parts: split.parts,
-                encoding: split.encoding,
-            }),
-            Err(err) => return Err(SplitError::Empty),
-        }
+    ) -> Result<Self, SplitError> {
+        let split = Split::try_from_data(&data, file_type, options).map_err(SplitError::from)?;
+
+        Ok(Self {
+            version: split.version,
+            parts: split.parts,
+            encoding: split.encoding,
+        })
     }
 }
