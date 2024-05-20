@@ -14,21 +14,23 @@ void main() {
       String large = template * 100;
       List<int> bytes = utf8.encode(large);
 
+      // examples of different options
       SplitOptions options = defaultSplitOptions();
-
-      Split split = await Split.tryFromData(
-          data: bytes, fileType: FileType.unicodeText, options: options);
 
       SplitOptions options2 = SplitOptions(
           encoding: Encoding.zlib,
           minSplitNumber: 1,
-          maxSplitNumber: 1000,
+          maxSplitNumber: 1295,
           minVersion: Version.v01,
           maxVersion: Version.v40);
+
+      Split split = await Split.tryFromData(
+          data: bytes, fileType: FileType.unicodeText, options: options);
 
       Split split2 = await Split.tryFromData(
           data: bytes, fileType: FileType.unicodeText, options: options2);
 
+      // options2 is the same as defaultSplitOptions
       assert(split.parts().length == split2.parts().length);
       assert(split.parts().length == 1);
 
