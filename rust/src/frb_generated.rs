@@ -64,39 +64,17 @@ fn wire_ContinuousJoiner_add_part_impl(
         },
     )
 }
-fn wire_ContinuousJoiner_new_impl(port_: flutter_rust_bridge::for_generated::MessagePort) {
-    FLUTTER_RUST_BRIDGE_HANDLER.wrap_normal::<flutter_rust_bridge::for_generated::DcoCodec, _, _>(
+fn wire_ContinuousJoiner_new_impl() -> flutter_rust_bridge::for_generated::WireSyncRust2DartDco {
+    FLUTTER_RUST_BRIDGE_HANDLER.wrap_sync::<flutter_rust_bridge::for_generated::DcoCodec, _>(
         flutter_rust_bridge::for_generated::TaskInfo {
             debug_name: "ContinuousJoiner_new",
-            port: Some(port_),
-            mode: flutter_rust_bridge::for_generated::FfiCallMode::Normal,
+            port: None,
+            mode: flutter_rust_bridge::for_generated::FfiCallMode::Sync,
         },
         move || {
-            move |context| {
-                transform_result_dco((move || {
-                    Result::<_, ()>::Ok(crate::api::types::ContinuousJoiner::new())
-                })())
-            }
-        },
-    )
-}
-fn wire_Joined_try_new_from_parts_impl(
-    port_: flutter_rust_bridge::for_generated::MessagePort,
-    parts: impl CstDecode<Vec<String>>,
-) {
-    FLUTTER_RUST_BRIDGE_HANDLER.wrap_normal::<flutter_rust_bridge::for_generated::DcoCodec, _, _>(
-        flutter_rust_bridge::for_generated::TaskInfo {
-            debug_name: "Joined_try_new_from_parts",
-            port: Some(port_),
-            mode: flutter_rust_bridge::for_generated::FfiCallMode::Normal,
-        },
-        move || {
-            let api_parts = parts.cst_decode();
-            move |context| {
-                transform_result_dco((move || {
-                    crate::api::types::_Joined::try_new_from_parts(api_parts)
-                })())
-            }
+            transform_result_dco((move || {
+                Result::<_, ()>::Ok(crate::api::types::ContinuousJoiner::new())
+            })())
         },
     )
 }
@@ -121,6 +99,20 @@ fn wire_Split_try_from_data_impl(
                     crate::api::types::_Split::try_from_data(api_data, api_file_type, api_options)
                 })())
             }
+        },
+    )
+}
+fn wire_default_split_options_impl() -> flutter_rust_bridge::for_generated::WireSyncRust2DartDco {
+    FLUTTER_RUST_BRIDGE_HANDLER.wrap_sync::<flutter_rust_bridge::for_generated::DcoCodec, _>(
+        flutter_rust_bridge::for_generated::TaskInfo {
+            debug_name: "default_split_options",
+            port: None,
+            mode: flutter_rust_bridge::for_generated::FfiCallMode::Sync,
+        },
+        move || {
+            transform_result_dco((move || {
+                Result::<_, ()>::Ok(crate::api::types::default_split_options())
+            })())
         },
     )
 }
@@ -249,16 +241,6 @@ impl SseDecode for ContinuousJoiner {
     }
 }
 
-impl SseDecode for _Joined {
-    // Codec=Sse (Serialization based), see doc to use other codecs
-    fn sse_decode(deserializer: &mut flutter_rust_bridge::for_generated::SseDeserializer) -> Self {
-        let mut inner = <RustOpaqueNom<
-            flutter_rust_bridge::for_generated::rust_async::RwLock<_Joined>,
-        >>::sse_decode(deserializer);
-        return inner.rust_auto_opaque_decode_owned();
-    }
-}
-
 impl SseDecode for _Split {
     // Codec=Sse (Serialization based), see doc to use other codecs
     fn sse_decode(deserializer: &mut flutter_rust_bridge::for_generated::SseDeserializer) -> Self {
@@ -282,14 +264,6 @@ impl SseDecode
 impl SseDecode
     for RustOpaqueNom<flutter_rust_bridge::for_generated::rust_async::RwLock<ContinuousJoiner>>
 {
-    // Codec=Sse (Serialization based), see doc to use other codecs
-    fn sse_decode(deserializer: &mut flutter_rust_bridge::for_generated::SseDeserializer) -> Self {
-        let mut inner = <usize>::sse_decode(deserializer);
-        return unsafe { decode_rust_opaque_nom(inner) };
-    }
-}
-
-impl SseDecode for RustOpaqueNom<flutter_rust_bridge::for_generated::rust_async::RwLock<_Joined>> {
     // Codec=Sse (Serialization based), see doc to use other codecs
     fn sse_decode(deserializer: &mut flutter_rust_bridge::for_generated::SseDeserializer) -> Self {
         let mut inner = <usize>::sse_decode(deserializer);
@@ -498,18 +472,6 @@ impl SseDecode for crate::api::error::JoinError {
     }
 }
 
-impl SseDecode for Vec<String> {
-    // Codec=Sse (Serialization based), see doc to use other codecs
-    fn sse_decode(deserializer: &mut flutter_rust_bridge::for_generated::SseDeserializer) -> Self {
-        let mut len_ = <i32>::sse_decode(deserializer);
-        let mut ans_ = vec![];
-        for idx_ in 0..len_ {
-            ans_.push(<String>::sse_decode(deserializer));
-        }
-        return ans_;
-    }
-}
-
 impl SseDecode for Vec<u8> {
     // Codec=Sse (Serialization based), see doc to use other codecs
     fn sse_decode(deserializer: &mut flutter_rust_bridge::for_generated::SseDeserializer) -> Self {
@@ -707,21 +669,6 @@ impl flutter_rust_bridge::for_generated::IntoDartExceptPrimitive for FrbWrapper<
 
 impl flutter_rust_bridge::IntoIntoDart<FrbWrapper<ContinuousJoiner>> for ContinuousJoiner {
     fn into_into_dart(self) -> FrbWrapper<ContinuousJoiner> {
-        self.into()
-    }
-}
-
-// Codec=Dco (DartCObject based), see doc to use other codecs
-impl flutter_rust_bridge::IntoDart for FrbWrapper<_Joined> {
-    fn into_dart(self) -> flutter_rust_bridge::for_generated::DartAbi {
-        flutter_rust_bridge::for_generated::rust_auto_opaque_encode::<_, StdArc<_>>(self.0)
-            .into_dart()
-    }
-}
-impl flutter_rust_bridge::for_generated::IntoDartExceptPrimitive for FrbWrapper<_Joined> {}
-
-impl flutter_rust_bridge::IntoIntoDart<FrbWrapper<_Joined>> for _Joined {
-    fn into_into_dart(self) -> FrbWrapper<_Joined> {
         self.into()
     }
 }
@@ -1060,13 +1007,6 @@ impl SseEncode for ContinuousJoiner {
     }
 }
 
-impl SseEncode for _Joined {
-    // Codec=Sse (Serialization based), see doc to use other codecs
-    fn sse_encode(self, serializer: &mut flutter_rust_bridge::for_generated::SseSerializer) {
-        <RustOpaqueNom<flutter_rust_bridge::for_generated::rust_async::RwLock<_Joined>>>::sse_encode(flutter_rust_bridge::for_generated::rust_auto_opaque_encode::<_, StdArc<_>>(self), serializer);
-    }
-}
-
 impl SseEncode for _Split {
     // Codec=Sse (Serialization based), see doc to use other codecs
     fn sse_encode(self, serializer: &mut flutter_rust_bridge::for_generated::SseSerializer) {
@@ -1091,15 +1031,6 @@ impl SseEncode
 impl SseEncode
     for RustOpaqueNom<flutter_rust_bridge::for_generated::rust_async::RwLock<ContinuousJoiner>>
 {
-    // Codec=Sse (Serialization based), see doc to use other codecs
-    fn sse_encode(self, serializer: &mut flutter_rust_bridge::for_generated::SseSerializer) {
-        let (ptr, size) = self.sse_encode_raw();
-        <usize>::sse_encode(ptr, serializer);
-        <i32>::sse_encode(size, serializer);
-    }
-}
-
-impl SseEncode for RustOpaqueNom<flutter_rust_bridge::for_generated::rust_async::RwLock<_Joined>> {
     // Codec=Sse (Serialization based), see doc to use other codecs
     fn sse_encode(self, serializer: &mut flutter_rust_bridge::for_generated::SseSerializer) {
         let (ptr, size) = self.sse_encode_raw();
@@ -1289,16 +1220,6 @@ impl SseEncode for crate::api::error::JoinError {
                 <i32>::sse_encode(7, serializer);
                 <crate::api::error::DecodeError>::sse_encode(field0, serializer);
             }
-        }
-    }
-}
-
-impl SseEncode for Vec<String> {
-    // Codec=Sse (Serialization based), see doc to use other codecs
-    fn sse_encode(self, serializer: &mut flutter_rust_bridge::for_generated::SseSerializer) {
-        <i32>::sse_encode(self.len() as _, serializer);
-        for item in self {
-            <String>::sse_encode(item, serializer);
         }
     }
 }

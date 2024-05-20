@@ -7,8 +7,10 @@ import '../frb_generated.dart';
 import 'error.dart';
 import 'package:flutter_rust_bridge/flutter_rust_bridge_for_generated.dart';
 
-// The type `Joined` is not used by any `pub` functions, thus it is ignored.
 // The type `Split` is not used by any `pub` functions, thus it is ignored.
+
+SplitOptions defaultSplitOptions({dynamic hint}) =>
+    BbqrCore.instance.api.defaultSplitOptions(hint: hint);
 
 // Rust type: RustOpaqueNom<flutter_rust_bridge::for_generated::rust_async::RwLock<ContinuousJoinResult>>
 @sealed
@@ -51,31 +53,8 @@ class ContinuousJoiner extends RustOpaque {
       BbqrCore.instance.api
           .continuousJoinerAddPart(that: this, part: part, hint: hint);
 
-  // HINT: Make it `#[frb(sync)]` to let it become the default constructor of Dart class.
-  static Future<ContinuousJoiner> newInstance({dynamic hint}) =>
+  factory ContinuousJoiner({dynamic hint}) =>
       BbqrCore.instance.api.continuousJoinerNew(hint: hint);
-}
-
-// Rust type: RustOpaqueNom<flutter_rust_bridge::for_generated::rust_async::RwLock<_Joined>>
-@sealed
-class Joined extends RustOpaque {
-  Joined.dcoDecode(List<dynamic> wire) : super.dcoDecode(wire, _kStaticData);
-
-  Joined.sseDecode(int ptr, int externalSizeOnNative)
-      : super.sseDecode(ptr, externalSizeOnNative, _kStaticData);
-
-  static final _kStaticData = RustArcStaticData(
-    rustArcIncrementStrongCount:
-        BbqrCore.instance.api.rust_arc_increment_strong_count_Joined,
-    rustArcDecrementStrongCount:
-        BbqrCore.instance.api.rust_arc_decrement_strong_count_Joined,
-    rustArcDecrementStrongCountPtr:
-        BbqrCore.instance.api.rust_arc_decrement_strong_count_JoinedPtr,
-  );
-
-  static Future<Joined> tryNewFromParts(
-          {required List<String> parts, dynamic hint}) =>
-      BbqrCore.instance.api.joinedTryNewFromParts(parts: parts, hint: hint);
 }
 
 // Rust type: RustOpaqueNom<flutter_rust_bridge::for_generated::rust_async::RwLock<_Split>>
