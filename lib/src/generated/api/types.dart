@@ -119,6 +119,9 @@ class Joined {
     required this.data,
   });
 
+  static Joined tryNewFromParts({required List<String> parts, dynamic hint}) =>
+      BbqrCore.instance.api.joinedTryNewFromParts(parts: parts, hint: hint);
+
   @override
   int get hashCode => encoding.hashCode ^ fileType.hashCode ^ data.hashCode;
 

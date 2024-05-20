@@ -915,6 +915,23 @@ class BbqrCoreWire implements BaseWire {
   late final _wire_default_split_options = _wire_default_split_optionsPtr
       .asFunction<WireSyncRust2DartDco Function()>();
 
+  WireSyncRust2DartDco wire_joined_try_new_from_parts(
+    ffi.Pointer<wire_cst_list_String> parts,
+  ) {
+    return _wire_joined_try_new_from_parts(
+      parts,
+    );
+  }
+
+  late final _wire_joined_try_new_from_partsPtr = _lookup<
+          ffi.NativeFunction<
+              WireSyncRust2DartDco Function(
+                  ffi.Pointer<wire_cst_list_String>)>>(
+      'frbgen_bbqr_dart_wire_joined_try_new_from_parts');
+  late final _wire_joined_try_new_from_parts =
+      _wire_joined_try_new_from_partsPtr.asFunction<
+          WireSyncRust2DartDco Function(ffi.Pointer<wire_cst_list_String>)>();
+
   void
       rust_arc_increment_strong_count_RustOpaque_flutter_rust_bridgefor_generatedrust_asyncRwLockContinuousJoiner(
     ffi.Pointer<ffi.Void> ptr,
@@ -1138,6 +1155,13 @@ final class wire_cst_split_options extends ffi.Struct {
   external int max_version;
 }
 
+final class wire_cst_list_String extends ffi.Struct {
+  external ffi.Pointer<ffi.Pointer<wire_cst_list_prim_u_8_strict>> ptr;
+
+  @ffi.Int32()
+  external int len;
+}
+
 final class wire_cst_DecodeError_UnableToDecodeHex extends ffi.Struct {
   @ffi.UintPtr()
   external int field0;
@@ -1281,13 +1305,6 @@ final class wire_cst_joined extends ffi.Struct {
   external int file_type;
 
   external ffi.Pointer<wire_cst_list_prim_u_8_strict> data;
-}
-
-final class wire_cst_list_String extends ffi.Struct {
-  external ffi.Pointer<ffi.Pointer<wire_cst_list_prim_u_8_strict>> ptr;
-
-  @ffi.Int32()
-  external int len;
 }
 
 final class wire_cst_ContinuousJoinError_HeaderParseError extends ffi.Struct {

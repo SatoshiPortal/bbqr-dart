@@ -83,6 +83,8 @@ abstract class BbqrCoreApi extends BaseApi {
 
   SplitOptions defaultSplitOptions({dynamic hint});
 
+  Joined joinedTryNewFromParts({required List<String> parts, dynamic hint});
+
   RustArcIncrementStrongCountFnType
       get rust_arc_increment_strong_count_ContinuousJoiner;
 
@@ -282,6 +284,29 @@ class BbqrCoreApiImpl extends BbqrCoreApiImplPlatform implements BbqrCoreApi {
   TaskConstMeta get kDefaultSplitOptionsConstMeta => const TaskConstMeta(
         debugName: "default_split_options",
         argNames: [],
+      );
+
+  @override
+  Joined joinedTryNewFromParts({required List<String> parts, dynamic hint}) {
+    return handler.executeSync(SyncTask(
+      callFfi: () {
+        var arg0 = cst_encode_list_String(parts);
+        return wire.wire_joined_try_new_from_parts(arg0);
+      },
+      codec: DcoCodec(
+        decodeSuccessData: dco_decode_joined,
+        decodeErrorData: dco_decode_join_error,
+      ),
+      constMeta: kJoinedTryNewFromPartsConstMeta,
+      argValues: [parts],
+      apiImpl: this,
+      hint: hint,
+    ));
+  }
+
+  TaskConstMeta get kJoinedTryNewFromPartsConstMeta => const TaskConstMeta(
+        debugName: "joined_try_new_from_parts",
+        argNames: ["parts"],
       );
 
   RustArcIncrementStrongCountFnType

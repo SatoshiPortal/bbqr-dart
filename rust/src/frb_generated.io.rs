@@ -490,6 +490,13 @@ pub extern "C" fn frbgen_bbqr_dart_wire_default_split_options(
 }
 
 #[no_mangle]
+pub extern "C" fn frbgen_bbqr_dart_wire_joined_try_new_from_parts(
+    parts: *mut wire_cst_list_String,
+) -> flutter_rust_bridge::for_generated::WireSyncRust2DartDco {
+    wire_joined_try_new_from_parts_impl(parts)
+}
+
+#[no_mangle]
 pub extern "C" fn frbgen_bbqr_dart_rust_arc_increment_strong_count_RustOpaque_flutter_rust_bridgefor_generatedrust_asyncRwLockContinuousJoiner(
     ptr: *const std::ffi::c_void,
 ) {

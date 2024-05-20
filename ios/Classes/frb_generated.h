@@ -32,6 +32,11 @@ typedef struct wire_cst_split_options {
   int32_t max_version;
 } wire_cst_split_options;
 
+typedef struct wire_cst_list_String {
+  struct wire_cst_list_prim_u_8_strict **ptr;
+  int32_t len;
+} wire_cst_list_String;
+
 typedef struct wire_cst_DecodeError_UnableToDecodeHex {
   uintptr_t field0;
   struct wire_cst_list_prim_u_8_strict *field1;
@@ -143,11 +148,6 @@ typedef struct wire_cst_joined {
   struct wire_cst_list_prim_u_8_strict *data;
 } wire_cst_joined;
 
-typedef struct wire_cst_list_String {
-  struct wire_cst_list_prim_u_8_strict **ptr;
-  int32_t len;
-} wire_cst_list_String;
-
 typedef struct wire_cst_ContinuousJoinError_HeaderParseError {
   struct wire_cst_header_parse_error *field0;
 } wire_cst_ContinuousJoinError_HeaderParseError;
@@ -225,6 +225,8 @@ WireSyncRust2DartDco frbgen_bbqr_dart_wire_Split_version(uintptr_t that);
 
 WireSyncRust2DartDco frbgen_bbqr_dart_wire_default_split_options(void);
 
+WireSyncRust2DartDco frbgen_bbqr_dart_wire_joined_try_new_from_parts(struct wire_cst_list_String *parts);
+
 void frbgen_bbqr_dart_rust_arc_increment_strong_count_RustOpaque_flutter_rust_bridgefor_generatedrust_asyncRwLockContinuousJoiner(const void *ptr);
 
 void frbgen_bbqr_dart_rust_arc_decrement_strong_count_RustOpaque_flutter_rust_bridgefor_generatedrust_asyncRwLockContinuousJoiner(const void *ptr);
@@ -272,6 +274,7 @@ static int64_t dummy_method_to_enforce_bundling(void) {
     dummy_var ^= ((int64_t) (void*) frbgen_bbqr_dart_wire_Split_try_from_data);
     dummy_var ^= ((int64_t) (void*) frbgen_bbqr_dart_wire_Split_version);
     dummy_var ^= ((int64_t) (void*) frbgen_bbqr_dart_wire_default_split_options);
+    dummy_var ^= ((int64_t) (void*) frbgen_bbqr_dart_wire_joined_try_new_from_parts);
     dummy_var ^= ((int64_t) (void*) store_dart_post_cobject);
     return dummy_var;
 }

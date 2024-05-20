@@ -668,6 +668,10 @@ class BbqrCoreWire implements BaseWire {
   dynamic /* flutter_rust_bridge::for_generated::WireSyncRust2DartDco */
       wire_default_split_options() => wasmModule.wire_default_split_options();
 
+  dynamic /* flutter_rust_bridge::for_generated::WireSyncRust2DartDco */
+      wire_joined_try_new_from_parts(List<dynamic> parts) =>
+          wasmModule.wire_joined_try_new_from_parts(parts);
+
   void rust_arc_increment_strong_count_RustOpaque_flutter_rust_bridgefor_generatedrust_asyncRwLockContinuousJoiner(
           dynamic ptr) =>
       wasmModule
@@ -725,6 +729,9 @@ class BbqrCoreWasmModule implements WasmModule {
 
   external dynamic /* flutter_rust_bridge::for_generated::WireSyncRust2DartDco */
       wire_default_split_options();
+
+  external dynamic /* flutter_rust_bridge::for_generated::WireSyncRust2DartDco */
+      wire_joined_try_new_from_parts(List<dynamic> parts);
 
   external void
       rust_arc_increment_strong_count_RustOpaque_flutter_rust_bridgefor_generatedrust_asyncRwLockContinuousJoiner(

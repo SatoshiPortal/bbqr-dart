@@ -167,6 +167,23 @@ fn wire_default_split_options_impl() -> flutter_rust_bridge::for_generated::Wire
         },
     )
 }
+fn wire_joined_try_new_from_parts_impl(
+    parts: impl CstDecode<Vec<String>>,
+) -> flutter_rust_bridge::for_generated::WireSyncRust2DartDco {
+    FLUTTER_RUST_BRIDGE_HANDLER.wrap_sync::<flutter_rust_bridge::for_generated::DcoCodec, _>(
+        flutter_rust_bridge::for_generated::TaskInfo {
+            debug_name: "joined_try_new_from_parts",
+            port: None,
+            mode: flutter_rust_bridge::for_generated::FfiCallMode::Sync,
+        },
+        move || {
+            let api_parts = parts.cst_decode();
+            transform_result_dco((move || {
+                crate::api::types::Joined::try_new_from_parts(api_parts)
+            })())
+        },
+    )
+}
 
 // Section: static_checks
 

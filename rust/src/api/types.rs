@@ -174,6 +174,18 @@ pub struct Joined {
     pub data: Vec<u8>,
 }
 
+#[frb(sync)]
+impl Joined {
+    #[frb(sync)]
+    pub fn try_new_from_parts(parts: Vec<String>) -> Result<Self, JoinError> {
+        let joined = bbqr::join::Joined::try_from_parts(parts)
+            .map(Self::from)
+            .map_err(JoinError::from)?;
+
+        Ok(joined)
+    }
+}
+
 #[frb(non_opaque)]
 pub enum JoinResult {
     /// No valid parts have been added yet

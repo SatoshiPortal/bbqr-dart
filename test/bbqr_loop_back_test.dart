@@ -32,6 +32,7 @@ void main() {
       assert(split.parts().length == split2.parts().length);
       assert(split.parts().length == 1);
 
+      // continuous joiner with single part
       ContinuousJoiner joiner = ContinuousJoiner();
 
       String part = split.parts().first;
@@ -43,6 +44,7 @@ void main() {
       }
       ;
 
+      // continuous joiner with multiple parts
       ContinuousJoiner joiner2 = ContinuousJoiner();
 
       SplitOptions options3 = SplitOptions(
@@ -55,6 +57,8 @@ void main() {
       Split split3 = await Split.tryFromData(
           data: bytes, fileType: FileType.unicodeText, options: options3);
 
+      assert(split3.parts().length == 28);
+
       for (String part in split3.parts()) {
         JoinResult result = joiner2.addPart(part: part);
 
@@ -62,6 +66,10 @@ void main() {
           assert(listEquals(joined.data, bytes));
         }
       }
+
+      // join all at once
+      Joined joined = Joined.tryNewFromParts(parts: split3.parts());
+      assert(listEquals(joined.data, bytes));
     });
   });
 }

@@ -360,6 +360,13 @@ pub fn wire_default_split_options() -> flutter_rust_bridge::for_generated::WireS
 }
 
 #[wasm_bindgen]
+pub fn wire_joined_try_new_from_parts(
+    parts: flutter_rust_bridge::for_generated::wasm_bindgen::JsValue,
+) -> flutter_rust_bridge::for_generated::WireSyncRust2DartDco {
+    wire_joined_try_new_from_parts_impl(parts)
+}
+
+#[wasm_bindgen]
 pub fn rust_arc_increment_strong_count_RustOpaque_flutter_rust_bridgefor_generatedrust_asyncRwLockContinuousJoiner(
     ptr: *const std::ffi::c_void,
 ) {
