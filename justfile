@@ -1,7 +1,8 @@
 gen:
+    export CPATH="$(clang -v 2>&1 | grep "Selected GCC installation" | rev | cut -d' ' -f1 | rev)/include"
     flutter pub get
-    ./compile.all.sh
-    
+    ./codegen.sh
+
 clean:
     flutter clean
     cd rust && cargo clean
