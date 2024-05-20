@@ -1,6 +1,6 @@
 gen:
     flutter pub get
-    flutter_rust_bridge_codegen generate
+    ./compile.all.sh
     
 clean:
     flutter clean
