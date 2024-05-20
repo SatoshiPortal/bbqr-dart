@@ -62,13 +62,17 @@ void main() {
 
       assert(split3.parts().length > 1);
 
+      bool isComplete = false;
       for (String part in split3.parts()) {
         JoinResult result = joiner2.addPart(part: part);
 
         if (result case JoinResult_Complete(:final joined)) {
+          isComplete = true;
           assert(listEquals(joined.data, bytes));
         }
       }
+
+      assert(isComplete);
 
       // join all at once
       Joined joined = Joined.tryNewFromParts(parts: split3.parts());

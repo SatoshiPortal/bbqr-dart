@@ -225,7 +225,6 @@ impl From<ContinuousJoinResult> for JoinResult {
     }
 }
 
-#[frb(sync)]
 impl Default for ContinuousJoiner {
     fn default() -> Self {
         Self::new()
