@@ -6,30 +6,13 @@
 import '../frb_generated.dart';
 import 'error.dart';
 import 'package:flutter_rust_bridge/flutter_rust_bridge_for_generated.dart';
+import 'package:freezed_annotation/freezed_annotation.dart' hide protected;
+part 'types.freezed.dart';
 
 // The type `Split` is not used by any `pub` functions, thus it is ignored.
 
 SplitOptions defaultSplitOptions({dynamic hint}) =>
     BbqrCore.instance.api.defaultSplitOptions(hint: hint);
-
-// Rust type: RustOpaqueNom<flutter_rust_bridge::for_generated::rust_async::RwLock<ContinuousJoinResult>>
-@sealed
-class ContinuousJoinResult extends RustOpaque {
-  ContinuousJoinResult.dcoDecode(List<dynamic> wire)
-      : super.dcoDecode(wire, _kStaticData);
-
-  ContinuousJoinResult.sseDecode(int ptr, int externalSizeOnNative)
-      : super.sseDecode(ptr, externalSizeOnNative, _kStaticData);
-
-  static final _kStaticData = RustArcStaticData(
-    rustArcIncrementStrongCount: BbqrCore
-        .instance.api.rust_arc_increment_strong_count_ContinuousJoinResult,
-    rustArcDecrementStrongCount: BbqrCore
-        .instance.api.rust_arc_decrement_strong_count_ContinuousJoinResult,
-    rustArcDecrementStrongCountPtr: BbqrCore
-        .instance.api.rust_arc_decrement_strong_count_ContinuousJoinResultPtr,
-  );
-}
 
 // Rust type: RustOpaqueNom<flutter_rust_bridge::for_generated::rust_async::RwLock<ContinuousJoiner>>
 @sealed
@@ -49,7 +32,7 @@ class ContinuousJoiner extends RustOpaque {
         .instance.api.rust_arc_decrement_strong_count_ContinuousJoinerPtr,
   );
 
-  Future<ContinuousJoinResult> addPart({required String part, dynamic hint}) =>
+  JoinResult addPart({required String part, dynamic hint}) =>
       BbqrCore.instance.api
           .continuousJoinerAddPart(that: this, part: part, hint: hint);
 
@@ -74,6 +57,12 @@ class Split extends RustOpaque {
         BbqrCore.instance.api.rust_arc_decrement_strong_count_SplitPtr,
   );
 
+  Encoding encoding({dynamic hint}) =>
+      BbqrCore.instance.api.splitEncoding(that: this, hint: hint);
+
+  List<String> parts({dynamic hint}) =>
+      BbqrCore.instance.api.splitParts(that: this, hint: hint);
+
   static Future<Split> tryFromData(
           {required List<int> data,
           required FileType fileType,
@@ -81,6 +70,9 @@ class Split extends RustOpaque {
           dynamic hint}) =>
       BbqrCore.instance.api.splitTryFromData(
           data: data, fileType: fileType, options: options, hint: hint);
+
+  Version version({dynamic hint}) =>
+      BbqrCore.instance.api.splitVersion(that: this, hint: hint);
 }
 
 enum Encoding {
@@ -95,6 +87,49 @@ enum FileType {
   json,
   cbor,
   unicodeText,
+}
+
+@freezed
+sealed class JoinResult with _$JoinResult {
+  const JoinResult._();
+
+  /// No valid parts have been added yet
+  const factory JoinResult.notStarted() = JoinResult_NotStarted;
+
+  /// The state where parts have been added, but not all parts have been joined
+  const factory JoinResult.inProgress({
+    /// The number of parts left to join
+    required int partsLeft,
+  }) = JoinResult_InProgress;
+
+  /// The state where all parts have been joined
+  const factory JoinResult.complete({
+    required Joined joined,
+  }) = JoinResult_Complete;
+}
+
+class Joined {
+  final Encoding encoding;
+  final FileType fileType;
+  final Uint8List data;
+
+  const Joined({
+    required this.encoding,
+    required this.fileType,
+    required this.data,
+  });
+
+  @override
+  int get hashCode => encoding.hashCode ^ fileType.hashCode ^ data.hashCode;
+
+  @override
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      other is Joined &&
+          runtimeType == other.runtimeType &&
+          encoding == other.encoding &&
+          fileType == other.fileType &&
+          data == other.data;
 }
 
 class SplitOptions {

@@ -15,17 +15,6 @@ flutter_rust_bridge::frb_generated_boilerplate_io!();
 
 // Section: dart2rust
 
-impl CstDecode<ContinuousJoinResult> for usize {
-    // Codec=Cst (C-struct based), see doc to use other codecs
-    fn cst_decode(self) -> ContinuousJoinResult {
-        CstDecode::<
-            RustOpaqueNom<
-                flutter_rust_bridge::for_generated::rust_async::RwLock<ContinuousJoinResult>,
-            >,
-        >::cst_decode(self)
-        .rust_auto_opaque_decode_owned()
-    }
-}
 impl CstDecode<ContinuousJoiner> for usize {
     // Codec=Cst (C-struct based), see doc to use other codecs
     fn cst_decode(self) -> ContinuousJoiner {
@@ -39,19 +28,6 @@ impl CstDecode<_Split> for usize {
     // Codec=Cst (C-struct based), see doc to use other codecs
     fn cst_decode(self) -> _Split {
         CstDecode::<RustOpaqueNom<flutter_rust_bridge::for_generated::rust_async::RwLock<_Split>>>::cst_decode(self).rust_auto_opaque_decode_owned()
-    }
-}
-impl
-    CstDecode<
-        RustOpaqueNom<flutter_rust_bridge::for_generated::rust_async::RwLock<ContinuousJoinResult>>,
-    > for usize
-{
-    // Codec=Cst (C-struct based), see doc to use other codecs
-    fn cst_decode(
-        self,
-    ) -> RustOpaqueNom<flutter_rust_bridge::for_generated::rust_async::RwLock<ContinuousJoinResult>>
-    {
-        unsafe { decode_rust_opaque_nom(self as _) }
     }
 }
 impl
@@ -110,6 +86,13 @@ impl CstDecode<crate::api::error::JoinError> for *mut wire_cst_join_error {
     fn cst_decode(self) -> crate::api::error::JoinError {
         let wrap = unsafe { flutter_rust_bridge::for_generated::box_from_leak_ptr(self) };
         CstDecode::<crate::api::error::JoinError>::cst_decode(*wrap).into()
+    }
+}
+impl CstDecode<crate::api::types::Joined> for *mut wire_cst_joined {
+    // Codec=Cst (C-struct based), see doc to use other codecs
+    fn cst_decode(self) -> crate::api::types::Joined {
+        let wrap = unsafe { flutter_rust_bridge::for_generated::box_from_leak_ptr(self) };
+        CstDecode::<crate::api::types::Joined>::cst_decode(*wrap).into()
     }
 }
 impl CstDecode<crate::api::types::SplitOptions> for *mut wire_cst_split_options {
@@ -241,6 +224,47 @@ impl CstDecode<crate::api::error::JoinError> for wire_cst_join_error {
         }
     }
 }
+impl CstDecode<crate::api::types::JoinResult> for wire_cst_join_result {
+    // Codec=Cst (C-struct based), see doc to use other codecs
+    fn cst_decode(self) -> crate::api::types::JoinResult {
+        match self.tag {
+            0 => crate::api::types::JoinResult::NotStarted,
+            1 => {
+                let ans = unsafe { self.kind.InProgress };
+                crate::api::types::JoinResult::InProgress {
+                    parts_left: ans.parts_left.cst_decode(),
+                }
+            }
+            2 => {
+                let ans = unsafe { self.kind.Complete };
+                crate::api::types::JoinResult::Complete {
+                    joined: ans.joined.cst_decode(),
+                }
+            }
+            _ => unreachable!(),
+        }
+    }
+}
+impl CstDecode<crate::api::types::Joined> for wire_cst_joined {
+    // Codec=Cst (C-struct based), see doc to use other codecs
+    fn cst_decode(self) -> crate::api::types::Joined {
+        crate::api::types::Joined {
+            encoding: self.encoding.cst_decode(),
+            file_type: self.file_type.cst_decode(),
+            data: self.data.cst_decode(),
+        }
+    }
+}
+impl CstDecode<Vec<String>> for *mut wire_cst_list_String {
+    // Codec=Cst (C-struct based), see doc to use other codecs
+    fn cst_decode(self) -> Vec<String> {
+        let vec = unsafe {
+            let wrap = flutter_rust_bridge::for_generated::box_from_leak_ptr(self);
+            flutter_rust_bridge::for_generated::vec_from_leak_ptr(wrap.ptr, wrap.len)
+        };
+        vec.into_iter().map(CstDecode::cst_decode).collect()
+    }
+}
 impl CstDecode<Vec<u8>> for *mut wire_cst_list_prim_u_8_loose {
     // Codec=Cst (C-struct based), see doc to use other codecs
     fn cst_decode(self) -> Vec<u8> {
@@ -357,6 +381,33 @@ impl Default for wire_cst_join_error {
         Self::new_with_null_ptr()
     }
 }
+impl NewWithNullPtr for wire_cst_join_result {
+    fn new_with_null_ptr() -> Self {
+        Self {
+            tag: -1,
+            kind: JoinResultKind { nil__: () },
+        }
+    }
+}
+impl Default for wire_cst_join_result {
+    fn default() -> Self {
+        Self::new_with_null_ptr()
+    }
+}
+impl NewWithNullPtr for wire_cst_joined {
+    fn new_with_null_ptr() -> Self {
+        Self {
+            encoding: Default::default(),
+            file_type: Default::default(),
+            data: core::ptr::null_mut(),
+        }
+    }
+}
+impl Default for wire_cst_joined {
+    fn default() -> Self {
+        Self::new_with_null_ptr()
+    }
+}
 impl NewWithNullPtr for wire_cst_split_error {
     fn new_with_null_ptr() -> Self {
         Self {
@@ -389,17 +440,30 @@ impl Default for wire_cst_split_options {
 
 #[no_mangle]
 pub extern "C" fn frbgen_bbqr_dart_wire_ContinuousJoiner_add_part(
-    port_: i64,
     that: usize,
     part: *mut wire_cst_list_prim_u_8_strict,
-) {
-    wire_ContinuousJoiner_add_part_impl(port_, that, part)
+) -> flutter_rust_bridge::for_generated::WireSyncRust2DartDco {
+    wire_ContinuousJoiner_add_part_impl(that, part)
 }
 
 #[no_mangle]
 pub extern "C" fn frbgen_bbqr_dart_wire_ContinuousJoiner_new(
 ) -> flutter_rust_bridge::for_generated::WireSyncRust2DartDco {
     wire_ContinuousJoiner_new_impl()
+}
+
+#[no_mangle]
+pub extern "C" fn frbgen_bbqr_dart_wire_Split_encoding(
+    that: usize,
+) -> flutter_rust_bridge::for_generated::WireSyncRust2DartDco {
+    wire_Split_encoding_impl(that)
+}
+
+#[no_mangle]
+pub extern "C" fn frbgen_bbqr_dart_wire_Split_parts(
+    that: usize,
+) -> flutter_rust_bridge::for_generated::WireSyncRust2DartDco {
+    wire_Split_parts_impl(that)
 }
 
 #[no_mangle]
@@ -413,27 +477,16 @@ pub extern "C" fn frbgen_bbqr_dart_wire_Split_try_from_data(
 }
 
 #[no_mangle]
+pub extern "C" fn frbgen_bbqr_dart_wire_Split_version(
+    that: usize,
+) -> flutter_rust_bridge::for_generated::WireSyncRust2DartDco {
+    wire_Split_version_impl(that)
+}
+
+#[no_mangle]
 pub extern "C" fn frbgen_bbqr_dart_wire_default_split_options(
 ) -> flutter_rust_bridge::for_generated::WireSyncRust2DartDco {
     wire_default_split_options_impl()
-}
-
-#[no_mangle]
-pub extern "C" fn frbgen_bbqr_dart_rust_arc_increment_strong_count_RustOpaque_flutter_rust_bridgefor_generatedrust_asyncRwLockContinuousJoinResult(
-    ptr: *const std::ffi::c_void,
-) {
-    unsafe {
-        StdArc::<flutter_rust_bridge::for_generated::rust_async::RwLock<ContinuousJoinResult>>::increment_strong_count(ptr as _);
-    }
-}
-
-#[no_mangle]
-pub extern "C" fn frbgen_bbqr_dart_rust_arc_decrement_strong_count_RustOpaque_flutter_rust_bridgefor_generatedrust_asyncRwLockContinuousJoinResult(
-    ptr: *const std::ffi::c_void,
-) {
-    unsafe {
-        StdArc::<flutter_rust_bridge::for_generated::rust_async::RwLock<ContinuousJoinResult>>::decrement_strong_count(ptr as _);
-    }
 }
 
 #[no_mangle]
@@ -498,9 +551,26 @@ pub extern "C" fn frbgen_bbqr_dart_cst_new_box_autoadd_join_error() -> *mut wire
 }
 
 #[no_mangle]
+pub extern "C" fn frbgen_bbqr_dart_cst_new_box_autoadd_joined() -> *mut wire_cst_joined {
+    flutter_rust_bridge::for_generated::new_leak_box_ptr(wire_cst_joined::new_with_null_ptr())
+}
+
+#[no_mangle]
 pub extern "C" fn frbgen_bbqr_dart_cst_new_box_autoadd_split_options() -> *mut wire_cst_split_options
 {
     flutter_rust_bridge::for_generated::new_leak_box_ptr(wire_cst_split_options::new_with_null_ptr())
+}
+
+#[no_mangle]
+pub extern "C" fn frbgen_bbqr_dart_cst_new_list_String(len: i32) -> *mut wire_cst_list_String {
+    let wrap = wire_cst_list_String {
+        ptr: flutter_rust_bridge::for_generated::new_leak_vec_ptr(
+            <*mut wire_cst_list_prim_u_8_strict>::new_with_null_ptr(),
+            len,
+        ),
+        len,
+    };
+    flutter_rust_bridge::for_generated::new_leak_box_ptr(wrap)
 }
 
 #[no_mangle]
@@ -684,6 +754,42 @@ pub struct wire_cst_JoinError_HeaderParseError {
 #[derive(Clone, Copy)]
 pub struct wire_cst_JoinError_DecodeError {
     field0: *mut wire_cst_decode_error,
+}
+#[repr(C)]
+#[derive(Clone, Copy)]
+pub struct wire_cst_join_result {
+    tag: i32,
+    kind: JoinResultKind,
+}
+#[repr(C)]
+#[derive(Clone, Copy)]
+pub union JoinResultKind {
+    InProgress: wire_cst_JoinResult_InProgress,
+    Complete: wire_cst_JoinResult_Complete,
+    nil__: (),
+}
+#[repr(C)]
+#[derive(Clone, Copy)]
+pub struct wire_cst_JoinResult_InProgress {
+    parts_left: usize,
+}
+#[repr(C)]
+#[derive(Clone, Copy)]
+pub struct wire_cst_JoinResult_Complete {
+    joined: *mut wire_cst_joined,
+}
+#[repr(C)]
+#[derive(Clone, Copy)]
+pub struct wire_cst_joined {
+    encoding: i32,
+    file_type: i32,
+    data: *mut wire_cst_list_prim_u_8_strict,
+}
+#[repr(C)]
+#[derive(Clone, Copy)]
+pub struct wire_cst_list_String {
+    ptr: *mut *mut wire_cst_list_prim_u_8_strict,
+    len: i32,
 }
 #[repr(C)]
 #[derive(Clone, Copy)]

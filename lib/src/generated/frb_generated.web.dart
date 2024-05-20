@@ -19,20 +19,11 @@ abstract class BbqrCoreApiImplPlatform extends BaseApiImpl<BbqrCoreWire> {
   });
 
   CrossPlatformFinalizerArg
-      get rust_arc_decrement_strong_count_ContinuousJoinResultPtr => wire
-          .rust_arc_decrement_strong_count_RustOpaque_flutter_rust_bridgefor_generatedrust_asyncRwLockContinuousJoinResult;
-
-  CrossPlatformFinalizerArg
       get rust_arc_decrement_strong_count_ContinuousJoinerPtr => wire
           .rust_arc_decrement_strong_count_RustOpaque_flutter_rust_bridgefor_generatedrust_asyncRwLockContinuousJoiner;
 
   CrossPlatformFinalizerArg get rust_arc_decrement_strong_count_SplitPtr => wire
       .rust_arc_decrement_strong_count_RustOpaque_flutter_rust_bridgefor_generatedrust_asyncRwLock_Split;
-
-  @protected
-  ContinuousJoinResult
-      dco_decode_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedrust_asyncRwLockContinuousJoinResult(
-          dynamic raw);
 
   @protected
   ContinuousJoiner
@@ -46,12 +37,12 @@ abstract class BbqrCoreApiImplPlatform extends BaseApiImpl<BbqrCoreWire> {
 
   @protected
   ContinuousJoiner
-      dco_decode_Auto_RefMut_RustOpaque_flutter_rust_bridgefor_generatedrust_asyncRwLockContinuousJoiner(
+      dco_decode_Auto_Ref_RustOpaque_flutter_rust_bridgefor_generatedrust_asyncRwLockContinuousJoiner(
           dynamic raw);
 
   @protected
-  ContinuousJoinResult
-      dco_decode_RustOpaque_flutter_rust_bridgefor_generatedrust_asyncRwLockContinuousJoinResult(
+  Split
+      dco_decode_Auto_Ref_RustOpaque_flutter_rust_bridgefor_generatedrust_asyncRwLock_Split(
           dynamic raw);
 
   @protected
@@ -78,6 +69,9 @@ abstract class BbqrCoreApiImplPlatform extends BaseApiImpl<BbqrCoreWire> {
 
   @protected
   JoinError dco_decode_box_autoadd_join_error(dynamic raw);
+
+  @protected
+  Joined dco_decode_box_autoadd_joined(dynamic raw);
 
   @protected
   SplitOptions dco_decode_box_autoadd_split_options(dynamic raw);
@@ -107,6 +101,15 @@ abstract class BbqrCoreApiImplPlatform extends BaseApiImpl<BbqrCoreWire> {
   JoinError dco_decode_join_error(dynamic raw);
 
   @protected
+  JoinResult dco_decode_join_result(dynamic raw);
+
+  @protected
+  Joined dco_decode_joined(dynamic raw);
+
+  @protected
+  List<String> dco_decode_list_String(dynamic raw);
+
+  @protected
   List<int> dco_decode_list_prim_u_8_loose(dynamic raw);
 
   @protected
@@ -131,11 +134,6 @@ abstract class BbqrCoreApiImplPlatform extends BaseApiImpl<BbqrCoreWire> {
   Version dco_decode_version(dynamic raw);
 
   @protected
-  ContinuousJoinResult
-      sse_decode_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedrust_asyncRwLockContinuousJoinResult(
-          SseDeserializer deserializer);
-
-  @protected
   ContinuousJoiner
       sse_decode_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedrust_asyncRwLockContinuousJoiner(
           SseDeserializer deserializer);
@@ -147,12 +145,12 @@ abstract class BbqrCoreApiImplPlatform extends BaseApiImpl<BbqrCoreWire> {
 
   @protected
   ContinuousJoiner
-      sse_decode_Auto_RefMut_RustOpaque_flutter_rust_bridgefor_generatedrust_asyncRwLockContinuousJoiner(
+      sse_decode_Auto_Ref_RustOpaque_flutter_rust_bridgefor_generatedrust_asyncRwLockContinuousJoiner(
           SseDeserializer deserializer);
 
   @protected
-  ContinuousJoinResult
-      sse_decode_RustOpaque_flutter_rust_bridgefor_generatedrust_asyncRwLockContinuousJoinResult(
+  Split
+      sse_decode_Auto_Ref_RustOpaque_flutter_rust_bridgefor_generatedrust_asyncRwLock_Split(
           SseDeserializer deserializer);
 
   @protected
@@ -182,6 +180,9 @@ abstract class BbqrCoreApiImplPlatform extends BaseApiImpl<BbqrCoreWire> {
   JoinError sse_decode_box_autoadd_join_error(SseDeserializer deserializer);
 
   @protected
+  Joined sse_decode_box_autoadd_joined(SseDeserializer deserializer);
+
+  @protected
   SplitOptions sse_decode_box_autoadd_split_options(
       SseDeserializer deserializer);
 
@@ -209,6 +210,15 @@ abstract class BbqrCoreApiImplPlatform extends BaseApiImpl<BbqrCoreWire> {
 
   @protected
   JoinError sse_decode_join_error(SseDeserializer deserializer);
+
+  @protected
+  JoinResult sse_decode_join_result(SseDeserializer deserializer);
+
+  @protected
+  Joined sse_decode_joined(SseDeserializer deserializer);
+
+  @protected
+  List<String> sse_decode_list_String(SseDeserializer deserializer);
 
   @protected
   List<int> sse_decode_list_prim_u_8_loose(SseDeserializer deserializer);
@@ -266,6 +276,12 @@ abstract class BbqrCoreApiImplPlatform extends BaseApiImpl<BbqrCoreWire> {
   List<dynamic> cst_encode_box_autoadd_join_error(JoinError raw) {
     // Codec=Cst (C-struct based), see doc to use other codecs
     return cst_encode_join_error(raw);
+  }
+
+  @protected
+  List<dynamic> cst_encode_box_autoadd_joined(Joined raw) {
+    // Codec=Cst (C-struct based), see doc to use other codecs
+    return cst_encode_joined(raw);
   }
 
   @protected
@@ -376,6 +392,38 @@ abstract class BbqrCoreApiImplPlatform extends BaseApiImpl<BbqrCoreWire> {
   }
 
   @protected
+  List<dynamic> cst_encode_join_result(JoinResult raw) {
+    // Codec=Cst (C-struct based), see doc to use other codecs
+    if (raw is JoinResult_NotStarted) {
+      return [0];
+    }
+    if (raw is JoinResult_InProgress) {
+      return [1, cst_encode_usize(raw.partsLeft)];
+    }
+    if (raw is JoinResult_Complete) {
+      return [2, cst_encode_box_autoadd_joined(raw.joined)];
+    }
+
+    throw Exception('unreachable');
+  }
+
+  @protected
+  List<dynamic> cst_encode_joined(Joined raw) {
+    // Codec=Cst (C-struct based), see doc to use other codecs
+    return [
+      cst_encode_encoding(raw.encoding),
+      cst_encode_file_type(raw.fileType),
+      cst_encode_list_prim_u_8_strict(raw.data)
+    ];
+  }
+
+  @protected
+  List<dynamic> cst_encode_list_String(List<String> raw) {
+    // Codec=Cst (C-struct based), see doc to use other codecs
+    return raw.map(cst_encode_String).toList();
+  }
+
+  @protected
   List<int> cst_encode_list_prim_u_8_loose(List<int> raw) {
     // Codec=Cst (C-struct based), see doc to use other codecs
     return raw;
@@ -428,10 +476,6 @@ abstract class BbqrCoreApiImplPlatform extends BaseApiImpl<BbqrCoreWire> {
   }
 
   @protected
-  int cst_encode_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedrust_asyncRwLockContinuousJoinResult(
-      ContinuousJoinResult raw);
-
-  @protected
   int cst_encode_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedrust_asyncRwLockContinuousJoiner(
       ContinuousJoiner raw);
 
@@ -440,12 +484,12 @@ abstract class BbqrCoreApiImplPlatform extends BaseApiImpl<BbqrCoreWire> {
       Split raw);
 
   @protected
-  int cst_encode_Auto_RefMut_RustOpaque_flutter_rust_bridgefor_generatedrust_asyncRwLockContinuousJoiner(
+  int cst_encode_Auto_Ref_RustOpaque_flutter_rust_bridgefor_generatedrust_asyncRwLockContinuousJoiner(
       ContinuousJoiner raw);
 
   @protected
-  int cst_encode_RustOpaque_flutter_rust_bridgefor_generatedrust_asyncRwLockContinuousJoinResult(
-      ContinuousJoinResult raw);
+  int cst_encode_Auto_Ref_RustOpaque_flutter_rust_bridgefor_generatedrust_asyncRwLock_Split(
+      Split raw);
 
   @protected
   int cst_encode_RustOpaque_flutter_rust_bridgefor_generatedrust_asyncRwLockContinuousJoiner(
@@ -478,11 +522,6 @@ abstract class BbqrCoreApiImplPlatform extends BaseApiImpl<BbqrCoreWire> {
 
   @protected
   void
-      sse_encode_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedrust_asyncRwLockContinuousJoinResult(
-          ContinuousJoinResult self, SseSerializer serializer);
-
-  @protected
-  void
       sse_encode_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedrust_asyncRwLockContinuousJoiner(
           ContinuousJoiner self, SseSerializer serializer);
 
@@ -493,13 +532,13 @@ abstract class BbqrCoreApiImplPlatform extends BaseApiImpl<BbqrCoreWire> {
 
   @protected
   void
-      sse_encode_Auto_RefMut_RustOpaque_flutter_rust_bridgefor_generatedrust_asyncRwLockContinuousJoiner(
+      sse_encode_Auto_Ref_RustOpaque_flutter_rust_bridgefor_generatedrust_asyncRwLockContinuousJoiner(
           ContinuousJoiner self, SseSerializer serializer);
 
   @protected
   void
-      sse_encode_RustOpaque_flutter_rust_bridgefor_generatedrust_asyncRwLockContinuousJoinResult(
-          ContinuousJoinResult self, SseSerializer serializer);
+      sse_encode_Auto_Ref_RustOpaque_flutter_rust_bridgefor_generatedrust_asyncRwLock_Split(
+          Split self, SseSerializer serializer);
 
   @protected
   void
@@ -531,6 +570,9 @@ abstract class BbqrCoreApiImplPlatform extends BaseApiImpl<BbqrCoreWire> {
       JoinError self, SseSerializer serializer);
 
   @protected
+  void sse_encode_box_autoadd_joined(Joined self, SseSerializer serializer);
+
+  @protected
   void sse_encode_box_autoadd_split_options(
       SplitOptions self, SseSerializer serializer);
 
@@ -559,6 +601,15 @@ abstract class BbqrCoreApiImplPlatform extends BaseApiImpl<BbqrCoreWire> {
 
   @protected
   void sse_encode_join_error(JoinError self, SseSerializer serializer);
+
+  @protected
+  void sse_encode_join_result(JoinResult self, SseSerializer serializer);
+
+  @protected
+  void sse_encode_joined(Joined self, SseSerializer serializer);
+
+  @protected
+  void sse_encode_list_String(List<String> self, SseSerializer serializer);
 
   @protected
   void sse_encode_list_prim_u_8_loose(List<int> self, SseSerializer serializer);
@@ -594,31 +645,28 @@ abstract class BbqrCoreApiImplPlatform extends BaseApiImpl<BbqrCoreWire> {
 class BbqrCoreWire implements BaseWire {
   BbqrCoreWire.fromExternalLibrary(ExternalLibrary lib);
 
-  void wire_ContinuousJoiner_add_part(
-          NativePortType port_, Object that, String part) =>
-      wasmModule.wire_ContinuousJoiner_add_part(port_, that, part);
+  dynamic /* flutter_rust_bridge::for_generated::WireSyncRust2DartDco */
+      wire_ContinuousJoiner_add_part(Object that, String part) =>
+          wasmModule.wire_ContinuousJoiner_add_part(that, part);
 
   dynamic /* flutter_rust_bridge::for_generated::WireSyncRust2DartDco */
       wire_ContinuousJoiner_new() => wasmModule.wire_ContinuousJoiner_new();
+
+  dynamic /* flutter_rust_bridge::for_generated::WireSyncRust2DartDco */
+      wire_Split_encoding(Object that) => wasmModule.wire_Split_encoding(that);
+
+  dynamic /* flutter_rust_bridge::for_generated::WireSyncRust2DartDco */
+      wire_Split_parts(Object that) => wasmModule.wire_Split_parts(that);
 
   void wire_Split_try_from_data(NativePortType port_, List<int> data,
           int file_type, List<dynamic> options) =>
       wasmModule.wire_Split_try_from_data(port_, data, file_type, options);
 
   dynamic /* flutter_rust_bridge::for_generated::WireSyncRust2DartDco */
+      wire_Split_version(Object that) => wasmModule.wire_Split_version(that);
+
+  dynamic /* flutter_rust_bridge::for_generated::WireSyncRust2DartDco */
       wire_default_split_options() => wasmModule.wire_default_split_options();
-
-  void rust_arc_increment_strong_count_RustOpaque_flutter_rust_bridgefor_generatedrust_asyncRwLockContinuousJoinResult(
-          dynamic ptr) =>
-      wasmModule
-          .rust_arc_increment_strong_count_RustOpaque_flutter_rust_bridgefor_generatedrust_asyncRwLockContinuousJoinResult(
-              ptr);
-
-  void rust_arc_decrement_strong_count_RustOpaque_flutter_rust_bridgefor_generatedrust_asyncRwLockContinuousJoinResult(
-          dynamic ptr) =>
-      wasmModule
-          .rust_arc_decrement_strong_count_RustOpaque_flutter_rust_bridgefor_generatedrust_asyncRwLockContinuousJoinResult(
-              ptr);
 
   void rust_arc_increment_strong_count_RustOpaque_flutter_rust_bridgefor_generatedrust_asyncRwLockContinuousJoiner(
           dynamic ptr) =>
@@ -657,25 +705,26 @@ class BbqrCoreWasmModule implements WasmModule {
   @override
   external BbqrCoreWasmModule bind(dynamic thisArg, String moduleName);
 
-  external void wire_ContinuousJoiner_add_part(
-      NativePortType port_, Object that, String part);
+  external dynamic /* flutter_rust_bridge::for_generated::WireSyncRust2DartDco */
+      wire_ContinuousJoiner_add_part(Object that, String part);
 
   external dynamic /* flutter_rust_bridge::for_generated::WireSyncRust2DartDco */
       wire_ContinuousJoiner_new();
+
+  external dynamic /* flutter_rust_bridge::for_generated::WireSyncRust2DartDco */
+      wire_Split_encoding(Object that);
+
+  external dynamic /* flutter_rust_bridge::for_generated::WireSyncRust2DartDco */
+      wire_Split_parts(Object that);
 
   external void wire_Split_try_from_data(NativePortType port_, List<int> data,
       int file_type, List<dynamic> options);
 
   external dynamic /* flutter_rust_bridge::for_generated::WireSyncRust2DartDco */
+      wire_Split_version(Object that);
+
+  external dynamic /* flutter_rust_bridge::for_generated::WireSyncRust2DartDco */
       wire_default_split_options();
-
-  external void
-      rust_arc_increment_strong_count_RustOpaque_flutter_rust_bridgefor_generatedrust_asyncRwLockContinuousJoinResult(
-          dynamic ptr);
-
-  external void
-      rust_arc_decrement_strong_count_RustOpaque_flutter_rust_bridgefor_generatedrust_asyncRwLockContinuousJoinResult(
-          dynamic ptr);
 
   external void
       rust_arc_increment_strong_count_RustOpaque_flutter_rust_bridgefor_generatedrust_asyncRwLockContinuousJoiner(

@@ -4,7 +4,6 @@ pub use bbqr::{
     continuous_join::ContinuousJoinResult,
     encode::Encoding,
     file_type::FileType,
-    join::Joined,
     qr::Version,
     split::{Split, SplitOptions},
 };
@@ -148,13 +147,35 @@ impl _Split {
             encoding: split.encoding,
         })
     }
+
+    #[frb(sync)]
+    pub fn parts(&self) -> Vec<String> {
+        self.parts.clone()
+    }
+
+    #[frb(sync)]
+    pub fn version(&self) -> Version {
+        self.version.clone()
+    }
+
+    #[frb(sync)]
+    pub fn encoding(&self) -> Encoding {
+        self.encoding.clone()
+    }
 }
 
 pub struct ContinuousJoiner(Mutex<bbqr::continuous_join::ContinuousJoiner>);
 
 #[derive(Debug, Clone, PartialEq, Eq)]
-#[frb(mirror(ContinuousJoinResult))]
-pub enum _ContinuousJoinResult {
+#[frb(non_opaque)]
+pub struct Joined {
+    pub encoding: Encoding,
+    pub file_type: FileType,
+    pub data: Vec<u8>,
+}
+
+#[frb(non_opaque)]
+pub enum JoinResult {
     /// No valid parts have been added yet
     NotStarted,
 
@@ -165,7 +186,31 @@ pub enum _ContinuousJoinResult {
     },
 
     /// The state where all parts have been joined
-    Complete(Joined),
+    Complete { joined: Joined },
+}
+
+impl From<bbqr::join::Joined> for Joined {
+    fn from(joined: bbqr::join::Joined) -> Self {
+        Self {
+            encoding: joined.encoding,
+            file_type: joined.file_type,
+            data: joined.data,
+        }
+    }
+}
+
+impl From<ContinuousJoinResult> for JoinResult {
+    fn from(result: ContinuousJoinResult) -> Self {
+        match result {
+            ContinuousJoinResult::NotStarted => JoinResult::NotStarted,
+            ContinuousJoinResult::InProgress { parts_left } => {
+                JoinResult::InProgress { parts_left }
+            }
+            ContinuousJoinResult::Complete(joined) => JoinResult::Complete {
+                joined: joined.into(),
+            },
+        }
+    }
 }
 
 #[frb(sync)]
@@ -175,17 +220,20 @@ impl Default for ContinuousJoiner {
     }
 }
 
+#[frb(sync)]
 impl ContinuousJoiner {
     #[frb(sync)]
     pub fn new() -> Self {
         Self(Mutex::new(bbqr::continuous_join::ContinuousJoiner::new()))
     }
 
-    pub fn add_part(&mut self, part: String) -> Result<ContinuousJoinResult, ContinuousJoinError> {
+    #[frb(sync)]
+    pub fn add_part(&self, part: String) -> Result<JoinResult, ContinuousJoinError> {
         self.0
             .lock()
             .unwrap()
             .add_part(part)
+            .map(JoinResult::from)
             .map_err(ContinuousJoinError::from)
     }
 }

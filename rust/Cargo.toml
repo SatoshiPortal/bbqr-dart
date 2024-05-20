@@ -10,7 +10,7 @@ doctest = false
 crate-type = ["cdylib"] 
 
 [dependencies]
-bbqr = { git = "https://github.com/SatoshiPortal/bbqr-rust.git", rev = "e0fcf12cf3675b53af2db554fa96c1e412754a34", default-features = false }
+bbqr = { git = "https://github.com/SatoshiPortal/bbqr-rust.git", rev = "59f5ac2bee14d96d4a66d9cd0d16cf0a38846314", default-features = false }
 flutter_rust_bridge = "=2.0.0-dev.31"
 anyhow = "1.0.68"
 serde = "1.0.89"
