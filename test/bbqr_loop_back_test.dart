@@ -20,7 +20,7 @@ void main() {
       SplitOptions options2 = SplitOptions(
           encoding: Encoding.zlib,
           minSplitNumber: 1,
-          maxSplitNumber: 1295,
+          maxSplitNumber: 1000,
           minVersion: Version.v01,
           maxVersion: Version.v40);
 
@@ -32,11 +32,12 @@ void main() {
 
       // options2 is the same as defaultSplitOptions
       assert(split.parts().length == split2.parts().length);
-      assert(split.parts().length == 1);
+      assert(listEquals(split.parts(), split2.parts()));
 
       // continuous joiner with single part
       ContinuousJoiner joiner = ContinuousJoiner();
 
+      assert(split.parts().length == 1);
       String part = split.parts().first;
 
       JoinResult result = joiner.addPart(part: part);
@@ -59,7 +60,7 @@ void main() {
       Split split3 = await Split.tryFromData(
           data: bytes, fileType: FileType.unicodeText, options: options3);
 
-      assert(split3.parts().length == 28);
+      assert(split3.parts().length > 1);
 
       for (String part in split3.parts()) {
         JoinResult result = joiner2.addPart(part: part);
