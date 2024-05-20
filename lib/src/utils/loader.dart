@@ -72,6 +72,11 @@ class Dylib {
   }
 
   static ExternalLibrary getDylib() {
+    print("FLUTTER_TEST: ${Platform.environment['FLUTTER_TEST']}");
+    print("Platform: ${Platform.operatingSystem}");
+    print("Currnt Directory: ${Directory.current.path}");
+    print("$name");
+
     if (Platform.environment['FLUTTER_TEST'] == 'true') {
       try {
         return ExternalLibrary.open(_getUniTestDylibDir(Directory.current));
@@ -92,7 +97,7 @@ class Dylib {
 }
 
 class LibBbqr {
-  static String get libName => "libboltzclient.so";
+  static String get libName => "libbbqr";
 
   static Future<void> init() async {
     try {

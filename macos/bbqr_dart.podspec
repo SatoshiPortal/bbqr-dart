@@ -34,14 +34,14 @@ fi
 
 #
 # To learn more about a Podspec see http://guides.cocoapods.org/syntax/podspec.html.
-# Run `pod lib lint boltz_dart.podspec` to validate before publishing.
+# Run `pod lib lint bbqr_dart.podspec` to validate before publishing.
 #
 Pod::Spec.new do |s|
-  s.name             = 'boltz_dart'
-  s.version          = '0.1.1'
-  s.summary          = 'A boltz swap client.'
+  s.name             = 'bbqr_dart'
+  s.version          = '0.1.0'
+  s.summary          = 'A bbqr swap client.'
   s.description      = <<-DESC
-  A boltz swap client
+  BBQr rust client
                        DESC
   s.homepage         = 'http://github.com/SatoshiPortal'
   s.license          = { :file => '../LICENSE' }
@@ -58,5 +58,4 @@ Pod::Spec.new do |s|
 
   s.platform = :osx, '10.11'
   s.pod_target_xcconfig = { 'DEFINES_MODULE' => 'YES' }
-  s.swift_version = '5.0'
-end
+  s.swif

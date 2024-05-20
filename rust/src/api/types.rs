@@ -150,26 +150,6 @@ impl _Split {
     }
 }
 
-#[derive(Debug, Clone, PartialEq, Eq)]
-#[frb(mirror(Joined))]
-pub struct _Joined {
-    pub encoding: Encoding,
-    pub file_type: FileType,
-    pub data: Vec<u8>,
-}
-
-impl _Joined {
-    pub fn try_new_from_parts(parts: Vec<String>) -> Result<Self, JoinError> {
-        let joined = Joined::try_from_parts(parts).map_err(JoinError::from)?;
-
-        Ok(Self {
-            encoding: joined.encoding,
-            file_type: joined.file_type,
-            data: joined.data,
-        })
-    }
-}
-
 pub struct ContinuousJoiner(Mutex<bbqr::continuous_join::ContinuousJoiner>);
 
 #[derive(Debug, Clone, PartialEq, Eq)]

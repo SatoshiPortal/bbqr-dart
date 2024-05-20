@@ -69,14 +69,20 @@ abstract class BbqrCoreApi extends BaseApi {
 
   Future<ContinuousJoiner> continuousJoinerNew({dynamic hint});
 
-  Future<Joined> joinedTryNewFromParts(
-      {required List<String> parts, dynamic hint});
-
   Future<Split> splitTryFromData(
       {required List<int> data,
       required FileType fileType,
       required SplitOptions options,
       dynamic hint});
+
+  RustArcIncrementStrongCountFnType
+      get rust_arc_increment_strong_count_ContinuousJoinResult;
+
+  RustArcDecrementStrongCountFnType
+      get rust_arc_decrement_strong_count_ContinuousJoinResult;
+
+  CrossPlatformFinalizerArg
+      get rust_arc_decrement_strong_count_ContinuousJoinResultPtr;
 
   RustArcIncrementStrongCountFnType
       get rust_arc_increment_strong_count_ContinuousJoiner;
@@ -86,12 +92,6 @@ abstract class BbqrCoreApi extends BaseApi {
 
   CrossPlatformFinalizerArg
       get rust_arc_decrement_strong_count_ContinuousJoinerPtr;
-
-  RustArcIncrementStrongCountFnType get rust_arc_increment_strong_count_Joined;
-
-  RustArcDecrementStrongCountFnType get rust_arc_decrement_strong_count_Joined;
-
-  CrossPlatformFinalizerArg get rust_arc_decrement_strong_count_JoinedPtr;
 
   RustArcIncrementStrongCountFnType get rust_arc_increment_strong_count_Split;
 
@@ -120,7 +120,8 @@ class BbqrCoreApiImpl extends BbqrCoreApiImplPlatform implements BbqrCoreApi {
         return wire.wire_ContinuousJoiner_add_part(port_, arg0, arg1);
       },
       codec: DcoCodec(
-        decodeSuccessData: dco_decode_continuous_join_result,
+        decodeSuccessData:
+            dco_decode_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedrust_asyncRwLockContinuousJoinResult,
         decodeErrorData: dco_decode_continuous_join_error,
       ),
       constMeta: kContinuousJoinerAddPartConstMeta,
@@ -159,31 +160,6 @@ class BbqrCoreApiImpl extends BbqrCoreApiImplPlatform implements BbqrCoreApi {
       );
 
   @override
-  Future<Joined> joinedTryNewFromParts(
-      {required List<String> parts, dynamic hint}) {
-    return handler.executeNormal(NormalTask(
-      callFfi: (port_) {
-        var arg0 = cst_encode_list_String(parts);
-        return wire.wire_Joined_try_new_from_parts(port_, arg0);
-      },
-      codec: DcoCodec(
-        decodeSuccessData:
-            dco_decode_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedrust_asyncRwLock_Joined,
-        decodeErrorData: dco_decode_join_error,
-      ),
-      constMeta: kJoinedTryNewFromPartsConstMeta,
-      argValues: [parts],
-      apiImpl: this,
-      hint: hint,
-    ));
-  }
-
-  TaskConstMeta get kJoinedTryNewFromPartsConstMeta => const TaskConstMeta(
-        debugName: "Joined_try_new_from_parts",
-        argNames: ["parts"],
-      );
-
-  @override
   Future<Split> splitTryFromData(
       {required List<int> data,
       required FileType fileType,
@@ -214,20 +190,20 @@ class BbqrCoreApiImpl extends BbqrCoreApiImplPlatform implements BbqrCoreApi {
       );
 
   RustArcIncrementStrongCountFnType
+      get rust_arc_increment_strong_count_ContinuousJoinResult => wire
+          .rust_arc_increment_strong_count_RustOpaque_flutter_rust_bridgefor_generatedrust_asyncRwLockContinuousJoinResult;
+
+  RustArcDecrementStrongCountFnType
+      get rust_arc_decrement_strong_count_ContinuousJoinResult => wire
+          .rust_arc_decrement_strong_count_RustOpaque_flutter_rust_bridgefor_generatedrust_asyncRwLockContinuousJoinResult;
+
+  RustArcIncrementStrongCountFnType
       get rust_arc_increment_strong_count_ContinuousJoiner => wire
           .rust_arc_increment_strong_count_RustOpaque_flutter_rust_bridgefor_generatedrust_asyncRwLockContinuousJoiner;
 
   RustArcDecrementStrongCountFnType
       get rust_arc_decrement_strong_count_ContinuousJoiner => wire
           .rust_arc_decrement_strong_count_RustOpaque_flutter_rust_bridgefor_generatedrust_asyncRwLockContinuousJoiner;
-
-  RustArcIncrementStrongCountFnType
-      get rust_arc_increment_strong_count_Joined => wire
-          .rust_arc_increment_strong_count_RustOpaque_flutter_rust_bridgefor_generatedrust_asyncRwLock_Joined;
-
-  RustArcDecrementStrongCountFnType
-      get rust_arc_decrement_strong_count_Joined => wire
-          .rust_arc_decrement_strong_count_RustOpaque_flutter_rust_bridgefor_generatedrust_asyncRwLock_Joined;
 
   RustArcIncrementStrongCountFnType get rust_arc_increment_strong_count_Split =>
       wire.rust_arc_increment_strong_count_RustOpaque_flutter_rust_bridgefor_generatedrust_asyncRwLock_Split;
@@ -236,19 +212,19 @@ class BbqrCoreApiImpl extends BbqrCoreApiImplPlatform implements BbqrCoreApi {
       wire.rust_arc_decrement_strong_count_RustOpaque_flutter_rust_bridgefor_generatedrust_asyncRwLock_Split;
 
   @protected
+  ContinuousJoinResult
+      dco_decode_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedrust_asyncRwLockContinuousJoinResult(
+          dynamic raw) {
+    // Codec=Dco (DartCObject based), see doc to use other codecs
+    return ContinuousJoinResult.dcoDecode(raw as List<dynamic>);
+  }
+
+  @protected
   ContinuousJoiner
       dco_decode_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedrust_asyncRwLockContinuousJoiner(
           dynamic raw) {
     // Codec=Dco (DartCObject based), see doc to use other codecs
     return ContinuousJoiner.dcoDecode(raw as List<dynamic>);
-  }
-
-  @protected
-  Joined
-      dco_decode_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedrust_asyncRwLock_Joined(
-          dynamic raw) {
-    // Codec=Dco (DartCObject based), see doc to use other codecs
-    return Joined.dcoDecode(raw as List<dynamic>);
   }
 
   @protected
@@ -268,19 +244,19 @@ class BbqrCoreApiImpl extends BbqrCoreApiImplPlatform implements BbqrCoreApi {
   }
 
   @protected
+  ContinuousJoinResult
+      dco_decode_RustOpaque_flutter_rust_bridgefor_generatedrust_asyncRwLockContinuousJoinResult(
+          dynamic raw) {
+    // Codec=Dco (DartCObject based), see doc to use other codecs
+    return ContinuousJoinResult.dcoDecode(raw as List<dynamic>);
+  }
+
+  @protected
   ContinuousJoiner
       dco_decode_RustOpaque_flutter_rust_bridgefor_generatedrust_asyncRwLockContinuousJoiner(
           dynamic raw) {
     // Codec=Dco (DartCObject based), see doc to use other codecs
     return ContinuousJoiner.dcoDecode(raw as List<dynamic>);
-  }
-
-  @protected
-  Joined
-      dco_decode_RustOpaque_flutter_rust_bridgefor_generatedrust_asyncRwLock_Joined(
-          dynamic raw) {
-    // Codec=Dco (DartCObject based), see doc to use other codecs
-    return Joined.dcoDecode(raw as List<dynamic>);
   }
 
   @protected
@@ -322,12 +298,6 @@ class BbqrCoreApiImpl extends BbqrCoreApiImplPlatform implements BbqrCoreApi {
   }
 
   @protected
-  Joined dco_decode_box_autoadd_joined(dynamic raw) {
-    // Codec=Dco (DartCObject based), see doc to use other codecs
-    return dco_decode_joined(raw);
-  }
-
-  @protected
   SplitOptions dco_decode_box_autoadd_split_options(dynamic raw) {
     // Codec=Dco (DartCObject based), see doc to use other codecs
     return dco_decode_split_options(raw);
@@ -348,25 +318,6 @@ class BbqrCoreApiImpl extends BbqrCoreApiImplPlatform implements BbqrCoreApi {
       case 2:
         return ContinuousJoinError_DecodeError(
           dco_decode_box_autoadd_decode_error(raw[1]),
-        );
-      default:
-        throw Exception("unreachable");
-    }
-  }
-
-  @protected
-  ContinuousJoinResult dco_decode_continuous_join_result(dynamic raw) {
-    // Codec=Dco (DartCObject based), see doc to use other codecs
-    switch (raw[0]) {
-      case 0:
-        return ContinuousJoinResult_NotStarted();
-      case 1:
-        return ContinuousJoinResult_InProgress(
-          partsLeft: dco_decode_usize(raw[1]),
-        );
-      case 2:
-        return ContinuousJoinResult_Complete(
-          dco_decode_box_autoadd_joined(raw[1]),
         );
       default:
         throw Exception("unreachable");
@@ -497,25 +448,6 @@ class BbqrCoreApiImpl extends BbqrCoreApiImplPlatform implements BbqrCoreApi {
   }
 
   @protected
-  Joined dco_decode_joined(dynamic raw) {
-    // Codec=Dco (DartCObject based), see doc to use other codecs
-    final arr = raw as List<dynamic>;
-    if (arr.length != 3)
-      throw Exception('unexpected arr length: expect 3 but see ${arr.length}');
-    return Joined(
-      encoding: dco_decode_encoding(arr[0]),
-      fileType: dco_decode_file_type(arr[1]),
-      data: dco_decode_list_prim_u_8_strict(arr[2]),
-    );
-  }
-
-  @protected
-  List<String> dco_decode_list_String(dynamic raw) {
-    // Codec=Dco (DartCObject based), see doc to use other codecs
-    return (raw as List<dynamic>).map(dco_decode_String).toList();
-  }
-
-  @protected
   List<int> dco_decode_list_prim_u_8_loose(dynamic raw) {
     // Codec=Dco (DartCObject based), see doc to use other codecs
     return raw as List<int>;
@@ -594,20 +526,20 @@ class BbqrCoreApiImpl extends BbqrCoreApiImplPlatform implements BbqrCoreApi {
   }
 
   @protected
+  ContinuousJoinResult
+      sse_decode_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedrust_asyncRwLockContinuousJoinResult(
+          SseDeserializer deserializer) {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+    return ContinuousJoinResult.sseDecode(
+        sse_decode_usize(deserializer), sse_decode_i_32(deserializer));
+  }
+
+  @protected
   ContinuousJoiner
       sse_decode_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedrust_asyncRwLockContinuousJoiner(
           SseDeserializer deserializer) {
     // Codec=Sse (Serialization based), see doc to use other codecs
     return ContinuousJoiner.sseDecode(
-        sse_decode_usize(deserializer), sse_decode_i_32(deserializer));
-  }
-
-  @protected
-  Joined
-      sse_decode_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedrust_asyncRwLock_Joined(
-          SseDeserializer deserializer) {
-    // Codec=Sse (Serialization based), see doc to use other codecs
-    return Joined.sseDecode(
         sse_decode_usize(deserializer), sse_decode_i_32(deserializer));
   }
 
@@ -630,20 +562,20 @@ class BbqrCoreApiImpl extends BbqrCoreApiImplPlatform implements BbqrCoreApi {
   }
 
   @protected
+  ContinuousJoinResult
+      sse_decode_RustOpaque_flutter_rust_bridgefor_generatedrust_asyncRwLockContinuousJoinResult(
+          SseDeserializer deserializer) {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+    return ContinuousJoinResult.sseDecode(
+        sse_decode_usize(deserializer), sse_decode_i_32(deserializer));
+  }
+
+  @protected
   ContinuousJoiner
       sse_decode_RustOpaque_flutter_rust_bridgefor_generatedrust_asyncRwLockContinuousJoiner(
           SseDeserializer deserializer) {
     // Codec=Sse (Serialization based), see doc to use other codecs
     return ContinuousJoiner.sseDecode(
-        sse_decode_usize(deserializer), sse_decode_i_32(deserializer));
-  }
-
-  @protected
-  Joined
-      sse_decode_RustOpaque_flutter_rust_bridgefor_generatedrust_asyncRwLock_Joined(
-          SseDeserializer deserializer) {
-    // Codec=Sse (Serialization based), see doc to use other codecs
-    return Joined.sseDecode(
         sse_decode_usize(deserializer), sse_decode_i_32(deserializer));
   }
 
@@ -691,12 +623,6 @@ class BbqrCoreApiImpl extends BbqrCoreApiImplPlatform implements BbqrCoreApi {
   }
 
   @protected
-  Joined sse_decode_box_autoadd_joined(SseDeserializer deserializer) {
-    // Codec=Sse (Serialization based), see doc to use other codecs
-    return (sse_decode_joined(deserializer));
-  }
-
-  @protected
   SplitOptions sse_decode_box_autoadd_split_options(
       SseDeserializer deserializer) {
     // Codec=Sse (Serialization based), see doc to use other codecs
@@ -720,26 +646,6 @@ class BbqrCoreApiImpl extends BbqrCoreApiImplPlatform implements BbqrCoreApi {
       case 2:
         var var_field0 = sse_decode_box_autoadd_decode_error(deserializer);
         return ContinuousJoinError_DecodeError(var_field0);
-      default:
-        throw UnimplementedError('');
-    }
-  }
-
-  @protected
-  ContinuousJoinResult sse_decode_continuous_join_result(
-      SseDeserializer deserializer) {
-    // Codec=Sse (Serialization based), see doc to use other codecs
-
-    var tag_ = sse_decode_i_32(deserializer);
-    switch (tag_) {
-      case 0:
-        return ContinuousJoinResult_NotStarted();
-      case 1:
-        var var_partsLeft = sse_decode_usize(deserializer);
-        return ContinuousJoinResult_InProgress(partsLeft: var_partsLeft);
-      case 2:
-        var var_field0 = sse_decode_box_autoadd_joined(deserializer);
-        return ContinuousJoinResult_Complete(var_field0);
       default:
         throw UnimplementedError('');
     }
@@ -866,28 +772,6 @@ class BbqrCoreApiImpl extends BbqrCoreApiImplPlatform implements BbqrCoreApi {
   }
 
   @protected
-  Joined sse_decode_joined(SseDeserializer deserializer) {
-    // Codec=Sse (Serialization based), see doc to use other codecs
-    var var_encoding = sse_decode_encoding(deserializer);
-    var var_fileType = sse_decode_file_type(deserializer);
-    var var_data = sse_decode_list_prim_u_8_strict(deserializer);
-    return Joined(
-        encoding: var_encoding, fileType: var_fileType, data: var_data);
-  }
-
-  @protected
-  List<String> sse_decode_list_String(SseDeserializer deserializer) {
-    // Codec=Sse (Serialization based), see doc to use other codecs
-
-    var len_ = sse_decode_i_32(deserializer);
-    var ans_ = <String>[];
-    for (var idx_ = 0; idx_ < len_; ++idx_) {
-      ans_.add(sse_decode_String(deserializer));
-    }
-    return ans_;
-  }
-
-  @protected
   List<int> sse_decode_list_prim_u_8_loose(SseDeserializer deserializer) {
     // Codec=Sse (Serialization based), see doc to use other codecs
     var len_ = sse_decode_i_32(deserializer);
@@ -975,16 +859,16 @@ class BbqrCoreApiImpl extends BbqrCoreApiImplPlatform implements BbqrCoreApi {
   }
 
   @protected
-  int cst_encode_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedrust_asyncRwLockContinuousJoiner(
-      ContinuousJoiner raw) {
+  int cst_encode_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedrust_asyncRwLockContinuousJoinResult(
+      ContinuousJoinResult raw) {
     // Codec=Cst (C-struct based), see doc to use other codecs
 // ignore: invalid_use_of_internal_member
     return raw.cstEncode(move: true);
   }
 
   @protected
-  int cst_encode_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedrust_asyncRwLock_Joined(
-      Joined raw) {
+  int cst_encode_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedrust_asyncRwLockContinuousJoiner(
+      ContinuousJoiner raw) {
     // Codec=Cst (C-struct based), see doc to use other codecs
 // ignore: invalid_use_of_internal_member
     return raw.cstEncode(move: true);
@@ -1007,16 +891,16 @@ class BbqrCoreApiImpl extends BbqrCoreApiImplPlatform implements BbqrCoreApi {
   }
 
   @protected
-  int cst_encode_RustOpaque_flutter_rust_bridgefor_generatedrust_asyncRwLockContinuousJoiner(
-      ContinuousJoiner raw) {
+  int cst_encode_RustOpaque_flutter_rust_bridgefor_generatedrust_asyncRwLockContinuousJoinResult(
+      ContinuousJoinResult raw) {
     // Codec=Cst (C-struct based), see doc to use other codecs
 // ignore: invalid_use_of_internal_member
     return raw.cstEncode();
   }
 
   @protected
-  int cst_encode_RustOpaque_flutter_rust_bridgefor_generatedrust_asyncRwLock_Joined(
-      Joined raw) {
+  int cst_encode_RustOpaque_flutter_rust_bridgefor_generatedrust_asyncRwLockContinuousJoiner(
+      ContinuousJoiner raw) {
     // Codec=Cst (C-struct based), see doc to use other codecs
 // ignore: invalid_use_of_internal_member
     return raw.cstEncode();
@@ -1074,16 +958,16 @@ class BbqrCoreApiImpl extends BbqrCoreApiImplPlatform implements BbqrCoreApi {
 
   @protected
   void
-      sse_encode_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedrust_asyncRwLockContinuousJoiner(
-          ContinuousJoiner self, SseSerializer serializer) {
+      sse_encode_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedrust_asyncRwLockContinuousJoinResult(
+          ContinuousJoinResult self, SseSerializer serializer) {
     // Codec=Sse (Serialization based), see doc to use other codecs
     sse_encode_usize(self.sseEncode(move: true), serializer);
   }
 
   @protected
   void
-      sse_encode_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedrust_asyncRwLock_Joined(
-          Joined self, SseSerializer serializer) {
+      sse_encode_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedrust_asyncRwLockContinuousJoiner(
+          ContinuousJoiner self, SseSerializer serializer) {
     // Codec=Sse (Serialization based), see doc to use other codecs
     sse_encode_usize(self.sseEncode(move: true), serializer);
   }
@@ -1106,16 +990,16 @@ class BbqrCoreApiImpl extends BbqrCoreApiImplPlatform implements BbqrCoreApi {
 
   @protected
   void
-      sse_encode_RustOpaque_flutter_rust_bridgefor_generatedrust_asyncRwLockContinuousJoiner(
-          ContinuousJoiner self, SseSerializer serializer) {
+      sse_encode_RustOpaque_flutter_rust_bridgefor_generatedrust_asyncRwLockContinuousJoinResult(
+          ContinuousJoinResult self, SseSerializer serializer) {
     // Codec=Sse (Serialization based), see doc to use other codecs
     sse_encode_usize(self.sseEncode(move: null), serializer);
   }
 
   @protected
   void
-      sse_encode_RustOpaque_flutter_rust_bridgefor_generatedrust_asyncRwLock_Joined(
-          Joined self, SseSerializer serializer) {
+      sse_encode_RustOpaque_flutter_rust_bridgefor_generatedrust_asyncRwLockContinuousJoiner(
+          ContinuousJoiner self, SseSerializer serializer) {
     // Codec=Sse (Serialization based), see doc to use other codecs
     sse_encode_usize(self.sseEncode(move: null), serializer);
   }
@@ -1163,12 +1047,6 @@ class BbqrCoreApiImpl extends BbqrCoreApiImplPlatform implements BbqrCoreApi {
   }
 
   @protected
-  void sse_encode_box_autoadd_joined(Joined self, SseSerializer serializer) {
-    // Codec=Sse (Serialization based), see doc to use other codecs
-    sse_encode_joined(self, serializer);
-  }
-
-  @protected
   void sse_encode_box_autoadd_split_options(
       SplitOptions self, SseSerializer serializer) {
     // Codec=Sse (Serialization based), see doc to use other codecs
@@ -1189,22 +1067,6 @@ class BbqrCoreApiImpl extends BbqrCoreApiImplPlatform implements BbqrCoreApi {
       case ContinuousJoinError_DecodeError(field0: final field0):
         sse_encode_i_32(2, serializer);
         sse_encode_box_autoadd_decode_error(field0, serializer);
-    }
-  }
-
-  @protected
-  void sse_encode_continuous_join_result(
-      ContinuousJoinResult self, SseSerializer serializer) {
-    // Codec=Sse (Serialization based), see doc to use other codecs
-    switch (self) {
-      case ContinuousJoinResult_NotStarted():
-        sse_encode_i_32(0, serializer);
-      case ContinuousJoinResult_InProgress(partsLeft: final partsLeft):
-        sse_encode_i_32(1, serializer);
-        sse_encode_usize(partsLeft, serializer);
-      case ContinuousJoinResult_Complete(field0: final field0):
-        sse_encode_i_32(2, serializer);
-        sse_encode_box_autoadd_joined(field0, serializer);
     }
   }
 
@@ -1313,23 +1175,6 @@ class BbqrCoreApiImpl extends BbqrCoreApiImplPlatform implements BbqrCoreApi {
       case JoinError_DecodeError(field0: final field0):
         sse_encode_i_32(7, serializer);
         sse_encode_box_autoadd_decode_error(field0, serializer);
-    }
-  }
-
-  @protected
-  void sse_encode_joined(Joined self, SseSerializer serializer) {
-    // Codec=Sse (Serialization based), see doc to use other codecs
-    sse_encode_encoding(self.encoding, serializer);
-    sse_encode_file_type(self.fileType, serializer);
-    sse_encode_list_prim_u_8_strict(self.data, serializer);
-  }
-
-  @protected
-  void sse_encode_list_String(List<String> self, SseSerializer serializer) {
-    // Codec=Sse (Serialization based), see doc to use other codecs
-    sse_encode_i_32(self.length, serializer);
-    for (final item in self) {
-      sse_encode_String(item, serializer);
     }
   }
 
