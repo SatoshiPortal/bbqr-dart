@@ -27,6 +27,9 @@ abstract class BbqrCoreApiImplPlatform extends BaseApiImpl<BbqrCoreWire> {
       get rust_arc_decrement_strong_count_ContinuousJoinerPtr => wire
           ._rust_arc_decrement_strong_count_RustOpaque_flutter_rust_bridgefor_generatedrust_asyncRwLockContinuousJoinerPtr;
 
+  CrossPlatformFinalizerArg get rust_arc_decrement_strong_count_JoinedPtr => wire
+      ._rust_arc_decrement_strong_count_RustOpaque_flutter_rust_bridgefor_generatedrust_asyncRwLock_JoinedPtr;
+
   CrossPlatformFinalizerArg get rust_arc_decrement_strong_count_SplitPtr => wire
       ._rust_arc_decrement_strong_count_RustOpaque_flutter_rust_bridgefor_generatedrust_asyncRwLock_SplitPtr;
 
@@ -38,6 +41,11 @@ abstract class BbqrCoreApiImplPlatform extends BaseApiImpl<BbqrCoreWire> {
   @protected
   ContinuousJoiner
       dco_decode_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedrust_asyncRwLockContinuousJoiner(
+          dynamic raw);
+
+  @protected
+  Joined
+      dco_decode_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedrust_asyncRwLock_Joined(
           dynamic raw);
 
   @protected
@@ -58,6 +66,11 @@ abstract class BbqrCoreApiImplPlatform extends BaseApiImpl<BbqrCoreWire> {
   @protected
   ContinuousJoiner
       dco_decode_RustOpaque_flutter_rust_bridgefor_generatedrust_asyncRwLockContinuousJoiner(
+          dynamic raw);
+
+  @protected
+  Joined
+      dco_decode_RustOpaque_flutter_rust_bridgefor_generatedrust_asyncRwLock_Joined(
           dynamic raw);
 
   @protected
@@ -108,6 +121,9 @@ abstract class BbqrCoreApiImplPlatform extends BaseApiImpl<BbqrCoreWire> {
   JoinError dco_decode_join_error(dynamic raw);
 
   @protected
+  List<String> dco_decode_list_String(dynamic raw);
+
+  @protected
   List<int> dco_decode_list_prim_u_8_loose(dynamic raw);
 
   @protected
@@ -142,6 +158,11 @@ abstract class BbqrCoreApiImplPlatform extends BaseApiImpl<BbqrCoreWire> {
           SseDeserializer deserializer);
 
   @protected
+  Joined
+      sse_decode_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedrust_asyncRwLock_Joined(
+          SseDeserializer deserializer);
+
+  @protected
   Split
       sse_decode_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedrust_asyncRwLock_Split(
           SseDeserializer deserializer);
@@ -159,6 +180,11 @@ abstract class BbqrCoreApiImplPlatform extends BaseApiImpl<BbqrCoreWire> {
   @protected
   ContinuousJoiner
       sse_decode_RustOpaque_flutter_rust_bridgefor_generatedrust_asyncRwLockContinuousJoiner(
+          SseDeserializer deserializer);
+
+  @protected
+  Joined
+      sse_decode_RustOpaque_flutter_rust_bridgefor_generatedrust_asyncRwLock_Joined(
           SseDeserializer deserializer);
 
   @protected
@@ -210,6 +236,9 @@ abstract class BbqrCoreApiImplPlatform extends BaseApiImpl<BbqrCoreWire> {
 
   @protected
   JoinError sse_decode_join_error(SseDeserializer deserializer);
+
+  @protected
+  List<String> sse_decode_list_String(SseDeserializer deserializer);
 
   @protected
   List<int> sse_decode_list_prim_u_8_loose(SseDeserializer deserializer);
@@ -287,6 +316,16 @@ abstract class BbqrCoreApiImplPlatform extends BaseApiImpl<BbqrCoreWire> {
     final ptr = wire.cst_new_box_autoadd_split_options();
     cst_api_fill_to_wire_split_options(raw, ptr.ref);
     return ptr;
+  }
+
+  @protected
+  ffi.Pointer<wire_cst_list_String> cst_encode_list_String(List<String> raw) {
+    // Codec=Cst (C-struct based), see doc to use other codecs
+    final ans = wire.cst_new_list_String(raw.length);
+    for (var i = 0; i < raw.length; ++i) {
+      ans.ref.ptr[i] = cst_encode_String(raw[i]);
+    }
+    return ans;
   }
 
   @protected
@@ -547,6 +586,10 @@ abstract class BbqrCoreApiImplPlatform extends BaseApiImpl<BbqrCoreWire> {
       ContinuousJoiner raw);
 
   @protected
+  int cst_encode_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedrust_asyncRwLock_Joined(
+      Joined raw);
+
+  @protected
   int cst_encode_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedrust_asyncRwLock_Split(
       Split raw);
 
@@ -561,6 +604,10 @@ abstract class BbqrCoreApiImplPlatform extends BaseApiImpl<BbqrCoreWire> {
   @protected
   int cst_encode_RustOpaque_flutter_rust_bridgefor_generatedrust_asyncRwLockContinuousJoiner(
       ContinuousJoiner raw);
+
+  @protected
+  int cst_encode_RustOpaque_flutter_rust_bridgefor_generatedrust_asyncRwLock_Joined(
+      Joined raw);
 
   @protected
   int cst_encode_RustOpaque_flutter_rust_bridgefor_generatedrust_asyncRwLock_Split(
@@ -599,6 +646,11 @@ abstract class BbqrCoreApiImplPlatform extends BaseApiImpl<BbqrCoreWire> {
 
   @protected
   void
+      sse_encode_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedrust_asyncRwLock_Joined(
+          Joined self, SseSerializer serializer);
+
+  @protected
+  void
       sse_encode_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedrust_asyncRwLock_Split(
           Split self, SseSerializer serializer);
 
@@ -616,6 +668,11 @@ abstract class BbqrCoreApiImplPlatform extends BaseApiImpl<BbqrCoreWire> {
   void
       sse_encode_RustOpaque_flutter_rust_bridgefor_generatedrust_asyncRwLockContinuousJoiner(
           ContinuousJoiner self, SseSerializer serializer);
+
+  @protected
+  void
+      sse_encode_RustOpaque_flutter_rust_bridgefor_generatedrust_asyncRwLock_Joined(
+          Joined self, SseSerializer serializer);
 
   @protected
   void
@@ -670,6 +727,9 @@ abstract class BbqrCoreApiImplPlatform extends BaseApiImpl<BbqrCoreWire> {
 
   @protected
   void sse_encode_join_error(JoinError self, SseSerializer serializer);
+
+  @protected
+  void sse_encode_list_String(List<String> self, SseSerializer serializer);
 
   @protected
   void sse_encode_list_prim_u_8_loose(List<int> self, SseSerializer serializer);
@@ -777,6 +837,24 @@ class BbqrCoreWire implements BaseWire {
   late final _wire_ContinuousJoiner_new =
       _wire_ContinuousJoiner_newPtr.asFunction<void Function(int)>();
 
+  void wire_Joined_try_new_from_parts(
+    int port_,
+    ffi.Pointer<wire_cst_list_String> parts,
+  ) {
+    return _wire_Joined_try_new_from_parts(
+      port_,
+      parts,
+    );
+  }
+
+  late final _wire_Joined_try_new_from_partsPtr = _lookup<
+          ffi.NativeFunction<
+              ffi.Void Function(ffi.Int64, ffi.Pointer<wire_cst_list_String>)>>(
+      'frbgen_bbqr_dart_wire_Joined_try_new_from_parts');
+  late final _wire_Joined_try_new_from_parts =
+      _wire_Joined_try_new_from_partsPtr
+          .asFunction<void Function(int, ffi.Pointer<wire_cst_list_String>)>();
+
   void wire_Split_try_from_data(
     int port_,
     ffi.Pointer<wire_cst_list_prim_u_8_loose> data,
@@ -869,6 +947,38 @@ class BbqrCoreWire implements BaseWire {
           .asFunction<void Function(ffi.Pointer<ffi.Void>)>();
 
   void
+      rust_arc_increment_strong_count_RustOpaque_flutter_rust_bridgefor_generatedrust_asyncRwLock_Joined(
+    ffi.Pointer<ffi.Void> ptr,
+  ) {
+    return _rust_arc_increment_strong_count_RustOpaque_flutter_rust_bridgefor_generatedrust_asyncRwLock_Joined(
+      ptr,
+    );
+  }
+
+  late final _rust_arc_increment_strong_count_RustOpaque_flutter_rust_bridgefor_generatedrust_asyncRwLock_JoinedPtr =
+      _lookup<ffi.NativeFunction<ffi.Void Function(ffi.Pointer<ffi.Void>)>>(
+          'frbgen_bbqr_dart_rust_arc_increment_strong_count_RustOpaque_flutter_rust_bridgefor_generatedrust_asyncRwLock_Joined');
+  late final _rust_arc_increment_strong_count_RustOpaque_flutter_rust_bridgefor_generatedrust_asyncRwLock_Joined =
+      _rust_arc_increment_strong_count_RustOpaque_flutter_rust_bridgefor_generatedrust_asyncRwLock_JoinedPtr
+          .asFunction<void Function(ffi.Pointer<ffi.Void>)>();
+
+  void
+      rust_arc_decrement_strong_count_RustOpaque_flutter_rust_bridgefor_generatedrust_asyncRwLock_Joined(
+    ffi.Pointer<ffi.Void> ptr,
+  ) {
+    return _rust_arc_decrement_strong_count_RustOpaque_flutter_rust_bridgefor_generatedrust_asyncRwLock_Joined(
+      ptr,
+    );
+  }
+
+  late final _rust_arc_decrement_strong_count_RustOpaque_flutter_rust_bridgefor_generatedrust_asyncRwLock_JoinedPtr =
+      _lookup<ffi.NativeFunction<ffi.Void Function(ffi.Pointer<ffi.Void>)>>(
+          'frbgen_bbqr_dart_rust_arc_decrement_strong_count_RustOpaque_flutter_rust_bridgefor_generatedrust_asyncRwLock_Joined');
+  late final _rust_arc_decrement_strong_count_RustOpaque_flutter_rust_bridgefor_generatedrust_asyncRwLock_Joined =
+      _rust_arc_decrement_strong_count_RustOpaque_flutter_rust_bridgefor_generatedrust_asyncRwLock_JoinedPtr
+          .asFunction<void Function(ffi.Pointer<ffi.Void>)>();
+
+  void
       rust_arc_increment_strong_count_RustOpaque_flutter_rust_bridgefor_generatedrust_asyncRwLock_Split(
     ffi.Pointer<ffi.Void> ptr,
   ) {
@@ -957,6 +1067,21 @@ class BbqrCoreWire implements BaseWire {
       _cst_new_box_autoadd_split_optionsPtr
           .asFunction<ffi.Pointer<wire_cst_split_options> Function()>();
 
+  ffi.Pointer<wire_cst_list_String> cst_new_list_String(
+    int len,
+  ) {
+    return _cst_new_list_String(
+      len,
+    );
+  }
+
+  late final _cst_new_list_StringPtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Pointer<wire_cst_list_String> Function(
+              ffi.Int32)>>('frbgen_bbqr_dart_cst_new_list_String');
+  late final _cst_new_list_String = _cst_new_list_StringPtr
+      .asFunction<ffi.Pointer<wire_cst_list_String> Function(int)>();
+
   ffi.Pointer<wire_cst_list_prim_u_8_loose> cst_new_list_prim_u_8_loose(
     int len,
   ) {
@@ -1005,6 +1130,13 @@ typedef DartPort = ffi.Int64;
 
 final class wire_cst_list_prim_u_8_strict extends ffi.Struct {
   external ffi.Pointer<ffi.Uint8> ptr;
+
+  @ffi.Int32()
+  external int len;
+}
+
+final class wire_cst_list_String extends ffi.Struct {
+  external ffi.Pointer<ffi.Pointer<wire_cst_list_prim_u_8_strict>> ptr;
 
   @ffi.Int32()
   external int len;

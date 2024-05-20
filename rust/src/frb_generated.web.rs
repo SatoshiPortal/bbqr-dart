@@ -111,6 +111,16 @@ impl CstDecode<crate::api::error::JoinError>
         }
     }
 }
+impl CstDecode<Vec<String>> for flutter_rust_bridge::for_generated::wasm_bindgen::JsValue {
+    // Codec=Cst (C-struct based), see doc to use other codecs
+    fn cst_decode(self) -> Vec<String> {
+        self.dyn_into::<flutter_rust_bridge::for_generated::js_sys::Array>()
+            .unwrap()
+            .iter()
+            .map(CstDecode::cst_decode)
+            .collect()
+    }
+}
 impl CstDecode<Vec<u8>> for Box<[u8]> {
     // Codec=Cst (C-struct based), see doc to use other codecs
     fn cst_decode(self) -> Vec<u8> {
@@ -178,6 +188,12 @@ impl CstDecode<ContinuousJoiner> for flutter_rust_bridge::for_generated::wasm_bi
         .rust_auto_opaque_decode_owned()
     }
 }
+impl CstDecode<_Joined> for flutter_rust_bridge::for_generated::wasm_bindgen::JsValue {
+    // Codec=Cst (C-struct based), see doc to use other codecs
+    fn cst_decode(self) -> _Joined {
+        CstDecode::<RustOpaqueNom<flutter_rust_bridge::for_generated::rust_async::RwLock<_Joined>>>::cst_decode(self).rust_auto_opaque_decode_owned()
+    }
+}
 impl CstDecode<_Split> for flutter_rust_bridge::for_generated::wasm_bindgen::JsValue {
     // Codec=Cst (C-struct based), see doc to use other codecs
     fn cst_decode(self) -> _Split {
@@ -211,6 +227,20 @@ impl
         self,
     ) -> RustOpaqueNom<flutter_rust_bridge::for_generated::rust_async::RwLock<ContinuousJoiner>>
     {
+        #[cfg(target_pointer_width = "64")]
+        {
+            compile_error!("64-bit pointers are not supported.");
+        }
+        unsafe { decode_rust_opaque_nom((self.as_f64().unwrap() as usize) as _) }
+    }
+}
+impl CstDecode<RustOpaqueNom<flutter_rust_bridge::for_generated::rust_async::RwLock<_Joined>>>
+    for flutter_rust_bridge::for_generated::wasm_bindgen::JsValue
+{
+    // Codec=Cst (C-struct based), see doc to use other codecs
+    fn cst_decode(
+        self,
+    ) -> RustOpaqueNom<flutter_rust_bridge::for_generated::rust_async::RwLock<_Joined>> {
         #[cfg(target_pointer_width = "64")]
         {
             compile_error!("64-bit pointers are not supported.");
@@ -304,6 +334,14 @@ pub fn wire_ContinuousJoiner_new(port_: flutter_rust_bridge::for_generated::Mess
 }
 
 #[wasm_bindgen]
+pub fn wire_Joined_try_new_from_parts(
+    port_: flutter_rust_bridge::for_generated::MessagePort,
+    parts: flutter_rust_bridge::for_generated::wasm_bindgen::JsValue,
+) {
+    wire_Joined_try_new_from_parts_impl(port_, parts)
+}
+
+#[wasm_bindgen]
 pub fn wire_Split_try_from_data(
     port_: flutter_rust_bridge::for_generated::MessagePort,
     data: Box<[u8]>,
@@ -346,6 +384,24 @@ pub fn rust_arc_decrement_strong_count_RustOpaque_flutter_rust_bridgefor_generat
 ) {
     unsafe {
         StdArc::<flutter_rust_bridge::for_generated::rust_async::RwLock<ContinuousJoiner>>::decrement_strong_count(ptr as _);
+    }
+}
+
+#[wasm_bindgen]
+pub fn rust_arc_increment_strong_count_RustOpaque_flutter_rust_bridgefor_generatedrust_asyncRwLock_Joined(
+    ptr: *const std::ffi::c_void,
+) {
+    unsafe {
+        StdArc::<flutter_rust_bridge::for_generated::rust_async::RwLock<_Joined>>::increment_strong_count(ptr as _);
+    }
+}
+
+#[wasm_bindgen]
+pub fn rust_arc_decrement_strong_count_RustOpaque_flutter_rust_bridgefor_generatedrust_asyncRwLock_Joined(
+    ptr: *const std::ffi::c_void,
+) {
+    unsafe {
+        StdArc::<flutter_rust_bridge::for_generated::rust_async::RwLock<_Joined>>::decrement_strong_count(ptr as _);
     }
 }
 
