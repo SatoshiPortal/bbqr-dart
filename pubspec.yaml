@@ -3,6 +3,8 @@ description: A dart/flutter library for bbqr
 version: 0.1.0
 homepage: https://github.com/SatoshiPortal/bbqr-dart
 
+publish_to: "none"
+
 environment:
   sdk: ">=3.1.5 <4.0.0"
   flutter: ">=3.0.0"
@@ -21,22 +23,19 @@ dependencies:
   archive: ^3.4.10
   http: ^1.2.0
   web_socket_channel: ^2.1.0
-  # rust_lib_boltz_dart:
-  #   path: rust_builder
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
   flutter_lints: ^3.0.0
+  freezed: ^2.3.5
   ffigen: ^9.0.0
   test: ^1.24.3
-  build_runner: ^2.4.6
-  freezed: ^2.4.6
+  build_runner: ^2.4.8
   json_serializable: ^6.7.1
-  crypto: ^3.0.3
+  lints: ^3.0.0
   integration_test:
     sdk: flutter
-
 flutter:
   assets:
     - assets/

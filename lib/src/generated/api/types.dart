@@ -6,10 +6,27 @@
 import '../frb_generated.dart';
 import 'error.dart';
 import 'package:flutter_rust_bridge/flutter_rust_bridge_for_generated.dart';
-import 'package:freezed_annotation/freezed_annotation.dart' hide protected;
-part 'types.freezed.dart';
 
 // The type `Split` is not used by any `pub` functions, thus it is ignored.
+
+// Rust type: RustOpaqueNom<flutter_rust_bridge::for_generated::rust_async::RwLock<ContinuousJoinResult>>
+@sealed
+class ContinuousJoinResult extends RustOpaque {
+  ContinuousJoinResult.dcoDecode(List<dynamic> wire)
+      : super.dcoDecode(wire, _kStaticData);
+
+  ContinuousJoinResult.sseDecode(int ptr, int externalSizeOnNative)
+      : super.sseDecode(ptr, externalSizeOnNative, _kStaticData);
+
+  static final _kStaticData = RustArcStaticData(
+    rustArcIncrementStrongCount: BbqrCore
+        .instance.api.rust_arc_increment_strong_count_ContinuousJoinResult,
+    rustArcDecrementStrongCount: BbqrCore
+        .instance.api.rust_arc_decrement_strong_count_ContinuousJoinResult,
+    rustArcDecrementStrongCountPtr: BbqrCore
+        .instance.api.rust_arc_decrement_strong_count_ContinuousJoinResultPtr,
+  );
+}
 
 // Rust type: RustOpaqueNom<flutter_rust_bridge::for_generated::rust_async::RwLock<ContinuousJoiner>>
 @sealed
@@ -38,28 +55,6 @@ class ContinuousJoiner extends RustOpaque {
       BbqrCore.instance.api.continuousJoinerNew(hint: hint);
 }
 
-// Rust type: RustOpaqueNom<flutter_rust_bridge::for_generated::rust_async::RwLock<_Joined>>
-@sealed
-class Joined extends RustOpaque {
-  Joined.dcoDecode(List<dynamic> wire) : super.dcoDecode(wire, _kStaticData);
-
-  Joined.sseDecode(int ptr, int externalSizeOnNative)
-      : super.sseDecode(ptr, externalSizeOnNative, _kStaticData);
-
-  static final _kStaticData = RustArcStaticData(
-    rustArcIncrementStrongCount:
-        BbqrCore.instance.api.rust_arc_increment_strong_count_Joined,
-    rustArcDecrementStrongCount:
-        BbqrCore.instance.api.rust_arc_decrement_strong_count_Joined,
-    rustArcDecrementStrongCountPtr:
-        BbqrCore.instance.api.rust_arc_decrement_strong_count_JoinedPtr,
-  );
-
-  static Future<Joined> tryNewFromParts(
-          {required List<String> parts, dynamic hint}) =>
-      BbqrCore.instance.api.joinedTryNewFromParts(parts: parts, hint: hint);
-}
-
 // Rust type: RustOpaqueNom<flutter_rust_bridge::for_generated::rust_async::RwLock<_Split>>
 @sealed
 class Split extends RustOpaque {
@@ -86,26 +81,6 @@ class Split extends RustOpaque {
           data: data, fileType: fileType, options: options, hint: hint);
 }
 
-@freezed
-sealed class ContinuousJoinResult with _$ContinuousJoinResult {
-  const ContinuousJoinResult._();
-
-  /// No valid parts have been added yet
-  const factory ContinuousJoinResult.notStarted() =
-      ContinuousJoinResult_NotStarted;
-
-  /// The state where parts have been added, but not all parts have been joined
-  const factory ContinuousJoinResult.inProgress({
-    /// The number of parts left to join
-    required int partsLeft,
-  }) = ContinuousJoinResult_InProgress;
-
-  /// The state where all parts have been joined
-  const factory ContinuousJoinResult.complete(
-    Joined field0,
-  ) = ContinuousJoinResult_Complete;
-}
-
 enum Encoding {
   hex,
   base32,
@@ -118,30 +93,6 @@ enum FileType {
   json,
   cbor,
   unicodeText,
-}
-
-class Joined {
-  final Encoding encoding;
-  final FileType fileType;
-  final Uint8List data;
-
-  const Joined({
-    required this.encoding,
-    required this.fileType,
-    required this.data,
-  });
-
-  @override
-  int get hashCode => encoding.hashCode ^ fileType.hashCode ^ data.hashCode;
-
-  @override
-  bool operator ==(Object other) =>
-      identical(this, other) ||
-      other is Joined &&
-          runtimeType == other.runtimeType &&
-          encoding == other.encoding &&
-          fileType == other.fileType &&
-          data == other.data;
 }
 
 class SplitOptions {

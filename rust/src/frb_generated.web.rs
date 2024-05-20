@@ -39,22 +39,6 @@ impl CstDecode<crate::api::error::ContinuousJoinError>
         }
     }
 }
-impl CstDecode<crate::api::types::ContinuousJoinResult>
-    for flutter_rust_bridge::for_generated::wasm_bindgen::JsValue
-{
-    // Codec=Cst (C-struct based), see doc to use other codecs
-    fn cst_decode(self) -> crate::api::types::ContinuousJoinResult {
-        let self_ = self.unchecked_into::<flutter_rust_bridge::for_generated::js_sys::Array>();
-        match self_.get(0).unchecked_into_f64() as _ {
-            0 => crate::api::types::ContinuousJoinResult::NotStarted,
-            1 => crate::api::types::ContinuousJoinResult::InProgress {
-                parts_left: self_.get(1).cst_decode(),
-            },
-            2 => crate::api::types::ContinuousJoinResult::Complete(self_.get(1).cst_decode()),
-            _ => unreachable!(),
-        }
-    }
-}
 impl CstDecode<crate::api::error::DecodeError>
     for flutter_rust_bridge::for_generated::wasm_bindgen::JsValue
 {
@@ -127,37 +111,6 @@ impl CstDecode<crate::api::error::JoinError>
         }
     }
 }
-impl CstDecode<crate::api::types::Joined>
-    for flutter_rust_bridge::for_generated::wasm_bindgen::JsValue
-{
-    // Codec=Cst (C-struct based), see doc to use other codecs
-    fn cst_decode(self) -> crate::api::types::Joined {
-        let self_ = self
-            .dyn_into::<flutter_rust_bridge::for_generated::js_sys::Array>()
-            .unwrap();
-        assert_eq!(
-            self_.length(),
-            3,
-            "Expected 3 elements, got {}",
-            self_.length()
-        );
-        crate::api::types::Joined {
-            encoding: self_.get(0).cst_decode(),
-            file_type: self_.get(1).cst_decode(),
-            data: self_.get(2).cst_decode(),
-        }
-    }
-}
-impl CstDecode<Vec<String>> for flutter_rust_bridge::for_generated::wasm_bindgen::JsValue {
-    // Codec=Cst (C-struct based), see doc to use other codecs
-    fn cst_decode(self) -> Vec<String> {
-        self.dyn_into::<flutter_rust_bridge::for_generated::js_sys::Array>()
-            .unwrap()
-            .iter()
-            .map(CstDecode::cst_decode)
-            .collect()
-    }
-}
 impl CstDecode<Vec<u8>> for Box<[u8]> {
     // Codec=Cst (C-struct based), see doc to use other codecs
     fn cst_decode(self) -> Vec<u8> {
@@ -205,6 +158,17 @@ impl CstDecode<crate::api::types::SplitOptions>
         }
     }
 }
+impl CstDecode<ContinuousJoinResult> for flutter_rust_bridge::for_generated::wasm_bindgen::JsValue {
+    // Codec=Cst (C-struct based), see doc to use other codecs
+    fn cst_decode(self) -> ContinuousJoinResult {
+        CstDecode::<
+            RustOpaqueNom<
+                flutter_rust_bridge::for_generated::rust_async::RwLock<ContinuousJoinResult>,
+            >,
+        >::cst_decode(self)
+        .rust_auto_opaque_decode_owned()
+    }
+}
 impl CstDecode<ContinuousJoiner> for flutter_rust_bridge::for_generated::wasm_bindgen::JsValue {
     // Codec=Cst (C-struct based), see doc to use other codecs
     fn cst_decode(self) -> ContinuousJoiner {
@@ -214,16 +178,27 @@ impl CstDecode<ContinuousJoiner> for flutter_rust_bridge::for_generated::wasm_bi
         .rust_auto_opaque_decode_owned()
     }
 }
-impl CstDecode<_Joined> for flutter_rust_bridge::for_generated::wasm_bindgen::JsValue {
-    // Codec=Cst (C-struct based), see doc to use other codecs
-    fn cst_decode(self) -> _Joined {
-        CstDecode::<RustOpaqueNom<flutter_rust_bridge::for_generated::rust_async::RwLock<_Joined>>>::cst_decode(self).rust_auto_opaque_decode_owned()
-    }
-}
 impl CstDecode<_Split> for flutter_rust_bridge::for_generated::wasm_bindgen::JsValue {
     // Codec=Cst (C-struct based), see doc to use other codecs
     fn cst_decode(self) -> _Split {
         CstDecode::<RustOpaqueNom<flutter_rust_bridge::for_generated::rust_async::RwLock<_Split>>>::cst_decode(self).rust_auto_opaque_decode_owned()
+    }
+}
+impl
+    CstDecode<
+        RustOpaqueNom<flutter_rust_bridge::for_generated::rust_async::RwLock<ContinuousJoinResult>>,
+    > for flutter_rust_bridge::for_generated::wasm_bindgen::JsValue
+{
+    // Codec=Cst (C-struct based), see doc to use other codecs
+    fn cst_decode(
+        self,
+    ) -> RustOpaqueNom<flutter_rust_bridge::for_generated::rust_async::RwLock<ContinuousJoinResult>>
+    {
+        #[cfg(target_pointer_width = "64")]
+        {
+            compile_error!("64-bit pointers are not supported.");
+        }
+        unsafe { decode_rust_opaque_nom((self.as_f64().unwrap() as usize) as _) }
     }
 }
 impl
@@ -236,20 +211,6 @@ impl
         self,
     ) -> RustOpaqueNom<flutter_rust_bridge::for_generated::rust_async::RwLock<ContinuousJoiner>>
     {
-        #[cfg(target_pointer_width = "64")]
-        {
-            compile_error!("64-bit pointers are not supported.");
-        }
-        unsafe { decode_rust_opaque_nom((self.as_f64().unwrap() as usize) as _) }
-    }
-}
-impl CstDecode<RustOpaqueNom<flutter_rust_bridge::for_generated::rust_async::RwLock<_Joined>>>
-    for flutter_rust_bridge::for_generated::wasm_bindgen::JsValue
-{
-    // Codec=Cst (C-struct based), see doc to use other codecs
-    fn cst_decode(
-        self,
-    ) -> RustOpaqueNom<flutter_rust_bridge::for_generated::rust_async::RwLock<_Joined>> {
         #[cfg(target_pointer_width = "64")]
         {
             compile_error!("64-bit pointers are not supported.");
@@ -343,14 +304,6 @@ pub fn wire_ContinuousJoiner_new(port_: flutter_rust_bridge::for_generated::Mess
 }
 
 #[wasm_bindgen]
-pub fn wire_Joined_try_new_from_parts(
-    port_: flutter_rust_bridge::for_generated::MessagePort,
-    parts: flutter_rust_bridge::for_generated::wasm_bindgen::JsValue,
-) {
-    wire_Joined_try_new_from_parts_impl(port_, parts)
-}
-
-#[wasm_bindgen]
 pub fn wire_Split_try_from_data(
     port_: flutter_rust_bridge::for_generated::MessagePort,
     data: Box<[u8]>,
@@ -358,6 +311,24 @@ pub fn wire_Split_try_from_data(
     options: flutter_rust_bridge::for_generated::wasm_bindgen::JsValue,
 ) {
     wire_Split_try_from_data_impl(port_, data, file_type, options)
+}
+
+#[wasm_bindgen]
+pub fn rust_arc_increment_strong_count_RustOpaque_flutter_rust_bridgefor_generatedrust_asyncRwLockContinuousJoinResult(
+    ptr: *const std::ffi::c_void,
+) {
+    unsafe {
+        StdArc::<flutter_rust_bridge::for_generated::rust_async::RwLock<ContinuousJoinResult>>::increment_strong_count(ptr as _);
+    }
+}
+
+#[wasm_bindgen]
+pub fn rust_arc_decrement_strong_count_RustOpaque_flutter_rust_bridgefor_generatedrust_asyncRwLockContinuousJoinResult(
+    ptr: *const std::ffi::c_void,
+) {
+    unsafe {
+        StdArc::<flutter_rust_bridge::for_generated::rust_async::RwLock<ContinuousJoinResult>>::decrement_strong_count(ptr as _);
+    }
 }
 
 #[wasm_bindgen]
@@ -375,24 +346,6 @@ pub fn rust_arc_decrement_strong_count_RustOpaque_flutter_rust_bridgefor_generat
 ) {
     unsafe {
         StdArc::<flutter_rust_bridge::for_generated::rust_async::RwLock<ContinuousJoiner>>::decrement_strong_count(ptr as _);
-    }
-}
-
-#[wasm_bindgen]
-pub fn rust_arc_increment_strong_count_RustOpaque_flutter_rust_bridgefor_generatedrust_asyncRwLock_Joined(
-    ptr: *const std::ffi::c_void,
-) {
-    unsafe {
-        StdArc::<flutter_rust_bridge::for_generated::rust_async::RwLock<_Joined>>::increment_strong_count(ptr as _);
-    }
-}
-
-#[wasm_bindgen]
-pub fn rust_arc_decrement_strong_count_RustOpaque_flutter_rust_bridgefor_generatedrust_asyncRwLock_Joined(
-    ptr: *const std::ffi::c_void,
-) {
-    unsafe {
-        StdArc::<flutter_rust_bridge::for_generated::rust_async::RwLock<_Joined>>::decrement_strong_count(ptr as _);
     }
 }
 
