@@ -1,3 +1,3 @@
 #!/bin/bash
 cd rust
-make all
+make ios
