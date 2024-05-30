@@ -19,7 +19,10 @@ init:
 ## :
 
 ## all: Compile iOS, Android & Linux binaries
-all: init unit-test jniLibs xcframework zip
+all: init unit-test jniLibs xcframework zip copy-build
+
+# Compile iOS
+ios: init xcframework zip copy-build
  
 linux:
 	@echo "[Creating linux binary ...] $@"
@@ -47,10 +50,10 @@ unit-test:
 	@echo "[Creating unit-test binaries ...] $@"
 	sh unit-test.sh $(VERSION)
 	@echo "[Done ✅]"
-# copy-build:
-# 	@echo "[COPYING BINARIES TO FLUTTER PACKAGE ...] $@"
-# 	sh copy.sh
-# 	@echo "[Done ✅]"
+copy-build:
+	@echo "[COPYING BINARIES TO FLUTTER PACKAGE ...] $@"
+	sh copy.sh $(VERSION)
+	@echo "[Done ✅]"
 
 
 

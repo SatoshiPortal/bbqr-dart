@@ -14,23 +14,7 @@ config = read_key_value_pairs.call(config_file_path)
 tag_version = "#{config['TAG_VERSION']}"
 framework = 'libbbqr.xcframework'
 lib_name = "libbbqr.#{tag_version}"
-url = "#{config['REPOSITORY_URL']}#{tag_version}/#{lib_name}.zip"
 frameworks_dir = "ios"
-
-`
-cd ../
-if [ ! -d #{lib_name} ]; then
-    curl -L #{url} -o #{lib_name}.zip
-    unzip #{lib_name}.zip
-    rm -rf __MACOSX
-    rm #{lib_name}.zip
-fi
-
-if [ ! -d #{frameworks_dir}/#{framework} ]; then
-        cp -R #{lib_name}/#{framework} #{frameworks_dir}
-fi
-`
-
 #
 # To learn more about a Podspec see http://guides.cocoapods.org/syntax/podspec.html.
 # Run `pod lib lint boltz_dart.podspec` to validate before publishing.
@@ -47,6 +31,7 @@ A boltz swap client
   s.author           = { 'SatoshiPortal' => 'ishi@satoshiportal.com' }
 
 
+  s.source           = { :path => '.' }
   s.source_files = 'Classes/**/*'
   s.dependency 'Flutter'
   s.platform = :ios, '12.0'

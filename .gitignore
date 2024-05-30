@@ -48,12 +48,9 @@ native/target
 xcuserdata
 # jniLibs
 
-ios/libboltz_dart.xcframework
-macos/libboltz_dart.xcframework
-
 **Cargo.lock
 rust/target/
 rust/builds/
 pubspec.lock
-test/libboltz_dart.dylib
-test/libboltz_dart.so
+ios/libbbqr.xcframework
+macos/libbbqr.xcframework

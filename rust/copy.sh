@@ -14,5 +14,6 @@
     #    cp target/armv7-linux-androideabi/release/librust_bdk_ffi.so  ../android/src/main/jniLibs/armeabi-v7a
     #    cp target/i686-linux-android/release/librust_bdk_ffi.so  ../android/src/main/jniLibs/x86
     #    cp target/x86_64-linux-android/release/librust_bdk_ffi.so  ../android/src/main/jniLibs/x86_86
-    #    cp -r bdk.0.30.0/rust_bdk_ffi.xcframework ../macos/
-    #    cp -r bdk.0.30.0/rust_bdk_ffi.xcframework ../ios/
+    # cp -r libbbqr.$1/libbbqr.xcframework ../macos/
+    
+    cp -r target/libbbqr.$1/libbbqr.xcframework ../ios/

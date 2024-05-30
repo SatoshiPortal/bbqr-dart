@@ -7,7 +7,7 @@ NAME="libbbqr"
 BUILD_DIR=$ROOT/$NAME.$VERSION
 # MACOS_DIR="../macos" # final binaries stored here
 # IOS_DIR="../ios" # final binaries stored here
-FRAMEWORK="libbqr.xcframework"
+FRAMEWORK="libbbqr.xcframework"
 LIBNAME=libbbqr.a
 
 IOS_LIPO_DIR=$BUILD_DIR/ios-sim-lipo
@@ -40,6 +40,7 @@ do
 done
 
 cargo install cargo-lipo
+
 # Create XCFramework zip
 lipo -create -output $IOS_LIPO \
         target/aarch64-apple-ios-sim/release/$LIBNAME \
@@ -49,11 +50,12 @@ lipo -create -output $IOS_LIPO \
 #         target/aarch64-apple-darwin/release/$LIBNAME \
 #         target/x86_64-apple-darwin/release/$LIBNAME
 
-
+rm -rf $BUILD_DIR/$FRAMEWORK
 xcodebuild -create-xcframework \
         -library $IOS_LIPO \
         -library target/aarch64-apple-ios/release/$LIBNAME \
         -output $BUILD_DIR/$FRAMEWORK
+
 # xcodebuild -create-xcframework \
 #         -library $IOS_LIPO \
 #         -library $MAC_LIPO \
