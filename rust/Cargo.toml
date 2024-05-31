@@ -11,6 +11,10 @@ crate-type = ["cdylib", "staticlib"]
 
 [dependencies]
 bbqr = { git = "https://github.com/SatoshiPortal/bbqr-rust.git", rev = "2296a713beb58a175eb620a087f7da6826dc6f70", default-features = false }
+
+# static link libz-sys
+libz-sys = { version = "1.1", features = ["static"] }
+
 flutter_rust_bridge = "=2.0.0-dev.31"
 anyhow = "1.0.68"
 serde = "1.0.89"
