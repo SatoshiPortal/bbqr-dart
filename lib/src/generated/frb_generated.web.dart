@@ -658,9 +658,10 @@ class BbqrCoreWire implements BaseWire {
   dynamic /* flutter_rust_bridge::for_generated::WireSyncRust2DartDco */
       wire_Split_parts(Object that) => wasmModule.wire_Split_parts(that);
 
-  void wire_Split_try_from_data(NativePortType port_, List<int> data,
-          int file_type, List<dynamic> options) =>
-      wasmModule.wire_Split_try_from_data(port_, data, file_type, options);
+  dynamic /* flutter_rust_bridge::for_generated::WireSyncRust2DartDco */
+      wire_Split_try_from_data(
+              List<int> data, int file_type, List<dynamic> options) =>
+          wasmModule.wire_Split_try_from_data(data, file_type, options);
 
   dynamic /* flutter_rust_bridge::for_generated::WireSyncRust2DartDco */
       wire_Split_version(Object that) => wasmModule.wire_Split_version(that);
@@ -721,8 +722,9 @@ class BbqrCoreWasmModule implements WasmModule {
   external dynamic /* flutter_rust_bridge::for_generated::WireSyncRust2DartDco */
       wire_Split_parts(Object that);
 
-  external void wire_Split_try_from_data(NativePortType port_, List<int> data,
-      int file_type, List<dynamic> options);
+  external dynamic /* flutter_rust_bridge::for_generated::WireSyncRust2DartDco */
+      wire_Split_try_from_data(
+          List<int> data, int file_type, List<dynamic> options);
 
   external dynamic /* flutter_rust_bridge::for_generated::WireSyncRust2DartDco */
       wire_Split_version(Object that);

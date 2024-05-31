@@ -864,14 +864,12 @@ class BbqrCoreWire implements BaseWire {
   late final _wire_Split_parts =
       _wire_Split_partsPtr.asFunction<WireSyncRust2DartDco Function(int)>();
 
-  void wire_Split_try_from_data(
-    int port_,
+  WireSyncRust2DartDco wire_Split_try_from_data(
     ffi.Pointer<wire_cst_list_prim_u_8_loose> data,
     int file_type,
     ffi.Pointer<wire_cst_split_options> options,
   ) {
     return _wire_Split_try_from_data(
-      port_,
       data,
       file_type,
       options,
@@ -880,15 +878,16 @@ class BbqrCoreWire implements BaseWire {
 
   late final _wire_Split_try_from_dataPtr = _lookup<
           ffi.NativeFunction<
-              ffi.Void Function(
-                  ffi.Int64,
+              WireSyncRust2DartDco Function(
                   ffi.Pointer<wire_cst_list_prim_u_8_loose>,
                   ffi.Int32,
                   ffi.Pointer<wire_cst_split_options>)>>(
       'frbgen_bbqr_dart_wire_Split_try_from_data');
   late final _wire_Split_try_from_data =
       _wire_Split_try_from_dataPtr.asFunction<
-          void Function(int, ffi.Pointer<wire_cst_list_prim_u_8_loose>, int,
+          WireSyncRust2DartDco Function(
+              ffi.Pointer<wire_cst_list_prim_u_8_loose>,
+              int,
               ffi.Pointer<wire_cst_split_options>)>();
 
   WireSyncRust2DartDco wire_Split_version(

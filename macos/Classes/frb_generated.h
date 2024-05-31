@@ -216,10 +216,9 @@ WireSyncRust2DartDco frbgen_bbqr_dart_wire_Split_encoding(uintptr_t that);
 
 WireSyncRust2DartDco frbgen_bbqr_dart_wire_Split_parts(uintptr_t that);
 
-void frbgen_bbqr_dart_wire_Split_try_from_data(int64_t port_,
-                                               struct wire_cst_list_prim_u_8_loose *data,
-                                               int32_t file_type,
-                                               struct wire_cst_split_options *options);
+WireSyncRust2DartDco frbgen_bbqr_dart_wire_Split_try_from_data(struct wire_cst_list_prim_u_8_loose *data,
+                                                               int32_t file_type,
+                                                               struct wire_cst_split_options *options);
 
 WireSyncRust2DartDco frbgen_bbqr_dart_wire_Split_version(uintptr_t that);
 

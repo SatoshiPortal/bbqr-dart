@@ -93,10 +93,10 @@ void testPackage() async {
         minVersion: bbqr.Version.v01,
         maxVersion: bbqr.Version.v40);
 
-    bbqr.Split split = await bbqr.Split.tryFromData(
+    bbqr.Split split = bbqr.Split.tryFromData(
         data: bytes, fileType: bbqr.FileType.unicodeText, options: options);
 
-    bbqr.Split split2 = await bbqr.Split.tryFromData(
+    bbqr.Split split2 = bbqr.Split.tryFromData(
         data: bytes, fileType: bbqr.FileType.unicodeText, options: options2);
 
     // options2 is the same as defaultSplitOptions
@@ -125,7 +125,7 @@ void testPackage() async {
         minVersion: bbqr.Version.v01,
         maxVersion: bbqr.Version.v10);
 
-    bbqr.Split split3 = await bbqr.Split.tryFromData(
+    bbqr.Split split3 = bbqr.Split.tryFromData(
         data: bytes, fileType: bbqr.FileType.unicodeText, options: options3);
 
     assert(split3.parts().length > 1);

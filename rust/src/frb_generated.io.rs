@@ -468,12 +468,11 @@ pub extern "C" fn frbgen_bbqr_dart_wire_Split_parts(
 
 #[no_mangle]
 pub extern "C" fn frbgen_bbqr_dart_wire_Split_try_from_data(
-    port_: i64,
     data: *mut wire_cst_list_prim_u_8_loose,
     file_type: i32,
     options: *mut wire_cst_split_options,
-) {
-    wire_Split_try_from_data_impl(port_, data, file_type, options)
+) -> flutter_rust_bridge::for_generated::WireSyncRust2DartDco {
+    wire_Split_try_from_data_impl(data, file_type, options)
 }
 
 #[no_mangle]

@@ -63,7 +63,7 @@ class Split extends RustOpaque {
   List<String> parts({dynamic hint}) =>
       BbqrCore.instance.api.splitParts(that: this, hint: hint);
 
-  static Future<Split> tryFromData(
+  static Split tryFromData(
           {required List<int> data,
           required FileType fileType,
           required SplitOptions options,

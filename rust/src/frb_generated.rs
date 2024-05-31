@@ -112,26 +112,23 @@ fn wire_Split_parts_impl(
     )
 }
 fn wire_Split_try_from_data_impl(
-    port_: flutter_rust_bridge::for_generated::MessagePort,
     data: impl CstDecode<Vec<u8>>,
     file_type: impl CstDecode<crate::api::types::FileType>,
     options: impl CstDecode<crate::api::types::SplitOptions>,
-) {
-    FLUTTER_RUST_BRIDGE_HANDLER.wrap_normal::<flutter_rust_bridge::for_generated::DcoCodec, _, _>(
+) -> flutter_rust_bridge::for_generated::WireSyncRust2DartDco {
+    FLUTTER_RUST_BRIDGE_HANDLER.wrap_sync::<flutter_rust_bridge::for_generated::DcoCodec, _>(
         flutter_rust_bridge::for_generated::TaskInfo {
             debug_name: "Split_try_from_data",
-            port: Some(port_),
-            mode: flutter_rust_bridge::for_generated::FfiCallMode::Normal,
+            port: None,
+            mode: flutter_rust_bridge::for_generated::FfiCallMode::Sync,
         },
         move || {
             let api_data = data.cst_decode();
             let api_file_type = file_type.cst_decode();
             let api_options = options.cst_decode();
-            move |context| {
-                transform_result_dco((move || {
-                    crate::api::types::_Split::try_from_data(api_data, api_file_type, api_options)
-                })())
-            }
+            transform_result_dco((move || {
+                crate::api::types::_Split::try_from_data(api_data, api_file_type, api_options)
+            })())
         },
     )
 }

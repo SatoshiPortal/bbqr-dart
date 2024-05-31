@@ -339,12 +339,11 @@ pub fn wire_Split_parts(
 
 #[wasm_bindgen]
 pub fn wire_Split_try_from_data(
-    port_: flutter_rust_bridge::for_generated::MessagePort,
     data: Box<[u8]>,
     file_type: i32,
     options: flutter_rust_bridge::for_generated::wasm_bindgen::JsValue,
-) {
-    wire_Split_try_from_data_impl(port_, data, file_type, options)
+) -> flutter_rust_bridge::for_generated::WireSyncRust2DartDco {
+    wire_Split_try_from_data_impl(data, file_type, options)
 }
 
 #[wasm_bindgen]

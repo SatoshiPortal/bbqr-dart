@@ -24,10 +24,10 @@ void main() {
           minVersion: Version.v01,
           maxVersion: Version.v40);
 
-      Split split = await Split.tryFromData(
+      Split split = Split.tryFromData(
           data: bytes, fileType: FileType.unicodeText, options: options);
 
-      Split split2 = await Split.tryFromData(
+      Split split2 = Split.tryFromData(
           data: bytes, fileType: FileType.unicodeText, options: options2);
 
       // options2 is the same as defaultSplitOptions
@@ -57,7 +57,7 @@ void main() {
           minVersion: Version.v01,
           maxVersion: Version.v10);
 
-      Split split3 = await Split.tryFromData(
+      Split split3 = Split.tryFromData(
           data: bytes, fileType: FileType.unicodeText, options: options3);
 
       assert(split3.parts().length > 1);

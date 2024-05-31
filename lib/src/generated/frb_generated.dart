@@ -73,7 +73,7 @@ abstract class BbqrCoreApi extends BaseApi {
 
   List<String> splitParts({required Split that, dynamic hint});
 
-  Future<Split> splitTryFromData(
+  Split splitTryFromData(
       {required List<int> data,
       required FileType fileType,
       required SplitOptions options,
@@ -210,17 +210,17 @@ class BbqrCoreApiImpl extends BbqrCoreApiImplPlatform implements BbqrCoreApi {
       );
 
   @override
-  Future<Split> splitTryFromData(
+  Split splitTryFromData(
       {required List<int> data,
       required FileType fileType,
       required SplitOptions options,
       dynamic hint}) {
-    return handler.executeNormal(NormalTask(
-      callFfi: (port_) {
+    return handler.executeSync(SyncTask(
+      callFfi: () {
         var arg0 = cst_encode_list_prim_u_8_loose(data);
         var arg1 = cst_encode_file_type(fileType);
         var arg2 = cst_encode_box_autoadd_split_options(options);
-        return wire.wire_Split_try_from_data(port_, arg0, arg1, arg2);
+        return wire.wire_Split_try_from_data(arg0, arg1, arg2);
       },
       codec: DcoCodec(
         decodeSuccessData:

@@ -134,6 +134,7 @@ pub enum _FileType {
 }
 
 impl _Split {
+    #[frb(sync)]
     pub fn try_from_data(
         data: Vec<u8>,
         file_type: FileType,
