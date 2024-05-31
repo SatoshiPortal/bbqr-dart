@@ -5,7 +5,8 @@ import 'package:bbqr_dart/bbqr.dart' as bbqr;
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
-void main() {
+void main() async {
+  await bbqr.LibBbqr.init();
   testPackage();
   runApp(const MyApp());
 }
@@ -62,6 +63,9 @@ class _MyHomePageState extends State<MyHomePage> {
               '$_counter',
               style: Theme.of(context).textTheme.headlineMedium,
             ),
+
+            // QR code
+            Text(qrCode())
           ],
         ),
       ),
@@ -148,4 +152,17 @@ void testPackage() async {
   } catch (e) {
     log(e.toString());
   }
+}
+
+String qrCode() {
+  const template = "bacon bacon bacon bacon bacon bacon bacon bacon bacon";
+  String large = template * 100;
+  List<int> bytes = utf8.encode(large);
+
+  bbqr.SplitOptions options = bbqr.defaultSplitOptions();
+
+  bbqr.Split split = bbqr.Split.tryFromData(
+      data: bytes, fileType: bbqr.FileType.unicodeText, options: options);
+
+  return split.parts().first;
 }
