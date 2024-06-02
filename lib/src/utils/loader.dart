@@ -101,7 +101,7 @@ class LibBbqr {
         await BbqrCore.init(externalLibrary: Dylib.getDylib());
       }
     } catch (e) {
-      throw Exception("Failed to initialize bbqr");
+      throw Exception("Failed to initialize bbqr: ${e.toString()}");
     }
   }
 }
