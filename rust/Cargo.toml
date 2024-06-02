@@ -1,11 +1,11 @@
 [package]
-name = "bbqr"
+name = "bbqr_dart"
 authors = [""]
 version = "0.1.0"
 edition = "2021"
 
 [lib]
-name = "bbqr"
+name = "bbqr_dart"
 doctest = false
 crate-type = ["cdylib", "staticlib"] 
 

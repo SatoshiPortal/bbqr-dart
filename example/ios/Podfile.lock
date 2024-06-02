@@ -1,6 +1,5 @@
 PODS:
-  - bbqr_dart (0.1.0):
-    - Flutter
+  - bbqr_dart (0.1.0)
   - Flutter (1.0.0)
 
 DEPENDENCIES:
@@ -14,7 +13,7 @@ EXTERNAL SOURCES:
     :path: Flutter
 
 SPEC CHECKSUMS:
-  bbqr_dart: 4ddf0fb60c6ddc509f9af6d0e3d0cf48ca1f5d88
+  bbqr_dart: 208156cdff93cd6bd0429c53da8cf02cbb9ad6d2
   Flutter: e0871f40cf51350855a761d2e70bf5af5b9b5de7
 
 PODFILE CHECKSUM: 819463e6a0290f5a72f145ba7cde16e8b6ef0796

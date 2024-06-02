@@ -72,7 +72,21 @@ class Dylib {
     }
   }
 
+  // DynamicLibrary createLibraryImpl() {
+  //   const base = 'libbbqr';
+  //
+  //   if (Platform.isIOS || Platform.isMacOS) {
+  //     return DynamicLibrary.open('$base.framework/$base');
+  //   } else if (Platform.isWindows) {
+  //     return DynamicLibrary.open('$base.dll');
+  //   } else {
+  //     return DynamicLibrary.open('lib$base.so');
+  //   }
+  // }
+
   static ExternalLibrary getDylib() {
+    const base = 'bbqr_dart';
+    
     if (Platform.environment['FLUTTER_TEST'] == 'true') {
       try {
         return ExternalLibrary.open(_getUniTestDylibDir(Directory.current));
@@ -80,7 +94,9 @@ class Dylib {
         throw Exception("Unable to open the unit test dylib!");
       }
     }
-    if (Platform.isIOS || Platform.isMacOS) {
+    if (Platform.isIOS) {
+      return ExternalLibrary.open("$base.framework/$base");
+    } else if (Platform.isMacOS) {
       return ExternalLibrary.open("$name.dylib");
     } else if (Platform.isAndroid) {
       return ExternalLibrary.open("$name.so");
