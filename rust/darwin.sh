@@ -1,66 +1,42 @@
 #!/bin/bash
 
 # Setup
-ROOT="target"
-VERSION=$1
-NAME="libbbqr"
-BUILD_DIR=$ROOT/$NAME.$VERSION
-# MACOS_DIR="../macos" # final binaries stored here
-# IOS_DIR="../ios" # final binaries stored here
-FRAMEWORK="libbbqr.xcframework"
-LIBNAME=libbbqr.a
-
-IOS_LIPO_DIR=$BUILD_DIR/ios-sim-lipo
-# MAC_LIPO_DIR=$BUILD_DIR/mac-lipo
-IOS_LIPO=$IOS_LIPO_DIR/$LIBNAME
-# MAC_LIPO=$MAC_LIPO_DIR/$LIBNAME
-
-if [ -d "$IOS_LIPO_DIR" ]; then rm -r $IOS_LIPO_DIR
-fi
-# if [ -d "$MAC_LIPO_DIR" ]; then rm -r $MAC_LIPO_DIR
-# fi
-if [ -d "$BUILD_DIR/$FRAMEWORK" ]; then rm -r $BUILD_DIR/$FRAMEWORK
-fi
-
-mkdir -p $IOS_LIPO_DIR $MAC_LIPO_DIR
+BUILD_DIR=platform-build
+mkdir $BUILD_DIR
+cd $BUILD_DIR
 
 # Build static libs
 for TARGET in \
-    aarch64-apple-ios \
-    x86_64-apple-ios \
-    aarch64-apple-ios-sim
-#     aarch64-apple-ios \
-#     x86_64-apple-ios \
-#     aarch64-apple-ios-sim \
-#     x86_64-apple-darwin \
-#     aarch64-apple-darwin
+        aarch64-apple-ios x86_64-apple-ios aarch64-apple-ios-sim \
+        x86_64-apple-darwin aarch64-apple-darwin
 do
     rustup target add $TARGET
     cargo build -r --target=$TARGET
 done
 
-cargo install cargo-lipo
-
 # Create XCFramework zip
-lipo -create -output $IOS_LIPO \
-        target/aarch64-apple-ios-sim/release/$LIBNAME \
-        target/x86_64-apple-ios/release/$LIBNAME
+FRAMEWORK="bbqr_dart.xcframework"
+LIBNAME=libbbqr.a
 
-# lipo -create -output $MAC_LIPO \
-#         target/aarch64-apple-darwin/release/$LIBNAME \
-#         target/x86_64-apple-darwin/release/$LIBNAME
+mkdir mac-lipo ios-sim-lipo
 
-rm -rf $BUILD_DIR/$FRAMEWORK
+IOS_SIM_LIPO=ios-sim-lipo/$LIBNAME
+MAC_LIPO=mac-lipo/$LIBNAME
+
+lipo -create -output $IOS_SIM_LIPO \
+        ../target/aarch64-apple-ios-sim/release/$LIBNAME \
+        ../target/x86_64-apple-ios/release/$LIBNAME
+
+lipo -create -output $MAC_LIPO \
+        ../target/aarch64-apple-darwin/release/$LIBNAME \
+        ../target/x86_64-apple-darwin/release/$LIBNAME
+
 xcodebuild -create-xcframework \
-        -library $IOS_LIPO \
-        -library target/aarch64-apple-ios/release/$LIBNAME \
-        -output $BUILD_DIR/$FRAMEWORK
+        -library $IOS_SIM_LIPO \
+        -library $MAC_LIPO \
+        -library ../target/aarch64-apple-ios/release/$LIBNAME \
+        -output $FRAMEWORK
 
-# xcodebuild -create-xcframework \
-#         -library $IOS_LIPO \
-#         -library $MAC_LIPO \
-#         -library target/aarch64-apple-ios/release/$LIBNAME \
-#         -output $BUILD_DIR/$FRAMEWORK
-
-# rm -rf $IOS_LIPO_DIR $MAC_LIPO_DIR
-rm -rf $IOS_LIPO_DIR 
+# Cleanup
+# rm -rf ios-sim-lipo mac-lipo $FRAMEWORK
+rm -rf ios-sim-lipo mac-lipo

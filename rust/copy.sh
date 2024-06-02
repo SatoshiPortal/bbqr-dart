@@ -15,5 +15,8 @@
     #    cp target/i686-linux-android/release/librust_bdk_ffi.so  ../android/src/main/jniLibs/x86
     #    cp target/x86_64-linux-android/release/librust_bdk_ffi.so  ../android/src/main/jniLibs/x86_86
     # cp -r libbbqr.$1/libbbqr.xcframework ../macos/
+    mkdir -p ../ios/Frameworks
+    mkdir -p ../macos/Frameworks
     
-    cp -r target/libbbqr.$1/libbbqr.xcframework ../ios/
+    cp -r platform-build/BbqrDart.xcframework ../ios/Frameworks/
+    cp -r platform-build/BbqrDart.xcframework ../macos/Frameworks/
