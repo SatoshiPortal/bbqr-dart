@@ -5,3 +5,4 @@ c_output: ios/Classes/frb_generated.h
 duplicated_c_output: [macos/Classes/frb_generated.h]
 dart_entrypoint_class_name: BbqrCore
 # llvm_path: ["/opt/homebrew/opt/llvm/bin"]
+enable_lifetime: true
