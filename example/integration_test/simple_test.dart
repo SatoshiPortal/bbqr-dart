@@ -3,7 +3,6 @@ import 'dart:convert';
 import 'package:flutter/foundation.dart';
 import 'package:integration_test/integration_test.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:bbqr/bbqr.dart';
 
 void main() {
   IntegrationTestWidgetsFlutterBinding.ensureInitialized();
@@ -22,10 +21,10 @@ void main() {
       // examples of different options
       SplitOptions options = defaultSplitOptions();
 
-      SplitOptions options2 = SplitOptions(
+      final options2 = SplitOptions(
         encoding: Encoding.zlib,
-        minSplitNumber: 1,
-        maxSplitNumber: 1000,
+        minSplitNumber: BigInt.from(1),
+        maxSplitNumber: BigInt.from(1000),
         minVersion: Version.v01,
         maxVersion: Version.v40,
       );
@@ -50,27 +49,26 @@ void main() {
       ContinuousJoiner joiner = ContinuousJoiner();
 
       assert(split.parts().length == 1);
-      String part = split.parts().first;
+      final part = split.parts().first;
 
-      JoinResult result = joiner.addPart(part: part);
+      final result = joiner.addPart(part_: part);
 
       if (result case JoinResult_Complete(:final joined)) {
         assert(listEquals(joined.data, bytes));
       }
-      ;
 
       // continuous joiner with multiple parts
       ContinuousJoiner joiner2 = ContinuousJoiner();
 
-      SplitOptions options3 = SplitOptions(
+      final options3 = SplitOptions(
         encoding: Encoding.hex,
-        minSplitNumber: 1,
-        maxSplitNumber: 1000,
+        minSplitNumber: BigInt.from(1),
+        maxSplitNumber: BigInt.from(1000),
         minVersion: Version.v01,
         maxVersion: Version.v10,
       );
 
-      Split split3 = Split.tryFromData(
+      final split3 = Split.tryFromData(
         data: bytes,
         fileType: FileType.unicodeText,
         options: options3,
@@ -80,7 +78,7 @@ void main() {
 
       bool isComplete = false;
       for (String part in split3.parts()) {
-        JoinResult result = joiner2.addPart(part: part);
+        final result = joiner2.addPart(part_: part);
 
         if (result case JoinResult_Complete(:final joined)) {
           isComplete = true;
@@ -91,7 +89,7 @@ void main() {
       assert(isComplete);
 
       // join all at once
-      Joined joined = Joined.tryNewFromParts(parts: split3.parts());
+      final joined = Joined.tryNewFromParts(parts: split3.parts());
       assert(listEquals(joined.data, bytes));
     });
   });

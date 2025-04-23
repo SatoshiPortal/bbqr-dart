@@ -82,27 +82,27 @@ void testPackage() async {
 
     const template = "bacon bacon bacon bacon bacon bacon bacon bacon bacon";
 
-    String large = template * 100;
-    List<int> bytes = utf8.encode(large);
+    final large = template * 100;
+    final bytes = utf8.encode(large);
 
     // examples of different options
-    bbqr.SplitOptions options = bbqr.defaultSplitOptions();
+    final options = bbqr.defaultSplitOptions();
 
-    const options2 = bbqr.SplitOptions(
+    final options2 = bbqr.SplitOptions(
       encoding: bbqr.Encoding.zlib,
-      minSplitNumber: 1,
-      maxSplitNumber: 1000,
+      minSplitNumber: BigInt.from(1),
+      maxSplitNumber: BigInt.from(1000),
       minVersion: bbqr.Version.v01,
       maxVersion: bbqr.Version.v40,
     );
 
-    bbqr.Split split = bbqr.Split.tryFromData(
+    final split = bbqr.Split.tryFromData(
       data: bytes,
       fileType: bbqr.FileType.unicodeText,
       options: options,
     );
 
-    bbqr.Split split2 = bbqr.Split.tryFromData(
+    final split2 = bbqr.Split.tryFromData(
       data: bytes,
       fileType: bbqr.FileType.unicodeText,
       options: options2,
@@ -116,9 +116,9 @@ void testPackage() async {
     bbqr.ContinuousJoiner joiner = bbqr.ContinuousJoiner();
 
     assert(split.parts().length == 1);
-    String part = split.parts().first;
+    final part = split.parts().first;
 
-    bbqr.JoinResult result = joiner.addPart(part: part);
+    final result = joiner.addPart(part_: part);
 
     if (result case bbqr.JoinResult_Complete(:final joined)) {
       assert(listEquals(joined.data, bytes));
@@ -127,15 +127,15 @@ void testPackage() async {
     // continuous joiner with multiple parts
     bbqr.ContinuousJoiner joiner2 = bbqr.ContinuousJoiner();
 
-    const options3 = bbqr.SplitOptions(
+    final options3 = bbqr.SplitOptions(
       encoding: bbqr.Encoding.hex,
-      minSplitNumber: 1,
-      maxSplitNumber: 1000,
+      minSplitNumber: BigInt.from(1),
+      maxSplitNumber: BigInt.from(1000),
       minVersion: bbqr.Version.v01,
       maxVersion: bbqr.Version.v10,
     );
 
-    bbqr.Split split3 = bbqr.Split.tryFromData(
+    final split3 = bbqr.Split.tryFromData(
       data: bytes,
       fileType: bbqr.FileType.unicodeText,
       options: options3,
@@ -145,7 +145,7 @@ void testPackage() async {
 
     bool isComplete = false;
     for (String part in split3.parts()) {
-      bbqr.JoinResult result = joiner2.addPart(part: part);
+      bbqr.JoinResult result = joiner2.addPart(part_: part);
 
       if (result case bbqr.JoinResult_Complete(:final joined)) {
         isComplete = true;
@@ -156,7 +156,7 @@ void testPackage() async {
     assert(isComplete);
 
     // join all at once
-    bbqr.Joined joined = bbqr.Joined.tryNewFromParts(parts: split3.parts());
+    final joined = bbqr.Joined.tryNewFromParts(parts: split3.parts());
     assert(listEquals(joined.data, bytes));
   } catch (e) {
     log(e.toString());
@@ -165,12 +165,12 @@ void testPackage() async {
 
 String qrCode() {
   const template = "bacon bacon bacon bacon bacon bacon bacon bacon bacon";
-  String large = template * 100;
-  List<int> bytes = utf8.encode(large);
+  final large = template * 100;
+  final bytes = utf8.encode(large);
 
-  bbqr.SplitOptions options = bbqr.defaultSplitOptions();
+  final options = bbqr.defaultSplitOptions();
 
-  bbqr.Split split = bbqr.Split.tryFromData(
+  final split = bbqr.Split.tryFromData(
     data: bytes,
     fileType: bbqr.FileType.unicodeText,
     options: options,
