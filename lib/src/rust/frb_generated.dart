@@ -13,15 +13,15 @@ import 'frb_generated.io.dart'
 import 'package:flutter_rust_bridge/flutter_rust_bridge_for_generated.dart';
 
 /// Main entrypoint of the Rust API
-class RustLib extends BaseEntrypoint<RustLibApi, RustLibApiImpl, RustLibWire> {
+class LibBbqr extends BaseEntrypoint<LibBbqrApi, LibBbqrApiImpl, LibBbqrWire> {
   @internal
-  static final instance = RustLib._();
+  static final instance = LibBbqr._();
 
-  RustLib._();
+  LibBbqr._();
 
   /// Initialize flutter_rust_bridge
   static Future<void> init({
-    RustLibApi? api,
+    LibBbqrApi? api,
     BaseHandler? handler,
     ExternalLibrary? externalLibrary,
   }) async {
@@ -34,7 +34,7 @@ class RustLib extends BaseEntrypoint<RustLibApi, RustLibApiImpl, RustLibWire> {
 
   /// Initialize flutter_rust_bridge in mock mode.
   /// No libraries for FFI are loaded.
-  static void initMock({required RustLibApi api}) {
+  static void initMock({required LibBbqrApi api}) {
     instance.initMockImpl(api: api);
   }
 
@@ -45,12 +45,12 @@ class RustLib extends BaseEntrypoint<RustLibApi, RustLibApiImpl, RustLibWire> {
   static void dispose() => instance.disposeImpl();
 
   @override
-  ApiImplConstructor<RustLibApiImpl, RustLibWire> get apiImplConstructor =>
-      RustLibApiImpl.new;
+  ApiImplConstructor<LibBbqrApiImpl, LibBbqrWire> get apiImplConstructor =>
+      LibBbqrApiImpl.new;
 
   @override
-  WireConstructor<RustLibWire> get wireConstructor =>
-      RustLibWire.fromExternalLibrary;
+  WireConstructor<LibBbqrWire> get wireConstructor =>
+      LibBbqrWire.fromExternalLibrary;
 
   @override
   Future<void> executeRustInitializers() async {}
@@ -73,7 +73,7 @@ class RustLib extends BaseEntrypoint<RustLibApi, RustLibApiImpl, RustLibWire> {
       );
 }
 
-abstract class RustLibApi extends BaseApi {
+abstract class LibBbqrApi extends BaseApi {
   JoinResult crateApiTypesContinuousJoinerAddPart({
     required ContinuousJoiner that,
     required String part_,
@@ -97,8 +97,8 @@ abstract class RustLibApi extends BaseApi {
   get rust_arc_decrement_strong_count_ContinuousJoinerPtr;
 }
 
-class RustLibApiImpl extends RustLibApiImplPlatform implements RustLibApi {
-  RustLibApiImpl({
+class LibBbqrApiImpl extends LibBbqrApiImplPlatform implements LibBbqrApi {
+  LibBbqrApiImpl({
     required super.handler,
     required super.wire,
     required super.generalizedFrbRustBinding,
@@ -1085,16 +1085,16 @@ class ContinuousJoinerImpl extends RustOpaque implements ContinuousJoiner {
 
   static final _kStaticData = RustArcStaticData(
     rustArcIncrementStrongCount:
-        RustLib.instance.api.rust_arc_increment_strong_count_ContinuousJoiner,
+        LibBbqr.instance.api.rust_arc_increment_strong_count_ContinuousJoiner,
     rustArcDecrementStrongCount:
-        RustLib.instance.api.rust_arc_decrement_strong_count_ContinuousJoiner,
+        LibBbqr.instance.api.rust_arc_decrement_strong_count_ContinuousJoiner,
     rustArcDecrementStrongCountPtr:
-        RustLib
+        LibBbqr
             .instance
             .api
             .rust_arc_decrement_strong_count_ContinuousJoinerPtr,
   );
 
-  JoinResult addPart({required String part_}) => RustLib.instance.api
+  JoinResult addPart({required String part_}) => LibBbqr.instance.api
       .crateApiTypesContinuousJoinerAddPart(that: this, part_: part_);
 }

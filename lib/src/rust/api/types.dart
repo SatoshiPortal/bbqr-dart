@@ -14,17 +14,17 @@ part 'types.freezed.dart';
 // These functions are ignored (category: IgnoreBecauseNotAllowedOwner): `encoding`, `parts`, `try_from_data`, `version`
 
 SplitOptions defaultSplitOptions() =>
-    RustLib.instance.api.crateApiTypesDefaultSplitOptions();
+    LibBbqr.instance.api.crateApiTypesDefaultSplitOptions();
 
 // Rust type: RustOpaqueMoi<flutter_rust_bridge::for_generated::RustAutoOpaqueInner<ContinuousJoiner>>
 abstract class ContinuousJoiner implements RustOpaqueInterface {
   JoinResult addPart({required String part_});
 
   static Future<ContinuousJoiner> default_() =>
-      RustLib.instance.api.crateApiTypesContinuousJoinerDefault();
+      LibBbqr.instance.api.crateApiTypesContinuousJoinerDefault();
 
   factory ContinuousJoiner() =>
-      RustLib.instance.api.crateApiTypesContinuousJoinerNew();
+      LibBbqr.instance.api.crateApiTypesContinuousJoinerNew();
 }
 
 enum Encoding { hex, base32, zlib }
@@ -61,7 +61,7 @@ class Joined {
   });
 
   static Joined tryNewFromParts({required List<String> parts}) =>
-      RustLib.instance.api.crateApiTypesJoinedTryNewFromParts(parts: parts);
+      LibBbqr.instance.api.crateApiTypesJoinedTryNewFromParts(parts: parts);
 
   @override
   int get hashCode => encoding.hashCode ^ fileType.hashCode ^ data.hashCode;
