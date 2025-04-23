@@ -20,7 +20,7 @@ pub struct _Split {
 }
 
 #[frb(mirror(SplitOptions))]
-pub struct _SplitOptionsInternal {
+pub struct _SplitOptions {
     pub encoding: Encoding,
     pub min_split_number: usize,
     pub max_split_number: usize,
