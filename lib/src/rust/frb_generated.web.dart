@@ -92,6 +92,9 @@ abstract class LibBbqrApiImplPlatform extends BaseApiImpl<LibBbqrWire> {
   Uint8List dco_decode_list_prim_u_8_strict(dynamic raw);
 
   @protected
+  Split dco_decode_split(dynamic raw);
+
+  @protected
   SplitOptions dco_decode_split_options(dynamic raw);
 
   @protected
@@ -175,6 +178,9 @@ abstract class LibBbqrApiImplPlatform extends BaseApiImpl<LibBbqrWire> {
 
   @protected
   Uint8List sse_decode_list_prim_u_8_strict(SseDeserializer deserializer);
+
+  @protected
+  Split sse_decode_split(SseDeserializer deserializer);
 
   @protected
   SplitOptions sse_decode_split_options(SseDeserializer deserializer);
@@ -280,6 +286,9 @@ abstract class LibBbqrApiImplPlatform extends BaseApiImpl<LibBbqrWire> {
     Uint8List self,
     SseSerializer serializer,
   );
+
+  @protected
+  void sse_encode_split(Split self, SseSerializer serializer);
 
   @protected
   void sse_encode_split_options(SplitOptions self, SseSerializer serializer);

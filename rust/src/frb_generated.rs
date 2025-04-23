@@ -220,12 +220,20 @@ fn wire__crate__api__types__joined_try_new_from_parts_impl(
 
 #[allow(clippy::unnecessary_literal_unwrap)]
 const _: fn() = || {
-    let SplitOptions = None::<crate::api::types::SplitOptions>.unwrap();
-    let _: crate::api::types::Encoding = SplitOptions.encoding;
-    let _: usize = SplitOptions.min_split_number;
-    let _: usize = SplitOptions.max_split_number;
-    let _: crate::api::types::Version = SplitOptions.min_version;
-    let _: crate::api::types::Version = SplitOptions.max_version;
+    {
+        let Split = None::<crate::api::types::Split>.unwrap();
+        let _: crate::api::types::Version = Split.version;
+        let _: Vec<String> = Split.parts;
+        let _: crate::api::types::Encoding = Split.encoding;
+    }
+    {
+        let SplitOptions = None::<crate::api::types::SplitOptions>.unwrap();
+        let _: crate::api::types::Encoding = SplitOptions.encoding;
+        let _: usize = SplitOptions.min_split_number;
+        let _: usize = SplitOptions.max_split_number;
+        let _: crate::api::types::Version = SplitOptions.min_version;
+        let _: crate::api::types::Version = SplitOptions.max_version;
+    }
 };
 
 // Section: related_funcs
@@ -490,6 +498,20 @@ impl SseDecode for Vec<u8> {
             ans_.push(<u8>::sse_decode(deserializer));
         }
         return ans_;
+    }
+}
+
+impl SseDecode for crate::api::types::Split {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+    fn sse_decode(deserializer: &mut flutter_rust_bridge::for_generated::SseDeserializer) -> Self {
+        let mut var_version = <crate::api::types::Version>::sse_decode(deserializer);
+        let mut var_parts = <Vec<String>>::sse_decode(deserializer);
+        let mut var_encoding = <crate::api::types::Encoding>::sse_decode(deserializer);
+        return crate::api::types::Split {
+            version: var_version,
+            parts: var_parts,
+            encoding: var_encoding,
+        };
     }
 }
 
@@ -870,6 +892,28 @@ impl flutter_rust_bridge::IntoIntoDart<crate::api::types::Joined> for crate::api
     }
 }
 // Codec=Dco (DartCObject based), see doc to use other codecs
+impl flutter_rust_bridge::IntoDart for FrbWrapper<crate::api::types::Split> {
+    fn into_dart(self) -> flutter_rust_bridge::for_generated::DartAbi {
+        [
+            self.0.version.into_into_dart().into_dart(),
+            self.0.parts.into_into_dart().into_dart(),
+            self.0.encoding.into_into_dart().into_dart(),
+        ]
+        .into_dart()
+    }
+}
+impl flutter_rust_bridge::for_generated::IntoDartExceptPrimitive
+    for FrbWrapper<crate::api::types::Split>
+{
+}
+impl flutter_rust_bridge::IntoIntoDart<FrbWrapper<crate::api::types::Split>>
+    for crate::api::types::Split
+{
+    fn into_into_dart(self) -> FrbWrapper<crate::api::types::Split> {
+        self.into()
+    }
+}
+// Codec=Dco (DartCObject based), see doc to use other codecs
 impl flutter_rust_bridge::IntoDart for FrbWrapper<crate::api::types::SplitOptions> {
     fn into_dart(self) -> flutter_rust_bridge::for_generated::DartAbi {
         [
@@ -1192,6 +1236,15 @@ impl SseEncode for Vec<u8> {
         for item in self {
             <u8>::sse_encode(item, serializer);
         }
+    }
+}
+
+impl SseEncode for crate::api::types::Split {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+    fn sse_encode(self, serializer: &mut flutter_rust_bridge::for_generated::SseSerializer) {
+        <crate::api::types::Version>::sse_encode(self.version, serializer);
+        <Vec<String>>::sse_encode(self.parts, serializer);
+        <crate::api::types::Encoding>::sse_encode(self.encoding, serializer);
     }
 }
 

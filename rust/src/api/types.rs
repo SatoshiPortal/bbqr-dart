@@ -13,7 +13,7 @@ pub use super::error::{EncodeError, JoinError, SplitError};
 use flutter_rust_bridge::frb;
 
 #[derive(Debug, Clone)]
-#[frb(mirror(Split))]
+#[frb(mirror(Split), unignore)]
 pub struct _Split {
     pub version: Version,
     pub parts: Vec<String>,

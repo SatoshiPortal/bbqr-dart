@@ -458,6 +458,19 @@ class LibBbqrApiImpl extends LibBbqrApiImplPlatform implements LibBbqrApi {
   }
 
   @protected
+  Split dco_decode_split(dynamic raw) {
+    // Codec=Dco (DartCObject based), see doc to use other codecs
+    final arr = raw as List<dynamic>;
+    if (arr.length != 3)
+      throw Exception('unexpected arr length: expect 3 but see ${arr.length}');
+    return Split(
+      version: dco_decode_version(arr[0]),
+      parts: dco_decode_list_String(arr[1]),
+      encoding: dco_decode_encoding(arr[2]),
+    );
+  }
+
+  @protected
   SplitOptions dco_decode_split_options(dynamic raw) {
     // Codec=Dco (DartCObject based), see doc to use other codecs
     final arr = raw as List<dynamic>;
@@ -748,6 +761,19 @@ class LibBbqrApiImpl extends LibBbqrApiImplPlatform implements LibBbqrApi {
   }
 
   @protected
+  Split sse_decode_split(SseDeserializer deserializer) {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+    var var_version = sse_decode_version(deserializer);
+    var var_parts = sse_decode_list_String(deserializer);
+    var var_encoding = sse_decode_encoding(deserializer);
+    return Split(
+      version: var_version,
+      parts: var_parts,
+      encoding: var_encoding,
+    );
+  }
+
+  @protected
   SplitOptions sse_decode_split_options(SseDeserializer deserializer) {
     // Codec=Sse (Serialization based), see doc to use other codecs
     var var_encoding = sse_decode_encoding(deserializer);
@@ -1029,6 +1055,14 @@ class LibBbqrApiImpl extends LibBbqrApiImplPlatform implements LibBbqrApi {
     // Codec=Sse (Serialization based), see doc to use other codecs
     sse_encode_i_32(self.length, serializer);
     serializer.buffer.putUint8List(self);
+  }
+
+  @protected
+  void sse_encode_split(Split self, SseSerializer serializer) {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+    sse_encode_version(self.version, serializer);
+    sse_encode_list_String(self.parts, serializer);
+    sse_encode_encoding(self.encoding, serializer);
   }
 
   @protected

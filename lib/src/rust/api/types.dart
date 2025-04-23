@@ -9,7 +9,6 @@ import 'package:flutter_rust_bridge/flutter_rust_bridge_for_generated.dart';
 import 'package:freezed_annotation/freezed_annotation.dart' hide protected;
 part 'types.freezed.dart';
 
-// These types are ignored because they are neither used by any `pub` functions nor (for structs and enums) marked `#[frb(unignore)]`: `Split`
 // These function are ignored because they are on traits that is not defined in current crate (put an empty `#[frb]` on it to unignore): `assert_receiver_is_total_eq`, `assert_receiver_is_total_eq`, `assert_receiver_is_total_eq`, `clone`, `clone`, `clone`, `clone`, `clone`, `clone`, `eq`, `eq`, `eq`, `fmt`, `fmt`, `fmt`, `fmt`, `fmt`, `fmt`, `from`, `from`
 // These functions are ignored (category: IgnoreBecauseNotAllowedOwner): `encoding`, `parts`, `try_from_data`, `version`
 
@@ -74,6 +73,30 @@ class Joined {
           encoding == other.encoding &&
           fileType == other.fileType &&
           data == other.data;
+}
+
+class Split {
+  final Version version;
+  final List<String> parts;
+  final Encoding encoding;
+
+  const Split({
+    required this.version,
+    required this.parts,
+    required this.encoding,
+  });
+
+  @override
+  int get hashCode => version.hashCode ^ parts.hashCode ^ encoding.hashCode;
+
+  @override
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      other is Split &&
+          runtimeType == other.runtimeType &&
+          version == other.version &&
+          parts == other.parts &&
+          encoding == other.encoding;
 }
 
 class SplitOptions {
