@@ -12,7 +12,6 @@ use super::error::ContinuousJoinError;
 pub use super::error::{EncodeError, JoinError, SplitError};
 use flutter_rust_bridge::frb;
 
-#[derive(Debug, Clone)]
 #[frb(mirror(Split), unignore)]
 pub struct _Split {
     pub version: Version,
@@ -20,7 +19,6 @@ pub struct _Split {
     pub encoding: Encoding,
 }
 
-#[derive(Debug, Clone)]
 #[frb(mirror(SplitOptions))]
 pub struct _SplitOptionsInternal {
     pub encoding: Encoding,
@@ -30,7 +28,6 @@ pub struct _SplitOptionsInternal {
     pub max_version: Version,
 }
 
-#[derive(Debug, Clone)]
 #[frb(mirror(Version))]
 pub enum _Version {
     /// Version n°01
@@ -115,7 +112,6 @@ pub enum _Version {
     V40 = 39,
 }
 
-#[derive(Debug, Clone, Copy, PartialEq, Eq)]
 #[frb(mirror(Encoding))]
 pub enum _Encoding {
     Hex,
@@ -123,7 +119,6 @@ pub enum _Encoding {
     Zlib,
 }
 
-#[derive(Debug, Clone, Copy, PartialEq, Eq)]
 #[frb(mirror(FileType))]
 pub enum _FileType {
     Psbt,
@@ -167,7 +162,6 @@ impl _Split {
 
 pub struct ContinuousJoiner(Mutex<bbqr::continuous_join::ContinuousJoiner>);
 
-#[derive(Debug, Clone, PartialEq, Eq)]
 #[frb(non_opaque)]
 pub struct Joined {
     pub encoding: Encoding,
