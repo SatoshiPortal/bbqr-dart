@@ -67,7 +67,7 @@ class LibBbqr extends BaseEntrypoint<LibBbqrApi, LibBbqrApiImpl, LibBbqrWire> {
 
   static const kDefaultExternalLibraryLoaderConfig =
       ExternalLibraryLoaderConfig(
-        stem: 'bbqr',
+        stem: 'bbqr_bindings',
         ioDirectory: 'rust/target/release/',
         webPrefix: 'pkg/',
       );
