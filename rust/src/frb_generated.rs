@@ -25,6 +25,7 @@
 
 // Section: imports
 
+use crate::api::types::*;
 use flutter_rust_bridge::for_generated::byteorder::{NativeEndian, ReadBytesExt, WriteBytesExt};
 use flutter_rust_bridge::for_generated::{transform_result_dco, Lifetimeable, Lockable};
 use flutter_rust_bridge::{Handler, IntoIntoDart};
@@ -37,7 +38,7 @@ flutter_rust_bridge::frb_generated_boilerplate!(
     default_rust_auto_opaque = RustAutoOpaqueMoi,
 );
 pub(crate) const FLUTTER_RUST_BRIDGE_CODEGEN_VERSION: &str = "2.9.0";
-pub(crate) const FLUTTER_RUST_BRIDGE_CODEGEN_CONTENT_HASH: i32 = -1918914929;
+pub(crate) const FLUTTER_RUST_BRIDGE_CODEGEN_CONTENT_HASH: i32 = -1686501660;
 
 // Section: executor
 
@@ -45,14 +46,14 @@ flutter_rust_bridge::frb_generated_default_handler!();
 
 // Section: wire_funcs
 
-fn wire__crate__api__simple__greet_impl(
+fn wire__crate__api__types__ContinuousJoiner_add_part_impl(
     ptr_: flutter_rust_bridge::for_generated::PlatformGeneralizedUint8ListPtr,
     rust_vec_len_: i32,
     data_len_: i32,
 ) -> flutter_rust_bridge::for_generated::WireSyncRust2DartSse {
     FLUTTER_RUST_BRIDGE_HANDLER.wrap_sync::<flutter_rust_bridge::for_generated::SseCodec, _>(
         flutter_rust_bridge::for_generated::TaskInfo {
-            debug_name: "greet",
+            debug_name: "ContinuousJoiner_add_part",
             port: None,
             mode: flutter_rust_bridge::for_generated::FfiCallMode::Sync,
         },
@@ -66,16 +67,34 @@ fn wire__crate__api__simple__greet_impl(
             };
             let mut deserializer =
                 flutter_rust_bridge::for_generated::SseDeserializer::new(message);
-            let api_name = <String>::sse_decode(&mut deserializer);
+            let api_that = <RustOpaqueMoi<
+                flutter_rust_bridge::for_generated::RustAutoOpaqueInner<ContinuousJoiner>,
+            >>::sse_decode(&mut deserializer);
+            let api_part = <String>::sse_decode(&mut deserializer);
             deserializer.end();
-            transform_result_sse::<_, ()>((move || {
-                let output_ok = Result::<_, ()>::Ok(crate::api::simple::greet(api_name))?;
+            transform_result_sse::<_, crate::api::error::ContinuousJoinError>((move || {
+                let mut api_that_guard = None;
+                let decode_indices_ =
+                    flutter_rust_bridge::for_generated::lockable_compute_decode_order(vec![
+                        flutter_rust_bridge::for_generated::LockableOrderInfo::new(
+                            &api_that, 0, false,
+                        ),
+                    ]);
+                for i in decode_indices_ {
+                    match i {
+                        0 => api_that_guard = Some(api_that.lockable_decode_sync_ref()),
+                        _ => unreachable!(),
+                    }
+                }
+                let api_that_guard = api_that_guard.unwrap();
+                let output_ok =
+                    crate::api::types::ContinuousJoiner::add_part(&*api_that_guard, api_part)?;
                 Ok(output_ok)
             })())
         },
     )
 }
-fn wire__crate__api__simple__init_app_impl(
+fn wire__crate__api__types__ContinuousJoiner_default_impl(
     port_: flutter_rust_bridge::for_generated::MessagePort,
     ptr_: flutter_rust_bridge::for_generated::PlatformGeneralizedUint8ListPtr,
     rust_vec_len_: i32,
@@ -83,7 +102,7 @@ fn wire__crate__api__simple__init_app_impl(
 ) {
     FLUTTER_RUST_BRIDGE_HANDLER.wrap_normal::<flutter_rust_bridge::for_generated::SseCodec, _, _>(
         flutter_rust_bridge::for_generated::TaskInfo {
-            debug_name: "init_app",
+            debug_name: "ContinuousJoiner_default",
             port: Some(port_),
             mode: flutter_rust_bridge::for_generated::FfiCallMode::Normal,
         },
@@ -100,23 +119,365 @@ fn wire__crate__api__simple__init_app_impl(
             deserializer.end();
             move |context| {
                 transform_result_sse::<_, ()>((move || {
-                    let output_ok = Result::<_, ()>::Ok({
-                        crate::api::simple::init_app();
-                    })?;
+                    let output_ok =
+                        Result::<_, ()>::Ok(crate::api::types::ContinuousJoiner::default())?;
                     Ok(output_ok)
                 })())
             }
         },
     )
 }
+fn wire__crate__api__types__ContinuousJoiner_new_impl(
+    ptr_: flutter_rust_bridge::for_generated::PlatformGeneralizedUint8ListPtr,
+    rust_vec_len_: i32,
+    data_len_: i32,
+) -> flutter_rust_bridge::for_generated::WireSyncRust2DartSse {
+    FLUTTER_RUST_BRIDGE_HANDLER.wrap_sync::<flutter_rust_bridge::for_generated::SseCodec, _>(
+        flutter_rust_bridge::for_generated::TaskInfo {
+            debug_name: "ContinuousJoiner_new",
+            port: None,
+            mode: flutter_rust_bridge::for_generated::FfiCallMode::Sync,
+        },
+        move || {
+            let message = unsafe {
+                flutter_rust_bridge::for_generated::Dart2RustMessageSse::from_wire(
+                    ptr_,
+                    rust_vec_len_,
+                    data_len_,
+                )
+            };
+            let mut deserializer =
+                flutter_rust_bridge::for_generated::SseDeserializer::new(message);
+            deserializer.end();
+            transform_result_sse::<_, ()>((move || {
+                let output_ok = Result::<_, ()>::Ok(crate::api::types::ContinuousJoiner::new())?;
+                Ok(output_ok)
+            })())
+        },
+    )
+}
+fn wire__crate__api__types__default_split_options_impl(
+    ptr_: flutter_rust_bridge::for_generated::PlatformGeneralizedUint8ListPtr,
+    rust_vec_len_: i32,
+    data_len_: i32,
+) -> flutter_rust_bridge::for_generated::WireSyncRust2DartSse {
+    FLUTTER_RUST_BRIDGE_HANDLER.wrap_sync::<flutter_rust_bridge::for_generated::SseCodec, _>(
+        flutter_rust_bridge::for_generated::TaskInfo {
+            debug_name: "default_split_options",
+            port: None,
+            mode: flutter_rust_bridge::for_generated::FfiCallMode::Sync,
+        },
+        move || {
+            let message = unsafe {
+                flutter_rust_bridge::for_generated::Dart2RustMessageSse::from_wire(
+                    ptr_,
+                    rust_vec_len_,
+                    data_len_,
+                )
+            };
+            let mut deserializer =
+                flutter_rust_bridge::for_generated::SseDeserializer::new(message);
+            deserializer.end();
+            transform_result_sse::<_, ()>((move || {
+                let output_ok = Result::<_, ()>::Ok(crate::api::types::default_split_options())?;
+                Ok(output_ok)
+            })())
+        },
+    )
+}
+fn wire__crate__api__types__joined_try_new_from_parts_impl(
+    ptr_: flutter_rust_bridge::for_generated::PlatformGeneralizedUint8ListPtr,
+    rust_vec_len_: i32,
+    data_len_: i32,
+) -> flutter_rust_bridge::for_generated::WireSyncRust2DartSse {
+    FLUTTER_RUST_BRIDGE_HANDLER.wrap_sync::<flutter_rust_bridge::for_generated::SseCodec, _>(
+        flutter_rust_bridge::for_generated::TaskInfo {
+            debug_name: "joined_try_new_from_parts",
+            port: None,
+            mode: flutter_rust_bridge::for_generated::FfiCallMode::Sync,
+        },
+        move || {
+            let message = unsafe {
+                flutter_rust_bridge::for_generated::Dart2RustMessageSse::from_wire(
+                    ptr_,
+                    rust_vec_len_,
+                    data_len_,
+                )
+            };
+            let mut deserializer =
+                flutter_rust_bridge::for_generated::SseDeserializer::new(message);
+            let api_parts = <Vec<String>>::sse_decode(&mut deserializer);
+            deserializer.end();
+            transform_result_sse::<_, crate::api::error::JoinError>((move || {
+                let output_ok = crate::api::types::Joined::try_new_from_parts(api_parts)?;
+                Ok(output_ok)
+            })())
+        },
+    )
+}
+
+// Section: static_checks
+
+#[allow(clippy::unnecessary_literal_unwrap)]
+const _: fn() = || {
+    let SplitOptions = None::<crate::api::types::SplitOptions>.unwrap();
+    let _: crate::api::types::Encoding = SplitOptions.encoding;
+    let _: usize = SplitOptions.min_split_number;
+    let _: usize = SplitOptions.max_split_number;
+    let _: crate::api::types::Version = SplitOptions.min_version;
+    let _: crate::api::types::Version = SplitOptions.max_version;
+};
+
+// Section: related_funcs
+
+flutter_rust_bridge::frb_generated_moi_arc_impl_value!(
+    flutter_rust_bridge::for_generated::RustAutoOpaqueInner<ContinuousJoiner>
+);
 
 // Section: dart2rust
+
+impl SseDecode for ContinuousJoiner {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+    fn sse_decode(deserializer: &mut flutter_rust_bridge::for_generated::SseDeserializer) -> Self {
+        let mut inner = <RustOpaqueMoi<
+            flutter_rust_bridge::for_generated::RustAutoOpaqueInner<ContinuousJoiner>,
+        >>::sse_decode(deserializer);
+        return flutter_rust_bridge::for_generated::rust_auto_opaque_decode_owned(inner);
+    }
+}
+
+impl SseDecode
+    for RustOpaqueMoi<flutter_rust_bridge::for_generated::RustAutoOpaqueInner<ContinuousJoiner>>
+{
+    // Codec=Sse (Serialization based), see doc to use other codecs
+    fn sse_decode(deserializer: &mut flutter_rust_bridge::for_generated::SseDeserializer) -> Self {
+        let mut inner = <usize>::sse_decode(deserializer);
+        return decode_rust_opaque_moi(inner);
+    }
+}
 
 impl SseDecode for String {
     // Codec=Sse (Serialization based), see doc to use other codecs
     fn sse_decode(deserializer: &mut flutter_rust_bridge::for_generated::SseDeserializer) -> Self {
         let mut inner = <Vec<u8>>::sse_decode(deserializer);
         return String::from_utf8(inner).unwrap();
+    }
+}
+
+impl SseDecode for crate::api::error::ContinuousJoinError {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+    fn sse_decode(deserializer: &mut flutter_rust_bridge::for_generated::SseDeserializer) -> Self {
+        let mut tag_ = <i32>::sse_decode(deserializer);
+        match tag_ {
+            0 => {
+                let mut var_field0 =
+                    <crate::api::error::HeaderParseError>::sse_decode(deserializer);
+                return crate::api::error::ContinuousJoinError::HeaderParseError(var_field0);
+            }
+            1 => {
+                let mut var_field0 = <crate::api::error::JoinError>::sse_decode(deserializer);
+                return crate::api::error::ContinuousJoinError::JoinError(var_field0);
+            }
+            2 => {
+                let mut var_field0 = <crate::api::error::DecodeError>::sse_decode(deserializer);
+                return crate::api::error::ContinuousJoinError::DecodeError(var_field0);
+            }
+            _ => {
+                unimplemented!("");
+            }
+        }
+    }
+}
+
+impl SseDecode for crate::api::error::DecodeError {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+    fn sse_decode(deserializer: &mut flutter_rust_bridge::for_generated::SseDeserializer) -> Self {
+        let mut tag_ = <i32>::sse_decode(deserializer);
+        match tag_ {
+            0 => {
+                let mut var_field0 = <usize>::sse_decode(deserializer);
+                let mut var_field1 = <String>::sse_decode(deserializer);
+                return crate::api::error::DecodeError::UnableToDecodeHex(var_field0, var_field1);
+            }
+            1 => {
+                let mut var_field0 = <usize>::sse_decode(deserializer);
+                let mut var_field1 = <String>::sse_decode(deserializer);
+                return crate::api::error::DecodeError::UnableToDecodeBase32(
+                    var_field0, var_field1,
+                );
+            }
+            2 => {
+                let mut var_field0 = <String>::sse_decode(deserializer);
+                return crate::api::error::DecodeError::UnableToInflateZlib(var_field0);
+            }
+            _ => {
+                unimplemented!("");
+            }
+        }
+    }
+}
+
+impl SseDecode for crate::api::types::Encoding {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+    fn sse_decode(deserializer: &mut flutter_rust_bridge::for_generated::SseDeserializer) -> Self {
+        let mut inner = <i32>::sse_decode(deserializer);
+        return match inner {
+            0 => crate::api::types::Encoding::Hex,
+            1 => crate::api::types::Encoding::Base32,
+            2 => crate::api::types::Encoding::Zlib,
+            _ => unreachable!("Invalid variant for Encoding: {}", inner),
+        };
+    }
+}
+
+impl SseDecode for crate::api::types::FileType {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+    fn sse_decode(deserializer: &mut flutter_rust_bridge::for_generated::SseDeserializer) -> Self {
+        let mut inner = <i32>::sse_decode(deserializer);
+        return match inner {
+            0 => crate::api::types::FileType::Psbt,
+            1 => crate::api::types::FileType::Transaction,
+            2 => crate::api::types::FileType::Json,
+            3 => crate::api::types::FileType::Cbor,
+            4 => crate::api::types::FileType::UnicodeText,
+            _ => unreachable!("Invalid variant for FileType: {}", inner),
+        };
+    }
+}
+
+impl SseDecode for crate::api::error::HeaderParseError {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+    fn sse_decode(deserializer: &mut flutter_rust_bridge::for_generated::SseDeserializer) -> Self {
+        let mut tag_ = <i32>::sse_decode(deserializer);
+        match tag_ {
+            0 => {
+                return crate::api::error::HeaderParseError::Empty;
+            }
+            1 => {
+                let mut var_field0 = <String>::sse_decode(deserializer);
+                return crate::api::error::HeaderParseError::InvalidEncoding(var_field0);
+            }
+            2 => {
+                let mut var_field0 = <String>::sse_decode(deserializer);
+                return crate::api::error::HeaderParseError::InvalidFileType(var_field0);
+            }
+            3 => {
+                return crate::api::error::HeaderParseError::InvalidFixedHeader;
+            }
+            4 => {
+                let mut var_field0 = <usize>::sse_decode(deserializer);
+                return crate::api::error::HeaderParseError::InvalidHeaderSize(var_field0);
+            }
+            5 => {
+                let mut var_field0 = <String>::sse_decode(deserializer);
+                return crate::api::error::HeaderParseError::InvalidHeaderParts(var_field0);
+            }
+            _ => {
+                unimplemented!("");
+            }
+        }
+    }
+}
+
+impl SseDecode for i32 {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+    fn sse_decode(deserializer: &mut flutter_rust_bridge::for_generated::SseDeserializer) -> Self {
+        deserializer.cursor.read_i32::<NativeEndian>().unwrap()
+    }
+}
+
+impl SseDecode for crate::api::error::JoinError {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+    fn sse_decode(deserializer: &mut flutter_rust_bridge::for_generated::SseDeserializer) -> Self {
+        let mut tag_ = <i32>::sse_decode(deserializer);
+        match tag_ {
+            0 => {
+                return crate::api::error::JoinError::Empty;
+            }
+            1 => {
+                return crate::api::error::JoinError::ConflictingHeaders;
+            }
+            2 => {
+                let mut var_field0 = <usize>::sse_decode(deserializer);
+                let mut var_field1 = <usize>::sse_decode(deserializer);
+                return crate::api::error::JoinError::TooManyParts(var_field0, var_field1);
+            }
+            3 => {
+                let mut var_field0 = <usize>::sse_decode(deserializer);
+                return crate::api::error::JoinError::DuplicatePartWrongContent(var_field0);
+            }
+            4 => {
+                let mut var_field0 = <usize>::sse_decode(deserializer);
+                return crate::api::error::JoinError::PartWithNoData(var_field0);
+            }
+            5 => {
+                let mut var_field0 = <usize>::sse_decode(deserializer);
+                return crate::api::error::JoinError::MissingPart(var_field0);
+            }
+            6 => {
+                let mut var_field0 =
+                    <crate::api::error::HeaderParseError>::sse_decode(deserializer);
+                return crate::api::error::JoinError::HeaderParseError(var_field0);
+            }
+            7 => {
+                let mut var_field0 = <crate::api::error::DecodeError>::sse_decode(deserializer);
+                return crate::api::error::JoinError::DecodeError(var_field0);
+            }
+            _ => {
+                unimplemented!("");
+            }
+        }
+    }
+}
+
+impl SseDecode for crate::api::types::JoinResult {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+    fn sse_decode(deserializer: &mut flutter_rust_bridge::for_generated::SseDeserializer) -> Self {
+        let mut tag_ = <i32>::sse_decode(deserializer);
+        match tag_ {
+            0 => {
+                return crate::api::types::JoinResult::NotStarted;
+            }
+            1 => {
+                let mut var_partsLeft = <usize>::sse_decode(deserializer);
+                return crate::api::types::JoinResult::InProgress {
+                    parts_left: var_partsLeft,
+                };
+            }
+            2 => {
+                let mut var_joined = <crate::api::types::Joined>::sse_decode(deserializer);
+                return crate::api::types::JoinResult::Complete { joined: var_joined };
+            }
+            _ => {
+                unimplemented!("");
+            }
+        }
+    }
+}
+
+impl SseDecode for crate::api::types::Joined {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+    fn sse_decode(deserializer: &mut flutter_rust_bridge::for_generated::SseDeserializer) -> Self {
+        let mut var_encoding = <crate::api::types::Encoding>::sse_decode(deserializer);
+        let mut var_fileType = <crate::api::types::FileType>::sse_decode(deserializer);
+        let mut var_data = <Vec<u8>>::sse_decode(deserializer);
+        return crate::api::types::Joined {
+            encoding: var_encoding,
+            file_type: var_fileType,
+            data: var_data,
+        };
+    }
+}
+
+impl SseDecode for Vec<String> {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+    fn sse_decode(deserializer: &mut flutter_rust_bridge::for_generated::SseDeserializer) -> Self {
+        let mut len_ = <i32>::sse_decode(deserializer);
+        let mut ans_ = vec![];
+        for idx_ in 0..len_ {
+            ans_.push(<String>::sse_decode(deserializer));
+        }
+        return ans_;
     }
 }
 
@@ -132,6 +493,24 @@ impl SseDecode for Vec<u8> {
     }
 }
 
+impl SseDecode for crate::api::types::SplitOptions {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+    fn sse_decode(deserializer: &mut flutter_rust_bridge::for_generated::SseDeserializer) -> Self {
+        let mut var_encoding = <crate::api::types::Encoding>::sse_decode(deserializer);
+        let mut var_minSplitNumber = <usize>::sse_decode(deserializer);
+        let mut var_maxSplitNumber = <usize>::sse_decode(deserializer);
+        let mut var_minVersion = <crate::api::types::Version>::sse_decode(deserializer);
+        let mut var_maxVersion = <crate::api::types::Version>::sse_decode(deserializer);
+        return crate::api::types::SplitOptions {
+            encoding: var_encoding,
+            min_split_number: var_minSplitNumber,
+            max_split_number: var_maxSplitNumber,
+            min_version: var_minVersion,
+            max_version: var_maxVersion,
+        };
+    }
+}
+
 impl SseDecode for u8 {
     // Codec=Sse (Serialization based), see doc to use other codecs
     fn sse_decode(deserializer: &mut flutter_rust_bridge::for_generated::SseDeserializer) -> Self {
@@ -144,10 +523,60 @@ impl SseDecode for () {
     fn sse_decode(deserializer: &mut flutter_rust_bridge::for_generated::SseDeserializer) -> Self {}
 }
 
-impl SseDecode for i32 {
+impl SseDecode for usize {
     // Codec=Sse (Serialization based), see doc to use other codecs
     fn sse_decode(deserializer: &mut flutter_rust_bridge::for_generated::SseDeserializer) -> Self {
-        deserializer.cursor.read_i32::<NativeEndian>().unwrap()
+        deserializer.cursor.read_u64::<NativeEndian>().unwrap() as _
+    }
+}
+
+impl SseDecode for crate::api::types::Version {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+    fn sse_decode(deserializer: &mut flutter_rust_bridge::for_generated::SseDeserializer) -> Self {
+        let mut inner = <i32>::sse_decode(deserializer);
+        return match inner {
+            0 => crate::api::types::Version::V01,
+            1 => crate::api::types::Version::V02,
+            2 => crate::api::types::Version::V03,
+            3 => crate::api::types::Version::V04,
+            4 => crate::api::types::Version::V05,
+            5 => crate::api::types::Version::V06,
+            6 => crate::api::types::Version::V07,
+            7 => crate::api::types::Version::V08,
+            8 => crate::api::types::Version::V09,
+            9 => crate::api::types::Version::V10,
+            10 => crate::api::types::Version::V11,
+            11 => crate::api::types::Version::V12,
+            12 => crate::api::types::Version::V13,
+            13 => crate::api::types::Version::V14,
+            14 => crate::api::types::Version::V15,
+            15 => crate::api::types::Version::V16,
+            16 => crate::api::types::Version::V17,
+            17 => crate::api::types::Version::V18,
+            18 => crate::api::types::Version::V19,
+            19 => crate::api::types::Version::V20,
+            20 => crate::api::types::Version::V21,
+            21 => crate::api::types::Version::V22,
+            22 => crate::api::types::Version::V23,
+            23 => crate::api::types::Version::V24,
+            24 => crate::api::types::Version::V25,
+            25 => crate::api::types::Version::V26,
+            26 => crate::api::types::Version::V27,
+            27 => crate::api::types::Version::V28,
+            28 => crate::api::types::Version::V29,
+            29 => crate::api::types::Version::V30,
+            30 => crate::api::types::Version::V31,
+            31 => crate::api::types::Version::V32,
+            32 => crate::api::types::Version::V33,
+            33 => crate::api::types::Version::V34,
+            34 => crate::api::types::Version::V35,
+            35 => crate::api::types::Version::V36,
+            36 => crate::api::types::Version::V37,
+            37 => crate::api::types::Version::V38,
+            38 => crate::api::types::Version::V39,
+            39 => crate::api::types::Version::V40,
+            _ => unreachable!("Invalid variant for Version: {}", inner),
+        };
     }
 }
 
@@ -167,7 +596,12 @@ fn pde_ffi_dispatcher_primary_impl(
 ) {
     // Codec=Pde (Serialization + dispatch), see doc to use other codecs
     match func_id {
-        2 => wire__crate__api__simple__init_app_impl(port, ptr, rust_vec_len, data_len),
+        2 => wire__crate__api__types__ContinuousJoiner_default_impl(
+            port,
+            ptr,
+            rust_vec_len,
+            data_len,
+        ),
         _ => unreachable!(),
     }
 }
@@ -180,17 +614,574 @@ fn pde_ffi_dispatcher_sync_impl(
 ) -> flutter_rust_bridge::for_generated::WireSyncRust2DartSse {
     // Codec=Pde (Serialization + dispatch), see doc to use other codecs
     match func_id {
-        1 => wire__crate__api__simple__greet_impl(ptr, rust_vec_len, data_len),
+        1 => wire__crate__api__types__ContinuousJoiner_add_part_impl(ptr, rust_vec_len, data_len),
+        3 => wire__crate__api__types__ContinuousJoiner_new_impl(ptr, rust_vec_len, data_len),
+        4 => wire__crate__api__types__default_split_options_impl(ptr, rust_vec_len, data_len),
+        5 => wire__crate__api__types__joined_try_new_from_parts_impl(ptr, rust_vec_len, data_len),
         _ => unreachable!(),
     }
 }
 
 // Section: rust2dart
 
+// Codec=Dco (DartCObject based), see doc to use other codecs
+impl flutter_rust_bridge::IntoDart for FrbWrapper<ContinuousJoiner> {
+    fn into_dart(self) -> flutter_rust_bridge::for_generated::DartAbi {
+        flutter_rust_bridge::for_generated::rust_auto_opaque_encode::<_, MoiArc<_>>(self.0)
+            .into_dart()
+    }
+}
+impl flutter_rust_bridge::for_generated::IntoDartExceptPrimitive for FrbWrapper<ContinuousJoiner> {}
+
+impl flutter_rust_bridge::IntoIntoDart<FrbWrapper<ContinuousJoiner>> for ContinuousJoiner {
+    fn into_into_dart(self) -> FrbWrapper<ContinuousJoiner> {
+        self.into()
+    }
+}
+
+// Codec=Dco (DartCObject based), see doc to use other codecs
+impl flutter_rust_bridge::IntoDart for crate::api::error::ContinuousJoinError {
+    fn into_dart(self) -> flutter_rust_bridge::for_generated::DartAbi {
+        match self {
+            crate::api::error::ContinuousJoinError::HeaderParseError(field0) => {
+                [0.into_dart(), field0.into_into_dart().into_dart()].into_dart()
+            }
+            crate::api::error::ContinuousJoinError::JoinError(field0) => {
+                [1.into_dart(), field0.into_into_dart().into_dart()].into_dart()
+            }
+            crate::api::error::ContinuousJoinError::DecodeError(field0) => {
+                [2.into_dart(), field0.into_into_dart().into_dart()].into_dart()
+            }
+            _ => {
+                unimplemented!("");
+            }
+        }
+    }
+}
+impl flutter_rust_bridge::for_generated::IntoDartExceptPrimitive
+    for crate::api::error::ContinuousJoinError
+{
+}
+impl flutter_rust_bridge::IntoIntoDart<crate::api::error::ContinuousJoinError>
+    for crate::api::error::ContinuousJoinError
+{
+    fn into_into_dart(self) -> crate::api::error::ContinuousJoinError {
+        self
+    }
+}
+// Codec=Dco (DartCObject based), see doc to use other codecs
+impl flutter_rust_bridge::IntoDart for crate::api::error::DecodeError {
+    fn into_dart(self) -> flutter_rust_bridge::for_generated::DartAbi {
+        match self {
+            crate::api::error::DecodeError::UnableToDecodeHex(field0, field1) => [
+                0.into_dart(),
+                field0.into_into_dart().into_dart(),
+                field1.into_into_dart().into_dart(),
+            ]
+            .into_dart(),
+            crate::api::error::DecodeError::UnableToDecodeBase32(field0, field1) => [
+                1.into_dart(),
+                field0.into_into_dart().into_dart(),
+                field1.into_into_dart().into_dart(),
+            ]
+            .into_dart(),
+            crate::api::error::DecodeError::UnableToInflateZlib(field0) => {
+                [2.into_dart(), field0.into_into_dart().into_dart()].into_dart()
+            }
+            _ => {
+                unimplemented!("");
+            }
+        }
+    }
+}
+impl flutter_rust_bridge::for_generated::IntoDartExceptPrimitive
+    for crate::api::error::DecodeError
+{
+}
+impl flutter_rust_bridge::IntoIntoDart<crate::api::error::DecodeError>
+    for crate::api::error::DecodeError
+{
+    fn into_into_dart(self) -> crate::api::error::DecodeError {
+        self
+    }
+}
+// Codec=Dco (DartCObject based), see doc to use other codecs
+impl flutter_rust_bridge::IntoDart for FrbWrapper<crate::api::types::Encoding> {
+    fn into_dart(self) -> flutter_rust_bridge::for_generated::DartAbi {
+        match self.0 {
+            crate::api::types::Encoding::Hex => 0.into_dart(),
+            crate::api::types::Encoding::Base32 => 1.into_dart(),
+            crate::api::types::Encoding::Zlib => 2.into_dart(),
+            _ => unreachable!(),
+        }
+    }
+}
+impl flutter_rust_bridge::for_generated::IntoDartExceptPrimitive
+    for FrbWrapper<crate::api::types::Encoding>
+{
+}
+impl flutter_rust_bridge::IntoIntoDart<FrbWrapper<crate::api::types::Encoding>>
+    for crate::api::types::Encoding
+{
+    fn into_into_dart(self) -> FrbWrapper<crate::api::types::Encoding> {
+        self.into()
+    }
+}
+// Codec=Dco (DartCObject based), see doc to use other codecs
+impl flutter_rust_bridge::IntoDart for FrbWrapper<crate::api::types::FileType> {
+    fn into_dart(self) -> flutter_rust_bridge::for_generated::DartAbi {
+        match self.0 {
+            crate::api::types::FileType::Psbt => 0.into_dart(),
+            crate::api::types::FileType::Transaction => 1.into_dart(),
+            crate::api::types::FileType::Json => 2.into_dart(),
+            crate::api::types::FileType::Cbor => 3.into_dart(),
+            crate::api::types::FileType::UnicodeText => 4.into_dart(),
+            _ => unreachable!(),
+        }
+    }
+}
+impl flutter_rust_bridge::for_generated::IntoDartExceptPrimitive
+    for FrbWrapper<crate::api::types::FileType>
+{
+}
+impl flutter_rust_bridge::IntoIntoDart<FrbWrapper<crate::api::types::FileType>>
+    for crate::api::types::FileType
+{
+    fn into_into_dart(self) -> FrbWrapper<crate::api::types::FileType> {
+        self.into()
+    }
+}
+// Codec=Dco (DartCObject based), see doc to use other codecs
+impl flutter_rust_bridge::IntoDart for crate::api::error::HeaderParseError {
+    fn into_dart(self) -> flutter_rust_bridge::for_generated::DartAbi {
+        match self {
+            crate::api::error::HeaderParseError::Empty => [0.into_dart()].into_dart(),
+            crate::api::error::HeaderParseError::InvalidEncoding(field0) => {
+                [1.into_dart(), field0.into_into_dart().into_dart()].into_dart()
+            }
+            crate::api::error::HeaderParseError::InvalidFileType(field0) => {
+                [2.into_dart(), field0.into_into_dart().into_dart()].into_dart()
+            }
+            crate::api::error::HeaderParseError::InvalidFixedHeader => [3.into_dart()].into_dart(),
+            crate::api::error::HeaderParseError::InvalidHeaderSize(field0) => {
+                [4.into_dart(), field0.into_into_dart().into_dart()].into_dart()
+            }
+            crate::api::error::HeaderParseError::InvalidHeaderParts(field0) => {
+                [5.into_dart(), field0.into_into_dart().into_dart()].into_dart()
+            }
+            _ => {
+                unimplemented!("");
+            }
+        }
+    }
+}
+impl flutter_rust_bridge::for_generated::IntoDartExceptPrimitive
+    for crate::api::error::HeaderParseError
+{
+}
+impl flutter_rust_bridge::IntoIntoDart<crate::api::error::HeaderParseError>
+    for crate::api::error::HeaderParseError
+{
+    fn into_into_dart(self) -> crate::api::error::HeaderParseError {
+        self
+    }
+}
+// Codec=Dco (DartCObject based), see doc to use other codecs
+impl flutter_rust_bridge::IntoDart for crate::api::error::JoinError {
+    fn into_dart(self) -> flutter_rust_bridge::for_generated::DartAbi {
+        match self {
+            crate::api::error::JoinError::Empty => [0.into_dart()].into_dart(),
+            crate::api::error::JoinError::ConflictingHeaders => [1.into_dart()].into_dart(),
+            crate::api::error::JoinError::TooManyParts(field0, field1) => [
+                2.into_dart(),
+                field0.into_into_dart().into_dart(),
+                field1.into_into_dart().into_dart(),
+            ]
+            .into_dart(),
+            crate::api::error::JoinError::DuplicatePartWrongContent(field0) => {
+                [3.into_dart(), field0.into_into_dart().into_dart()].into_dart()
+            }
+            crate::api::error::JoinError::PartWithNoData(field0) => {
+                [4.into_dart(), field0.into_into_dart().into_dart()].into_dart()
+            }
+            crate::api::error::JoinError::MissingPart(field0) => {
+                [5.into_dart(), field0.into_into_dart().into_dart()].into_dart()
+            }
+            crate::api::error::JoinError::HeaderParseError(field0) => {
+                [6.into_dart(), field0.into_into_dart().into_dart()].into_dart()
+            }
+            crate::api::error::JoinError::DecodeError(field0) => {
+                [7.into_dart(), field0.into_into_dart().into_dart()].into_dart()
+            }
+            _ => {
+                unimplemented!("");
+            }
+        }
+    }
+}
+impl flutter_rust_bridge::for_generated::IntoDartExceptPrimitive for crate::api::error::JoinError {}
+impl flutter_rust_bridge::IntoIntoDart<crate::api::error::JoinError>
+    for crate::api::error::JoinError
+{
+    fn into_into_dart(self) -> crate::api::error::JoinError {
+        self
+    }
+}
+// Codec=Dco (DartCObject based), see doc to use other codecs
+impl flutter_rust_bridge::IntoDart for crate::api::types::JoinResult {
+    fn into_dart(self) -> flutter_rust_bridge::for_generated::DartAbi {
+        match self {
+            crate::api::types::JoinResult::NotStarted => [0.into_dart()].into_dart(),
+            crate::api::types::JoinResult::InProgress { parts_left } => {
+                [1.into_dart(), parts_left.into_into_dart().into_dart()].into_dart()
+            }
+            crate::api::types::JoinResult::Complete { joined } => {
+                [2.into_dart(), joined.into_into_dart().into_dart()].into_dart()
+            }
+            _ => {
+                unimplemented!("");
+            }
+        }
+    }
+}
+impl flutter_rust_bridge::for_generated::IntoDartExceptPrimitive for crate::api::types::JoinResult {}
+impl flutter_rust_bridge::IntoIntoDart<crate::api::types::JoinResult>
+    for crate::api::types::JoinResult
+{
+    fn into_into_dart(self) -> crate::api::types::JoinResult {
+        self
+    }
+}
+// Codec=Dco (DartCObject based), see doc to use other codecs
+impl flutter_rust_bridge::IntoDart for crate::api::types::Joined {
+    fn into_dart(self) -> flutter_rust_bridge::for_generated::DartAbi {
+        [
+            self.encoding.into_into_dart().into_dart(),
+            self.file_type.into_into_dart().into_dart(),
+            self.data.into_into_dart().into_dart(),
+        ]
+        .into_dart()
+    }
+}
+impl flutter_rust_bridge::for_generated::IntoDartExceptPrimitive for crate::api::types::Joined {}
+impl flutter_rust_bridge::IntoIntoDart<crate::api::types::Joined> for crate::api::types::Joined {
+    fn into_into_dart(self) -> crate::api::types::Joined {
+        self
+    }
+}
+// Codec=Dco (DartCObject based), see doc to use other codecs
+impl flutter_rust_bridge::IntoDart for FrbWrapper<crate::api::types::SplitOptions> {
+    fn into_dart(self) -> flutter_rust_bridge::for_generated::DartAbi {
+        [
+            self.0.encoding.into_into_dart().into_dart(),
+            self.0.min_split_number.into_into_dart().into_dart(),
+            self.0.max_split_number.into_into_dart().into_dart(),
+            self.0.min_version.into_into_dart().into_dart(),
+            self.0.max_version.into_into_dart().into_dart(),
+        ]
+        .into_dart()
+    }
+}
+impl flutter_rust_bridge::for_generated::IntoDartExceptPrimitive
+    for FrbWrapper<crate::api::types::SplitOptions>
+{
+}
+impl flutter_rust_bridge::IntoIntoDart<FrbWrapper<crate::api::types::SplitOptions>>
+    for crate::api::types::SplitOptions
+{
+    fn into_into_dart(self) -> FrbWrapper<crate::api::types::SplitOptions> {
+        self.into()
+    }
+}
+// Codec=Dco (DartCObject based), see doc to use other codecs
+impl flutter_rust_bridge::IntoDart for FrbWrapper<crate::api::types::Version> {
+    fn into_dart(self) -> flutter_rust_bridge::for_generated::DartAbi {
+        match self.0 {
+            crate::api::types::Version::V01 => 0.into_dart(),
+            crate::api::types::Version::V02 => 1.into_dart(),
+            crate::api::types::Version::V03 => 2.into_dart(),
+            crate::api::types::Version::V04 => 3.into_dart(),
+            crate::api::types::Version::V05 => 4.into_dart(),
+            crate::api::types::Version::V06 => 5.into_dart(),
+            crate::api::types::Version::V07 => 6.into_dart(),
+            crate::api::types::Version::V08 => 7.into_dart(),
+            crate::api::types::Version::V09 => 8.into_dart(),
+            crate::api::types::Version::V10 => 9.into_dart(),
+            crate::api::types::Version::V11 => 10.into_dart(),
+            crate::api::types::Version::V12 => 11.into_dart(),
+            crate::api::types::Version::V13 => 12.into_dart(),
+            crate::api::types::Version::V14 => 13.into_dart(),
+            crate::api::types::Version::V15 => 14.into_dart(),
+            crate::api::types::Version::V16 => 15.into_dart(),
+            crate::api::types::Version::V17 => 16.into_dart(),
+            crate::api::types::Version::V18 => 17.into_dart(),
+            crate::api::types::Version::V19 => 18.into_dart(),
+            crate::api::types::Version::V20 => 19.into_dart(),
+            crate::api::types::Version::V21 => 20.into_dart(),
+            crate::api::types::Version::V22 => 21.into_dart(),
+            crate::api::types::Version::V23 => 22.into_dart(),
+            crate::api::types::Version::V24 => 23.into_dart(),
+            crate::api::types::Version::V25 => 24.into_dart(),
+            crate::api::types::Version::V26 => 25.into_dart(),
+            crate::api::types::Version::V27 => 26.into_dart(),
+            crate::api::types::Version::V28 => 27.into_dart(),
+            crate::api::types::Version::V29 => 28.into_dart(),
+            crate::api::types::Version::V30 => 29.into_dart(),
+            crate::api::types::Version::V31 => 30.into_dart(),
+            crate::api::types::Version::V32 => 31.into_dart(),
+            crate::api::types::Version::V33 => 32.into_dart(),
+            crate::api::types::Version::V34 => 33.into_dart(),
+            crate::api::types::Version::V35 => 34.into_dart(),
+            crate::api::types::Version::V36 => 35.into_dart(),
+            crate::api::types::Version::V37 => 36.into_dart(),
+            crate::api::types::Version::V38 => 37.into_dart(),
+            crate::api::types::Version::V39 => 38.into_dart(),
+            crate::api::types::Version::V40 => 39.into_dart(),
+            _ => unreachable!(),
+        }
+    }
+}
+impl flutter_rust_bridge::for_generated::IntoDartExceptPrimitive
+    for FrbWrapper<crate::api::types::Version>
+{
+}
+impl flutter_rust_bridge::IntoIntoDart<FrbWrapper<crate::api::types::Version>>
+    for crate::api::types::Version
+{
+    fn into_into_dart(self) -> FrbWrapper<crate::api::types::Version> {
+        self.into()
+    }
+}
+
+impl SseEncode for ContinuousJoiner {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+    fn sse_encode(self, serializer: &mut flutter_rust_bridge::for_generated::SseSerializer) {
+        <RustOpaqueMoi<flutter_rust_bridge::for_generated::RustAutoOpaqueInner<ContinuousJoiner>>>::sse_encode(flutter_rust_bridge::for_generated::rust_auto_opaque_encode::<_, MoiArc<_>>(self), serializer);
+    }
+}
+
+impl SseEncode
+    for RustOpaqueMoi<flutter_rust_bridge::for_generated::RustAutoOpaqueInner<ContinuousJoiner>>
+{
+    // Codec=Sse (Serialization based), see doc to use other codecs
+    fn sse_encode(self, serializer: &mut flutter_rust_bridge::for_generated::SseSerializer) {
+        let (ptr, size) = self.sse_encode_raw();
+        <usize>::sse_encode(ptr, serializer);
+        <i32>::sse_encode(size, serializer);
+    }
+}
+
 impl SseEncode for String {
     // Codec=Sse (Serialization based), see doc to use other codecs
     fn sse_encode(self, serializer: &mut flutter_rust_bridge::for_generated::SseSerializer) {
         <Vec<u8>>::sse_encode(self.into_bytes(), serializer);
+    }
+}
+
+impl SseEncode for crate::api::error::ContinuousJoinError {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+    fn sse_encode(self, serializer: &mut flutter_rust_bridge::for_generated::SseSerializer) {
+        match self {
+            crate::api::error::ContinuousJoinError::HeaderParseError(field0) => {
+                <i32>::sse_encode(0, serializer);
+                <crate::api::error::HeaderParseError>::sse_encode(field0, serializer);
+            }
+            crate::api::error::ContinuousJoinError::JoinError(field0) => {
+                <i32>::sse_encode(1, serializer);
+                <crate::api::error::JoinError>::sse_encode(field0, serializer);
+            }
+            crate::api::error::ContinuousJoinError::DecodeError(field0) => {
+                <i32>::sse_encode(2, serializer);
+                <crate::api::error::DecodeError>::sse_encode(field0, serializer);
+            }
+            _ => {
+                unimplemented!("");
+            }
+        }
+    }
+}
+
+impl SseEncode for crate::api::error::DecodeError {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+    fn sse_encode(self, serializer: &mut flutter_rust_bridge::for_generated::SseSerializer) {
+        match self {
+            crate::api::error::DecodeError::UnableToDecodeHex(field0, field1) => {
+                <i32>::sse_encode(0, serializer);
+                <usize>::sse_encode(field0, serializer);
+                <String>::sse_encode(field1, serializer);
+            }
+            crate::api::error::DecodeError::UnableToDecodeBase32(field0, field1) => {
+                <i32>::sse_encode(1, serializer);
+                <usize>::sse_encode(field0, serializer);
+                <String>::sse_encode(field1, serializer);
+            }
+            crate::api::error::DecodeError::UnableToInflateZlib(field0) => {
+                <i32>::sse_encode(2, serializer);
+                <String>::sse_encode(field0, serializer);
+            }
+            _ => {
+                unimplemented!("");
+            }
+        }
+    }
+}
+
+impl SseEncode for crate::api::types::Encoding {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+    fn sse_encode(self, serializer: &mut flutter_rust_bridge::for_generated::SseSerializer) {
+        <i32>::sse_encode(
+            match self {
+                crate::api::types::Encoding::Hex => 0,
+                crate::api::types::Encoding::Base32 => 1,
+                crate::api::types::Encoding::Zlib => 2,
+                _ => {
+                    unimplemented!("");
+                }
+            },
+            serializer,
+        );
+    }
+}
+
+impl SseEncode for crate::api::types::FileType {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+    fn sse_encode(self, serializer: &mut flutter_rust_bridge::for_generated::SseSerializer) {
+        <i32>::sse_encode(
+            match self {
+                crate::api::types::FileType::Psbt => 0,
+                crate::api::types::FileType::Transaction => 1,
+                crate::api::types::FileType::Json => 2,
+                crate::api::types::FileType::Cbor => 3,
+                crate::api::types::FileType::UnicodeText => 4,
+                _ => {
+                    unimplemented!("");
+                }
+            },
+            serializer,
+        );
+    }
+}
+
+impl SseEncode for crate::api::error::HeaderParseError {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+    fn sse_encode(self, serializer: &mut flutter_rust_bridge::for_generated::SseSerializer) {
+        match self {
+            crate::api::error::HeaderParseError::Empty => {
+                <i32>::sse_encode(0, serializer);
+            }
+            crate::api::error::HeaderParseError::InvalidEncoding(field0) => {
+                <i32>::sse_encode(1, serializer);
+                <String>::sse_encode(field0, serializer);
+            }
+            crate::api::error::HeaderParseError::InvalidFileType(field0) => {
+                <i32>::sse_encode(2, serializer);
+                <String>::sse_encode(field0, serializer);
+            }
+            crate::api::error::HeaderParseError::InvalidFixedHeader => {
+                <i32>::sse_encode(3, serializer);
+            }
+            crate::api::error::HeaderParseError::InvalidHeaderSize(field0) => {
+                <i32>::sse_encode(4, serializer);
+                <usize>::sse_encode(field0, serializer);
+            }
+            crate::api::error::HeaderParseError::InvalidHeaderParts(field0) => {
+                <i32>::sse_encode(5, serializer);
+                <String>::sse_encode(field0, serializer);
+            }
+            _ => {
+                unimplemented!("");
+            }
+        }
+    }
+}
+
+impl SseEncode for i32 {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+    fn sse_encode(self, serializer: &mut flutter_rust_bridge::for_generated::SseSerializer) {
+        serializer.cursor.write_i32::<NativeEndian>(self).unwrap();
+    }
+}
+
+impl SseEncode for crate::api::error::JoinError {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+    fn sse_encode(self, serializer: &mut flutter_rust_bridge::for_generated::SseSerializer) {
+        match self {
+            crate::api::error::JoinError::Empty => {
+                <i32>::sse_encode(0, serializer);
+            }
+            crate::api::error::JoinError::ConflictingHeaders => {
+                <i32>::sse_encode(1, serializer);
+            }
+            crate::api::error::JoinError::TooManyParts(field0, field1) => {
+                <i32>::sse_encode(2, serializer);
+                <usize>::sse_encode(field0, serializer);
+                <usize>::sse_encode(field1, serializer);
+            }
+            crate::api::error::JoinError::DuplicatePartWrongContent(field0) => {
+                <i32>::sse_encode(3, serializer);
+                <usize>::sse_encode(field0, serializer);
+            }
+            crate::api::error::JoinError::PartWithNoData(field0) => {
+                <i32>::sse_encode(4, serializer);
+                <usize>::sse_encode(field0, serializer);
+            }
+            crate::api::error::JoinError::MissingPart(field0) => {
+                <i32>::sse_encode(5, serializer);
+                <usize>::sse_encode(field0, serializer);
+            }
+            crate::api::error::JoinError::HeaderParseError(field0) => {
+                <i32>::sse_encode(6, serializer);
+                <crate::api::error::HeaderParseError>::sse_encode(field0, serializer);
+            }
+            crate::api::error::JoinError::DecodeError(field0) => {
+                <i32>::sse_encode(7, serializer);
+                <crate::api::error::DecodeError>::sse_encode(field0, serializer);
+            }
+            _ => {
+                unimplemented!("");
+            }
+        }
+    }
+}
+
+impl SseEncode for crate::api::types::JoinResult {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+    fn sse_encode(self, serializer: &mut flutter_rust_bridge::for_generated::SseSerializer) {
+        match self {
+            crate::api::types::JoinResult::NotStarted => {
+                <i32>::sse_encode(0, serializer);
+            }
+            crate::api::types::JoinResult::InProgress { parts_left } => {
+                <i32>::sse_encode(1, serializer);
+                <usize>::sse_encode(parts_left, serializer);
+            }
+            crate::api::types::JoinResult::Complete { joined } => {
+                <i32>::sse_encode(2, serializer);
+                <crate::api::types::Joined>::sse_encode(joined, serializer);
+            }
+            _ => {
+                unimplemented!("");
+            }
+        }
+    }
+}
+
+impl SseEncode for crate::api::types::Joined {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+    fn sse_encode(self, serializer: &mut flutter_rust_bridge::for_generated::SseSerializer) {
+        <crate::api::types::Encoding>::sse_encode(self.encoding, serializer);
+        <crate::api::types::FileType>::sse_encode(self.file_type, serializer);
+        <Vec<u8>>::sse_encode(self.data, serializer);
+    }
+}
+
+impl SseEncode for Vec<String> {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+    fn sse_encode(self, serializer: &mut flutter_rust_bridge::for_generated::SseSerializer) {
+        <i32>::sse_encode(self.len() as _, serializer);
+        for item in self {
+            <String>::sse_encode(item, serializer);
+        }
     }
 }
 
@@ -201,6 +1192,17 @@ impl SseEncode for Vec<u8> {
         for item in self {
             <u8>::sse_encode(item, serializer);
         }
+    }
+}
+
+impl SseEncode for crate::api::types::SplitOptions {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+    fn sse_encode(self, serializer: &mut flutter_rust_bridge::for_generated::SseSerializer) {
+        <crate::api::types::Encoding>::sse_encode(self.encoding, serializer);
+        <usize>::sse_encode(self.min_split_number, serializer);
+        <usize>::sse_encode(self.max_split_number, serializer);
+        <crate::api::types::Version>::sse_encode(self.min_version, serializer);
+        <crate::api::types::Version>::sse_encode(self.max_version, serializer);
     }
 }
 
@@ -216,10 +1218,67 @@ impl SseEncode for () {
     fn sse_encode(self, serializer: &mut flutter_rust_bridge::for_generated::SseSerializer) {}
 }
 
-impl SseEncode for i32 {
+impl SseEncode for usize {
     // Codec=Sse (Serialization based), see doc to use other codecs
     fn sse_encode(self, serializer: &mut flutter_rust_bridge::for_generated::SseSerializer) {
-        serializer.cursor.write_i32::<NativeEndian>(self).unwrap();
+        serializer
+            .cursor
+            .write_u64::<NativeEndian>(self as _)
+            .unwrap();
+    }
+}
+
+impl SseEncode for crate::api::types::Version {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+    fn sse_encode(self, serializer: &mut flutter_rust_bridge::for_generated::SseSerializer) {
+        <i32>::sse_encode(
+            match self {
+                crate::api::types::Version::V01 => 0,
+                crate::api::types::Version::V02 => 1,
+                crate::api::types::Version::V03 => 2,
+                crate::api::types::Version::V04 => 3,
+                crate::api::types::Version::V05 => 4,
+                crate::api::types::Version::V06 => 5,
+                crate::api::types::Version::V07 => 6,
+                crate::api::types::Version::V08 => 7,
+                crate::api::types::Version::V09 => 8,
+                crate::api::types::Version::V10 => 9,
+                crate::api::types::Version::V11 => 10,
+                crate::api::types::Version::V12 => 11,
+                crate::api::types::Version::V13 => 12,
+                crate::api::types::Version::V14 => 13,
+                crate::api::types::Version::V15 => 14,
+                crate::api::types::Version::V16 => 15,
+                crate::api::types::Version::V17 => 16,
+                crate::api::types::Version::V18 => 17,
+                crate::api::types::Version::V19 => 18,
+                crate::api::types::Version::V20 => 19,
+                crate::api::types::Version::V21 => 20,
+                crate::api::types::Version::V22 => 21,
+                crate::api::types::Version::V23 => 22,
+                crate::api::types::Version::V24 => 23,
+                crate::api::types::Version::V25 => 24,
+                crate::api::types::Version::V26 => 25,
+                crate::api::types::Version::V27 => 26,
+                crate::api::types::Version::V28 => 27,
+                crate::api::types::Version::V29 => 28,
+                crate::api::types::Version::V30 => 29,
+                crate::api::types::Version::V31 => 30,
+                crate::api::types::Version::V32 => 31,
+                crate::api::types::Version::V33 => 32,
+                crate::api::types::Version::V34 => 33,
+                crate::api::types::Version::V35 => 34,
+                crate::api::types::Version::V36 => 35,
+                crate::api::types::Version::V37 => 36,
+                crate::api::types::Version::V38 => 37,
+                crate::api::types::Version::V39 => 38,
+                crate::api::types::Version::V40 => 39,
+                _ => {
+                    unimplemented!("");
+                }
+            },
+            serializer,
+        );
     }
 }
 
@@ -238,6 +1297,7 @@ mod io {
     // Section: imports
 
     use super::*;
+    use crate::api::types::*;
     use flutter_rust_bridge::for_generated::byteorder::{
         NativeEndian, ReadBytesExt, WriteBytesExt,
     };
@@ -247,6 +1307,20 @@ mod io {
     // Section: boilerplate
 
     flutter_rust_bridge::frb_generated_boilerplate_io!();
+
+    #[unsafe(no_mangle)]
+    pub extern "C" fn frbgen_bbqr_rust_arc_increment_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerContinuousJoiner(
+        ptr: *const std::ffi::c_void,
+    ) {
+        MoiArc::<flutter_rust_bridge::for_generated::RustAutoOpaqueInner<ContinuousJoiner>>::increment_strong_count(ptr as _);
+    }
+
+    #[unsafe(no_mangle)]
+    pub extern "C" fn frbgen_bbqr_rust_arc_decrement_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerContinuousJoiner(
+        ptr: *const std::ffi::c_void,
+    ) {
+        MoiArc::<flutter_rust_bridge::for_generated::RustAutoOpaqueInner<ContinuousJoiner>>::decrement_strong_count(ptr as _);
+    }
 }
 #[cfg(not(target_family = "wasm"))]
 pub use io::*;
@@ -260,6 +1334,7 @@ mod web {
     // Section: imports
 
     use super::*;
+    use crate::api::types::*;
     use flutter_rust_bridge::for_generated::byteorder::{
         NativeEndian, ReadBytesExt, WriteBytesExt,
     };
@@ -271,6 +1346,20 @@ mod web {
     // Section: boilerplate
 
     flutter_rust_bridge::frb_generated_boilerplate_web!();
+
+    #[wasm_bindgen]
+    pub fn rust_arc_increment_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerContinuousJoiner(
+        ptr: *const std::ffi::c_void,
+    ) {
+        MoiArc::<flutter_rust_bridge::for_generated::RustAutoOpaqueInner<ContinuousJoiner>>::increment_strong_count(ptr as _);
+    }
+
+    #[wasm_bindgen]
+    pub fn rust_arc_decrement_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerContinuousJoiner(
+        ptr: *const std::ffi::c_void,
+    ) {
+        MoiArc::<flutter_rust_bridge::for_generated::RustAutoOpaqueInner<ContinuousJoiner>>::decrement_strong_count(ptr as _);
+    }
 }
 #[cfg(target_family = "wasm")]
 pub use web::*;

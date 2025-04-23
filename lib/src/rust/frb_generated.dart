@@ -3,7 +3,8 @@
 
 // ignore_for_file: unused_import, unused_element, unnecessary_import, duplicate_ignore, invalid_use_of_internal_member, annotate_overrides, non_constant_identifier_names, curly_braces_in_flow_control_structures, prefer_const_literals_to_create_immutables, unused_field
 
-import 'api/simple.dart';
+import 'api/error.dart';
+import 'api/types.dart';
 import 'dart:async';
 import 'dart:convert';
 import 'frb_generated.dart';
@@ -52,9 +53,7 @@ class RustLib extends BaseEntrypoint<RustLibApi, RustLibApiImpl, RustLibWire> {
       RustLibWire.fromExternalLibrary;
 
   @override
-  Future<void> executeRustInitializers() async {
-    await api.crateApiSimpleInitApp();
-  }
+  Future<void> executeRustInitializers() async {}
 
   @override
   ExternalLibraryLoaderConfig get defaultExternalLibraryLoaderConfig =>
@@ -64,7 +63,7 @@ class RustLib extends BaseEntrypoint<RustLibApi, RustLibApiImpl, RustLibWire> {
   String get codegenVersion => '2.9.0';
 
   @override
-  int get rustContentHash => -1918914929;
+  int get rustContentHash => -1686501660;
 
   static const kDefaultExternalLibraryLoaderConfig =
       ExternalLibraryLoaderConfig(
@@ -75,9 +74,27 @@ class RustLib extends BaseEntrypoint<RustLibApi, RustLibApiImpl, RustLibWire> {
 }
 
 abstract class RustLibApi extends BaseApi {
-  String crateApiSimpleGreet({required String name});
+  JoinResult crateApiTypesContinuousJoinerAddPart({
+    required ContinuousJoiner that,
+    required String part_,
+  });
 
-  Future<void> crateApiSimpleInitApp();
+  Future<ContinuousJoiner> crateApiTypesContinuousJoinerDefault();
+
+  ContinuousJoiner crateApiTypesContinuousJoinerNew();
+
+  SplitOptions crateApiTypesDefaultSplitOptions();
+
+  Joined crateApiTypesJoinedTryNewFromParts({required List<String> parts});
+
+  RustArcIncrementStrongCountFnType
+  get rust_arc_increment_strong_count_ContinuousJoiner;
+
+  RustArcDecrementStrongCountFnType
+  get rust_arc_decrement_strong_count_ContinuousJoiner;
+
+  CrossPlatformFinalizerArg
+  get rust_arc_decrement_strong_count_ContinuousJoinerPtr;
 }
 
 class RustLibApiImpl extends RustLibApiImplPlatform implements RustLibApi {
@@ -89,30 +106,40 @@ class RustLibApiImpl extends RustLibApiImplPlatform implements RustLibApi {
   });
 
   @override
-  String crateApiSimpleGreet({required String name}) {
+  JoinResult crateApiTypesContinuousJoinerAddPart({
+    required ContinuousJoiner that,
+    required String part_,
+  }) {
     return handler.executeSync(
       SyncTask(
         callFfi: () {
           final serializer = SseSerializer(generalizedFrbRustBinding);
-          sse_encode_String(name, serializer);
+          sse_encode_Auto_Ref_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerContinuousJoiner(
+            that,
+            serializer,
+          );
+          sse_encode_String(part_, serializer);
           return pdeCallFfi(generalizedFrbRustBinding, serializer, funcId: 1)!;
         },
         codec: SseCodec(
-          decodeSuccessData: sse_decode_String,
-          decodeErrorData: null,
+          decodeSuccessData: sse_decode_join_result,
+          decodeErrorData: sse_decode_continuous_join_error,
         ),
-        constMeta: kCrateApiSimpleGreetConstMeta,
-        argValues: [name],
+        constMeta: kCrateApiTypesContinuousJoinerAddPartConstMeta,
+        argValues: [that, part_],
         apiImpl: this,
       ),
     );
   }
 
-  TaskConstMeta get kCrateApiSimpleGreetConstMeta =>
-      const TaskConstMeta(debugName: "greet", argNames: ["name"]);
+  TaskConstMeta get kCrateApiTypesContinuousJoinerAddPartConstMeta =>
+      const TaskConstMeta(
+        debugName: "ContinuousJoiner_add_part",
+        argNames: ["that", "part_"],
+      );
 
   @override
-  Future<void> crateApiSimpleInitApp() {
+  Future<ContinuousJoiner> crateApiTypesContinuousJoinerDefault() {
     return handler.executeNormal(
       NormalTask(
         callFfi: (port_) {
@@ -125,18 +152,125 @@ class RustLibApiImpl extends RustLibApiImplPlatform implements RustLibApi {
           );
         },
         codec: SseCodec(
-          decodeSuccessData: sse_decode_unit,
+          decodeSuccessData:
+              sse_decode_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerContinuousJoiner,
           decodeErrorData: null,
         ),
-        constMeta: kCrateApiSimpleInitAppConstMeta,
+        constMeta: kCrateApiTypesContinuousJoinerDefaultConstMeta,
         argValues: [],
         apiImpl: this,
       ),
     );
   }
 
-  TaskConstMeta get kCrateApiSimpleInitAppConstMeta =>
-      const TaskConstMeta(debugName: "init_app", argNames: []);
+  TaskConstMeta get kCrateApiTypesContinuousJoinerDefaultConstMeta =>
+      const TaskConstMeta(debugName: "ContinuousJoiner_default", argNames: []);
+
+  @override
+  ContinuousJoiner crateApiTypesContinuousJoinerNew() {
+    return handler.executeSync(
+      SyncTask(
+        callFfi: () {
+          final serializer = SseSerializer(generalizedFrbRustBinding);
+          return pdeCallFfi(generalizedFrbRustBinding, serializer, funcId: 3)!;
+        },
+        codec: SseCodec(
+          decodeSuccessData:
+              sse_decode_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerContinuousJoiner,
+          decodeErrorData: null,
+        ),
+        constMeta: kCrateApiTypesContinuousJoinerNewConstMeta,
+        argValues: [],
+        apiImpl: this,
+      ),
+    );
+  }
+
+  TaskConstMeta get kCrateApiTypesContinuousJoinerNewConstMeta =>
+      const TaskConstMeta(debugName: "ContinuousJoiner_new", argNames: []);
+
+  @override
+  SplitOptions crateApiTypesDefaultSplitOptions() {
+    return handler.executeSync(
+      SyncTask(
+        callFfi: () {
+          final serializer = SseSerializer(generalizedFrbRustBinding);
+          return pdeCallFfi(generalizedFrbRustBinding, serializer, funcId: 4)!;
+        },
+        codec: SseCodec(
+          decodeSuccessData: sse_decode_split_options,
+          decodeErrorData: null,
+        ),
+        constMeta: kCrateApiTypesDefaultSplitOptionsConstMeta,
+        argValues: [],
+        apiImpl: this,
+      ),
+    );
+  }
+
+  TaskConstMeta get kCrateApiTypesDefaultSplitOptionsConstMeta =>
+      const TaskConstMeta(debugName: "default_split_options", argNames: []);
+
+  @override
+  Joined crateApiTypesJoinedTryNewFromParts({required List<String> parts}) {
+    return handler.executeSync(
+      SyncTask(
+        callFfi: () {
+          final serializer = SseSerializer(generalizedFrbRustBinding);
+          sse_encode_list_String(parts, serializer);
+          return pdeCallFfi(generalizedFrbRustBinding, serializer, funcId: 5)!;
+        },
+        codec: SseCodec(
+          decodeSuccessData: sse_decode_joined,
+          decodeErrorData: sse_decode_join_error,
+        ),
+        constMeta: kCrateApiTypesJoinedTryNewFromPartsConstMeta,
+        argValues: [parts],
+        apiImpl: this,
+      ),
+    );
+  }
+
+  TaskConstMeta get kCrateApiTypesJoinedTryNewFromPartsConstMeta =>
+      const TaskConstMeta(
+        debugName: "joined_try_new_from_parts",
+        argNames: ["parts"],
+      );
+
+  RustArcIncrementStrongCountFnType
+  get rust_arc_increment_strong_count_ContinuousJoiner =>
+      wire.rust_arc_increment_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerContinuousJoiner;
+
+  RustArcDecrementStrongCountFnType
+  get rust_arc_decrement_strong_count_ContinuousJoiner =>
+      wire.rust_arc_decrement_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerContinuousJoiner;
+
+  @protected
+  ContinuousJoiner
+  dco_decode_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerContinuousJoiner(
+    dynamic raw,
+  ) {
+    // Codec=Dco (DartCObject based), see doc to use other codecs
+    return ContinuousJoinerImpl.frbInternalDcoDecode(raw as List<dynamic>);
+  }
+
+  @protected
+  ContinuousJoiner
+  dco_decode_Auto_Ref_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerContinuousJoiner(
+    dynamic raw,
+  ) {
+    // Codec=Dco (DartCObject based), see doc to use other codecs
+    return ContinuousJoinerImpl.frbInternalDcoDecode(raw as List<dynamic>);
+  }
+
+  @protected
+  ContinuousJoiner
+  dco_decode_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerContinuousJoiner(
+    dynamic raw,
+  ) {
+    // Codec=Dco (DartCObject based), see doc to use other codecs
+    return ContinuousJoinerImpl.frbInternalDcoDecode(raw as List<dynamic>);
+  }
 
   @protected
   String dco_decode_String(dynamic raw) {
@@ -145,9 +279,197 @@ class RustLibApiImpl extends RustLibApiImplPlatform implements RustLibApi {
   }
 
   @protected
+  DecodeError dco_decode_box_autoadd_decode_error(dynamic raw) {
+    // Codec=Dco (DartCObject based), see doc to use other codecs
+    return dco_decode_decode_error(raw);
+  }
+
+  @protected
+  HeaderParseError dco_decode_box_autoadd_header_parse_error(dynamic raw) {
+    // Codec=Dco (DartCObject based), see doc to use other codecs
+    return dco_decode_header_parse_error(raw);
+  }
+
+  @protected
+  JoinError dco_decode_box_autoadd_join_error(dynamic raw) {
+    // Codec=Dco (DartCObject based), see doc to use other codecs
+    return dco_decode_join_error(raw);
+  }
+
+  @protected
+  Joined dco_decode_box_autoadd_joined(dynamic raw) {
+    // Codec=Dco (DartCObject based), see doc to use other codecs
+    return dco_decode_joined(raw);
+  }
+
+  @protected
+  ContinuousJoinError dco_decode_continuous_join_error(dynamic raw) {
+    // Codec=Dco (DartCObject based), see doc to use other codecs
+    switch (raw[0]) {
+      case 0:
+        return ContinuousJoinError_HeaderParseError(
+          dco_decode_box_autoadd_header_parse_error(raw[1]),
+        );
+      case 1:
+        return ContinuousJoinError_JoinError(
+          dco_decode_box_autoadd_join_error(raw[1]),
+        );
+      case 2:
+        return ContinuousJoinError_DecodeError(
+          dco_decode_box_autoadd_decode_error(raw[1]),
+        );
+      default:
+        throw Exception("unreachable");
+    }
+  }
+
+  @protected
+  DecodeError dco_decode_decode_error(dynamic raw) {
+    // Codec=Dco (DartCObject based), see doc to use other codecs
+    switch (raw[0]) {
+      case 0:
+        return DecodeError_UnableToDecodeHex(
+          dco_decode_usize(raw[1]),
+          dco_decode_String(raw[2]),
+        );
+      case 1:
+        return DecodeError_UnableToDecodeBase32(
+          dco_decode_usize(raw[1]),
+          dco_decode_String(raw[2]),
+        );
+      case 2:
+        return DecodeError_UnableToInflateZlib(dco_decode_String(raw[1]));
+      default:
+        throw Exception("unreachable");
+    }
+  }
+
+  @protected
+  Encoding dco_decode_encoding(dynamic raw) {
+    // Codec=Dco (DartCObject based), see doc to use other codecs
+    return Encoding.values[raw as int];
+  }
+
+  @protected
+  FileType dco_decode_file_type(dynamic raw) {
+    // Codec=Dco (DartCObject based), see doc to use other codecs
+    return FileType.values[raw as int];
+  }
+
+  @protected
+  HeaderParseError dco_decode_header_parse_error(dynamic raw) {
+    // Codec=Dco (DartCObject based), see doc to use other codecs
+    switch (raw[0]) {
+      case 0:
+        return HeaderParseError_Empty();
+      case 1:
+        return HeaderParseError_InvalidEncoding(dco_decode_String(raw[1]));
+      case 2:
+        return HeaderParseError_InvalidFileType(dco_decode_String(raw[1]));
+      case 3:
+        return HeaderParseError_InvalidFixedHeader();
+      case 4:
+        return HeaderParseError_InvalidHeaderSize(dco_decode_usize(raw[1]));
+      case 5:
+        return HeaderParseError_InvalidHeaderParts(dco_decode_String(raw[1]));
+      default:
+        throw Exception("unreachable");
+    }
+  }
+
+  @protected
+  int dco_decode_i_32(dynamic raw) {
+    // Codec=Dco (DartCObject based), see doc to use other codecs
+    return raw as int;
+  }
+
+  @protected
+  JoinError dco_decode_join_error(dynamic raw) {
+    // Codec=Dco (DartCObject based), see doc to use other codecs
+    switch (raw[0]) {
+      case 0:
+        return JoinError_Empty();
+      case 1:
+        return JoinError_ConflictingHeaders();
+      case 2:
+        return JoinError_TooManyParts(
+          dco_decode_usize(raw[1]),
+          dco_decode_usize(raw[2]),
+        );
+      case 3:
+        return JoinError_DuplicatePartWrongContent(dco_decode_usize(raw[1]));
+      case 4:
+        return JoinError_PartWithNoData(dco_decode_usize(raw[1]));
+      case 5:
+        return JoinError_MissingPart(dco_decode_usize(raw[1]));
+      case 6:
+        return JoinError_HeaderParseError(
+          dco_decode_box_autoadd_header_parse_error(raw[1]),
+        );
+      case 7:
+        return JoinError_DecodeError(
+          dco_decode_box_autoadd_decode_error(raw[1]),
+        );
+      default:
+        throw Exception("unreachable");
+    }
+  }
+
+  @protected
+  JoinResult dco_decode_join_result(dynamic raw) {
+    // Codec=Dco (DartCObject based), see doc to use other codecs
+    switch (raw[0]) {
+      case 0:
+        return JoinResult_NotStarted();
+      case 1:
+        return JoinResult_InProgress(partsLeft: dco_decode_usize(raw[1]));
+      case 2:
+        return JoinResult_Complete(
+          joined: dco_decode_box_autoadd_joined(raw[1]),
+        );
+      default:
+        throw Exception("unreachable");
+    }
+  }
+
+  @protected
+  Joined dco_decode_joined(dynamic raw) {
+    // Codec=Dco (DartCObject based), see doc to use other codecs
+    final arr = raw as List<dynamic>;
+    if (arr.length != 3)
+      throw Exception('unexpected arr length: expect 3 but see ${arr.length}');
+    return Joined(
+      encoding: dco_decode_encoding(arr[0]),
+      fileType: dco_decode_file_type(arr[1]),
+      data: dco_decode_list_prim_u_8_strict(arr[2]),
+    );
+  }
+
+  @protected
+  List<String> dco_decode_list_String(dynamic raw) {
+    // Codec=Dco (DartCObject based), see doc to use other codecs
+    return (raw as List<dynamic>).map(dco_decode_String).toList();
+  }
+
+  @protected
   Uint8List dco_decode_list_prim_u_8_strict(dynamic raw) {
     // Codec=Dco (DartCObject based), see doc to use other codecs
     return raw as Uint8List;
+  }
+
+  @protected
+  SplitOptions dco_decode_split_options(dynamic raw) {
+    // Codec=Dco (DartCObject based), see doc to use other codecs
+    final arr = raw as List<dynamic>;
+    if (arr.length != 5)
+      throw Exception('unexpected arr length: expect 5 but see ${arr.length}');
+    return SplitOptions(
+      encoding: dco_decode_encoding(arr[0]),
+      minSplitNumber: dco_decode_usize(arr[1]),
+      maxSplitNumber: dco_decode_usize(arr[2]),
+      minVersion: dco_decode_version(arr[3]),
+      maxVersion: dco_decode_version(arr[4]),
+    );
   }
 
   @protected
@@ -163,6 +485,54 @@ class RustLibApiImpl extends RustLibApiImplPlatform implements RustLibApi {
   }
 
   @protected
+  BigInt dco_decode_usize(dynamic raw) {
+    // Codec=Dco (DartCObject based), see doc to use other codecs
+    return dcoDecodeU64(raw);
+  }
+
+  @protected
+  Version dco_decode_version(dynamic raw) {
+    // Codec=Dco (DartCObject based), see doc to use other codecs
+    return Version.values[raw as int];
+  }
+
+  @protected
+  ContinuousJoiner
+  sse_decode_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerContinuousJoiner(
+    SseDeserializer deserializer,
+  ) {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+    return ContinuousJoinerImpl.frbInternalSseDecode(
+      sse_decode_usize(deserializer),
+      sse_decode_i_32(deserializer),
+    );
+  }
+
+  @protected
+  ContinuousJoiner
+  sse_decode_Auto_Ref_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerContinuousJoiner(
+    SseDeserializer deserializer,
+  ) {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+    return ContinuousJoinerImpl.frbInternalSseDecode(
+      sse_decode_usize(deserializer),
+      sse_decode_i_32(deserializer),
+    );
+  }
+
+  @protected
+  ContinuousJoiner
+  sse_decode_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerContinuousJoiner(
+    SseDeserializer deserializer,
+  ) {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+    return ContinuousJoinerImpl.frbInternalSseDecode(
+      sse_decode_usize(deserializer),
+      sse_decode_i_32(deserializer),
+    );
+  }
+
+  @protected
   String sse_decode_String(SseDeserializer deserializer) {
     // Codec=Sse (Serialization based), see doc to use other codecs
     var inner = sse_decode_list_prim_u_8_strict(deserializer);
@@ -170,10 +540,228 @@ class RustLibApiImpl extends RustLibApiImplPlatform implements RustLibApi {
   }
 
   @protected
+  DecodeError sse_decode_box_autoadd_decode_error(
+    SseDeserializer deserializer,
+  ) {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+    return (sse_decode_decode_error(deserializer));
+  }
+
+  @protected
+  HeaderParseError sse_decode_box_autoadd_header_parse_error(
+    SseDeserializer deserializer,
+  ) {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+    return (sse_decode_header_parse_error(deserializer));
+  }
+
+  @protected
+  JoinError sse_decode_box_autoadd_join_error(SseDeserializer deserializer) {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+    return (sse_decode_join_error(deserializer));
+  }
+
+  @protected
+  Joined sse_decode_box_autoadd_joined(SseDeserializer deserializer) {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+    return (sse_decode_joined(deserializer));
+  }
+
+  @protected
+  ContinuousJoinError sse_decode_continuous_join_error(
+    SseDeserializer deserializer,
+  ) {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+
+    var tag_ = sse_decode_i_32(deserializer);
+    switch (tag_) {
+      case 0:
+        var var_field0 = sse_decode_box_autoadd_header_parse_error(
+          deserializer,
+        );
+        return ContinuousJoinError_HeaderParseError(var_field0);
+      case 1:
+        var var_field0 = sse_decode_box_autoadd_join_error(deserializer);
+        return ContinuousJoinError_JoinError(var_field0);
+      case 2:
+        var var_field0 = sse_decode_box_autoadd_decode_error(deserializer);
+        return ContinuousJoinError_DecodeError(var_field0);
+      default:
+        throw UnimplementedError('');
+    }
+  }
+
+  @protected
+  DecodeError sse_decode_decode_error(SseDeserializer deserializer) {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+
+    var tag_ = sse_decode_i_32(deserializer);
+    switch (tag_) {
+      case 0:
+        var var_field0 = sse_decode_usize(deserializer);
+        var var_field1 = sse_decode_String(deserializer);
+        return DecodeError_UnableToDecodeHex(var_field0, var_field1);
+      case 1:
+        var var_field0 = sse_decode_usize(deserializer);
+        var var_field1 = sse_decode_String(deserializer);
+        return DecodeError_UnableToDecodeBase32(var_field0, var_field1);
+      case 2:
+        var var_field0 = sse_decode_String(deserializer);
+        return DecodeError_UnableToInflateZlib(var_field0);
+      default:
+        throw UnimplementedError('');
+    }
+  }
+
+  @protected
+  Encoding sse_decode_encoding(SseDeserializer deserializer) {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+    var inner = sse_decode_i_32(deserializer);
+    return Encoding.values[inner];
+  }
+
+  @protected
+  FileType sse_decode_file_type(SseDeserializer deserializer) {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+    var inner = sse_decode_i_32(deserializer);
+    return FileType.values[inner];
+  }
+
+  @protected
+  HeaderParseError sse_decode_header_parse_error(SseDeserializer deserializer) {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+
+    var tag_ = sse_decode_i_32(deserializer);
+    switch (tag_) {
+      case 0:
+        return HeaderParseError_Empty();
+      case 1:
+        var var_field0 = sse_decode_String(deserializer);
+        return HeaderParseError_InvalidEncoding(var_field0);
+      case 2:
+        var var_field0 = sse_decode_String(deserializer);
+        return HeaderParseError_InvalidFileType(var_field0);
+      case 3:
+        return HeaderParseError_InvalidFixedHeader();
+      case 4:
+        var var_field0 = sse_decode_usize(deserializer);
+        return HeaderParseError_InvalidHeaderSize(var_field0);
+      case 5:
+        var var_field0 = sse_decode_String(deserializer);
+        return HeaderParseError_InvalidHeaderParts(var_field0);
+      default:
+        throw UnimplementedError('');
+    }
+  }
+
+  @protected
+  int sse_decode_i_32(SseDeserializer deserializer) {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+    return deserializer.buffer.getInt32();
+  }
+
+  @protected
+  JoinError sse_decode_join_error(SseDeserializer deserializer) {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+
+    var tag_ = sse_decode_i_32(deserializer);
+    switch (tag_) {
+      case 0:
+        return JoinError_Empty();
+      case 1:
+        return JoinError_ConflictingHeaders();
+      case 2:
+        var var_field0 = sse_decode_usize(deserializer);
+        var var_field1 = sse_decode_usize(deserializer);
+        return JoinError_TooManyParts(var_field0, var_field1);
+      case 3:
+        var var_field0 = sse_decode_usize(deserializer);
+        return JoinError_DuplicatePartWrongContent(var_field0);
+      case 4:
+        var var_field0 = sse_decode_usize(deserializer);
+        return JoinError_PartWithNoData(var_field0);
+      case 5:
+        var var_field0 = sse_decode_usize(deserializer);
+        return JoinError_MissingPart(var_field0);
+      case 6:
+        var var_field0 = sse_decode_box_autoadd_header_parse_error(
+          deserializer,
+        );
+        return JoinError_HeaderParseError(var_field0);
+      case 7:
+        var var_field0 = sse_decode_box_autoadd_decode_error(deserializer);
+        return JoinError_DecodeError(var_field0);
+      default:
+        throw UnimplementedError('');
+    }
+  }
+
+  @protected
+  JoinResult sse_decode_join_result(SseDeserializer deserializer) {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+
+    var tag_ = sse_decode_i_32(deserializer);
+    switch (tag_) {
+      case 0:
+        return JoinResult_NotStarted();
+      case 1:
+        var var_partsLeft = sse_decode_usize(deserializer);
+        return JoinResult_InProgress(partsLeft: var_partsLeft);
+      case 2:
+        var var_joined = sse_decode_box_autoadd_joined(deserializer);
+        return JoinResult_Complete(joined: var_joined);
+      default:
+        throw UnimplementedError('');
+    }
+  }
+
+  @protected
+  Joined sse_decode_joined(SseDeserializer deserializer) {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+    var var_encoding = sse_decode_encoding(deserializer);
+    var var_fileType = sse_decode_file_type(deserializer);
+    var var_data = sse_decode_list_prim_u_8_strict(deserializer);
+    return Joined(
+      encoding: var_encoding,
+      fileType: var_fileType,
+      data: var_data,
+    );
+  }
+
+  @protected
+  List<String> sse_decode_list_String(SseDeserializer deserializer) {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+
+    var len_ = sse_decode_i_32(deserializer);
+    var ans_ = <String>[];
+    for (var idx_ = 0; idx_ < len_; ++idx_) {
+      ans_.add(sse_decode_String(deserializer));
+    }
+    return ans_;
+  }
+
+  @protected
   Uint8List sse_decode_list_prim_u_8_strict(SseDeserializer deserializer) {
     // Codec=Sse (Serialization based), see doc to use other codecs
     var len_ = sse_decode_i_32(deserializer);
     return deserializer.buffer.getUint8List(len_);
+  }
+
+  @protected
+  SplitOptions sse_decode_split_options(SseDeserializer deserializer) {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+    var var_encoding = sse_decode_encoding(deserializer);
+    var var_minSplitNumber = sse_decode_usize(deserializer);
+    var var_maxSplitNumber = sse_decode_usize(deserializer);
+    var var_minVersion = sse_decode_version(deserializer);
+    var var_maxVersion = sse_decode_version(deserializer);
+    return SplitOptions(
+      encoding: var_encoding,
+      minSplitNumber: var_minSplitNumber,
+      maxSplitNumber: var_maxSplitNumber,
+      minVersion: var_minVersion,
+      maxVersion: var_maxVersion,
+    );
   }
 
   @protected
@@ -188,9 +776,16 @@ class RustLibApiImpl extends RustLibApiImplPlatform implements RustLibApi {
   }
 
   @protected
-  int sse_decode_i_32(SseDeserializer deserializer) {
+  BigInt sse_decode_usize(SseDeserializer deserializer) {
     // Codec=Sse (Serialization based), see doc to use other codecs
-    return deserializer.buffer.getInt32();
+    return deserializer.buffer.getBigUint64();
+  }
+
+  @protected
+  Version sse_decode_version(SseDeserializer deserializer) {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+    var inner = sse_decode_i_32(deserializer);
+    return Version.values[inner];
   }
 
   @protected
@@ -200,9 +795,230 @@ class RustLibApiImpl extends RustLibApiImplPlatform implements RustLibApi {
   }
 
   @protected
+  void
+  sse_encode_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerContinuousJoiner(
+    ContinuousJoiner self,
+    SseSerializer serializer,
+  ) {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+    sse_encode_usize(
+      (self as ContinuousJoinerImpl).frbInternalSseEncode(move: true),
+      serializer,
+    );
+  }
+
+  @protected
+  void
+  sse_encode_Auto_Ref_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerContinuousJoiner(
+    ContinuousJoiner self,
+    SseSerializer serializer,
+  ) {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+    sse_encode_usize(
+      (self as ContinuousJoinerImpl).frbInternalSseEncode(move: false),
+      serializer,
+    );
+  }
+
+  @protected
+  void
+  sse_encode_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerContinuousJoiner(
+    ContinuousJoiner self,
+    SseSerializer serializer,
+  ) {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+    sse_encode_usize(
+      (self as ContinuousJoinerImpl).frbInternalSseEncode(move: null),
+      serializer,
+    );
+  }
+
+  @protected
   void sse_encode_String(String self, SseSerializer serializer) {
     // Codec=Sse (Serialization based), see doc to use other codecs
     sse_encode_list_prim_u_8_strict(utf8.encoder.convert(self), serializer);
+  }
+
+  @protected
+  void sse_encode_box_autoadd_decode_error(
+    DecodeError self,
+    SseSerializer serializer,
+  ) {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+    sse_encode_decode_error(self, serializer);
+  }
+
+  @protected
+  void sse_encode_box_autoadd_header_parse_error(
+    HeaderParseError self,
+    SseSerializer serializer,
+  ) {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+    sse_encode_header_parse_error(self, serializer);
+  }
+
+  @protected
+  void sse_encode_box_autoadd_join_error(
+    JoinError self,
+    SseSerializer serializer,
+  ) {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+    sse_encode_join_error(self, serializer);
+  }
+
+  @protected
+  void sse_encode_box_autoadd_joined(Joined self, SseSerializer serializer) {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+    sse_encode_joined(self, serializer);
+  }
+
+  @protected
+  void sse_encode_continuous_join_error(
+    ContinuousJoinError self,
+    SseSerializer serializer,
+  ) {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+    switch (self) {
+      case ContinuousJoinError_HeaderParseError(field0: final field0):
+        sse_encode_i_32(0, serializer);
+        sse_encode_box_autoadd_header_parse_error(field0, serializer);
+      case ContinuousJoinError_JoinError(field0: final field0):
+        sse_encode_i_32(1, serializer);
+        sse_encode_box_autoadd_join_error(field0, serializer);
+      case ContinuousJoinError_DecodeError(field0: final field0):
+        sse_encode_i_32(2, serializer);
+        sse_encode_box_autoadd_decode_error(field0, serializer);
+    }
+  }
+
+  @protected
+  void sse_encode_decode_error(DecodeError self, SseSerializer serializer) {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+    switch (self) {
+      case DecodeError_UnableToDecodeHex(
+        field0: final field0,
+        field1: final field1,
+      ):
+        sse_encode_i_32(0, serializer);
+        sse_encode_usize(field0, serializer);
+        sse_encode_String(field1, serializer);
+      case DecodeError_UnableToDecodeBase32(
+        field0: final field0,
+        field1: final field1,
+      ):
+        sse_encode_i_32(1, serializer);
+        sse_encode_usize(field0, serializer);
+        sse_encode_String(field1, serializer);
+      case DecodeError_UnableToInflateZlib(field0: final field0):
+        sse_encode_i_32(2, serializer);
+        sse_encode_String(field0, serializer);
+    }
+  }
+
+  @protected
+  void sse_encode_encoding(Encoding self, SseSerializer serializer) {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+    sse_encode_i_32(self.index, serializer);
+  }
+
+  @protected
+  void sse_encode_file_type(FileType self, SseSerializer serializer) {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+    sse_encode_i_32(self.index, serializer);
+  }
+
+  @protected
+  void sse_encode_header_parse_error(
+    HeaderParseError self,
+    SseSerializer serializer,
+  ) {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+    switch (self) {
+      case HeaderParseError_Empty():
+        sse_encode_i_32(0, serializer);
+      case HeaderParseError_InvalidEncoding(field0: final field0):
+        sse_encode_i_32(1, serializer);
+        sse_encode_String(field0, serializer);
+      case HeaderParseError_InvalidFileType(field0: final field0):
+        sse_encode_i_32(2, serializer);
+        sse_encode_String(field0, serializer);
+      case HeaderParseError_InvalidFixedHeader():
+        sse_encode_i_32(3, serializer);
+      case HeaderParseError_InvalidHeaderSize(field0: final field0):
+        sse_encode_i_32(4, serializer);
+        sse_encode_usize(field0, serializer);
+      case HeaderParseError_InvalidHeaderParts(field0: final field0):
+        sse_encode_i_32(5, serializer);
+        sse_encode_String(field0, serializer);
+    }
+  }
+
+  @protected
+  void sse_encode_i_32(int self, SseSerializer serializer) {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+    serializer.buffer.putInt32(self);
+  }
+
+  @protected
+  void sse_encode_join_error(JoinError self, SseSerializer serializer) {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+    switch (self) {
+      case JoinError_Empty():
+        sse_encode_i_32(0, serializer);
+      case JoinError_ConflictingHeaders():
+        sse_encode_i_32(1, serializer);
+      case JoinError_TooManyParts(field0: final field0, field1: final field1):
+        sse_encode_i_32(2, serializer);
+        sse_encode_usize(field0, serializer);
+        sse_encode_usize(field1, serializer);
+      case JoinError_DuplicatePartWrongContent(field0: final field0):
+        sse_encode_i_32(3, serializer);
+        sse_encode_usize(field0, serializer);
+      case JoinError_PartWithNoData(field0: final field0):
+        sse_encode_i_32(4, serializer);
+        sse_encode_usize(field0, serializer);
+      case JoinError_MissingPart(field0: final field0):
+        sse_encode_i_32(5, serializer);
+        sse_encode_usize(field0, serializer);
+      case JoinError_HeaderParseError(field0: final field0):
+        sse_encode_i_32(6, serializer);
+        sse_encode_box_autoadd_header_parse_error(field0, serializer);
+      case JoinError_DecodeError(field0: final field0):
+        sse_encode_i_32(7, serializer);
+        sse_encode_box_autoadd_decode_error(field0, serializer);
+    }
+  }
+
+  @protected
+  void sse_encode_join_result(JoinResult self, SseSerializer serializer) {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+    switch (self) {
+      case JoinResult_NotStarted():
+        sse_encode_i_32(0, serializer);
+      case JoinResult_InProgress(partsLeft: final partsLeft):
+        sse_encode_i_32(1, serializer);
+        sse_encode_usize(partsLeft, serializer);
+      case JoinResult_Complete(joined: final joined):
+        sse_encode_i_32(2, serializer);
+        sse_encode_box_autoadd_joined(joined, serializer);
+    }
+  }
+
+  @protected
+  void sse_encode_joined(Joined self, SseSerializer serializer) {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+    sse_encode_encoding(self.encoding, serializer);
+    sse_encode_file_type(self.fileType, serializer);
+    sse_encode_list_prim_u_8_strict(self.data, serializer);
+  }
+
+  @protected
+  void sse_encode_list_String(List<String> self, SseSerializer serializer) {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+    sse_encode_i_32(self.length, serializer);
+    for (final item in self) {
+      sse_encode_String(item, serializer);
+    }
   }
 
   @protected
@@ -213,6 +1029,16 @@ class RustLibApiImpl extends RustLibApiImplPlatform implements RustLibApi {
     // Codec=Sse (Serialization based), see doc to use other codecs
     sse_encode_i_32(self.length, serializer);
     serializer.buffer.putUint8List(self);
+  }
+
+  @protected
+  void sse_encode_split_options(SplitOptions self, SseSerializer serializer) {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+    sse_encode_encoding(self.encoding, serializer);
+    sse_encode_usize(self.minSplitNumber, serializer);
+    sse_encode_usize(self.maxSplitNumber, serializer);
+    sse_encode_version(self.minVersion, serializer);
+    sse_encode_version(self.maxVersion, serializer);
   }
 
   @protected
@@ -227,9 +1053,15 @@ class RustLibApiImpl extends RustLibApiImplPlatform implements RustLibApi {
   }
 
   @protected
-  void sse_encode_i_32(int self, SseSerializer serializer) {
+  void sse_encode_usize(BigInt self, SseSerializer serializer) {
     // Codec=Sse (Serialization based), see doc to use other codecs
-    serializer.buffer.putInt32(self);
+    serializer.buffer.putBigUint64(self);
+  }
+
+  @protected
+  void sse_encode_version(Version self, SseSerializer serializer) {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+    sse_encode_i_32(self.index, serializer);
   }
 
   @protected
@@ -237,4 +1069,32 @@ class RustLibApiImpl extends RustLibApiImplPlatform implements RustLibApi {
     // Codec=Sse (Serialization based), see doc to use other codecs
     serializer.buffer.putUint8(self ? 1 : 0);
   }
+}
+
+@sealed
+class ContinuousJoinerImpl extends RustOpaque implements ContinuousJoiner {
+  // Not to be used by end users
+  ContinuousJoinerImpl.frbInternalDcoDecode(List<dynamic> wire)
+    : super.frbInternalDcoDecode(wire, _kStaticData);
+
+  // Not to be used by end users
+  ContinuousJoinerImpl.frbInternalSseDecode(
+    BigInt ptr,
+    int externalSizeOnNative,
+  ) : super.frbInternalSseDecode(ptr, externalSizeOnNative, _kStaticData);
+
+  static final _kStaticData = RustArcStaticData(
+    rustArcIncrementStrongCount:
+        RustLib.instance.api.rust_arc_increment_strong_count_ContinuousJoiner,
+    rustArcDecrementStrongCount:
+        RustLib.instance.api.rust_arc_decrement_strong_count_ContinuousJoiner,
+    rustArcDecrementStrongCountPtr:
+        RustLib
+            .instance
+            .api
+            .rust_arc_decrement_strong_count_ContinuousJoinerPtr,
+  );
+
+  JoinResult addPart({required String part_}) => RustLib.instance.api
+      .crateApiTypesContinuousJoinerAddPart(that: this, part_: part_);
 }
