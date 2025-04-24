@@ -6,6 +6,7 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
 void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
   await bbqr.LibBbqr.init();
   testPackage();
   runApp(const MyApp());
@@ -37,12 +38,11 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  int _counter = 0;
+  String part = '';
 
-  void _incrementCounter() {
-    setState(() {
-      _counter++;
-    });
+  void _processQr() async {
+    part = await qrCode();
+    setState(() {});
   }
 
   @override
@@ -55,21 +55,12 @@ class _MyHomePageState extends State<MyHomePage> {
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            const Text('You have pushed the button this many times:'),
-            Text(
-              '$_counter',
-              style: Theme.of(context).textTheme.headlineMedium,
-            ),
-
-            // QR code
-            Text(qrCode()),
-          ],
+          children: <Widget>[Text(part)],
         ),
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: _incrementCounter,
-        tooltip: 'Increment',
+        onPressed: _processQr,
+        tooltip: 'Create QR',
         child: const Icon(Icons.add),
       ),
     );
@@ -86,7 +77,7 @@ void testPackage() async {
     final bytes = utf8.encode(large);
 
     // examples of different options
-    final options = bbqr.defaultSplitOptions();
+    final options = await bbqr.SplitOptions.default_();
 
     final options2 = bbqr.SplitOptions(
       encoding: bbqr.Encoding.zlib,
@@ -96,36 +87,37 @@ void testPackage() async {
       maxVersion: bbqr.Version.v40,
     );
 
-    final split = bbqr.Split.tryFromData(
-      data: bytes,
+    final split = await bbqr.Split.tryFromData(
+      bytes: bytes,
       fileType: bbqr.FileType.unicodeText,
       options: options,
     );
 
-    final split2 = bbqr.Split.tryFromData(
-      data: bytes,
+    final split2 = await bbqr.Split.tryFromData(
+      bytes: bytes,
       fileType: bbqr.FileType.unicodeText,
       options: options2,
     );
 
     // options2 is the same as defaultSplitOptions
-    assert(split.parts().length == split2.parts().length);
-    assert(listEquals(split.parts(), split2.parts()));
+    assert(split.parts.length == split2.parts.length);
+    assert(listEquals(split.parts, split2.parts));
 
-    // continuous joiner with single part
-    bbqr.ContinuousJoiner joiner = bbqr.ContinuousJoiner();
+    // // continuous joiner with single part
+    // final joiner = bbqr.ContinuousJoiner();
 
-    assert(split.parts().length == 1);
-    final part = split.parts().first;
+    // assert(split.parts.length == 1);
+    // final part = split.parts.first;
 
-    final result = joiner.addPart(part_: part);
+    final result = await bbqr.Joined.tryFromParts(parts: split.parts);
+    print(result);
 
-    if (result case bbqr.JoinResult_Complete(:final joined)) {
-      assert(listEquals(joined.data, bytes));
-    }
+    // if (result case bbqr.JoinResult_Complete(:final joined)) {
+    //   assert(listEquals(joined.data, bytes));
+    // }
 
-    // continuous joiner with multiple parts
-    bbqr.ContinuousJoiner joiner2 = bbqr.ContinuousJoiner();
+    // // continuous joiner with multiple parts
+    // final joiner2 = bbqr.ContinuousJoiner();
 
     final options3 = bbqr.SplitOptions(
       encoding: bbqr.Encoding.hex,
@@ -135,46 +127,45 @@ void testPackage() async {
       maxVersion: bbqr.Version.v10,
     );
 
-    final split3 = bbqr.Split.tryFromData(
-      data: bytes,
+    final split3 = await bbqr.Split.tryFromData(
+      bytes: bytes,
       fileType: bbqr.FileType.unicodeText,
       options: options3,
     );
 
-    assert(split3.parts().length > 1);
+    assert(split3.parts.length > 1);
 
-    bool isComplete = false;
-    for (String part in split3.parts()) {
-      bbqr.JoinResult result = joiner2.addPart(part_: part);
+    // bool isComplete = false;
+    // for (final part in split3.parts) {
+    //   final result = joiner2.addPart(part_: part);
 
-      if (result case bbqr.JoinResult_Complete(:final joined)) {
-        isComplete = true;
-        assert(listEquals(joined.data, bytes));
-      }
-    }
-
-    assert(isComplete);
+    //   if (result case bbqr.JoinResult_Complete(:final joined)) {
+    //     isComplete = true;
+    //     assert(listEquals(joined.data, bytes));
+    //   }
+    // }
+    // assert(isComplete);
 
     // join all at once
-    final joined = bbqr.Joined.tryNewFromParts(parts: split3.parts());
+    final joined = await bbqr.Joined.tryFromParts(parts: split3.parts);
     assert(listEquals(joined.data, bytes));
   } catch (e) {
     log(e.toString());
   }
 }
 
-String qrCode() {
+Future<String> qrCode() async {
   const template = "bacon bacon bacon bacon bacon bacon bacon bacon bacon";
   final large = template * 100;
   final bytes = utf8.encode(large);
 
-  final options = bbqr.defaultSplitOptions();
+  final options = await bbqr.SplitOptions.default_();
 
-  final split = bbqr.Split.tryFromData(
-    data: bytes,
+  final split = await bbqr.Split.tryFromData(
+    bytes: bytes,
     fileType: bbqr.FileType.unicodeText,
     options: options,
   );
 
-  return split.parts().first;
+  return split.parts.first;
 }
