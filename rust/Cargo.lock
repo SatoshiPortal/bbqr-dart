@@ -101,18 +101,6 @@ dependencies = [
 ]
 
 [[package]]
-name = "bbqr_bindings"
-version = "0.1.0"
-dependencies = [
- "anyhow",
- "bbqr",
- "flutter_rust_bridge",
- "libz-sys",
- "serde",
- "serde_json",
-]
-
-[[package]]
 name = "block-buffer"
 version = "0.10.4"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -199,6 +187,19 @@ dependencies = [
 ]
 
 [[package]]
+name = "dart_bbqr"
+version = "0.1.0"
+dependencies = [
+ "anyhow",
+ "bbqr",
+ "extend",
+ "flutter_rust_bridge",
+ "libz-sys",
+ "serde",
+ "serde_json",
+]
+
+[[package]]
 name = "dashmap"
 version = "4.0.2"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -243,6 +244,17 @@ checksum = "4cd405aab171cb85d6735e5c8d9db038c17d3ca007a4d2c25f337935c3d90580"
 dependencies = [
  "log",
  "regex",
+]
+
+[[package]]
+name = "extend"
+version = "1.2.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "311a6d2f1f9d60bff73d2c78a0af97ed27f79672f15c238192a5bbb64db56d00"
+dependencies = [
+ "proc-macro2",
+ "quote",
+ "syn",
 ]
 
 [[package]]
