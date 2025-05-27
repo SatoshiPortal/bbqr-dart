@@ -1,7 +1,7 @@
 import 'dart:convert';
 import 'dart:developer';
 
-import 'package:bbqr/bbqr.dart' as bbqr;
+import 'package:dart_bbqr/bbqr.dart' as bbqr;
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
