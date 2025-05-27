@@ -8,10 +8,8 @@ import 'encode.dart';
 import 'file_type.dart';
 import 'package:flutter_rust_bridge/flutter_rust_bridge_for_generated.dart';
 
+// These types are ignored because they are neither used by any `pub` functions nor (for structs and enums) marked `#[frb(unignore)]`: `JoinError`
 // These function are ignored because they are on traits that is not defined in current crate (put an empty `#[frb]` on it to unignore): `assert_receiver_is_total_eq`, `assert_receiver_is_total_eq`, `clone`, `eq`, `eq`, `fmt`, `fmt`, `fmt`, `from`, `from`, `source`
-
-// Rust type: RustOpaqueMoi<flutter_rust_bridge::for_generated::RustAutoOpaqueInner<JoinError>>
-abstract class JoinError implements RustOpaqueInterface {}
 
 /// Joined data structure, includes the encoding, file type, and raw data in bytes
 class Joined {
@@ -33,7 +31,7 @@ class Joined {
   });
 
   static Future<Joined> tryFromParts({required List<String> parts}) =>
-      LibBbqr.instance.api.bbqrJoinJoinedTryFromParts(parts: parts);
+      LibBbqr.instance.api.bbqrJoinJoinedFrbOverrideTryFromParts(parts: parts);
 
   @override
   int get hashCode => encoding.hashCode ^ fileType.hashCode ^ data.hashCode;
