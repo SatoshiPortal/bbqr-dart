@@ -25,9 +25,10 @@
 
 // Section: imports
 
+use crate::api::ContinuousJoinerExt;
+use crate::api::JoinedExt;
+use crate::api::SplitExt;
 use bbqr::continuous_join::*;
-use bbqr::join::*;
-use bbqr::split::*;
 use flutter_rust_bridge::for_generated::byteorder::{NativeEndian, ReadBytesExt, WriteBytesExt};
 use flutter_rust_bridge::for_generated::{transform_result_dco, Lifetimeable, Lockable};
 use flutter_rust_bridge::{Handler, IntoIntoDart};
@@ -35,12 +36,12 @@ use flutter_rust_bridge::{Handler, IntoIntoDart};
 // Section: boilerplate
 
 flutter_rust_bridge::frb_generated_boilerplate!(
-    default_stream_sink_codec = SseCodec,
-    default_rust_opaque = RustOpaqueMoi,
-    default_rust_auto_opaque = RustAutoOpaqueMoi,
+    default_stream_sink_codec = DcoCodec,
+    default_rust_opaque = RustOpaqueNom,
+    default_rust_auto_opaque = RustAutoOpaqueNom,
 );
 pub(crate) const FLUTTER_RUST_BRIDGE_CODEGEN_VERSION: &str = "2.9.0";
-pub(crate) const FLUTTER_RUST_BRIDGE_CODEGEN_CONTENT_HASH: i32 = 1507498341;
+pub(crate) const FLUTTER_RUST_BRIDGE_CODEGEN_CONTENT_HASH: i32 = 85803071;
 
 // Section: executor
 
@@ -48,35 +49,44 @@ flutter_rust_bridge::frb_generated_default_handler!();
 
 // Section: wire_funcs
 
-fn wire__bbqr__continuous_join__ContinuousJoiner_add_part_impl(
+fn wire__bbqr__continuous_join__ContinuousJoiner_default_impl(
     port_: flutter_rust_bridge::for_generated::MessagePort,
-    ptr_: flutter_rust_bridge::for_generated::PlatformGeneralizedUint8ListPtr,
-    rust_vec_len_: i32,
-    data_len_: i32,
 ) {
-    FLUTTER_RUST_BRIDGE_HANDLER.wrap_normal::<flutter_rust_bridge::for_generated::SseCodec, _, _>(
+    FLUTTER_RUST_BRIDGE_HANDLER.wrap_normal::<flutter_rust_bridge::for_generated::DcoCodec, _, _>(
         flutter_rust_bridge::for_generated::TaskInfo {
-            debug_name: "ContinuousJoiner_add_part",
+            debug_name: "ContinuousJoiner_default",
             port: Some(port_),
             mode: flutter_rust_bridge::for_generated::FfiCallMode::Normal,
         },
         move || {
-            let message = unsafe {
-                flutter_rust_bridge::for_generated::Dart2RustMessageSse::from_wire(
-                    ptr_,
-                    rust_vec_len_,
-                    data_len_,
-                )
-            };
-            let mut deserializer =
-                flutter_rust_bridge::for_generated::SseDeserializer::new(message);
-            let api_that = <RustOpaqueMoi<
-                flutter_rust_bridge::for_generated::RustAutoOpaqueInner<ContinuousJoiner>,
-            >>::sse_decode(&mut deserializer);
-            let api_part = <String>::sse_decode(&mut deserializer);
-            deserializer.end();
             move |context| {
-                transform_result_sse::<_, ContinuousJoinError>((move || {
+                transform_result_dco::<_, _, ()>((move || {
+                    let output_ok =
+                        Result::<_, ()>::Ok(bbqr::continuous_join::ContinuousJoiner::default())?;
+                    Ok(output_ok)
+                })())
+            }
+        },
+    )
+}
+fn wire__bbqr__continuous_join__ContinuousJoiner_frb_override_add_part_impl(
+    port_: flutter_rust_bridge::for_generated::MessagePort,
+    that: impl CstDecode<
+        RustOpaqueNom<flutter_rust_bridge::for_generated::RustAutoOpaqueInner<ContinuousJoiner>>,
+    >,
+    part: impl CstDecode<String>,
+) {
+    FLUTTER_RUST_BRIDGE_HANDLER.wrap_normal::<flutter_rust_bridge::for_generated::DcoCodec, _, _>(
+        flutter_rust_bridge::for_generated::TaskInfo {
+            debug_name: "ContinuousJoiner_frb_override_add_part(dart_style=add_part)",
+            port: Some(port_),
+            mode: flutter_rust_bridge::for_generated::FfiCallMode::Normal,
+        },
+        move || {
+            let api_that = that.cst_decode();
+            let api_part = part.cst_decode();
+            move |context| {
+                transform_result_dco::<_, _, String>((move || {
                     let mut api_that_guard = None;
                     let decode_indices_ =
                         flutter_rust_bridge::for_generated::lockable_compute_decode_order(vec![
@@ -91,7 +101,7 @@ fn wire__bbqr__continuous_join__ContinuousJoiner_add_part_impl(
                         }
                     }
                     let mut api_that_guard = api_that_guard.unwrap();
-                    let output_ok = bbqr::continuous_join::ContinuousJoiner::add_part(
+                    let output_ok = bbqr::continuous_join::ContinuousJoiner::frb_override_add_part(
                         &mut *api_that_guard,
                         api_part,
                     )?;
@@ -101,64 +111,18 @@ fn wire__bbqr__continuous_join__ContinuousJoiner_add_part_impl(
         },
     )
 }
-fn wire__bbqr__continuous_join__ContinuousJoiner_default_impl(
-    port_: flutter_rust_bridge::for_generated::MessagePort,
-    ptr_: flutter_rust_bridge::for_generated::PlatformGeneralizedUint8ListPtr,
-    rust_vec_len_: i32,
-    data_len_: i32,
-) {
-    FLUTTER_RUST_BRIDGE_HANDLER.wrap_normal::<flutter_rust_bridge::for_generated::SseCodec, _, _>(
-        flutter_rust_bridge::for_generated::TaskInfo {
-            debug_name: "ContinuousJoiner_default",
-            port: Some(port_),
-            mode: flutter_rust_bridge::for_generated::FfiCallMode::Normal,
-        },
-        move || {
-            let message = unsafe {
-                flutter_rust_bridge::for_generated::Dart2RustMessageSse::from_wire(
-                    ptr_,
-                    rust_vec_len_,
-                    data_len_,
-                )
-            };
-            let mut deserializer =
-                flutter_rust_bridge::for_generated::SseDeserializer::new(message);
-            deserializer.end();
-            move |context| {
-                transform_result_sse::<_, ()>((move || {
-                    let output_ok =
-                        Result::<_, ()>::Ok(bbqr::continuous_join::ContinuousJoiner::default())?;
-                    Ok(output_ok)
-                })())
-            }
-        },
-    )
-}
 fn wire__bbqr__continuous_join__ContinuousJoiner_new_impl(
     port_: flutter_rust_bridge::for_generated::MessagePort,
-    ptr_: flutter_rust_bridge::for_generated::PlatformGeneralizedUint8ListPtr,
-    rust_vec_len_: i32,
-    data_len_: i32,
 ) {
-    FLUTTER_RUST_BRIDGE_HANDLER.wrap_normal::<flutter_rust_bridge::for_generated::SseCodec, _, _>(
+    FLUTTER_RUST_BRIDGE_HANDLER.wrap_normal::<flutter_rust_bridge::for_generated::DcoCodec, _, _>(
         flutter_rust_bridge::for_generated::TaskInfo {
             debug_name: "ContinuousJoiner_new",
             port: Some(port_),
             mode: flutter_rust_bridge::for_generated::FfiCallMode::Normal,
         },
         move || {
-            let message = unsafe {
-                flutter_rust_bridge::for_generated::Dart2RustMessageSse::from_wire(
-                    ptr_,
-                    rust_vec_len_,
-                    data_len_,
-                )
-            };
-            let mut deserializer =
-                flutter_rust_bridge::for_generated::SseDeserializer::new(message);
-            deserializer.end();
             move |context| {
-                transform_result_sse::<_, ()>((move || {
+                transform_result_dco::<_, _, ()>((move || {
                     let output_ok =
                         Result::<_, ()>::Ok(bbqr::continuous_join::ContinuousJoiner::new())?;
                     Ok(output_ok)
@@ -169,30 +133,18 @@ fn wire__bbqr__continuous_join__ContinuousJoiner_new_impl(
 }
 fn wire__bbqr__encode__encoding_as_byte_impl(
     port_: flutter_rust_bridge::for_generated::MessagePort,
-    ptr_: flutter_rust_bridge::for_generated::PlatformGeneralizedUint8ListPtr,
-    rust_vec_len_: i32,
-    data_len_: i32,
+    that: impl CstDecode<bbqr::encode::Encoding>,
 ) {
-    FLUTTER_RUST_BRIDGE_HANDLER.wrap_normal::<flutter_rust_bridge::for_generated::SseCodec, _, _>(
+    FLUTTER_RUST_BRIDGE_HANDLER.wrap_normal::<flutter_rust_bridge::for_generated::DcoCodec, _, _>(
         flutter_rust_bridge::for_generated::TaskInfo {
             debug_name: "encoding_as_byte",
             port: Some(port_),
             mode: flutter_rust_bridge::for_generated::FfiCallMode::Normal,
         },
         move || {
-            let message = unsafe {
-                flutter_rust_bridge::for_generated::Dart2RustMessageSse::from_wire(
-                    ptr_,
-                    rust_vec_len_,
-                    data_len_,
-                )
-            };
-            let mut deserializer =
-                flutter_rust_bridge::for_generated::SseDeserializer::new(message);
-            let api_that = <bbqr::encode::Encoding>::sse_decode(&mut deserializer);
-            deserializer.end();
+            let api_that = that.cst_decode();
             move |context| {
-                transform_result_sse::<_, ()>((move || {
+                transform_result_dco::<_, _, ()>((move || {
                     let output_ok =
                         Result::<_, ()>::Ok(bbqr::encode::Encoding::as_byte(&api_that))?;
                     Ok(output_ok)
@@ -203,30 +155,18 @@ fn wire__bbqr__encode__encoding_as_byte_impl(
 }
 fn wire__bbqr__encode__encoding_from_byte_impl(
     port_: flutter_rust_bridge::for_generated::MessagePort,
-    ptr_: flutter_rust_bridge::for_generated::PlatformGeneralizedUint8ListPtr,
-    rust_vec_len_: i32,
-    data_len_: i32,
+    byte: impl CstDecode<u8>,
 ) {
-    FLUTTER_RUST_BRIDGE_HANDLER.wrap_normal::<flutter_rust_bridge::for_generated::SseCodec, _, _>(
+    FLUTTER_RUST_BRIDGE_HANDLER.wrap_normal::<flutter_rust_bridge::for_generated::DcoCodec, _, _>(
         flutter_rust_bridge::for_generated::TaskInfo {
             debug_name: "encoding_from_byte",
             port: Some(port_),
             mode: flutter_rust_bridge::for_generated::FfiCallMode::Normal,
         },
         move || {
-            let message = unsafe {
-                flutter_rust_bridge::for_generated::Dart2RustMessageSse::from_wire(
-                    ptr_,
-                    rust_vec_len_,
-                    data_len_,
-                )
-            };
-            let mut deserializer =
-                flutter_rust_bridge::for_generated::SseDeserializer::new(message);
-            let api_byte = <u8>::sse_decode(&mut deserializer);
-            deserializer.end();
+            let api_byte = byte.cst_decode();
             move |context| {
-                transform_result_sse::<_, ()>((move || {
+                transform_result_dco::<_, _, ()>((move || {
                     let output_ok =
                         Result::<_, ()>::Ok(bbqr::encode::Encoding::from_byte(api_byte))?;
                     Ok(output_ok)
@@ -237,30 +177,18 @@ fn wire__bbqr__encode__encoding_from_byte_impl(
 }
 fn wire__bbqr__encode__encoding_is_known_encoding_impl(
     port_: flutter_rust_bridge::for_generated::MessagePort,
-    ptr_: flutter_rust_bridge::for_generated::PlatformGeneralizedUint8ListPtr,
-    rust_vec_len_: i32,
-    data_len_: i32,
+    byte: impl CstDecode<u8>,
 ) {
-    FLUTTER_RUST_BRIDGE_HANDLER.wrap_normal::<flutter_rust_bridge::for_generated::SseCodec, _, _>(
+    FLUTTER_RUST_BRIDGE_HANDLER.wrap_normal::<flutter_rust_bridge::for_generated::DcoCodec, _, _>(
         flutter_rust_bridge::for_generated::TaskInfo {
             debug_name: "encoding_is_known_encoding",
             port: Some(port_),
             mode: flutter_rust_bridge::for_generated::FfiCallMode::Normal,
         },
         move || {
-            let message = unsafe {
-                flutter_rust_bridge::for_generated::Dart2RustMessageSse::from_wire(
-                    ptr_,
-                    rust_vec_len_,
-                    data_len_,
-                )
-            };
-            let mut deserializer =
-                flutter_rust_bridge::for_generated::SseDeserializer::new(message);
-            let api_byte = <u8>::sse_decode(&mut deserializer);
-            deserializer.end();
+            let api_byte = byte.cst_decode();
             move |context| {
-                transform_result_sse::<_, ()>((move || {
+                transform_result_dco::<_, _, ()>((move || {
                     let output_ok =
                         Result::<_, ()>::Ok(bbqr::encode::Encoding::is_known_encoding(api_byte))?;
                     Ok(output_ok)
@@ -271,30 +199,18 @@ fn wire__bbqr__encode__encoding_is_known_encoding_impl(
 }
 fn wire__bbqr__encode__encoding_split_mod_impl(
     port_: flutter_rust_bridge::for_generated::MessagePort,
-    ptr_: flutter_rust_bridge::for_generated::PlatformGeneralizedUint8ListPtr,
-    rust_vec_len_: i32,
-    data_len_: i32,
+    that: impl CstDecode<bbqr::encode::Encoding>,
 ) {
-    FLUTTER_RUST_BRIDGE_HANDLER.wrap_normal::<flutter_rust_bridge::for_generated::SseCodec, _, _>(
+    FLUTTER_RUST_BRIDGE_HANDLER.wrap_normal::<flutter_rust_bridge::for_generated::DcoCodec, _, _>(
         flutter_rust_bridge::for_generated::TaskInfo {
             debug_name: "encoding_split_mod",
             port: Some(port_),
             mode: flutter_rust_bridge::for_generated::FfiCallMode::Normal,
         },
         move || {
-            let message = unsafe {
-                flutter_rust_bridge::for_generated::Dart2RustMessageSse::from_wire(
-                    ptr_,
-                    rust_vec_len_,
-                    data_len_,
-                )
-            };
-            let mut deserializer =
-                flutter_rust_bridge::for_generated::SseDeserializer::new(message);
-            let api_that = <bbqr::encode::Encoding>::sse_decode(&mut deserializer);
-            deserializer.end();
+            let api_that = that.cst_decode();
             move |context| {
-                transform_result_sse::<_, ()>((move || {
+                transform_result_dco::<_, _, ()>((move || {
                     let output_ok =
                         Result::<_, ()>::Ok(bbqr::encode::Encoding::split_mod(&api_that))?;
                     Ok(output_ok)
@@ -305,30 +221,18 @@ fn wire__bbqr__encode__encoding_split_mod_impl(
 }
 fn wire__bbqr__file_type__file_type_as_byte_impl(
     port_: flutter_rust_bridge::for_generated::MessagePort,
-    ptr_: flutter_rust_bridge::for_generated::PlatformGeneralizedUint8ListPtr,
-    rust_vec_len_: i32,
-    data_len_: i32,
+    that: impl CstDecode<bbqr::file_type::FileType>,
 ) {
-    FLUTTER_RUST_BRIDGE_HANDLER.wrap_normal::<flutter_rust_bridge::for_generated::SseCodec, _, _>(
+    FLUTTER_RUST_BRIDGE_HANDLER.wrap_normal::<flutter_rust_bridge::for_generated::DcoCodec, _, _>(
         flutter_rust_bridge::for_generated::TaskInfo {
             debug_name: "file_type_as_byte",
             port: Some(port_),
             mode: flutter_rust_bridge::for_generated::FfiCallMode::Normal,
         },
         move || {
-            let message = unsafe {
-                flutter_rust_bridge::for_generated::Dart2RustMessageSse::from_wire(
-                    ptr_,
-                    rust_vec_len_,
-                    data_len_,
-                )
-            };
-            let mut deserializer =
-                flutter_rust_bridge::for_generated::SseDeserializer::new(message);
-            let api_that = <bbqr::file_type::FileType>::sse_decode(&mut deserializer);
-            deserializer.end();
+            let api_that = that.cst_decode();
             move |context| {
-                transform_result_sse::<_, ()>((move || {
+                transform_result_dco::<_, _, ()>((move || {
                     let output_ok =
                         Result::<_, ()>::Ok(bbqr::file_type::FileType::as_byte(&api_that))?;
                     Ok(output_ok)
@@ -339,30 +243,18 @@ fn wire__bbqr__file_type__file_type_as_byte_impl(
 }
 fn wire__bbqr__file_type__file_type_from_byte_impl(
     port_: flutter_rust_bridge::for_generated::MessagePort,
-    ptr_: flutter_rust_bridge::for_generated::PlatformGeneralizedUint8ListPtr,
-    rust_vec_len_: i32,
-    data_len_: i32,
+    byte: impl CstDecode<u8>,
 ) {
-    FLUTTER_RUST_BRIDGE_HANDLER.wrap_normal::<flutter_rust_bridge::for_generated::SseCodec, _, _>(
+    FLUTTER_RUST_BRIDGE_HANDLER.wrap_normal::<flutter_rust_bridge::for_generated::DcoCodec, _, _>(
         flutter_rust_bridge::for_generated::TaskInfo {
             debug_name: "file_type_from_byte",
             port: Some(port_),
             mode: flutter_rust_bridge::for_generated::FfiCallMode::Normal,
         },
         move || {
-            let message = unsafe {
-                flutter_rust_bridge::for_generated::Dart2RustMessageSse::from_wire(
-                    ptr_,
-                    rust_vec_len_,
-                    data_len_,
-                )
-            };
-            let mut deserializer =
-                flutter_rust_bridge::for_generated::SseDeserializer::new(message);
-            let api_byte = <u8>::sse_decode(&mut deserializer);
-            deserializer.end();
+            let api_byte = byte.cst_decode();
             move |context| {
-                transform_result_sse::<_, ()>((move || {
+                transform_result_dco::<_, _, ()>((move || {
                     let output_ok =
                         Result::<_, ()>::Ok(bbqr::file_type::FileType::from_byte(api_byte))?;
                     Ok(output_ok)
@@ -373,30 +265,18 @@ fn wire__bbqr__file_type__file_type_from_byte_impl(
 }
 fn wire__bbqr__file_type__file_type_is_known_filetype_impl(
     port_: flutter_rust_bridge::for_generated::MessagePort,
-    ptr_: flutter_rust_bridge::for_generated::PlatformGeneralizedUint8ListPtr,
-    rust_vec_len_: i32,
-    data_len_: i32,
+    byte: impl CstDecode<u8>,
 ) {
-    FLUTTER_RUST_BRIDGE_HANDLER.wrap_normal::<flutter_rust_bridge::for_generated::SseCodec, _, _>(
+    FLUTTER_RUST_BRIDGE_HANDLER.wrap_normal::<flutter_rust_bridge::for_generated::DcoCodec, _, _>(
         flutter_rust_bridge::for_generated::TaskInfo {
             debug_name: "file_type_is_known_filetype",
             port: Some(port_),
             mode: flutter_rust_bridge::for_generated::FfiCallMode::Normal,
         },
         move || {
-            let message = unsafe {
-                flutter_rust_bridge::for_generated::Dart2RustMessageSse::from_wire(
-                    ptr_,
-                    rust_vec_len_,
-                    data_len_,
-                )
-            };
-            let mut deserializer =
-                flutter_rust_bridge::for_generated::SseDeserializer::new(message);
-            let api_byte = <u8>::sse_decode(&mut deserializer);
-            deserializer.end();
+            let api_byte = byte.cst_decode();
             move |context| {
-                transform_result_sse::<_, ()>((move || {
+                transform_result_dco::<_, _, ()>((move || {
                     let output_ok = Result::<_, ()>::Ok(
                         bbqr::file_type::FileType::is_known_filetype(api_byte),
                     )?;
@@ -406,33 +286,50 @@ fn wire__bbqr__file_type__file_type_is_known_filetype_impl(
         },
     )
 }
-fn wire__bbqr__join__joined_try_from_parts_impl(
+fn wire__bbqr__join__joined_frb_override_try_from_parts_impl(
     port_: flutter_rust_bridge::for_generated::MessagePort,
-    ptr_: flutter_rust_bridge::for_generated::PlatformGeneralizedUint8ListPtr,
-    rust_vec_len_: i32,
-    data_len_: i32,
+    parts: impl CstDecode<Vec<String>>,
 ) {
-    FLUTTER_RUST_BRIDGE_HANDLER.wrap_normal::<flutter_rust_bridge::for_generated::SseCodec, _, _>(
+    FLUTTER_RUST_BRIDGE_HANDLER.wrap_normal::<flutter_rust_bridge::for_generated::DcoCodec, _, _>(
         flutter_rust_bridge::for_generated::TaskInfo {
-            debug_name: "joined_try_from_parts",
+            debug_name: "joined_frb_override_try_from_parts(dart_style=try_from_parts)",
             port: Some(port_),
             mode: flutter_rust_bridge::for_generated::FfiCallMode::Normal,
         },
         move || {
-            let message = unsafe {
-                flutter_rust_bridge::for_generated::Dart2RustMessageSse::from_wire(
-                    ptr_,
-                    rust_vec_len_,
-                    data_len_,
-                )
-            };
-            let mut deserializer =
-                flutter_rust_bridge::for_generated::SseDeserializer::new(message);
-            let api_parts = <Vec<String>>::sse_decode(&mut deserializer);
-            deserializer.end();
+            let api_parts = parts.cst_decode();
             move |context| {
-                transform_result_sse::<_, JoinError>((move || {
-                    let output_ok = bbqr::join::Joined::try_from_parts(api_parts)?;
+                transform_result_dco::<_, _, String>((move || {
+                    let output_ok = bbqr::join::Joined::frb_override_try_from_parts(api_parts)?;
+                    Ok(output_ok)
+                })())
+            }
+        },
+    )
+}
+fn wire__bbqr__split__split_frb_override_try_from_data_impl(
+    port_: flutter_rust_bridge::for_generated::MessagePort,
+    bytes: impl CstDecode<Vec<u8>>,
+    file_type: impl CstDecode<bbqr::file_type::FileType>,
+    options: impl CstDecode<bbqr::split::SplitOptions>,
+) {
+    FLUTTER_RUST_BRIDGE_HANDLER.wrap_normal::<flutter_rust_bridge::for_generated::DcoCodec, _, _>(
+        flutter_rust_bridge::for_generated::TaskInfo {
+            debug_name: "split_frb_override_try_from_data(dart_style=try_from_data)",
+            port: Some(port_),
+            mode: flutter_rust_bridge::for_generated::FfiCallMode::Normal,
+        },
+        move || {
+            let api_bytes = bytes.cst_decode();
+            let api_file_type = file_type.cst_decode();
+            let api_options = options.cst_decode();
+            move |context| {
+                transform_result_dco::<_, _, String>((move || {
+                    let output_ok = bbqr::split::Split::frb_override_try_from_data(
+                        &api_bytes,
+                        api_file_type,
+                        api_options,
+                    )?;
                     Ok(output_ok)
                 })())
             }
@@ -441,66 +338,17 @@ fn wire__bbqr__join__joined_try_from_parts_impl(
 }
 fn wire__bbqr__split__split_options_default_impl(
     port_: flutter_rust_bridge::for_generated::MessagePort,
-    ptr_: flutter_rust_bridge::for_generated::PlatformGeneralizedUint8ListPtr,
-    rust_vec_len_: i32,
-    data_len_: i32,
 ) {
-    FLUTTER_RUST_BRIDGE_HANDLER.wrap_normal::<flutter_rust_bridge::for_generated::SseCodec, _, _>(
+    FLUTTER_RUST_BRIDGE_HANDLER.wrap_normal::<flutter_rust_bridge::for_generated::DcoCodec, _, _>(
         flutter_rust_bridge::for_generated::TaskInfo {
             debug_name: "split_options_default",
             port: Some(port_),
             mode: flutter_rust_bridge::for_generated::FfiCallMode::Normal,
         },
         move || {
-            let message = unsafe {
-                flutter_rust_bridge::for_generated::Dart2RustMessageSse::from_wire(
-                    ptr_,
-                    rust_vec_len_,
-                    data_len_,
-                )
-            };
-            let mut deserializer =
-                flutter_rust_bridge::for_generated::SseDeserializer::new(message);
-            deserializer.end();
             move |context| {
-                transform_result_sse::<_, ()>((move || {
+                transform_result_dco::<_, _, ()>((move || {
                     let output_ok = Result::<_, ()>::Ok(bbqr::split::SplitOptions::default())?;
-                    Ok(output_ok)
-                })())
-            }
-        },
-    )
-}
-fn wire__bbqr__split__split_try_from_data_impl(
-    port_: flutter_rust_bridge::for_generated::MessagePort,
-    ptr_: flutter_rust_bridge::for_generated::PlatformGeneralizedUint8ListPtr,
-    rust_vec_len_: i32,
-    data_len_: i32,
-) {
-    FLUTTER_RUST_BRIDGE_HANDLER.wrap_normal::<flutter_rust_bridge::for_generated::SseCodec, _, _>(
-        flutter_rust_bridge::for_generated::TaskInfo {
-            debug_name: "split_try_from_data",
-            port: Some(port_),
-            mode: flutter_rust_bridge::for_generated::FfiCallMode::Normal,
-        },
-        move || {
-            let message = unsafe {
-                flutter_rust_bridge::for_generated::Dart2RustMessageSse::from_wire(
-                    ptr_,
-                    rust_vec_len_,
-                    data_len_,
-                )
-            };
-            let mut deserializer =
-                flutter_rust_bridge::for_generated::SseDeserializer::new(message);
-            let api_bytes = <Vec<u8>>::sse_decode(&mut deserializer);
-            let api_file_type = <bbqr::file_type::FileType>::sse_decode(&mut deserializer);
-            let api_options = <bbqr::split::SplitOptions>::sse_decode(&mut deserializer);
-            deserializer.end();
-            move |context| {
-                transform_result_sse::<_, SplitError>((move || {
-                    let output_ok =
-                        bbqr::split::Split::try_from_data(&api_bytes, api_file_type, api_options)?;
                     Ok(output_ok)
                 })())
             }
@@ -509,30 +357,18 @@ fn wire__bbqr__split__split_try_from_data_impl(
 }
 fn wire__bbqr__qr__version_data_capacity_impl(
     port_: flutter_rust_bridge::for_generated::MessagePort,
-    ptr_: flutter_rust_bridge::for_generated::PlatformGeneralizedUint8ListPtr,
-    rust_vec_len_: i32,
-    data_len_: i32,
+    that: impl CstDecode<bbqr::qr::Version>,
 ) {
-    FLUTTER_RUST_BRIDGE_HANDLER.wrap_normal::<flutter_rust_bridge::for_generated::SseCodec, _, _>(
+    FLUTTER_RUST_BRIDGE_HANDLER.wrap_normal::<flutter_rust_bridge::for_generated::DcoCodec, _, _>(
         flutter_rust_bridge::for_generated::TaskInfo {
             debug_name: "version_data_capacity",
             port: Some(port_),
             mode: flutter_rust_bridge::for_generated::FfiCallMode::Normal,
         },
         move || {
-            let message = unsafe {
-                flutter_rust_bridge::for_generated::Dart2RustMessageSse::from_wire(
-                    ptr_,
-                    rust_vec_len_,
-                    data_len_,
-                )
-            };
-            let mut deserializer =
-                flutter_rust_bridge::for_generated::SseDeserializer::new(message);
-            let api_that = <bbqr::qr::Version>::sse_decode(&mut deserializer);
-            deserializer.end();
+            let api_that = that.cst_decode();
             move |context| {
-                transform_result_sse::<_, ()>((move || {
+                transform_result_dco::<_, _, ()>((move || {
                     let output_ok =
                         Result::<_, ()>::Ok(bbqr::qr::Version::data_capacity(&api_that))?;
                     Ok(output_ok)
@@ -568,40 +404,108 @@ const _: fn() = || {
     }
 };
 
-// Section: related_funcs
-
-flutter_rust_bridge::frb_generated_moi_arc_impl_value!(
-    flutter_rust_bridge::for_generated::RustAutoOpaqueInner<ContinuousJoinError>
-);
-flutter_rust_bridge::frb_generated_moi_arc_impl_value!(
-    flutter_rust_bridge::for_generated::RustAutoOpaqueInner<ContinuousJoinResult>
-);
-flutter_rust_bridge::frb_generated_moi_arc_impl_value!(
-    flutter_rust_bridge::for_generated::RustAutoOpaqueInner<ContinuousJoiner>
-);
-flutter_rust_bridge::frb_generated_moi_arc_impl_value!(
-    flutter_rust_bridge::for_generated::RustAutoOpaqueInner<JoinError>
-);
-flutter_rust_bridge::frb_generated_moi_arc_impl_value!(
-    flutter_rust_bridge::for_generated::RustAutoOpaqueInner<SplitError>
-);
-
 // Section: dart2rust
 
-impl SseDecode for ContinuousJoinError {
-    // Codec=Sse (Serialization based), see doc to use other codecs
-    fn sse_decode(deserializer: &mut flutter_rust_bridge::for_generated::SseDeserializer) -> Self {
-        let mut inner = <RustOpaqueMoi<
-            flutter_rust_bridge::for_generated::RustAutoOpaqueInner<ContinuousJoinError>,
-        >>::sse_decode(deserializer);
-        return flutter_rust_bridge::for_generated::rust_auto_opaque_decode_owned(inner);
+impl CstDecode<bool> for bool {
+    // Codec=Cst (C-struct based), see doc to use other codecs
+    fn cst_decode(self) -> bool {
+        self
     }
 }
-
+impl CstDecode<bbqr::encode::Encoding> for i32 {
+    // Codec=Cst (C-struct based), see doc to use other codecs
+    fn cst_decode(self) -> bbqr::encode::Encoding {
+        match self {
+            0 => bbqr::encode::Encoding::Hex,
+            1 => bbqr::encode::Encoding::Base32,
+            2 => bbqr::encode::Encoding::Zlib,
+            _ => unreachable!("Invalid variant for Encoding: {}", self),
+        }
+    }
+}
+impl CstDecode<bbqr::file_type::FileType> for i32 {
+    // Codec=Cst (C-struct based), see doc to use other codecs
+    fn cst_decode(self) -> bbqr::file_type::FileType {
+        match self {
+            0 => bbqr::file_type::FileType::Psbt,
+            1 => bbqr::file_type::FileType::Transaction,
+            2 => bbqr::file_type::FileType::Json,
+            3 => bbqr::file_type::FileType::Cbor,
+            4 => bbqr::file_type::FileType::UnicodeText,
+            _ => unreachable!("Invalid variant for FileType: {}", self),
+        }
+    }
+}
+impl CstDecode<i32> for i32 {
+    // Codec=Cst (C-struct based), see doc to use other codecs
+    fn cst_decode(self) -> i32 {
+        self
+    }
+}
+impl CstDecode<u8> for u8 {
+    // Codec=Cst (C-struct based), see doc to use other codecs
+    fn cst_decode(self) -> u8 {
+        self
+    }
+}
+impl CstDecode<usize> for usize {
+    // Codec=Cst (C-struct based), see doc to use other codecs
+    fn cst_decode(self) -> usize {
+        self
+    }
+}
+impl CstDecode<bbqr::qr::Version> for i32 {
+    // Codec=Cst (C-struct based), see doc to use other codecs
+    fn cst_decode(self) -> bbqr::qr::Version {
+        match self {
+            0 => bbqr::qr::Version::V01,
+            1 => bbqr::qr::Version::V02,
+            2 => bbqr::qr::Version::V03,
+            3 => bbqr::qr::Version::V04,
+            4 => bbqr::qr::Version::V05,
+            5 => bbqr::qr::Version::V06,
+            6 => bbqr::qr::Version::V07,
+            7 => bbqr::qr::Version::V08,
+            8 => bbqr::qr::Version::V09,
+            9 => bbqr::qr::Version::V10,
+            10 => bbqr::qr::Version::V11,
+            11 => bbqr::qr::Version::V12,
+            12 => bbqr::qr::Version::V13,
+            13 => bbqr::qr::Version::V14,
+            14 => bbqr::qr::Version::V15,
+            15 => bbqr::qr::Version::V16,
+            16 => bbqr::qr::Version::V17,
+            17 => bbqr::qr::Version::V18,
+            18 => bbqr::qr::Version::V19,
+            19 => bbqr::qr::Version::V20,
+            20 => bbqr::qr::Version::V21,
+            21 => bbqr::qr::Version::V22,
+            22 => bbqr::qr::Version::V23,
+            23 => bbqr::qr::Version::V24,
+            24 => bbqr::qr::Version::V25,
+            25 => bbqr::qr::Version::V26,
+            26 => bbqr::qr::Version::V27,
+            27 => bbqr::qr::Version::V28,
+            28 => bbqr::qr::Version::V29,
+            29 => bbqr::qr::Version::V30,
+            30 => bbqr::qr::Version::V31,
+            31 => bbqr::qr::Version::V32,
+            32 => bbqr::qr::Version::V33,
+            33 => bbqr::qr::Version::V34,
+            34 => bbqr::qr::Version::V35,
+            35 => bbqr::qr::Version::V36,
+            36 => bbqr::qr::Version::V37,
+            37 => bbqr::qr::Version::V38,
+            38 => bbqr::qr::Version::V39,
+            39 => bbqr::qr::Version::V40,
+            _ => unreachable!("Invalid variant for Version: {}", self),
+        }
+    }
+}
 impl SseDecode for ContinuousJoinResult {
     // Codec=Sse (Serialization based), see doc to use other codecs
     fn sse_decode(deserializer: &mut flutter_rust_bridge::for_generated::SseDeserializer) -> Self {
-        let mut inner = <RustOpaqueMoi<
+        let mut inner = <RustOpaqueNom<
             flutter_rust_bridge::for_generated::RustAutoOpaqueInner<ContinuousJoinResult>,
         >>::sse_decode(deserializer);
         return flutter_rust_bridge::for_generated::rust_auto_opaque_decode_owned(inner);
@@ -611,80 +515,30 @@ impl SseDecode for ContinuousJoinResult {
 impl SseDecode for ContinuousJoiner {
     // Codec=Sse (Serialization based), see doc to use other codecs
     fn sse_decode(deserializer: &mut flutter_rust_bridge::for_generated::SseDeserializer) -> Self {
-        let mut inner = <RustOpaqueMoi<
+        let mut inner = <RustOpaqueNom<
             flutter_rust_bridge::for_generated::RustAutoOpaqueInner<ContinuousJoiner>,
         >>::sse_decode(deserializer);
         return flutter_rust_bridge::for_generated::rust_auto_opaque_decode_owned(inner);
     }
 }
 
-impl SseDecode for JoinError {
-    // Codec=Sse (Serialization based), see doc to use other codecs
-    fn sse_decode(deserializer: &mut flutter_rust_bridge::for_generated::SseDeserializer) -> Self {
-        let mut inner = <RustOpaqueMoi<
-            flutter_rust_bridge::for_generated::RustAutoOpaqueInner<JoinError>,
-        >>::sse_decode(deserializer);
-        return flutter_rust_bridge::for_generated::rust_auto_opaque_decode_owned(inner);
-    }
-}
-
-impl SseDecode for SplitError {
-    // Codec=Sse (Serialization based), see doc to use other codecs
-    fn sse_decode(deserializer: &mut flutter_rust_bridge::for_generated::SseDeserializer) -> Self {
-        let mut inner = <RustOpaqueMoi<
-            flutter_rust_bridge::for_generated::RustAutoOpaqueInner<SplitError>,
-        >>::sse_decode(deserializer);
-        return flutter_rust_bridge::for_generated::rust_auto_opaque_decode_owned(inner);
-    }
-}
-
 impl SseDecode
-    for RustOpaqueMoi<flutter_rust_bridge::for_generated::RustAutoOpaqueInner<ContinuousJoinError>>
+    for RustOpaqueNom<flutter_rust_bridge::for_generated::RustAutoOpaqueInner<ContinuousJoinResult>>
 {
     // Codec=Sse (Serialization based), see doc to use other codecs
     fn sse_decode(deserializer: &mut flutter_rust_bridge::for_generated::SseDeserializer) -> Self {
         let mut inner = <usize>::sse_decode(deserializer);
-        return decode_rust_opaque_moi(inner);
+        return unsafe { decode_rust_opaque_nom(inner) };
     }
 }
 
 impl SseDecode
-    for RustOpaqueMoi<flutter_rust_bridge::for_generated::RustAutoOpaqueInner<ContinuousJoinResult>>
+    for RustOpaqueNom<flutter_rust_bridge::for_generated::RustAutoOpaqueInner<ContinuousJoiner>>
 {
     // Codec=Sse (Serialization based), see doc to use other codecs
     fn sse_decode(deserializer: &mut flutter_rust_bridge::for_generated::SseDeserializer) -> Self {
         let mut inner = <usize>::sse_decode(deserializer);
-        return decode_rust_opaque_moi(inner);
-    }
-}
-
-impl SseDecode
-    for RustOpaqueMoi<flutter_rust_bridge::for_generated::RustAutoOpaqueInner<ContinuousJoiner>>
-{
-    // Codec=Sse (Serialization based), see doc to use other codecs
-    fn sse_decode(deserializer: &mut flutter_rust_bridge::for_generated::SseDeserializer) -> Self {
-        let mut inner = <usize>::sse_decode(deserializer);
-        return decode_rust_opaque_moi(inner);
-    }
-}
-
-impl SseDecode
-    for RustOpaqueMoi<flutter_rust_bridge::for_generated::RustAutoOpaqueInner<JoinError>>
-{
-    // Codec=Sse (Serialization based), see doc to use other codecs
-    fn sse_decode(deserializer: &mut flutter_rust_bridge::for_generated::SseDeserializer) -> Self {
-        let mut inner = <usize>::sse_decode(deserializer);
-        return decode_rust_opaque_moi(inner);
-    }
-}
-
-impl SseDecode
-    for RustOpaqueMoi<flutter_rust_bridge::for_generated::RustAutoOpaqueInner<SplitError>>
-{
-    // Codec=Sse (Serialization based), see doc to use other codecs
-    fn sse_decode(deserializer: &mut flutter_rust_bridge::for_generated::SseDeserializer) -> Self {
-        let mut inner = <usize>::sse_decode(deserializer);
-        return decode_rust_opaque_moi(inner);
+        return unsafe { decode_rust_opaque_nom(inner) };
     }
 }
 
@@ -908,40 +762,6 @@ fn pde_ffi_dispatcher_primary_impl(
 ) {
     // Codec=Pde (Serialization + dispatch), see doc to use other codecs
     match func_id {
-        1 => wire__bbqr__continuous_join__ContinuousJoiner_add_part_impl(
-            port,
-            ptr,
-            rust_vec_len,
-            data_len,
-        ),
-        2 => wire__bbqr__continuous_join__ContinuousJoiner_default_impl(
-            port,
-            ptr,
-            rust_vec_len,
-            data_len,
-        ),
-        3 => wire__bbqr__continuous_join__ContinuousJoiner_new_impl(
-            port,
-            ptr,
-            rust_vec_len,
-            data_len,
-        ),
-        4 => wire__bbqr__encode__encoding_as_byte_impl(port, ptr, rust_vec_len, data_len),
-        5 => wire__bbqr__encode__encoding_from_byte_impl(port, ptr, rust_vec_len, data_len),
-        6 => wire__bbqr__encode__encoding_is_known_encoding_impl(port, ptr, rust_vec_len, data_len),
-        7 => wire__bbqr__encode__encoding_split_mod_impl(port, ptr, rust_vec_len, data_len),
-        8 => wire__bbqr__file_type__file_type_as_byte_impl(port, ptr, rust_vec_len, data_len),
-        9 => wire__bbqr__file_type__file_type_from_byte_impl(port, ptr, rust_vec_len, data_len),
-        10 => wire__bbqr__file_type__file_type_is_known_filetype_impl(
-            port,
-            ptr,
-            rust_vec_len,
-            data_len,
-        ),
-        11 => wire__bbqr__join__joined_try_from_parts_impl(port, ptr, rust_vec_len, data_len),
-        12 => wire__bbqr__split__split_options_default_impl(port, ptr, rust_vec_len, data_len),
-        13 => wire__bbqr__split__split_try_from_data_impl(port, ptr, rust_vec_len, data_len),
-        14 => wire__bbqr__qr__version_data_capacity_impl(port, ptr, rust_vec_len, data_len),
         _ => unreachable!(),
     }
 }
@@ -961,27 +781,9 @@ fn pde_ffi_dispatcher_sync_impl(
 // Section: rust2dart
 
 // Codec=Dco (DartCObject based), see doc to use other codecs
-impl flutter_rust_bridge::IntoDart for FrbWrapper<ContinuousJoinError> {
-    fn into_dart(self) -> flutter_rust_bridge::for_generated::DartAbi {
-        flutter_rust_bridge::for_generated::rust_auto_opaque_encode::<_, MoiArc<_>>(self.0)
-            .into_dart()
-    }
-}
-impl flutter_rust_bridge::for_generated::IntoDartExceptPrimitive
-    for FrbWrapper<ContinuousJoinError>
-{
-}
-
-impl flutter_rust_bridge::IntoIntoDart<FrbWrapper<ContinuousJoinError>> for ContinuousJoinError {
-    fn into_into_dart(self) -> FrbWrapper<ContinuousJoinError> {
-        self.into()
-    }
-}
-
-// Codec=Dco (DartCObject based), see doc to use other codecs
 impl flutter_rust_bridge::IntoDart for FrbWrapper<ContinuousJoinResult> {
     fn into_dart(self) -> flutter_rust_bridge::for_generated::DartAbi {
-        flutter_rust_bridge::for_generated::rust_auto_opaque_encode::<_, MoiArc<_>>(self.0)
+        flutter_rust_bridge::for_generated::rust_auto_opaque_encode::<_, StdArc<_>>(self.0)
             .into_dart()
     }
 }
@@ -999,7 +801,7 @@ impl flutter_rust_bridge::IntoIntoDart<FrbWrapper<ContinuousJoinResult>> for Con
 // Codec=Dco (DartCObject based), see doc to use other codecs
 impl flutter_rust_bridge::IntoDart for FrbWrapper<ContinuousJoiner> {
     fn into_dart(self) -> flutter_rust_bridge::for_generated::DartAbi {
-        flutter_rust_bridge::for_generated::rust_auto_opaque_encode::<_, MoiArc<_>>(self.0)
+        flutter_rust_bridge::for_generated::rust_auto_opaque_encode::<_, StdArc<_>>(self.0)
             .into_dart()
     }
 }
@@ -1007,36 +809,6 @@ impl flutter_rust_bridge::for_generated::IntoDartExceptPrimitive for FrbWrapper<
 
 impl flutter_rust_bridge::IntoIntoDart<FrbWrapper<ContinuousJoiner>> for ContinuousJoiner {
     fn into_into_dart(self) -> FrbWrapper<ContinuousJoiner> {
-        self.into()
-    }
-}
-
-// Codec=Dco (DartCObject based), see doc to use other codecs
-impl flutter_rust_bridge::IntoDart for FrbWrapper<JoinError> {
-    fn into_dart(self) -> flutter_rust_bridge::for_generated::DartAbi {
-        flutter_rust_bridge::for_generated::rust_auto_opaque_encode::<_, MoiArc<_>>(self.0)
-            .into_dart()
-    }
-}
-impl flutter_rust_bridge::for_generated::IntoDartExceptPrimitive for FrbWrapper<JoinError> {}
-
-impl flutter_rust_bridge::IntoIntoDart<FrbWrapper<JoinError>> for JoinError {
-    fn into_into_dart(self) -> FrbWrapper<JoinError> {
-        self.into()
-    }
-}
-
-// Codec=Dco (DartCObject based), see doc to use other codecs
-impl flutter_rust_bridge::IntoDart for FrbWrapper<SplitError> {
-    fn into_dart(self) -> flutter_rust_bridge::for_generated::DartAbi {
-        flutter_rust_bridge::for_generated::rust_auto_opaque_encode::<_, MoiArc<_>>(self.0)
-            .into_dart()
-    }
-}
-impl flutter_rust_bridge::for_generated::IntoDartExceptPrimitive for FrbWrapper<SplitError> {}
-
-impl flutter_rust_bridge::IntoIntoDart<FrbWrapper<SplitError>> for SplitError {
-    fn into_into_dart(self) -> FrbWrapper<SplitError> {
         self.into()
     }
 }
@@ -1206,20 +978,13 @@ impl flutter_rust_bridge::IntoIntoDart<FrbWrapper<bbqr::qr::Version>> for bbqr::
     }
 }
 
-impl SseEncode for ContinuousJoinError {
-    // Codec=Sse (Serialization based), see doc to use other codecs
-    fn sse_encode(self, serializer: &mut flutter_rust_bridge::for_generated::SseSerializer) {
-        <RustOpaqueMoi<flutter_rust_bridge::for_generated::RustAutoOpaqueInner<ContinuousJoinError>>>::sse_encode(flutter_rust_bridge::for_generated::rust_auto_opaque_encode::<_, MoiArc<_>>(self), serializer);
-    }
-}
-
 impl SseEncode for ContinuousJoinResult {
     // Codec=Sse (Serialization based), see doc to use other codecs
     fn sse_encode(self, serializer: &mut flutter_rust_bridge::for_generated::SseSerializer) {
-        <RustOpaqueMoi<
+        <RustOpaqueNom<
             flutter_rust_bridge::for_generated::RustAutoOpaqueInner<ContinuousJoinResult>,
         >>::sse_encode(
-            flutter_rust_bridge::for_generated::rust_auto_opaque_encode::<_, MoiArc<_>>(self),
+            flutter_rust_bridge::for_generated::rust_auto_opaque_encode::<_, StdArc<_>>(self),
             serializer,
         );
     }
@@ -1228,26 +993,12 @@ impl SseEncode for ContinuousJoinResult {
 impl SseEncode for ContinuousJoiner {
     // Codec=Sse (Serialization based), see doc to use other codecs
     fn sse_encode(self, serializer: &mut flutter_rust_bridge::for_generated::SseSerializer) {
-        <RustOpaqueMoi<flutter_rust_bridge::for_generated::RustAutoOpaqueInner<ContinuousJoiner>>>::sse_encode(flutter_rust_bridge::for_generated::rust_auto_opaque_encode::<_, MoiArc<_>>(self), serializer);
-    }
-}
-
-impl SseEncode for JoinError {
-    // Codec=Sse (Serialization based), see doc to use other codecs
-    fn sse_encode(self, serializer: &mut flutter_rust_bridge::for_generated::SseSerializer) {
-        <RustOpaqueMoi<flutter_rust_bridge::for_generated::RustAutoOpaqueInner<JoinError>>>::sse_encode(flutter_rust_bridge::for_generated::rust_auto_opaque_encode::<_, MoiArc<_>>(self), serializer);
-    }
-}
-
-impl SseEncode for SplitError {
-    // Codec=Sse (Serialization based), see doc to use other codecs
-    fn sse_encode(self, serializer: &mut flutter_rust_bridge::for_generated::SseSerializer) {
-        <RustOpaqueMoi<flutter_rust_bridge::for_generated::RustAutoOpaqueInner<SplitError>>>::sse_encode(flutter_rust_bridge::for_generated::rust_auto_opaque_encode::<_, MoiArc<_>>(self), serializer);
+        <RustOpaqueNom<flutter_rust_bridge::for_generated::RustAutoOpaqueInner<ContinuousJoiner>>>::sse_encode(flutter_rust_bridge::for_generated::rust_auto_opaque_encode::<_, StdArc<_>>(self), serializer);
     }
 }
 
 impl SseEncode
-    for RustOpaqueMoi<flutter_rust_bridge::for_generated::RustAutoOpaqueInner<ContinuousJoinError>>
+    for RustOpaqueNom<flutter_rust_bridge::for_generated::RustAutoOpaqueInner<ContinuousJoinResult>>
 {
     // Codec=Sse (Serialization based), see doc to use other codecs
     fn sse_encode(self, serializer: &mut flutter_rust_bridge::for_generated::SseSerializer) {
@@ -1258,40 +1009,7 @@ impl SseEncode
 }
 
 impl SseEncode
-    for RustOpaqueMoi<flutter_rust_bridge::for_generated::RustAutoOpaqueInner<ContinuousJoinResult>>
-{
-    // Codec=Sse (Serialization based), see doc to use other codecs
-    fn sse_encode(self, serializer: &mut flutter_rust_bridge::for_generated::SseSerializer) {
-        let (ptr, size) = self.sse_encode_raw();
-        <usize>::sse_encode(ptr, serializer);
-        <i32>::sse_encode(size, serializer);
-    }
-}
-
-impl SseEncode
-    for RustOpaqueMoi<flutter_rust_bridge::for_generated::RustAutoOpaqueInner<ContinuousJoiner>>
-{
-    // Codec=Sse (Serialization based), see doc to use other codecs
-    fn sse_encode(self, serializer: &mut flutter_rust_bridge::for_generated::SseSerializer) {
-        let (ptr, size) = self.sse_encode_raw();
-        <usize>::sse_encode(ptr, serializer);
-        <i32>::sse_encode(size, serializer);
-    }
-}
-
-impl SseEncode
-    for RustOpaqueMoi<flutter_rust_bridge::for_generated::RustAutoOpaqueInner<JoinError>>
-{
-    // Codec=Sse (Serialization based), see doc to use other codecs
-    fn sse_encode(self, serializer: &mut flutter_rust_bridge::for_generated::SseSerializer) {
-        let (ptr, size) = self.sse_encode_raw();
-        <usize>::sse_encode(ptr, serializer);
-        <i32>::sse_encode(size, serializer);
-    }
-}
-
-impl SseEncode
-    for RustOpaqueMoi<flutter_rust_bridge::for_generated::RustAutoOpaqueInner<SplitError>>
+    for RustOpaqueNom<flutter_rust_bridge::for_generated::RustAutoOpaqueInner<ContinuousJoiner>>
 {
     // Codec=Sse (Serialization based), see doc to use other codecs
     fn sse_encode(self, serializer: &mut flutter_rust_bridge::for_generated::SseSerializer) {
@@ -1511,9 +1229,10 @@ mod io {
     // Section: imports
 
     use super::*;
+    use crate::api::ContinuousJoinerExt;
+    use crate::api::JoinedExt;
+    use crate::api::SplitExt;
     use bbqr::continuous_join::*;
-    use bbqr::join::*;
-    use bbqr::split::*;
     use flutter_rust_bridge::for_generated::byteorder::{
         NativeEndian, ReadBytesExt, WriteBytesExt,
     };
@@ -1524,172 +1243,432 @@ mod io {
 
     flutter_rust_bridge::frb_generated_boilerplate_io!();
 
-    #[unsafe(no_mangle)]
-    pub extern "C" fn frbgen_bbqr_rust_arc_increment_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerContinuousJoinError(
-        ptr: *const std::ffi::c_void,
-    ) {
-        MoiArc::<flutter_rust_bridge::for_generated::RustAutoOpaqueInner<ContinuousJoinError>>::increment_strong_count(ptr as _);
+    // Section: dart2rust
+
+    impl CstDecode<ContinuousJoinResult> for usize {
+        // Codec=Cst (C-struct based), see doc to use other codecs
+        fn cst_decode(self) -> ContinuousJoinResult {
+            flutter_rust_bridge::for_generated::rust_auto_opaque_decode_owned(CstDecode::<
+                RustOpaqueNom<
+                    flutter_rust_bridge::for_generated::RustAutoOpaqueInner<ContinuousJoinResult>,
+                >,
+            >::cst_decode(
+                self
+            ))
+        }
+    }
+    impl CstDecode<ContinuousJoiner> for usize {
+        // Codec=Cst (C-struct based), see doc to use other codecs
+        fn cst_decode(self) -> ContinuousJoiner {
+            flutter_rust_bridge::for_generated::rust_auto_opaque_decode_owned(CstDecode::<
+                RustOpaqueNom<
+                    flutter_rust_bridge::for_generated::RustAutoOpaqueInner<ContinuousJoiner>,
+                >,
+            >::cst_decode(
+                self
+            ))
+        }
+    }
+    impl
+        CstDecode<
+            RustOpaqueNom<
+                flutter_rust_bridge::for_generated::RustAutoOpaqueInner<ContinuousJoinResult>,
+            >,
+        > for usize
+    {
+        // Codec=Cst (C-struct based), see doc to use other codecs
+        fn cst_decode(
+            self,
+        ) -> RustOpaqueNom<
+            flutter_rust_bridge::for_generated::RustAutoOpaqueInner<ContinuousJoinResult>,
+        > {
+            unsafe { decode_rust_opaque_nom(self as _) }
+        }
+    }
+    impl
+        CstDecode<
+            RustOpaqueNom<
+                flutter_rust_bridge::for_generated::RustAutoOpaqueInner<ContinuousJoiner>,
+            >,
+        > for usize
+    {
+        // Codec=Cst (C-struct based), see doc to use other codecs
+        fn cst_decode(
+            self,
+        ) -> RustOpaqueNom<flutter_rust_bridge::for_generated::RustAutoOpaqueInner<ContinuousJoiner>>
+        {
+            unsafe { decode_rust_opaque_nom(self as _) }
+        }
+    }
+    impl CstDecode<String> for *mut wire_cst_list_prim_u_8_strict {
+        // Codec=Cst (C-struct based), see doc to use other codecs
+        fn cst_decode(self) -> String {
+            let vec: Vec<u8> = self.cst_decode();
+            String::from_utf8(vec).unwrap()
+        }
+    }
+    impl CstDecode<bbqr::encode::Encoding> for *mut i32 {
+        // Codec=Cst (C-struct based), see doc to use other codecs
+        fn cst_decode(self) -> bbqr::encode::Encoding {
+            let wrap = unsafe { flutter_rust_bridge::for_generated::box_from_leak_ptr(self) };
+            CstDecode::<bbqr::encode::Encoding>::cst_decode(*wrap).into()
+        }
+    }
+    impl CstDecode<bbqr::file_type::FileType> for *mut i32 {
+        // Codec=Cst (C-struct based), see doc to use other codecs
+        fn cst_decode(self) -> bbqr::file_type::FileType {
+            let wrap = unsafe { flutter_rust_bridge::for_generated::box_from_leak_ptr(self) };
+            CstDecode::<bbqr::file_type::FileType>::cst_decode(*wrap).into()
+        }
+    }
+    impl CstDecode<bbqr::split::SplitOptions> for *mut wire_cst_split_options {
+        // Codec=Cst (C-struct based), see doc to use other codecs
+        fn cst_decode(self) -> bbqr::split::SplitOptions {
+            let wrap = unsafe { flutter_rust_bridge::for_generated::box_from_leak_ptr(self) };
+            CstDecode::<bbqr::split::SplitOptions>::cst_decode(*wrap).into()
+        }
+    }
+    impl CstDecode<bbqr::join::Joined> for wire_cst_joined {
+        // Codec=Cst (C-struct based), see doc to use other codecs
+        fn cst_decode(self) -> bbqr::join::Joined {
+            bbqr::join::Joined {
+                encoding: self.encoding.cst_decode(),
+                file_type: self.file_type.cst_decode(),
+                data: self.data.cst_decode(),
+            }
+        }
+    }
+    impl CstDecode<Vec<String>> for *mut wire_cst_list_String {
+        // Codec=Cst (C-struct based), see doc to use other codecs
+        fn cst_decode(self) -> Vec<String> {
+            let vec = unsafe {
+                let wrap = flutter_rust_bridge::for_generated::box_from_leak_ptr(self);
+                flutter_rust_bridge::for_generated::vec_from_leak_ptr(wrap.ptr, wrap.len)
+            };
+            vec.into_iter().map(CstDecode::cst_decode).collect()
+        }
+    }
+    impl CstDecode<Vec<u8>> for *mut wire_cst_list_prim_u_8_loose {
+        // Codec=Cst (C-struct based), see doc to use other codecs
+        fn cst_decode(self) -> Vec<u8> {
+            unsafe {
+                let wrap = flutter_rust_bridge::for_generated::box_from_leak_ptr(self);
+                flutter_rust_bridge::for_generated::vec_from_leak_ptr(wrap.ptr, wrap.len)
+            }
+        }
+    }
+    impl CstDecode<Vec<u8>> for *mut wire_cst_list_prim_u_8_strict {
+        // Codec=Cst (C-struct based), see doc to use other codecs
+        fn cst_decode(self) -> Vec<u8> {
+            unsafe {
+                let wrap = flutter_rust_bridge::for_generated::box_from_leak_ptr(self);
+                flutter_rust_bridge::for_generated::vec_from_leak_ptr(wrap.ptr, wrap.len)
+            }
+        }
+    }
+    impl CstDecode<bbqr::split::Split> for wire_cst_split {
+        // Codec=Cst (C-struct based), see doc to use other codecs
+        fn cst_decode(self) -> bbqr::split::Split {
+            bbqr::split::Split {
+                version: self.version.cst_decode(),
+                parts: self.parts.cst_decode(),
+                encoding: self.encoding.cst_decode(),
+            }
+        }
+    }
+    impl CstDecode<bbqr::split::SplitOptions> for wire_cst_split_options {
+        // Codec=Cst (C-struct based), see doc to use other codecs
+        fn cst_decode(self) -> bbqr::split::SplitOptions {
+            bbqr::split::SplitOptions {
+                encoding: self.encoding.cst_decode(),
+                min_split_number: self.min_split_number.cst_decode(),
+                max_split_number: self.max_split_number.cst_decode(),
+                min_version: self.min_version.cst_decode(),
+                max_version: self.max_version.cst_decode(),
+            }
+        }
+    }
+    impl NewWithNullPtr for wire_cst_joined {
+        fn new_with_null_ptr() -> Self {
+            Self {
+                encoding: Default::default(),
+                file_type: Default::default(),
+                data: core::ptr::null_mut(),
+            }
+        }
+    }
+    impl Default for wire_cst_joined {
+        fn default() -> Self {
+            Self::new_with_null_ptr()
+        }
+    }
+    impl NewWithNullPtr for wire_cst_split {
+        fn new_with_null_ptr() -> Self {
+            Self {
+                version: Default::default(),
+                parts: core::ptr::null_mut(),
+                encoding: Default::default(),
+            }
+        }
+    }
+    impl Default for wire_cst_split {
+        fn default() -> Self {
+            Self::new_with_null_ptr()
+        }
+    }
+    impl NewWithNullPtr for wire_cst_split_options {
+        fn new_with_null_ptr() -> Self {
+            Self {
+                encoding: Default::default(),
+                min_split_number: Default::default(),
+                max_split_number: Default::default(),
+                min_version: Default::default(),
+                max_version: Default::default(),
+            }
+        }
+    }
+    impl Default for wire_cst_split_options {
+        fn default() -> Self {
+            Self::new_with_null_ptr()
+        }
     }
 
     #[unsafe(no_mangle)]
-    pub extern "C" fn frbgen_bbqr_rust_arc_decrement_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerContinuousJoinError(
-        ptr: *const std::ffi::c_void,
+    pub extern "C" fn frbgen_dart_bbqr_wire__bbqr__continuous_join__ContinuousJoiner_default(
+        port_: i64,
     ) {
-        MoiArc::<flutter_rust_bridge::for_generated::RustAutoOpaqueInner<ContinuousJoinError>>::decrement_strong_count(ptr as _);
+        wire__bbqr__continuous_join__ContinuousJoiner_default_impl(port_)
     }
 
     #[unsafe(no_mangle)]
-    pub extern "C" fn frbgen_bbqr_rust_arc_increment_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerContinuousJoinResult(
-        ptr: *const std::ffi::c_void,
+    pub extern "C" fn frbgen_dart_bbqr_wire__bbqr__continuous_join__ContinuousJoiner_frb_override_add_part(
+        port_: i64,
+        that: usize,
+        part: *mut wire_cst_list_prim_u_8_strict,
     ) {
-        MoiArc::<flutter_rust_bridge::for_generated::RustAutoOpaqueInner<ContinuousJoinResult>>::increment_strong_count(ptr as _);
+        wire__bbqr__continuous_join__ContinuousJoiner_frb_override_add_part_impl(port_, that, part)
     }
 
     #[unsafe(no_mangle)]
-    pub extern "C" fn frbgen_bbqr_rust_arc_decrement_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerContinuousJoinResult(
-        ptr: *const std::ffi::c_void,
+    pub extern "C" fn frbgen_dart_bbqr_wire__bbqr__continuous_join__ContinuousJoiner_new(
+        port_: i64,
     ) {
-        MoiArc::<flutter_rust_bridge::for_generated::RustAutoOpaqueInner<ContinuousJoinResult>>::decrement_strong_count(ptr as _);
+        wire__bbqr__continuous_join__ContinuousJoiner_new_impl(port_)
     }
 
     #[unsafe(no_mangle)]
-    pub extern "C" fn frbgen_bbqr_rust_arc_increment_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerContinuousJoiner(
-        ptr: *const std::ffi::c_void,
-    ) {
-        MoiArc::<flutter_rust_bridge::for_generated::RustAutoOpaqueInner<ContinuousJoiner>>::increment_strong_count(ptr as _);
+    pub extern "C" fn frbgen_dart_bbqr_wire__bbqr__encode__encoding_as_byte(port_: i64, that: i32) {
+        wire__bbqr__encode__encoding_as_byte_impl(port_, that)
     }
 
     #[unsafe(no_mangle)]
-    pub extern "C" fn frbgen_bbqr_rust_arc_decrement_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerContinuousJoiner(
-        ptr: *const std::ffi::c_void,
+    pub extern "C" fn frbgen_dart_bbqr_wire__bbqr__encode__encoding_from_byte(
+        port_: i64,
+        byte: u8,
     ) {
-        MoiArc::<flutter_rust_bridge::for_generated::RustAutoOpaqueInner<ContinuousJoiner>>::decrement_strong_count(ptr as _);
+        wire__bbqr__encode__encoding_from_byte_impl(port_, byte)
     }
 
     #[unsafe(no_mangle)]
-    pub extern "C" fn frbgen_bbqr_rust_arc_increment_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerJoinError(
-        ptr: *const std::ffi::c_void,
+    pub extern "C" fn frbgen_dart_bbqr_wire__bbqr__encode__encoding_is_known_encoding(
+        port_: i64,
+        byte: u8,
     ) {
-        MoiArc::<flutter_rust_bridge::for_generated::RustAutoOpaqueInner<JoinError>>::increment_strong_count(ptr as _);
+        wire__bbqr__encode__encoding_is_known_encoding_impl(port_, byte)
     }
 
     #[unsafe(no_mangle)]
-    pub extern "C" fn frbgen_bbqr_rust_arc_decrement_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerJoinError(
-        ptr: *const std::ffi::c_void,
+    pub extern "C" fn frbgen_dart_bbqr_wire__bbqr__encode__encoding_split_mod(
+        port_: i64,
+        that: i32,
     ) {
-        MoiArc::<flutter_rust_bridge::for_generated::RustAutoOpaqueInner<JoinError>>::decrement_strong_count(ptr as _);
+        wire__bbqr__encode__encoding_split_mod_impl(port_, that)
     }
 
     #[unsafe(no_mangle)]
-    pub extern "C" fn frbgen_bbqr_rust_arc_increment_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerSplitError(
-        ptr: *const std::ffi::c_void,
+    pub extern "C" fn frbgen_dart_bbqr_wire__bbqr__file_type__file_type_as_byte(
+        port_: i64,
+        that: i32,
     ) {
-        MoiArc::<flutter_rust_bridge::for_generated::RustAutoOpaqueInner<SplitError>>::increment_strong_count(ptr as _);
+        wire__bbqr__file_type__file_type_as_byte_impl(port_, that)
     }
 
     #[unsafe(no_mangle)]
-    pub extern "C" fn frbgen_bbqr_rust_arc_decrement_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerSplitError(
+    pub extern "C" fn frbgen_dart_bbqr_wire__bbqr__file_type__file_type_from_byte(
+        port_: i64,
+        byte: u8,
+    ) {
+        wire__bbqr__file_type__file_type_from_byte_impl(port_, byte)
+    }
+
+    #[unsafe(no_mangle)]
+    pub extern "C" fn frbgen_dart_bbqr_wire__bbqr__file_type__file_type_is_known_filetype(
+        port_: i64,
+        byte: u8,
+    ) {
+        wire__bbqr__file_type__file_type_is_known_filetype_impl(port_, byte)
+    }
+
+    #[unsafe(no_mangle)]
+    pub extern "C" fn frbgen_dart_bbqr_wire__bbqr__join__joined_frb_override_try_from_parts(
+        port_: i64,
+        parts: *mut wire_cst_list_String,
+    ) {
+        wire__bbqr__join__joined_frb_override_try_from_parts_impl(port_, parts)
+    }
+
+    #[unsafe(no_mangle)]
+    pub extern "C" fn frbgen_dart_bbqr_wire__bbqr__split__split_frb_override_try_from_data(
+        port_: i64,
+        bytes: *mut wire_cst_list_prim_u_8_loose,
+        file_type: i32,
+        options: *mut wire_cst_split_options,
+    ) {
+        wire__bbqr__split__split_frb_override_try_from_data_impl(port_, bytes, file_type, options)
+    }
+
+    #[unsafe(no_mangle)]
+    pub extern "C" fn frbgen_dart_bbqr_wire__bbqr__split__split_options_default(port_: i64) {
+        wire__bbqr__split__split_options_default_impl(port_)
+    }
+
+    #[unsafe(no_mangle)]
+    pub extern "C" fn frbgen_dart_bbqr_wire__bbqr__qr__version_data_capacity(
+        port_: i64,
+        that: i32,
+    ) {
+        wire__bbqr__qr__version_data_capacity_impl(port_, that)
+    }
+
+    #[unsafe(no_mangle)]
+    pub extern "C" fn frbgen_dart_bbqr_rust_arc_increment_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerContinuousJoinResult(
         ptr: *const std::ffi::c_void,
     ) {
-        MoiArc::<flutter_rust_bridge::for_generated::RustAutoOpaqueInner<SplitError>>::decrement_strong_count(ptr as _);
+        unsafe {
+            StdArc::<flutter_rust_bridge::for_generated::RustAutoOpaqueInner<ContinuousJoinResult>>::increment_strong_count(ptr as _);
+        }
+    }
+
+    #[unsafe(no_mangle)]
+    pub extern "C" fn frbgen_dart_bbqr_rust_arc_decrement_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerContinuousJoinResult(
+        ptr: *const std::ffi::c_void,
+    ) {
+        unsafe {
+            StdArc::<flutter_rust_bridge::for_generated::RustAutoOpaqueInner<ContinuousJoinResult>>::decrement_strong_count(ptr as _);
+        }
+    }
+
+    #[unsafe(no_mangle)]
+    pub extern "C" fn frbgen_dart_bbqr_rust_arc_increment_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerContinuousJoiner(
+        ptr: *const std::ffi::c_void,
+    ) {
+        unsafe {
+            StdArc::<flutter_rust_bridge::for_generated::RustAutoOpaqueInner<ContinuousJoiner>>::increment_strong_count(ptr as _);
+        }
+    }
+
+    #[unsafe(no_mangle)]
+    pub extern "C" fn frbgen_dart_bbqr_rust_arc_decrement_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerContinuousJoiner(
+        ptr: *const std::ffi::c_void,
+    ) {
+        unsafe {
+            StdArc::<flutter_rust_bridge::for_generated::RustAutoOpaqueInner<ContinuousJoiner>>::decrement_strong_count(ptr as _);
+        }
+    }
+
+    #[unsafe(no_mangle)]
+    pub extern "C" fn frbgen_dart_bbqr_cst_new_box_autoadd_encoding(value: i32) -> *mut i32 {
+        flutter_rust_bridge::for_generated::new_leak_box_ptr(value)
+    }
+
+    #[unsafe(no_mangle)]
+    pub extern "C" fn frbgen_dart_bbqr_cst_new_box_autoadd_file_type(value: i32) -> *mut i32 {
+        flutter_rust_bridge::for_generated::new_leak_box_ptr(value)
+    }
+
+    #[unsafe(no_mangle)]
+    pub extern "C" fn frbgen_dart_bbqr_cst_new_box_autoadd_split_options(
+    ) -> *mut wire_cst_split_options {
+        flutter_rust_bridge::for_generated::new_leak_box_ptr(
+            wire_cst_split_options::new_with_null_ptr(),
+        )
+    }
+
+    #[unsafe(no_mangle)]
+    pub extern "C" fn frbgen_dart_bbqr_cst_new_list_String(len: i32) -> *mut wire_cst_list_String {
+        let wrap = wire_cst_list_String {
+            ptr: flutter_rust_bridge::for_generated::new_leak_vec_ptr(
+                <*mut wire_cst_list_prim_u_8_strict>::new_with_null_ptr(),
+                len,
+            ),
+            len,
+        };
+        flutter_rust_bridge::for_generated::new_leak_box_ptr(wrap)
+    }
+
+    #[unsafe(no_mangle)]
+    pub extern "C" fn frbgen_dart_bbqr_cst_new_list_prim_u_8_loose(
+        len: i32,
+    ) -> *mut wire_cst_list_prim_u_8_loose {
+        let ans = wire_cst_list_prim_u_8_loose {
+            ptr: flutter_rust_bridge::for_generated::new_leak_vec_ptr(Default::default(), len),
+            len,
+        };
+        flutter_rust_bridge::for_generated::new_leak_box_ptr(ans)
+    }
+
+    #[unsafe(no_mangle)]
+    pub extern "C" fn frbgen_dart_bbqr_cst_new_list_prim_u_8_strict(
+        len: i32,
+    ) -> *mut wire_cst_list_prim_u_8_strict {
+        let ans = wire_cst_list_prim_u_8_strict {
+            ptr: flutter_rust_bridge::for_generated::new_leak_vec_ptr(Default::default(), len),
+            len,
+        };
+        flutter_rust_bridge::for_generated::new_leak_box_ptr(ans)
+    }
+
+    #[repr(C)]
+    #[derive(Clone, Copy)]
+    pub struct wire_cst_joined {
+        encoding: i32,
+        file_type: i32,
+        data: *mut wire_cst_list_prim_u_8_strict,
+    }
+    #[repr(C)]
+    #[derive(Clone, Copy)]
+    pub struct wire_cst_list_String {
+        ptr: *mut *mut wire_cst_list_prim_u_8_strict,
+        len: i32,
+    }
+    #[repr(C)]
+    #[derive(Clone, Copy)]
+    pub struct wire_cst_list_prim_u_8_loose {
+        ptr: *mut u8,
+        len: i32,
+    }
+    #[repr(C)]
+    #[derive(Clone, Copy)]
+    pub struct wire_cst_list_prim_u_8_strict {
+        ptr: *mut u8,
+        len: i32,
+    }
+    #[repr(C)]
+    #[derive(Clone, Copy)]
+    pub struct wire_cst_split {
+        version: i32,
+        parts: *mut wire_cst_list_String,
+        encoding: i32,
+    }
+    #[repr(C)]
+    #[derive(Clone, Copy)]
+    pub struct wire_cst_split_options {
+        encoding: i32,
+        min_split_number: usize,
+        max_split_number: usize,
+        min_version: i32,
+        max_version: i32,
     }
 }
 #[cfg(not(target_family = "wasm"))]
 pub use io::*;
-
-/// cbindgen:ignore
-#[cfg(target_family = "wasm")]
-mod web {
-    // This file is automatically generated, so please do not edit it.
-    // @generated by `flutter_rust_bridge`@ 2.9.0.
-
-    // Section: imports
-
-    use super::*;
-    use bbqr::continuous_join::*;
-    use bbqr::join::*;
-    use bbqr::split::*;
-    use flutter_rust_bridge::for_generated::byteorder::{
-        NativeEndian, ReadBytesExt, WriteBytesExt,
-    };
-    use flutter_rust_bridge::for_generated::wasm_bindgen;
-    use flutter_rust_bridge::for_generated::wasm_bindgen::prelude::*;
-    use flutter_rust_bridge::for_generated::{transform_result_dco, Lifetimeable, Lockable};
-    use flutter_rust_bridge::{Handler, IntoIntoDart};
-
-    // Section: boilerplate
-
-    flutter_rust_bridge::frb_generated_boilerplate_web!();
-
-    #[wasm_bindgen]
-    pub fn rust_arc_increment_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerContinuousJoinError(
-        ptr: *const std::ffi::c_void,
-    ) {
-        MoiArc::<flutter_rust_bridge::for_generated::RustAutoOpaqueInner<ContinuousJoinError>>::increment_strong_count(ptr as _);
-    }
-
-    #[wasm_bindgen]
-    pub fn rust_arc_decrement_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerContinuousJoinError(
-        ptr: *const std::ffi::c_void,
-    ) {
-        MoiArc::<flutter_rust_bridge::for_generated::RustAutoOpaqueInner<ContinuousJoinError>>::decrement_strong_count(ptr as _);
-    }
-
-    #[wasm_bindgen]
-    pub fn rust_arc_increment_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerContinuousJoinResult(
-        ptr: *const std::ffi::c_void,
-    ) {
-        MoiArc::<flutter_rust_bridge::for_generated::RustAutoOpaqueInner<ContinuousJoinResult>>::increment_strong_count(ptr as _);
-    }
-
-    #[wasm_bindgen]
-    pub fn rust_arc_decrement_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerContinuousJoinResult(
-        ptr: *const std::ffi::c_void,
-    ) {
-        MoiArc::<flutter_rust_bridge::for_generated::RustAutoOpaqueInner<ContinuousJoinResult>>::decrement_strong_count(ptr as _);
-    }
-
-    #[wasm_bindgen]
-    pub fn rust_arc_increment_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerContinuousJoiner(
-        ptr: *const std::ffi::c_void,
-    ) {
-        MoiArc::<flutter_rust_bridge::for_generated::RustAutoOpaqueInner<ContinuousJoiner>>::increment_strong_count(ptr as _);
-    }
-
-    #[wasm_bindgen]
-    pub fn rust_arc_decrement_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerContinuousJoiner(
-        ptr: *const std::ffi::c_void,
-    ) {
-        MoiArc::<flutter_rust_bridge::for_generated::RustAutoOpaqueInner<ContinuousJoiner>>::decrement_strong_count(ptr as _);
-    }
-
-    #[wasm_bindgen]
-    pub fn rust_arc_increment_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerJoinError(
-        ptr: *const std::ffi::c_void,
-    ) {
-        MoiArc::<flutter_rust_bridge::for_generated::RustAutoOpaqueInner<JoinError>>::increment_strong_count(ptr as _);
-    }
-
-    #[wasm_bindgen]
-    pub fn rust_arc_decrement_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerJoinError(
-        ptr: *const std::ffi::c_void,
-    ) {
-        MoiArc::<flutter_rust_bridge::for_generated::RustAutoOpaqueInner<JoinError>>::decrement_strong_count(ptr as _);
-    }
-
-    #[wasm_bindgen]
-    pub fn rust_arc_increment_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerSplitError(
-        ptr: *const std::ffi::c_void,
-    ) {
-        MoiArc::<flutter_rust_bridge::for_generated::RustAutoOpaqueInner<SplitError>>::increment_strong_count(ptr as _);
-    }
-
-    #[wasm_bindgen]
-    pub fn rust_arc_decrement_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerSplitError(
-        ptr: *const std::ffi::c_void,
-    ) {
-        MoiArc::<flutter_rust_bridge::for_generated::RustAutoOpaqueInner<SplitError>>::decrement_strong_count(ptr as _);
-    }
-}
-#[cfg(target_family = "wasm")]
-pub use web::*;
