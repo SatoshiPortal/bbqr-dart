@@ -3,6 +3,7 @@
 
 // ignore_for_file: unused_import, unused_element, unnecessary_import, duplicate_ignore, invalid_use_of_internal_member, annotate_overrides, non_constant_identifier_names, curly_braces_in_flow_control_structures, prefer_const_literals_to_create_immutables, unused_field
 
+import 'api.dart';
 import 'dart:async';
 import 'dart:convert';
 import 'dart:ffi' as ffi;
@@ -24,28 +25,12 @@ abstract class LibBbqrApiImplPlatform extends BaseApiImpl<LibBbqrWire> {
   });
 
   CrossPlatformFinalizerArg
-  get rust_arc_decrement_strong_count_ContinuousJoinErrorPtr =>
-      wire._rust_arc_decrement_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerContinuousJoinErrorPtr;
-
-  CrossPlatformFinalizerArg
   get rust_arc_decrement_strong_count_ContinuousJoinResultPtr =>
       wire._rust_arc_decrement_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerContinuousJoinResultPtr;
 
   CrossPlatformFinalizerArg
   get rust_arc_decrement_strong_count_ContinuousJoinerPtr =>
       wire._rust_arc_decrement_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerContinuousJoinerPtr;
-
-  CrossPlatformFinalizerArg get rust_arc_decrement_strong_count_JoinErrorPtr =>
-      wire._rust_arc_decrement_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerJoinErrorPtr;
-
-  CrossPlatformFinalizerArg get rust_arc_decrement_strong_count_SplitErrorPtr =>
-      wire._rust_arc_decrement_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerSplitErrorPtr;
-
-  @protected
-  ContinuousJoinError
-  dco_decode_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerContinuousJoinError(
-    dynamic raw,
-  );
 
   @protected
   ContinuousJoinResult
@@ -60,26 +45,8 @@ abstract class LibBbqrApiImplPlatform extends BaseApiImpl<LibBbqrWire> {
   );
 
   @protected
-  JoinError
-  dco_decode_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerJoinError(
-    dynamic raw,
-  );
-
-  @protected
-  SplitError
-  dco_decode_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerSplitError(
-    dynamic raw,
-  );
-
-  @protected
   ContinuousJoiner
   dco_decode_Auto_RefMut_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerContinuousJoiner(
-    dynamic raw,
-  );
-
-  @protected
-  ContinuousJoinError
-  dco_decode_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerContinuousJoinError(
     dynamic raw,
   );
 
@@ -96,19 +63,16 @@ abstract class LibBbqrApiImplPlatform extends BaseApiImpl<LibBbqrWire> {
   );
 
   @protected
-  JoinError
-  dco_decode_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerJoinError(
-    dynamic raw,
-  );
-
-  @protected
-  SplitError
-  dco_decode_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerSplitError(
-    dynamic raw,
-  );
-
-  @protected
   String dco_decode_String(dynamic raw);
+
+  @protected
+  ContinuousJoinerExt dco_decode_TraitDef_ContinuousJoinerExt(dynamic raw);
+
+  @protected
+  JoinedExt dco_decode_TraitDef_JoinedExt(dynamic raw);
+
+  @protected
+  SplitExt dco_decode_TraitDef_SplitExt(dynamic raw);
 
   @protected
   bool dco_decode_bool(dynamic raw);
@@ -168,12 +132,6 @@ abstract class LibBbqrApiImplPlatform extends BaseApiImpl<LibBbqrWire> {
   Version dco_decode_version(dynamic raw);
 
   @protected
-  ContinuousJoinError
-  sse_decode_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerContinuousJoinError(
-    SseDeserializer deserializer,
-  );
-
-  @protected
   ContinuousJoinResult
   sse_decode_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerContinuousJoinResult(
     SseDeserializer deserializer,
@@ -186,26 +144,8 @@ abstract class LibBbqrApiImplPlatform extends BaseApiImpl<LibBbqrWire> {
   );
 
   @protected
-  JoinError
-  sse_decode_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerJoinError(
-    SseDeserializer deserializer,
-  );
-
-  @protected
-  SplitError
-  sse_decode_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerSplitError(
-    SseDeserializer deserializer,
-  );
-
-  @protected
   ContinuousJoiner
   sse_decode_Auto_RefMut_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerContinuousJoiner(
-    SseDeserializer deserializer,
-  );
-
-  @protected
-  ContinuousJoinError
-  sse_decode_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerContinuousJoinError(
     SseDeserializer deserializer,
   );
 
@@ -218,18 +158,6 @@ abstract class LibBbqrApiImplPlatform extends BaseApiImpl<LibBbqrWire> {
   @protected
   ContinuousJoiner
   sse_decode_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerContinuousJoiner(
-    SseDeserializer deserializer,
-  );
-
-  @protected
-  JoinError
-  sse_decode_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerJoinError(
-    SseDeserializer deserializer,
-  );
-
-  @protected
-  SplitError
-  sse_decode_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerSplitError(
     SseDeserializer deserializer,
   );
 
@@ -296,11 +224,165 @@ abstract class LibBbqrApiImplPlatform extends BaseApiImpl<LibBbqrWire> {
   Version sse_decode_version(SseDeserializer deserializer);
 
   @protected
-  void
-  sse_encode_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerContinuousJoinError(
-    ContinuousJoinError self,
-    SseSerializer serializer,
+  ffi.Pointer<wire_cst_list_prim_u_8_strict> cst_encode_String(String raw) {
+    // Codec=Cst (C-struct based), see doc to use other codecs
+    return cst_encode_list_prim_u_8_strict(utf8.encoder.convert(raw));
+  }
+
+  @protected
+  ffi.Pointer<ffi.Int32> cst_encode_box_autoadd_encoding(Encoding raw) {
+    // Codec=Cst (C-struct based), see doc to use other codecs
+    return wire.cst_new_box_autoadd_encoding(cst_encode_encoding(raw));
+  }
+
+  @protected
+  ffi.Pointer<ffi.Int32> cst_encode_box_autoadd_file_type(FileType raw) {
+    // Codec=Cst (C-struct based), see doc to use other codecs
+    return wire.cst_new_box_autoadd_file_type(cst_encode_file_type(raw));
+  }
+
+  @protected
+  ffi.Pointer<wire_cst_split_options> cst_encode_box_autoadd_split_options(
+    SplitOptions raw,
+  ) {
+    // Codec=Cst (C-struct based), see doc to use other codecs
+    final ptr = wire.cst_new_box_autoadd_split_options();
+    cst_api_fill_to_wire_split_options(raw, ptr.ref);
+    return ptr;
+  }
+
+  @protected
+  ffi.Pointer<wire_cst_list_String> cst_encode_list_String(List<String> raw) {
+    // Codec=Cst (C-struct based), see doc to use other codecs
+    final ans = wire.cst_new_list_String(raw.length);
+    for (var i = 0; i < raw.length; ++i) {
+      ans.ref.ptr[i] = cst_encode_String(raw[i]);
+    }
+    return ans;
+  }
+
+  @protected
+  ffi.Pointer<wire_cst_list_prim_u_8_loose> cst_encode_list_prim_u_8_loose(
+    List<int> raw,
+  ) {
+    // Codec=Cst (C-struct based), see doc to use other codecs
+    final ans = wire.cst_new_list_prim_u_8_loose(raw.length);
+    ans.ref.ptr.asTypedList(raw.length).setAll(0, raw);
+    return ans;
+  }
+
+  @protected
+  ffi.Pointer<wire_cst_list_prim_u_8_strict> cst_encode_list_prim_u_8_strict(
+    Uint8List raw,
+  ) {
+    // Codec=Cst (C-struct based), see doc to use other codecs
+    final ans = wire.cst_new_list_prim_u_8_strict(raw.length);
+    ans.ref.ptr.asTypedList(raw.length).setAll(0, raw);
+    return ans;
+  }
+
+  @protected
+  ffi.Pointer<ffi.Int32> cst_encode_opt_box_autoadd_encoding(Encoding? raw) {
+    // Codec=Cst (C-struct based), see doc to use other codecs
+    return raw == null ? ffi.nullptr : cst_encode_box_autoadd_encoding(raw);
+  }
+
+  @protected
+  ffi.Pointer<ffi.Int32> cst_encode_opt_box_autoadd_file_type(FileType? raw) {
+    // Codec=Cst (C-struct based), see doc to use other codecs
+    return raw == null ? ffi.nullptr : cst_encode_box_autoadd_file_type(raw);
+  }
+
+  @protected
+  int cst_encode_usize(BigInt raw) {
+    // Codec=Cst (C-struct based), see doc to use other codecs
+    return raw.toSigned(64).toInt();
+  }
+
+  @protected
+  void cst_api_fill_to_wire_box_autoadd_split_options(
+    SplitOptions apiObj,
+    ffi.Pointer<wire_cst_split_options> wireObj,
+  ) {
+    cst_api_fill_to_wire_split_options(apiObj, wireObj.ref);
+  }
+
+  @protected
+  void cst_api_fill_to_wire_joined(Joined apiObj, wire_cst_joined wireObj) {
+    wireObj.encoding = cst_encode_encoding(apiObj.encoding);
+    wireObj.file_type = cst_encode_file_type(apiObj.fileType);
+    wireObj.data = cst_encode_list_prim_u_8_strict(apiObj.data);
+  }
+
+  @protected
+  void cst_api_fill_to_wire_split(Split apiObj, wire_cst_split wireObj) {
+    wireObj.version = cst_encode_version(apiObj.version);
+    wireObj.parts = cst_encode_list_String(apiObj.parts);
+    wireObj.encoding = cst_encode_encoding(apiObj.encoding);
+  }
+
+  @protected
+  void cst_api_fill_to_wire_split_options(
+    SplitOptions apiObj,
+    wire_cst_split_options wireObj,
+  ) {
+    wireObj.encoding = cst_encode_encoding(apiObj.encoding);
+    wireObj.min_split_number = cst_encode_usize(apiObj.minSplitNumber);
+    wireObj.max_split_number = cst_encode_usize(apiObj.maxSplitNumber);
+    wireObj.min_version = cst_encode_version(apiObj.minVersion);
+    wireObj.max_version = cst_encode_version(apiObj.maxVersion);
+  }
+
+  @protected
+  int
+  cst_encode_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerContinuousJoinResult(
+    ContinuousJoinResult raw,
   );
+
+  @protected
+  int
+  cst_encode_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerContinuousJoiner(
+    ContinuousJoiner raw,
+  );
+
+  @protected
+  int
+  cst_encode_Auto_RefMut_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerContinuousJoiner(
+    ContinuousJoiner raw,
+  );
+
+  @protected
+  int
+  cst_encode_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerContinuousJoinResult(
+    ContinuousJoinResult raw,
+  );
+
+  @protected
+  int
+  cst_encode_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerContinuousJoiner(
+    ContinuousJoiner raw,
+  );
+
+  @protected
+  bool cst_encode_bool(bool raw);
+
+  @protected
+  int cst_encode_encoding(Encoding raw);
+
+  @protected
+  int cst_encode_file_type(FileType raw);
+
+  @protected
+  int cst_encode_i_32(int raw);
+
+  @protected
+  int cst_encode_u_8(int raw);
+
+  @protected
+  void cst_encode_unit(void raw);
+
+  @protected
+  int cst_encode_version(Version raw);
 
   @protected
   void
@@ -318,29 +400,8 @@ abstract class LibBbqrApiImplPlatform extends BaseApiImpl<LibBbqrWire> {
 
   @protected
   void
-  sse_encode_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerJoinError(
-    JoinError self,
-    SseSerializer serializer,
-  );
-
-  @protected
-  void
-  sse_encode_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerSplitError(
-    SplitError self,
-    SseSerializer serializer,
-  );
-
-  @protected
-  void
   sse_encode_Auto_RefMut_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerContinuousJoiner(
     ContinuousJoiner self,
-    SseSerializer serializer,
-  );
-
-  @protected
-  void
-  sse_encode_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerContinuousJoinError(
-    ContinuousJoinError self,
     SseSerializer serializer,
   );
 
@@ -355,20 +416,6 @@ abstract class LibBbqrApiImplPlatform extends BaseApiImpl<LibBbqrWire> {
   void
   sse_encode_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerContinuousJoiner(
     ContinuousJoiner self,
-    SseSerializer serializer,
-  );
-
-  @protected
-  void
-  sse_encode_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerJoinError(
-    JoinError self,
-    SseSerializer serializer,
-  );
-
-  @protected
-  void
-  sse_encode_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerSplitError(
-    SplitError self,
     SseSerializer serializer,
   );
 
@@ -450,6 +497,13 @@ abstract class LibBbqrApiImplPlatform extends BaseApiImpl<LibBbqrWire> {
 
 // Section: wire_class
 
+// ignore_for_file: camel_case_types, non_constant_identifier_names, avoid_positional_boolean_parameters, annotate_overrides, constant_identifier_names
+// AUTO GENERATED FILE, DO NOT EDIT.
+//
+// Generated by `package:ffigen`.
+// ignore_for_file: type=lint
+
+/// generated by flutter_rust_bridge
 class LibBbqrWire implements BaseWire {
   factory LibBbqrWire.fromExternalLibrary(ExternalLibrary lib) =>
       LibBbqrWire(lib.ffiDynamicLibrary);
@@ -462,39 +516,235 @@ class LibBbqrWire implements BaseWire {
   LibBbqrWire(ffi.DynamicLibrary dynamicLibrary)
     : _lookup = dynamicLibrary.lookup;
 
-  void
-  rust_arc_increment_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerContinuousJoinError(
-    ffi.Pointer<ffi.Void> ptr,
+  /// The symbols are looked up with [lookup].
+  LibBbqrWire.fromLookup(
+    ffi.Pointer<T> Function<T extends ffi.NativeType>(String symbolName) lookup,
+  ) : _lookup = lookup;
+
+  void store_dart_post_cobject(DartPostCObjectFnType ptr) {
+    return _store_dart_post_cobject(ptr);
+  }
+
+  late final _store_dart_post_cobjectPtr =
+      _lookup<ffi.NativeFunction<ffi.Void Function(DartPostCObjectFnType)>>(
+        'store_dart_post_cobject',
+      );
+  late final _store_dart_post_cobject =
+      _store_dart_post_cobjectPtr
+          .asFunction<void Function(DartPostCObjectFnType)>();
+
+  void wire__bbqr__continuous_join__ContinuousJoiner_default(int port_) {
+    return _wire__bbqr__continuous_join__ContinuousJoiner_default(port_);
+  }
+
+  late final _wire__bbqr__continuous_join__ContinuousJoiner_defaultPtr =
+      _lookup<ffi.NativeFunction<ffi.Void Function(ffi.Int64)>>(
+        'frbgen_dart_bbqr_wire__bbqr__continuous_join__ContinuousJoiner_default',
+      );
+  late final _wire__bbqr__continuous_join__ContinuousJoiner_default =
+      _wire__bbqr__continuous_join__ContinuousJoiner_defaultPtr
+          .asFunction<void Function(int)>();
+
+  void wire__bbqr__continuous_join__ContinuousJoiner_frb_override_add_part(
+    int port_,
+    int that,
+    ffi.Pointer<wire_cst_list_prim_u_8_strict> part1,
   ) {
-    return _rust_arc_increment_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerContinuousJoinError(
-      ptr,
+    return _wire__bbqr__continuous_join__ContinuousJoiner_frb_override_add_part(
+      port_,
+      that,
+      part1,
     );
   }
 
-  late final _rust_arc_increment_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerContinuousJoinErrorPtr =
-      _lookup<ffi.NativeFunction<ffi.Void Function(ffi.Pointer<ffi.Void>)>>(
-        'frbgen_bbqr_rust_arc_increment_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerContinuousJoinError',
+  late final _wire__bbqr__continuous_join__ContinuousJoiner_frb_override_add_partPtr =
+      _lookup<
+        ffi.NativeFunction<
+          ffi.Void Function(
+            ffi.Int64,
+            ffi.UintPtr,
+            ffi.Pointer<wire_cst_list_prim_u_8_strict>,
+          )
+        >
+      >(
+        'frbgen_dart_bbqr_wire__bbqr__continuous_join__ContinuousJoiner_frb_override_add_part',
       );
-  late final _rust_arc_increment_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerContinuousJoinError =
-      _rust_arc_increment_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerContinuousJoinErrorPtr
-          .asFunction<void Function(ffi.Pointer<ffi.Void>)>();
+  late final _wire__bbqr__continuous_join__ContinuousJoiner_frb_override_add_part =
+      _wire__bbqr__continuous_join__ContinuousJoiner_frb_override_add_partPtr
+          .asFunction<
+            void Function(int, int, ffi.Pointer<wire_cst_list_prim_u_8_strict>)
+          >();
 
-  void
-  rust_arc_decrement_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerContinuousJoinError(
-    ffi.Pointer<ffi.Void> ptr,
+  void wire__bbqr__continuous_join__ContinuousJoiner_new(int port_) {
+    return _wire__bbqr__continuous_join__ContinuousJoiner_new(port_);
+  }
+
+  late final _wire__bbqr__continuous_join__ContinuousJoiner_newPtr =
+      _lookup<ffi.NativeFunction<ffi.Void Function(ffi.Int64)>>(
+        'frbgen_dart_bbqr_wire__bbqr__continuous_join__ContinuousJoiner_new',
+      );
+  late final _wire__bbqr__continuous_join__ContinuousJoiner_new =
+      _wire__bbqr__continuous_join__ContinuousJoiner_newPtr
+          .asFunction<void Function(int)>();
+
+  void wire__bbqr__encode__encoding_as_byte(int port_, int that) {
+    return _wire__bbqr__encode__encoding_as_byte(port_, that);
+  }
+
+  late final _wire__bbqr__encode__encoding_as_bytePtr =
+      _lookup<ffi.NativeFunction<ffi.Void Function(ffi.Int64, ffi.Int32)>>(
+        'frbgen_dart_bbqr_wire__bbqr__encode__encoding_as_byte',
+      );
+  late final _wire__bbqr__encode__encoding_as_byte =
+      _wire__bbqr__encode__encoding_as_bytePtr
+          .asFunction<void Function(int, int)>();
+
+  void wire__bbqr__encode__encoding_from_byte(int port_, int byte) {
+    return _wire__bbqr__encode__encoding_from_byte(port_, byte);
+  }
+
+  late final _wire__bbqr__encode__encoding_from_bytePtr =
+      _lookup<ffi.NativeFunction<ffi.Void Function(ffi.Int64, ffi.Uint8)>>(
+        'frbgen_dart_bbqr_wire__bbqr__encode__encoding_from_byte',
+      );
+  late final _wire__bbqr__encode__encoding_from_byte =
+      _wire__bbqr__encode__encoding_from_bytePtr
+          .asFunction<void Function(int, int)>();
+
+  void wire__bbqr__encode__encoding_is_known_encoding(int port_, int byte) {
+    return _wire__bbqr__encode__encoding_is_known_encoding(port_, byte);
+  }
+
+  late final _wire__bbqr__encode__encoding_is_known_encodingPtr =
+      _lookup<ffi.NativeFunction<ffi.Void Function(ffi.Int64, ffi.Uint8)>>(
+        'frbgen_dart_bbqr_wire__bbqr__encode__encoding_is_known_encoding',
+      );
+  late final _wire__bbqr__encode__encoding_is_known_encoding =
+      _wire__bbqr__encode__encoding_is_known_encodingPtr
+          .asFunction<void Function(int, int)>();
+
+  void wire__bbqr__encode__encoding_split_mod(int port_, int that) {
+    return _wire__bbqr__encode__encoding_split_mod(port_, that);
+  }
+
+  late final _wire__bbqr__encode__encoding_split_modPtr =
+      _lookup<ffi.NativeFunction<ffi.Void Function(ffi.Int64, ffi.Int32)>>(
+        'frbgen_dart_bbqr_wire__bbqr__encode__encoding_split_mod',
+      );
+  late final _wire__bbqr__encode__encoding_split_mod =
+      _wire__bbqr__encode__encoding_split_modPtr
+          .asFunction<void Function(int, int)>();
+
+  void wire__bbqr__file_type__file_type_as_byte(int port_, int that) {
+    return _wire__bbqr__file_type__file_type_as_byte(port_, that);
+  }
+
+  late final _wire__bbqr__file_type__file_type_as_bytePtr =
+      _lookup<ffi.NativeFunction<ffi.Void Function(ffi.Int64, ffi.Int32)>>(
+        'frbgen_dart_bbqr_wire__bbqr__file_type__file_type_as_byte',
+      );
+  late final _wire__bbqr__file_type__file_type_as_byte =
+      _wire__bbqr__file_type__file_type_as_bytePtr
+          .asFunction<void Function(int, int)>();
+
+  void wire__bbqr__file_type__file_type_from_byte(int port_, int byte) {
+    return _wire__bbqr__file_type__file_type_from_byte(port_, byte);
+  }
+
+  late final _wire__bbqr__file_type__file_type_from_bytePtr =
+      _lookup<ffi.NativeFunction<ffi.Void Function(ffi.Int64, ffi.Uint8)>>(
+        'frbgen_dart_bbqr_wire__bbqr__file_type__file_type_from_byte',
+      );
+  late final _wire__bbqr__file_type__file_type_from_byte =
+      _wire__bbqr__file_type__file_type_from_bytePtr
+          .asFunction<void Function(int, int)>();
+
+  void wire__bbqr__file_type__file_type_is_known_filetype(int port_, int byte) {
+    return _wire__bbqr__file_type__file_type_is_known_filetype(port_, byte);
+  }
+
+  late final _wire__bbqr__file_type__file_type_is_known_filetypePtr =
+      _lookup<ffi.NativeFunction<ffi.Void Function(ffi.Int64, ffi.Uint8)>>(
+        'frbgen_dart_bbqr_wire__bbqr__file_type__file_type_is_known_filetype',
+      );
+  late final _wire__bbqr__file_type__file_type_is_known_filetype =
+      _wire__bbqr__file_type__file_type_is_known_filetypePtr
+          .asFunction<void Function(int, int)>();
+
+  void wire__bbqr__join__joined_frb_override_try_from_parts(
+    int port_,
+    ffi.Pointer<wire_cst_list_String> parts,
   ) {
-    return _rust_arc_decrement_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerContinuousJoinError(
-      ptr,
+    return _wire__bbqr__join__joined_frb_override_try_from_parts(port_, parts);
+  }
+
+  late final _wire__bbqr__join__joined_frb_override_try_from_partsPtr = _lookup<
+    ffi.NativeFunction<
+      ffi.Void Function(ffi.Int64, ffi.Pointer<wire_cst_list_String>)
+    >
+  >('frbgen_dart_bbqr_wire__bbqr__join__joined_frb_override_try_from_parts');
+  late final _wire__bbqr__join__joined_frb_override_try_from_parts =
+      _wire__bbqr__join__joined_frb_override_try_from_partsPtr
+          .asFunction<void Function(int, ffi.Pointer<wire_cst_list_String>)>();
+
+  void wire__bbqr__split__split_frb_override_try_from_data(
+    int port_,
+    ffi.Pointer<wire_cst_list_prim_u_8_loose> bytes,
+    int file_type,
+    ffi.Pointer<wire_cst_split_options> options,
+  ) {
+    return _wire__bbqr__split__split_frb_override_try_from_data(
+      port_,
+      bytes,
+      file_type,
+      options,
     );
   }
 
-  late final _rust_arc_decrement_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerContinuousJoinErrorPtr =
-      _lookup<ffi.NativeFunction<ffi.Void Function(ffi.Pointer<ffi.Void>)>>(
-        'frbgen_bbqr_rust_arc_decrement_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerContinuousJoinError',
+  late final _wire__bbqr__split__split_frb_override_try_from_dataPtr = _lookup<
+    ffi.NativeFunction<
+      ffi.Void Function(
+        ffi.Int64,
+        ffi.Pointer<wire_cst_list_prim_u_8_loose>,
+        ffi.Int32,
+        ffi.Pointer<wire_cst_split_options>,
+      )
+    >
+  >('frbgen_dart_bbqr_wire__bbqr__split__split_frb_override_try_from_data');
+  late final _wire__bbqr__split__split_frb_override_try_from_data =
+      _wire__bbqr__split__split_frb_override_try_from_dataPtr
+          .asFunction<
+            void Function(
+              int,
+              ffi.Pointer<wire_cst_list_prim_u_8_loose>,
+              int,
+              ffi.Pointer<wire_cst_split_options>,
+            )
+          >();
+
+  void wire__bbqr__split__split_options_default(int port_) {
+    return _wire__bbqr__split__split_options_default(port_);
+  }
+
+  late final _wire__bbqr__split__split_options_defaultPtr =
+      _lookup<ffi.NativeFunction<ffi.Void Function(ffi.Int64)>>(
+        'frbgen_dart_bbqr_wire__bbqr__split__split_options_default',
       );
-  late final _rust_arc_decrement_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerContinuousJoinError =
-      _rust_arc_decrement_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerContinuousJoinErrorPtr
-          .asFunction<void Function(ffi.Pointer<ffi.Void>)>();
+  late final _wire__bbqr__split__split_options_default =
+      _wire__bbqr__split__split_options_defaultPtr
+          .asFunction<void Function(int)>();
+
+  void wire__bbqr__qr__version_data_capacity(int port_, int that) {
+    return _wire__bbqr__qr__version_data_capacity(port_, that);
+  }
+
+  late final _wire__bbqr__qr__version_data_capacityPtr =
+      _lookup<ffi.NativeFunction<ffi.Void Function(ffi.Int64, ffi.Int32)>>(
+        'frbgen_dart_bbqr_wire__bbqr__qr__version_data_capacity',
+      );
+  late final _wire__bbqr__qr__version_data_capacity =
+      _wire__bbqr__qr__version_data_capacityPtr
+          .asFunction<void Function(int, int)>();
 
   void
   rust_arc_increment_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerContinuousJoinResult(
@@ -507,7 +757,7 @@ class LibBbqrWire implements BaseWire {
 
   late final _rust_arc_increment_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerContinuousJoinResultPtr =
       _lookup<ffi.NativeFunction<ffi.Void Function(ffi.Pointer<ffi.Void>)>>(
-        'frbgen_bbqr_rust_arc_increment_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerContinuousJoinResult',
+        'frbgen_dart_bbqr_rust_arc_increment_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerContinuousJoinResult',
       );
   late final _rust_arc_increment_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerContinuousJoinResult =
       _rust_arc_increment_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerContinuousJoinResultPtr
@@ -524,7 +774,7 @@ class LibBbqrWire implements BaseWire {
 
   late final _rust_arc_decrement_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerContinuousJoinResultPtr =
       _lookup<ffi.NativeFunction<ffi.Void Function(ffi.Pointer<ffi.Void>)>>(
-        'frbgen_bbqr_rust_arc_decrement_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerContinuousJoinResult',
+        'frbgen_dart_bbqr_rust_arc_decrement_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerContinuousJoinResult',
       );
   late final _rust_arc_decrement_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerContinuousJoinResult =
       _rust_arc_decrement_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerContinuousJoinResultPtr
@@ -541,7 +791,7 @@ class LibBbqrWire implements BaseWire {
 
   late final _rust_arc_increment_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerContinuousJoinerPtr =
       _lookup<ffi.NativeFunction<ffi.Void Function(ffi.Pointer<ffi.Void>)>>(
-        'frbgen_bbqr_rust_arc_increment_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerContinuousJoiner',
+        'frbgen_dart_bbqr_rust_arc_increment_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerContinuousJoiner',
       );
   late final _rust_arc_increment_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerContinuousJoiner =
       _rust_arc_increment_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerContinuousJoinerPtr
@@ -558,77 +808,167 @@ class LibBbqrWire implements BaseWire {
 
   late final _rust_arc_decrement_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerContinuousJoinerPtr =
       _lookup<ffi.NativeFunction<ffi.Void Function(ffi.Pointer<ffi.Void>)>>(
-        'frbgen_bbqr_rust_arc_decrement_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerContinuousJoiner',
+        'frbgen_dart_bbqr_rust_arc_decrement_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerContinuousJoiner',
       );
   late final _rust_arc_decrement_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerContinuousJoiner =
       _rust_arc_decrement_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerContinuousJoinerPtr
           .asFunction<void Function(ffi.Pointer<ffi.Void>)>();
 
-  void
-  rust_arc_increment_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerJoinError(
-    ffi.Pointer<ffi.Void> ptr,
-  ) {
-    return _rust_arc_increment_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerJoinError(
-      ptr,
-    );
+  ffi.Pointer<ffi.Int32> cst_new_box_autoadd_encoding(int value) {
+    return _cst_new_box_autoadd_encoding(value);
   }
 
-  late final _rust_arc_increment_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerJoinErrorPtr =
-      _lookup<ffi.NativeFunction<ffi.Void Function(ffi.Pointer<ffi.Void>)>>(
-        'frbgen_bbqr_rust_arc_increment_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerJoinError',
+  late final _cst_new_box_autoadd_encodingPtr =
+      _lookup<ffi.NativeFunction<ffi.Pointer<ffi.Int32> Function(ffi.Int32)>>(
+        'frbgen_dart_bbqr_cst_new_box_autoadd_encoding',
       );
-  late final _rust_arc_increment_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerJoinError =
-      _rust_arc_increment_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerJoinErrorPtr
-          .asFunction<void Function(ffi.Pointer<ffi.Void>)>();
+  late final _cst_new_box_autoadd_encoding =
+      _cst_new_box_autoadd_encodingPtr
+          .asFunction<ffi.Pointer<ffi.Int32> Function(int)>();
 
-  void
-  rust_arc_decrement_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerJoinError(
-    ffi.Pointer<ffi.Void> ptr,
-  ) {
-    return _rust_arc_decrement_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerJoinError(
-      ptr,
-    );
+  ffi.Pointer<ffi.Int32> cst_new_box_autoadd_file_type(int value) {
+    return _cst_new_box_autoadd_file_type(value);
   }
 
-  late final _rust_arc_decrement_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerJoinErrorPtr =
-      _lookup<ffi.NativeFunction<ffi.Void Function(ffi.Pointer<ffi.Void>)>>(
-        'frbgen_bbqr_rust_arc_decrement_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerJoinError',
+  late final _cst_new_box_autoadd_file_typePtr =
+      _lookup<ffi.NativeFunction<ffi.Pointer<ffi.Int32> Function(ffi.Int32)>>(
+        'frbgen_dart_bbqr_cst_new_box_autoadd_file_type',
       );
-  late final _rust_arc_decrement_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerJoinError =
-      _rust_arc_decrement_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerJoinErrorPtr
-          .asFunction<void Function(ffi.Pointer<ffi.Void>)>();
+  late final _cst_new_box_autoadd_file_type =
+      _cst_new_box_autoadd_file_typePtr
+          .asFunction<ffi.Pointer<ffi.Int32> Function(int)>();
 
-  void
-  rust_arc_increment_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerSplitError(
-    ffi.Pointer<ffi.Void> ptr,
-  ) {
-    return _rust_arc_increment_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerSplitError(
-      ptr,
-    );
+  ffi.Pointer<wire_cst_split_options> cst_new_box_autoadd_split_options() {
+    return _cst_new_box_autoadd_split_options();
   }
 
-  late final _rust_arc_increment_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerSplitErrorPtr =
-      _lookup<ffi.NativeFunction<ffi.Void Function(ffi.Pointer<ffi.Void>)>>(
-        'frbgen_bbqr_rust_arc_increment_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerSplitError',
-      );
-  late final _rust_arc_increment_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerSplitError =
-      _rust_arc_increment_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerSplitErrorPtr
-          .asFunction<void Function(ffi.Pointer<ffi.Void>)>();
+  late final _cst_new_box_autoadd_split_optionsPtr = _lookup<
+    ffi.NativeFunction<ffi.Pointer<wire_cst_split_options> Function()>
+  >('frbgen_dart_bbqr_cst_new_box_autoadd_split_options');
+  late final _cst_new_box_autoadd_split_options =
+      _cst_new_box_autoadd_split_optionsPtr
+          .asFunction<ffi.Pointer<wire_cst_split_options> Function()>();
 
-  void
-  rust_arc_decrement_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerSplitError(
-    ffi.Pointer<ffi.Void> ptr,
-  ) {
-    return _rust_arc_decrement_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerSplitError(
-      ptr,
-    );
+  ffi.Pointer<wire_cst_list_String> cst_new_list_String(int len) {
+    return _cst_new_list_String(len);
   }
 
-  late final _rust_arc_decrement_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerSplitErrorPtr =
-      _lookup<ffi.NativeFunction<ffi.Void Function(ffi.Pointer<ffi.Void>)>>(
-        'frbgen_bbqr_rust_arc_decrement_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerSplitError',
+  late final _cst_new_list_StringPtr = _lookup<
+    ffi.NativeFunction<ffi.Pointer<wire_cst_list_String> Function(ffi.Int32)>
+  >('frbgen_dart_bbqr_cst_new_list_String');
+  late final _cst_new_list_String =
+      _cst_new_list_StringPtr
+          .asFunction<ffi.Pointer<wire_cst_list_String> Function(int)>();
+
+  ffi.Pointer<wire_cst_list_prim_u_8_loose> cst_new_list_prim_u_8_loose(
+    int len,
+  ) {
+    return _cst_new_list_prim_u_8_loose(len);
+  }
+
+  late final _cst_new_list_prim_u_8_loosePtr = _lookup<
+    ffi.NativeFunction<
+      ffi.Pointer<wire_cst_list_prim_u_8_loose> Function(ffi.Int32)
+    >
+  >('frbgen_dart_bbqr_cst_new_list_prim_u_8_loose');
+  late final _cst_new_list_prim_u_8_loose =
+      _cst_new_list_prim_u_8_loosePtr
+          .asFunction<
+            ffi.Pointer<wire_cst_list_prim_u_8_loose> Function(int)
+          >();
+
+  ffi.Pointer<wire_cst_list_prim_u_8_strict> cst_new_list_prim_u_8_strict(
+    int len,
+  ) {
+    return _cst_new_list_prim_u_8_strict(len);
+  }
+
+  late final _cst_new_list_prim_u_8_strictPtr = _lookup<
+    ffi.NativeFunction<
+      ffi.Pointer<wire_cst_list_prim_u_8_strict> Function(ffi.Int32)
+    >
+  >('frbgen_dart_bbqr_cst_new_list_prim_u_8_strict');
+  late final _cst_new_list_prim_u_8_strict =
+      _cst_new_list_prim_u_8_strictPtr
+          .asFunction<
+            ffi.Pointer<wire_cst_list_prim_u_8_strict> Function(int)
+          >();
+
+  int dummy_method_to_enforce_bundling() {
+    return _dummy_method_to_enforce_bundling();
+  }
+
+  late final _dummy_method_to_enforce_bundlingPtr =
+      _lookup<ffi.NativeFunction<ffi.Int64 Function()>>(
+        'dummy_method_to_enforce_bundling',
       );
-  late final _rust_arc_decrement_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerSplitError =
-      _rust_arc_decrement_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerSplitErrorPtr
-          .asFunction<void Function(ffi.Pointer<ffi.Void>)>();
+  late final _dummy_method_to_enforce_bundling =
+      _dummy_method_to_enforce_bundlingPtr.asFunction<int Function()>();
+}
+
+typedef DartPostCObjectFnType =
+    ffi.Pointer<ffi.NativeFunction<DartPostCObjectFnTypeFunction>>;
+typedef DartPostCObjectFnTypeFunction =
+    ffi.Bool Function(DartPort port_id, ffi.Pointer<ffi.Void> message);
+typedef DartDartPostCObjectFnTypeFunction =
+    bool Function(DartDartPort port_id, ffi.Pointer<ffi.Void> message);
+typedef DartPort = ffi.Int64;
+typedef DartDartPort = int;
+
+final class wire_cst_list_prim_u_8_strict extends ffi.Struct {
+  external ffi.Pointer<ffi.Uint8> ptr;
+
+  @ffi.Int32()
+  external int len;
+}
+
+final class wire_cst_list_String extends ffi.Struct {
+  external ffi.Pointer<ffi.Pointer<wire_cst_list_prim_u_8_strict>> ptr;
+
+  @ffi.Int32()
+  external int len;
+}
+
+final class wire_cst_list_prim_u_8_loose extends ffi.Struct {
+  external ffi.Pointer<ffi.Uint8> ptr;
+
+  @ffi.Int32()
+  external int len;
+}
+
+final class wire_cst_split_options extends ffi.Struct {
+  @ffi.Int32()
+  external int encoding;
+
+  @ffi.UintPtr()
+  external int min_split_number;
+
+  @ffi.UintPtr()
+  external int max_split_number;
+
+  @ffi.Int32()
+  external int min_version;
+
+  @ffi.Int32()
+  external int max_version;
+}
+
+final class wire_cst_joined extends ffi.Struct {
+  @ffi.Int32()
+  external int encoding;
+
+  @ffi.Int32()
+  external int file_type;
+
+  external ffi.Pointer<wire_cst_list_prim_u_8_strict> data;
+}
+
+final class wire_cst_split extends ffi.Struct {
+  @ffi.Int32()
+  external int version;
+
+  external ffi.Pointer<wire_cst_list_String> parts;
+
+  @ffi.Int32()
+  external int encoding;
 }
