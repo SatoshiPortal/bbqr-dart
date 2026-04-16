@@ -4,7 +4,7 @@ version = "0.1.0"
 edition = "2021"
 
 [lib]
-crate-type = ["cdylib", "staticlib"]
+crate-type = ["lib", "cdylib", "staticlib"]
 
 [dependencies]
 flutter_rust_bridge = "=2.11.1"
@@ -17,6 +17,9 @@ bbqr = { git = "https://github.com/SatoshiPortal/bbqr-rust.git", rev = "2296a713
 libz-sys = { version = "1.1", features = ["static"] }
 extend = "1.2.0"
 
+
+[features]
+bull_sdk = []
 
 [lints.rust]
 unexpected_cfgs = { level = "warn", check-cfg = ['cfg(frb_expand)'] }
