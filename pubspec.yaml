@@ -1,4 +1,4 @@
-name: dart_bbqr
+name: bbqr
 description: "A new Flutter FFI plugin project."
 version: 0.0.1
 homepage:
@@ -10,7 +10,7 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  flutter_rust_bridge: 2.11.1
+  flutter_rust_bridge: 2.12.0
   freezed_annotation: ^3.0.0
   plugin_platform_interface: ^2.0.2
 
