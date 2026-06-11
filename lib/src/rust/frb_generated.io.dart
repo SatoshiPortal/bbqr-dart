@@ -25,12 +25,12 @@ abstract class LibBbqrApiImplPlatform extends BaseApiImpl<LibBbqrWire> {
   });
 
   CrossPlatformFinalizerArg
-  get rust_arc_decrement_strong_count_ContinuousJoinResultPtr =>
-      wire._rust_arc_decrement_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerContinuousJoinResultPtr;
+  get rust_arc_decrement_strong_count_ContinuousJoinResultPtr => wire
+      ._rust_arc_decrement_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerContinuousJoinResultPtr;
 
   CrossPlatformFinalizerArg
-  get rust_arc_decrement_strong_count_ContinuousJoinerPtr =>
-      wire._rust_arc_decrement_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerContinuousJoinerPtr;
+  get rust_arc_decrement_strong_count_ContinuousJoinerPtr => wire
+      ._rust_arc_decrement_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerContinuousJoinerPtr;
 
   @protected
   ContinuousJoinResult
@@ -529,9 +529,8 @@ class LibBbqrWire implements BaseWire {
       _lookup<ffi.NativeFunction<ffi.Void Function(DartPostCObjectFnType)>>(
         'store_dart_post_cobject',
       );
-  late final _store_dart_post_cobject =
-      _store_dart_post_cobjectPtr
-          .asFunction<void Function(DartPostCObjectFnType)>();
+  late final _store_dart_post_cobject = _store_dart_post_cobjectPtr
+      .asFunction<void Function(DartPostCObjectFnType)>();
 
   void wire__bbqr__continuous_join__ContinuousJoiner_default(int port_) {
     return _wire__bbqr__continuous_join__ContinuousJoiner_default(port_);
@@ -678,11 +677,12 @@ class LibBbqrWire implements BaseWire {
     return _wire__bbqr__join__joined_frb_override_try_from_parts(port_, parts);
   }
 
-  late final _wire__bbqr__join__joined_frb_override_try_from_partsPtr = _lookup<
-    ffi.NativeFunction<
-      ffi.Void Function(ffi.Int64, ffi.Pointer<wire_cst_list_String>)
-    >
-  >('frbgen_bbqr_wire__bbqr__join__joined_frb_override_try_from_parts');
+  late final _wire__bbqr__join__joined_frb_override_try_from_partsPtr =
+      _lookup<
+        ffi.NativeFunction<
+          ffi.Void Function(ffi.Int64, ffi.Pointer<wire_cst_list_String>)
+        >
+      >('frbgen_bbqr_wire__bbqr__join__joined_frb_override_try_from_parts');
   late final _wire__bbqr__join__joined_frb_override_try_from_parts =
       _wire__bbqr__join__joined_frb_override_try_from_partsPtr
           .asFunction<void Function(int, ffi.Pointer<wire_cst_list_String>)>();
@@ -701,16 +701,17 @@ class LibBbqrWire implements BaseWire {
     );
   }
 
-  late final _wire__bbqr__split__split_frb_override_try_from_dataPtr = _lookup<
-    ffi.NativeFunction<
-      ffi.Void Function(
-        ffi.Int64,
-        ffi.Pointer<wire_cst_list_prim_u_8_loose>,
-        ffi.Int32,
-        ffi.Pointer<wire_cst_split_options>,
-      )
-    >
-  >('frbgen_bbqr_wire__bbqr__split__split_frb_override_try_from_data');
+  late final _wire__bbqr__split__split_frb_override_try_from_dataPtr =
+      _lookup<
+        ffi.NativeFunction<
+          ffi.Void Function(
+            ffi.Int64,
+            ffi.Pointer<wire_cst_list_prim_u_8_loose>,
+            ffi.Int32,
+            ffi.Pointer<wire_cst_split_options>,
+          )
+        >
+      >('frbgen_bbqr_wire__bbqr__split__split_frb_override_try_from_data');
   late final _wire__bbqr__split__split_frb_override_try_from_data =
       _wire__bbqr__split__split_frb_override_try_from_dataPtr
           .asFunction<
@@ -822,9 +823,8 @@ class LibBbqrWire implements BaseWire {
       _lookup<ffi.NativeFunction<ffi.Pointer<ffi.Int32> Function(ffi.Int32)>>(
         'frbgen_bbqr_cst_new_box_autoadd_encoding',
       );
-  late final _cst_new_box_autoadd_encoding =
-      _cst_new_box_autoadd_encodingPtr
-          .asFunction<ffi.Pointer<ffi.Int32> Function(int)>();
+  late final _cst_new_box_autoadd_encoding = _cst_new_box_autoadd_encodingPtr
+      .asFunction<ffi.Pointer<ffi.Int32> Function(int)>();
 
   ffi.Pointer<ffi.Int32> cst_new_box_autoadd_file_type(int value) {
     return _cst_new_box_autoadd_file_type(value);
@@ -834,17 +834,17 @@ class LibBbqrWire implements BaseWire {
       _lookup<ffi.NativeFunction<ffi.Pointer<ffi.Int32> Function(ffi.Int32)>>(
         'frbgen_bbqr_cst_new_box_autoadd_file_type',
       );
-  late final _cst_new_box_autoadd_file_type =
-      _cst_new_box_autoadd_file_typePtr
-          .asFunction<ffi.Pointer<ffi.Int32> Function(int)>();
+  late final _cst_new_box_autoadd_file_type = _cst_new_box_autoadd_file_typePtr
+      .asFunction<ffi.Pointer<ffi.Int32> Function(int)>();
 
   ffi.Pointer<wire_cst_split_options> cst_new_box_autoadd_split_options() {
     return _cst_new_box_autoadd_split_options();
   }
 
-  late final _cst_new_box_autoadd_split_optionsPtr = _lookup<
-    ffi.NativeFunction<ffi.Pointer<wire_cst_split_options> Function()>
-  >('frbgen_bbqr_cst_new_box_autoadd_split_options');
+  late final _cst_new_box_autoadd_split_optionsPtr =
+      _lookup<
+        ffi.NativeFunction<ffi.Pointer<wire_cst_split_options> Function()>
+      >('frbgen_bbqr_cst_new_box_autoadd_split_options');
   late final _cst_new_box_autoadd_split_options =
       _cst_new_box_autoadd_split_optionsPtr
           .asFunction<ffi.Pointer<wire_cst_split_options> Function()>();
@@ -853,12 +853,14 @@ class LibBbqrWire implements BaseWire {
     return _cst_new_list_String(len);
   }
 
-  late final _cst_new_list_StringPtr = _lookup<
-    ffi.NativeFunction<ffi.Pointer<wire_cst_list_String> Function(ffi.Int32)>
-  >('frbgen_bbqr_cst_new_list_String');
-  late final _cst_new_list_String =
-      _cst_new_list_StringPtr
-          .asFunction<ffi.Pointer<wire_cst_list_String> Function(int)>();
+  late final _cst_new_list_StringPtr =
+      _lookup<
+        ffi.NativeFunction<
+          ffi.Pointer<wire_cst_list_String> Function(ffi.Int32)
+        >
+      >('frbgen_bbqr_cst_new_list_String');
+  late final _cst_new_list_String = _cst_new_list_StringPtr
+      .asFunction<ffi.Pointer<wire_cst_list_String> Function(int)>();
 
   ffi.Pointer<wire_cst_list_prim_u_8_loose> cst_new_list_prim_u_8_loose(
     int len,
@@ -866,16 +868,14 @@ class LibBbqrWire implements BaseWire {
     return _cst_new_list_prim_u_8_loose(len);
   }
 
-  late final _cst_new_list_prim_u_8_loosePtr = _lookup<
-    ffi.NativeFunction<
-      ffi.Pointer<wire_cst_list_prim_u_8_loose> Function(ffi.Int32)
-    >
-  >('frbgen_bbqr_cst_new_list_prim_u_8_loose');
-  late final _cst_new_list_prim_u_8_loose =
-      _cst_new_list_prim_u_8_loosePtr
-          .asFunction<
-            ffi.Pointer<wire_cst_list_prim_u_8_loose> Function(int)
-          >();
+  late final _cst_new_list_prim_u_8_loosePtr =
+      _lookup<
+        ffi.NativeFunction<
+          ffi.Pointer<wire_cst_list_prim_u_8_loose> Function(ffi.Int32)
+        >
+      >('frbgen_bbqr_cst_new_list_prim_u_8_loose');
+  late final _cst_new_list_prim_u_8_loose = _cst_new_list_prim_u_8_loosePtr
+      .asFunction<ffi.Pointer<wire_cst_list_prim_u_8_loose> Function(int)>();
 
   ffi.Pointer<wire_cst_list_prim_u_8_strict> cst_new_list_prim_u_8_strict(
     int len,
@@ -883,16 +883,14 @@ class LibBbqrWire implements BaseWire {
     return _cst_new_list_prim_u_8_strict(len);
   }
 
-  late final _cst_new_list_prim_u_8_strictPtr = _lookup<
-    ffi.NativeFunction<
-      ffi.Pointer<wire_cst_list_prim_u_8_strict> Function(ffi.Int32)
-    >
-  >('frbgen_bbqr_cst_new_list_prim_u_8_strict');
-  late final _cst_new_list_prim_u_8_strict =
-      _cst_new_list_prim_u_8_strictPtr
-          .asFunction<
-            ffi.Pointer<wire_cst_list_prim_u_8_strict> Function(int)
-          >();
+  late final _cst_new_list_prim_u_8_strictPtr =
+      _lookup<
+        ffi.NativeFunction<
+          ffi.Pointer<wire_cst_list_prim_u_8_strict> Function(ffi.Int32)
+        >
+      >('frbgen_bbqr_cst_new_list_prim_u_8_strict');
+  late final _cst_new_list_prim_u_8_strict = _cst_new_list_prim_u_8_strictPtr
+      .asFunction<ffi.Pointer<wire_cst_list_prim_u_8_strict> Function(int)>();
 
   int dummy_method_to_enforce_bundling() {
     return _dummy_method_to_enforce_bundling();

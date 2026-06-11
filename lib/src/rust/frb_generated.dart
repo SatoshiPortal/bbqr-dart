@@ -514,20 +514,20 @@ class LibBbqrApiImpl extends LibBbqrApiImplPlatform implements LibBbqrApi {
   );
 
   RustArcIncrementStrongCountFnType
-  get rust_arc_increment_strong_count_ContinuousJoinResult =>
-      wire.rust_arc_increment_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerContinuousJoinResult;
+  get rust_arc_increment_strong_count_ContinuousJoinResult => wire
+      .rust_arc_increment_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerContinuousJoinResult;
 
   RustArcDecrementStrongCountFnType
-  get rust_arc_decrement_strong_count_ContinuousJoinResult =>
-      wire.rust_arc_decrement_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerContinuousJoinResult;
+  get rust_arc_decrement_strong_count_ContinuousJoinResult => wire
+      .rust_arc_decrement_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerContinuousJoinResult;
 
   RustArcIncrementStrongCountFnType
-  get rust_arc_increment_strong_count_ContinuousJoiner =>
-      wire.rust_arc_increment_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerContinuousJoiner;
+  get rust_arc_increment_strong_count_ContinuousJoiner => wire
+      .rust_arc_increment_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerContinuousJoiner;
 
   RustArcDecrementStrongCountFnType
-  get rust_arc_decrement_strong_count_ContinuousJoiner =>
-      wire.rust_arc_decrement_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerContinuousJoiner;
+  get rust_arc_decrement_strong_count_ContinuousJoiner => wire
+      .rust_arc_decrement_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerContinuousJoiner;
 
   @protected
   ContinuousJoinResult
@@ -1298,21 +1298,18 @@ class ContinuousJoinResultImpl extends RustOpaque
   ) : super.frbInternalSseDecode(ptr, externalSizeOnNative, _kStaticData);
 
   static final _kStaticData = RustArcStaticData(
-    rustArcIncrementStrongCount:
-        LibBbqr
-            .instance
-            .api
-            .rust_arc_increment_strong_count_ContinuousJoinResult,
-    rustArcDecrementStrongCount:
-        LibBbqr
-            .instance
-            .api
-            .rust_arc_decrement_strong_count_ContinuousJoinResult,
-    rustArcDecrementStrongCountPtr:
-        LibBbqr
-            .instance
-            .api
-            .rust_arc_decrement_strong_count_ContinuousJoinResultPtr,
+    rustArcIncrementStrongCount: LibBbqr
+        .instance
+        .api
+        .rust_arc_increment_strong_count_ContinuousJoinResult,
+    rustArcDecrementStrongCount: LibBbqr
+        .instance
+        .api
+        .rust_arc_decrement_strong_count_ContinuousJoinResult,
+    rustArcDecrementStrongCountPtr: LibBbqr
+        .instance
+        .api
+        .rust_arc_decrement_strong_count_ContinuousJoinResultPtr,
   );
 }
 
@@ -1333,11 +1330,10 @@ class ContinuousJoinerImpl extends RustOpaque implements ContinuousJoiner {
         LibBbqr.instance.api.rust_arc_increment_strong_count_ContinuousJoiner,
     rustArcDecrementStrongCount:
         LibBbqr.instance.api.rust_arc_decrement_strong_count_ContinuousJoiner,
-    rustArcDecrementStrongCountPtr:
-        LibBbqr
-            .instance
-            .api
-            .rust_arc_decrement_strong_count_ContinuousJoinerPtr,
+    rustArcDecrementStrongCountPtr: LibBbqr
+        .instance
+        .api
+        .rust_arc_decrement_strong_count_ContinuousJoinerPtr,
   );
 
   Future<ContinuousJoinResult> addPart({required String part_}) =>

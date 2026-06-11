@@ -26,22 +26,24 @@ abstract class LibBbqrApiImplPlatform extends BaseApiImpl<LibBbqrWire> {
   });
 
   CrossPlatformFinalizerArg
-  get rust_arc_decrement_strong_count_ContinuousJoinErrorPtr =>
-      wire.rust_arc_decrement_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerContinuousJoinError;
+  get rust_arc_decrement_strong_count_ContinuousJoinErrorPtr => wire
+      .rust_arc_decrement_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerContinuousJoinError;
 
   CrossPlatformFinalizerArg
-  get rust_arc_decrement_strong_count_ContinuousJoinResultPtr =>
-      wire.rust_arc_decrement_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerContinuousJoinResult;
+  get rust_arc_decrement_strong_count_ContinuousJoinResultPtr => wire
+      .rust_arc_decrement_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerContinuousJoinResult;
 
   CrossPlatformFinalizerArg
-  get rust_arc_decrement_strong_count_ContinuousJoinerPtr =>
-      wire.rust_arc_decrement_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerContinuousJoiner;
+  get rust_arc_decrement_strong_count_ContinuousJoinerPtr => wire
+      .rust_arc_decrement_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerContinuousJoiner;
 
-  CrossPlatformFinalizerArg get rust_arc_decrement_strong_count_JoinErrorPtr =>
-      wire.rust_arc_decrement_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerJoinError;
+  CrossPlatformFinalizerArg
+  get rust_arc_decrement_strong_count_JoinErrorPtr => wire
+      .rust_arc_decrement_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerJoinError;
 
-  CrossPlatformFinalizerArg get rust_arc_decrement_strong_count_SplitErrorPtr =>
-      wire.rust_arc_decrement_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerSplitError;
+  CrossPlatformFinalizerArg
+  get rust_arc_decrement_strong_count_SplitErrorPtr => wire
+      .rust_arc_decrement_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerSplitError;
 
   @protected
   ContinuousJoinError
