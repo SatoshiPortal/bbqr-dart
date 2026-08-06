@@ -1,4 +1,4 @@
-rust_input: bbqr, crate::api
+rust_input: bbqr::continuous_join, bbqr::encode, bbqr::file_type, bbqr::join, bbqr::qr, bbqr::split, crate::api
 rust_root: rust/
 dart_output: lib/src/rust
 dart_entrypoint_class_name: LibBbqr
