@@ -433,6 +433,9 @@ impl CstDecode<bbqr::file_type::FileType> for i32 {
             2 => bbqr::file_type::FileType::Json,
             3 => bbqr::file_type::FileType::Cbor,
             4 => bbqr::file_type::FileType::UnicodeText,
+            5 => bbqr::file_type::FileType::KeyTeleportReceiver,
+            6 => bbqr::file_type::FileType::KeyTeleportSender,
+            7 => bbqr::file_type::FileType::KeyTeleportPsbt,
             _ => unreachable!("Invalid variant for FileType: {}", self),
         }
     }
@@ -581,6 +584,9 @@ impl SseDecode for bbqr::file_type::FileType {
             2 => bbqr::file_type::FileType::Json,
             3 => bbqr::file_type::FileType::Cbor,
             4 => bbqr::file_type::FileType::UnicodeText,
+            5 => bbqr::file_type::FileType::KeyTeleportReceiver,
+            6 => bbqr::file_type::FileType::KeyTeleportSender,
+            7 => bbqr::file_type::FileType::KeyTeleportPsbt,
             _ => unreachable!("Invalid variant for FileType: {}", inner),
         };
     }
@@ -845,6 +851,9 @@ impl flutter_rust_bridge::IntoDart for FrbWrapper<bbqr::file_type::FileType> {
             bbqr::file_type::FileType::Json => 2.into_dart(),
             bbqr::file_type::FileType::Cbor => 3.into_dart(),
             bbqr::file_type::FileType::UnicodeText => 4.into_dart(),
+            bbqr::file_type::FileType::KeyTeleportReceiver => 5.into_dart(),
+            bbqr::file_type::FileType::KeyTeleportSender => 6.into_dart(),
+            bbqr::file_type::FileType::KeyTeleportPsbt => 7.into_dart(),
             _ => unreachable!(),
         }
     }
@@ -1061,6 +1070,9 @@ impl SseEncode for bbqr::file_type::FileType {
                 bbqr::file_type::FileType::Json => 2,
                 bbqr::file_type::FileType::Cbor => 3,
                 bbqr::file_type::FileType::UnicodeText => 4,
+                bbqr::file_type::FileType::KeyTeleportReceiver => 5,
+                bbqr::file_type::FileType::KeyTeleportSender => 6,
+                bbqr::file_type::FileType::KeyTeleportPsbt => 7,
                 _ => {
                     unimplemented!("");
                 }
