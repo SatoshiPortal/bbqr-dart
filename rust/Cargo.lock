@@ -89,8 +89,8 @@ dependencies = [
 
 [[package]]
 name = "bbqr"
-version = "0.5.0"
-source = "git+https://github.com/SatoshiPortal/bbqr-rust.git?rev=e4807767d6a61cd7fd9a590f33437553595d0305#e4807767d6a61cd7fd9a590f33437553595d0305"
+version = "0.6.0"
+source = "git+https://github.com/SatoshiPortal/bbqr-rust.git?rev=c02a2028616f595a8b6ebc5eef317d5622e4479a#c02a2028616f595a8b6ebc5eef317d5622e4479a"
 dependencies = [
  "data-encoding",
  "flate2",
