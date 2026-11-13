@@ -10,6 +10,8 @@ import 'frb_generated.dart';
 import 'frb_generated.io.dart'
     if (dart.library.js_interop) 'frb_generated.web.dart';
 import 'package:flutter_rust_bridge/flutter_rust_bridge_for_generated.dart';
+import 'native_asset_library.dart'
+    if (dart.library.js_interop) 'native_asset_library_web.dart';
 import 'third_party/bbqr/continuous_join.dart';
 import 'third_party/bbqr/encode.dart';
 import 'third_party/bbqr/file_type.dart';
@@ -34,7 +36,7 @@ class LibBbqr extends BaseEntrypoint<LibBbqrApi, LibBbqrApiImpl, LibBbqrWire> {
     await instance.initImpl(
       api: api,
       handler: handler,
-      externalLibrary: externalLibrary,
+      externalLibrary: externalLibrary ?? nativeAssetLibrary(),
       forceSameCodegenVersion: forceSameCodegenVersion,
     );
   }
