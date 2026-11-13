@@ -3,7 +3,7 @@ import 'dart:developer';
 
 import 'package:bbqr/bbqr.dart' as bbqr;
 import 'package:flutter/foundation.dart';
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -110,7 +110,7 @@ void testPackage() async {
     // final part = split.parts.first;
 
     final result = await bbqr.Joined.tryFromParts(parts: split.parts);
-    print(result);
+    debugPrint(result.toString());
 
     // if (result case bbqr.JoinResult_Complete(:final joined)) {
     //   assert(listEquals(joined.data, bytes));
