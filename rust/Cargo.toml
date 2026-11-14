@@ -11,7 +11,7 @@ flutter_rust_bridge = "=2.13.0"
 anyhow = "1.0.68"
 serde = "1.0.89"
 serde_json = "1.0.96"
-bbqr = { git = "https://github.com/SatoshiPortal/bbqr-rust.git", rev = "e4807767d6a61cd7fd9a590f33437553595d0305", default-features = false }
+bbqr = { git = "https://github.com/SatoshiPortal/bbqr-rust.git", rev = "b1b3a7f7b9901b1ec320542bfd84411a4860033e", default-features = false }
 
 # static link libz-sys
 libz-sys = { version = "1.1.33", features = ["static"] }
